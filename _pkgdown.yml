@@ -88,14 +88,14 @@ reference:
   - "Inherit"
 
 - title: AgePrior
-  descr: See [ageprior vignette](../articles/vignette_age/_book/index.html) for details
+  descr: See [ageprior vignette](../articles/vignette_age/book/index.html) for details
 - contents:
     - "MakeAgePrior"
     - "PlotAgePrior"
     - "CalcBYprobs"
 
 - title: Pedigree reconstruction
-  descr: The core of the package, see [main vignette](../articles/vignette_main/_book/key-points.html) for details
+  descr: The core of the package, see [main vignette](../articles/vignette_main/book/key-points.html) for details
 - contents:
     - "sequoia"
     - "GetMaybeRel"

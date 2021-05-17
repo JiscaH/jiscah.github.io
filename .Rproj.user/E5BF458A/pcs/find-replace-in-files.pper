@@ -9,7 +9,7 @@
             "*.Rmd"
         ],
         "excludeFilePatterns": [],
-        "resultsCount": 55,
+        "resultsCount": 57,
         "errorCount": 0,
         "replaceErrors": "",
         "projectRelative": true
