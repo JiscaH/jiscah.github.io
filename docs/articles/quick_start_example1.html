@@ -47,7 +47,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
+  <a href=".././index.html">
     <span class="fas fa-home"></span>
      
   </a>
@@ -66,10 +66,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/vignette_main/_book/sec-Background.html">Main vignette: User guide</a>
+      <a href="../articles/vignette_main/book/sec-Background.html">Main vignette: User guide</a>
     </li>
     <li>
-      <a href="../articles/vignette_age/_book/index.html">Age prior vignette</a>
+      <a href="../articles/vignette_age/book/index.html">Age prior vignette</a>
     </li>
     <li>
       <a href="../articles/index.html">Examples</a>
@@ -86,7 +86,7 @@
   <a href="../articles/help.html">Help</a>
 </li>
 <li>
-  <a href="../articles/_performance_stats.html">Stats</a>
+  <a href="../articles/performance_stats.html">Stats</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -181,15 +181,17 @@
 <pre><code>## Ageprior: Flat 0/1, overlapping generations, MaxAgeParent = 6,6</code></pre>
 <p><img src="quick_start_example1_files/figure-html/example1-e-1.png" width="576"></p>
 <pre><code>## 
+## ~~~ Duplicate check ~~~</code></pre>
+<pre><code>## 
 ## ~~~ Parentage assignment ~~~</code></pre>
 <pre><code>## Parentage ...
 ## Initial total LL :
-## [1] -77382.2
+## [1] -78139.08
 ## Post-parentage total LL :
-## [1] -60410.37
+## [1] -60950.62
 ## Estimating birth years ...
 ## Calculating parental LLR ...</code></pre>
-<pre><code>## assigned 534 dams and 545 sires to 920 individuals</code></pre>
+<pre><code>## assigned 542 dams and 539 sires to 920 individuals</code></pre>
 <p><img src="quick_start_example1_files/figure-html/example1-e-2.png" width="576"><img src="quick_start_example1_files/figure-html/example1-e-3.png" width="576"></p>
 <!--- explain about ageprior messages & plots, and LL --->
 <p>You will see several plots appearing:</p>
@@ -202,34 +204,34 @@
 </ul>
 <p>In addition, you will see several messages, including about the initial and post-parentage total LL (log10-likelihood). This is the probability of observing the genotype data, given the (current) pedigree; initially it is assumed that all individuals are unrelated. This number is negative, and gets closer to zero when the pedigree explains the data better.</p>
 <p>The result is a list, with the following elements:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">ParOUT</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] "Specs"         "ErrM"          "AgePriors"     "LifeHist"     
 ##  [5] "DupLifeHistID" "NoLH"          "PedigreePar"   "TotLikPar"    
 ##  [9] "AgePriorExtra" "LifeHistPar"</code></pre>
 <p>which are explained in detail in the helpfile (<code><a href="../reference/sequoia.html">?sequoia</a></code>) and the main vignette.</p>
 <p>you find the assigned parents in list element <code>PedigreePar</code>:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">ParOUT</span><span class="op">$</span><span class="va">PedigreePar</span><span class="op">)</span></code></pre></div>
 <pre><code>##         id    dam   sire LLRdam LLRsire LLRpair OHdam OHsire MEpair
 ## 915 b05187   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA
 ## 916 a05188   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA
-## 917 a05189 a04006 b04177   7.80   11.77    9.24     0      0      0
-## 918 b05190 a04006 b04177   7.17   10.22    8.45     0      0      0
-## 919 b05191 a04006 b04177  11.01    8.02   10.40     0      0      0
-## 920 b05192 a04006 b04177  10.08    9.66    9.71     0      0      0</code></pre>
+## 917 a05189 a04006 b04177   7.50    7.42   10.03     0      0      0
+## 918 b05190 a04006 b04177   6.27    7.04   10.22     0      0      1
+## 919 b05191 a04006 b04177   9.12    6.31    9.99     0      0      0
+## 920 b05192 a04006 b04177   7.37    7.46   10.84     0      0      0</code></pre>
 <p>we can compare these to the true parents, in the original pedigree from which we simulated the genotype data:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">chk_par</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/PedCompare.html">PedCompare</a></span><span class="op">(</span>Ped1 <span class="op">=</span> <span class="va">Ped_HSg5</span>, Ped2 <span class="op">=</span> <span class="va">ParOUT</span><span class="op">$</span><span class="va">PedigreePar</span><span class="op">)</span></code></pre></div>
 <p><img src="quick_start_example1_files/figure-html/example1-h-1.png" width="576"></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">chk_par</span><span class="op">$</span><span class="va">Counts</span><span class="op">[</span><span class="st">"GG"</span>,,<span class="op">]</span>   </code></pre></div>
 <pre><code>##           parent
 ## class      dam sire
-##   Total    536  545
-##   Match    534  545
+##   Total    544  540
+##   Match    542  539
 ##   Mismatch   0    0
-##   P1only     2    0
+##   P1only     2    1
 ##   P2only     0    0</code></pre>
 <p>Here ‘GG’ stands for <em>G</em>enotyped offspring, <em>G</em>enotyped parent.</p>
 </div>
@@ -237,7 +239,7 @@
 <h2 class="hasAnchor">
 <a href="#pedigree-reconstruction" class="anchor"></a>Pedigree reconstruction</h2>
 <p>Then, we can run full pedigree reconstruction. By default, this re-runs the parentage assignment.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">SeqOUT</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sequoia.html">sequoia</a></span><span class="op">(</span>GenoM <span class="op">=</span> <span class="va">Geno</span>, LifeHistData <span class="op">=</span> <span class="va">LH_HSg5</span>, Module <span class="op">=</span> <span class="st">"ped"</span><span class="op">)</span></code></pre></div>
 <p>If you don’t want to re-run parentage assignment (e.g. because it took quite a bit of time), or if you have specified several non-default parameter values you want to use again, , you can provide the old output as input.</p>
 <p>Re-used will be:</p>
@@ -248,14 +250,14 @@
 <li>Age prior, based on the age distribution of assigned parents (<code>$AgePriors</code>)</li>
 </ul>
 <p>The last is generated by <code><a href="../reference/MakeAgePrior.html">MakeAgePrior()</a></code>, which has detected that all parent-offspring pairs have an age difference of <span class="math inline">\(1\)</span>, and all siblings an age difference of <span class="math inline">\(0\)</span>, i.e. that generations do not overlap. This information will be used during the full pedigree reconstruction.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ParOUT</span><span class="op">$</span><span class="va">AgePriors</span></code></pre></div>
 <pre><code>##   M P FS MS PS
 ## 0 0 0  1  1  1
 ## 1 1 1  0  0  0
 ## 2 0 0  0  0  0</code></pre>
 <p>So run <code><a href="../reference/sequoia.html">sequoia()</a></code> with the old output as input,</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">SeqOUT</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sequoia.html">sequoia</a></span><span class="op">(</span>GenoM <span class="op">=</span> <span class="va">Geno</span>,
                   SeqList <span class="op">=</span> <span class="va">ParOUT</span>,
                   Module <span class="op">=</span> <span class="st">"ped"</span><span class="op">)</span></code></pre></div>
@@ -264,28 +266,30 @@
 <pre><code>## using AgePriors in SeqList</code></pre>
 <pre><code>## using PedigreePar in SeqList</code></pre>
 <pre><code>## 
+## ~~~ Duplicate check ~~~</code></pre>
+<pre><code>## 
 ## ~~~ Full pedigree reconstruction ~~~</code></pre>
 <pre><code>## Sibships - Initial Total LL :
-## [1] -60410.37
+## [1] -60950.62
 ## Round 01 end, Total LogLik; time (sec):
-## [1] -47756.052     17.875
+## [1] -48089.25424     20.26562
 ## No. dams, sires for real indiv.:
-## [1] 891 898
+## [1] 895 893
 ## Round 02 end, Total LogLik; time (sec):
-## [1] -47037.238153      9.671875
+## [1] -47357.4132     10.1875
 ## No. dams, sires for real indiv.:
-## [1] 898 898
+## [1] 896 897
 ## Round 03 end, Total LogLik; time (sec):
-## [1] -47028.68014      1.28125
+## [1] -47329.6911      1.5625
 ## No. dams, sires for real indiv.:
-## [1] 898 898
+## [1] 897 897
 ## Round 04 end, Total LogLik; time (sec):
-## [1] -47028.56630      0.96875
+## [1] -47329.691059      1.015625
 ## No. dams, sires for real indiv.:
-## [1] 898 898
+## [1] 897 897
 ## Estimating birth years ...
 ## Calculating parental LLR ...</code></pre>
-<pre><code>## assigned 960 dams and 960 sires to 920 + 80 individuals (real + dummy)</code></pre>
+<pre><code>## assigned 960 dams and 961 sires to 920 + 81 individuals (real + dummy)</code></pre>
 <p><img src="quick_start_example1_files/figure-html/example1-j-1.png" width="576"><img src="quick_start_example1_files/figure-html/example1-j-2.png" width="576"><img src="quick_start_example1_files/figure-html/example1-j-3.png" width="576"></p>
 <p>Full pedigree reconstruction will take at least a few minutes to run on this fairly simple dataset with one thousand individuals. It may take a few hours on larger or more complex datasets, and/or if there is much ambiguity about relationships due to a low number of SNPs, genotyping errors, and missing data.</p>
 <p>You will get several messages:</p>
@@ -305,41 +309,41 @@
 <li>an update of the assignment rates plot, now including dummy parents.</li>
 </ul>
 <p>For additional plots and a few tables to inspect the pedigree, you can use <code><a href="../reference/SummarySeq.html">SummarySeq()</a></code>:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">summary_seq1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SummarySeq.html">SummarySeq</a></span><span class="op">(</span><span class="va">SeqOUT</span>, Panels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sibships"</span>, <span class="st">"D.parents"</span>, <span class="st">"LLR"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="quick_start_example1_files/figure-html/example1-k-1.png" width="576"><img src="quick_start_example1_files/figure-html/example1-k-2.png" width="576"><img src="quick_start_example1_files/figure-html/example1-k-3.png" width="576"></p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">summary_seq1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "PedSummary"  "ParentCount" "GPCount"     "SibSize"</code></pre>
 <p>And again we can also compare the results to the true parents:</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">chk</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/PedCompare.html">PedCompare</a></span><span class="op">(</span>Ped1 <span class="op">=</span> <span class="va">Ped_HSg5</span>, Ped2 <span class="op">=</span> <span class="va">SeqOUT</span><span class="op">$</span><span class="va">Pedigree</span><span class="op">)</span></code></pre></div>
 <p><img src="quick_start_example1_files/figure-html/example1-l-1.png" width="576"></p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">chk</span><span class="op">$</span><span class="va">Counts</span></code></pre></div>
 <pre><code>## , , parent = dam
 ## 
 ##     class
 ## cat  Total Match Mismatch P1only P2only
-##   GG   536   536        0      0      0
-##   GD   362   362        0      0      0
-##   GT   898   898        0      0      0
-##   DG    40    40        0      0      0
-##   DD    22    22        0      0      0
-##   DT    62    62        0      0      0
-##   TT   960   960        0      0      0
+##   GG   544   543        1      0      0
+##   GD   353   353        0      0      0
+##   GT   897   896        1      0      0
+##   DG    32    32        0      0      0
+##   DD    31    31        0      0      0
+##   DT    63    63        0      0      0
+##   TT   960   959        1      0      0
 ## 
 ## , , parent = sire
 ## 
 ##     class
 ## cat  Total Match Mismatch P1only P2only
-##   GG   545   545        0      0      0
-##   GD   353   353        0      0      0
-##   GT   898   898        0      0      0
-##   DG    31    31        0      0      0
-##   DD    31    31        0      0      0
-##   DT    62    62        0      0      0
-##   TT   960   960        0      0      0</code></pre>
+##   GG   540   540        0      0      0
+##   GD   357   357        0      0      0
+##   GT   897   897        0      0      0
+##   DG    36    36        0      0      0
+##   DD    27    27        0      0      0
+##   DT    63    63        0      0      0
+##   TT   961   960        0      0      1</code></pre>
 <p>See <code><a href="../reference/PedCompare.html">?PedCompare</a></code> for a more interesting example with some mismatches.</p>
 <p>If you wish to count e.g. the number of full sibling pairs that are assigned as full siblings, paternal half siblings, maternal halfsiblings, or unrelated, or similar comparisons, use <code><a href="../reference/ComparePairs.html">ComparePairs()</a></code>.</p>
 </div>
@@ -347,7 +351,7 @@
 <h2 class="hasAnchor">
 <a href="#save-results" class="anchor"></a>Save results</h2>
 <p>Lastly, you often wish to save the results to file. You can do this as an <code>Rdata</code> file, which can contain any number of R objects. You can later retrieve these in R using <code>load</code>, so that you can later resume where you left of. The disadvantage is that you cannot open the <code>Rdata</code> files outside of R (as far as I am aware). Therefore, <code>sequoia</code> also includes a function to write all output to a set of plain text files in a specified folder.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">SeqOUT</span>, <span class="va">Geno</span>, file<span class="op">=</span><span class="st">"Sequoia_output_date.RData"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/writeSeq.html">writeSeq</a></span><span class="op">(</span>SeqList <span class="op">=</span> <span class="va">SeqOUT</span>, GenoM <span class="op">=</span> <span class="va">Geno</span>, folder <span class="op">=</span> <span class="st">"Sequoia-OUT"</span><span class="op">)</span></code></pre></div>
 <hr>

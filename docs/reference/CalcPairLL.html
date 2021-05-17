@@ -92,7 +92,7 @@ NOTE values \(&amp;gt;0\) are various NA types, see 'Likelihood
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
+  <a href=".././index.html">
     <span class="fas fa-home"></span>
      
   </a>
@@ -111,10 +111,10 @@ NOTE values \(&amp;gt;0\) are various NA types, see 'Likelihood
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/vignette_main/_book/sec-Background.html">Main vignette: User guide</a>
+      <a href="../articles/vignette_main/book/sec-Background.html">Main vignette: User guide</a>
     </li>
     <li>
-      <a href="../articles/vignette_age/_book/index.html">Age prior vignette</a>
+      <a href="../articles/vignette_age/book/index.html">Age prior vignette</a>
     </li>
     <li>
       <a href="../articles/index.html">Examples</a>
@@ -131,7 +131,7 @@ NOTE values \(&amp;gt;0\) are various NA types, see 'Likelihood
   <a href="../articles/help.html">Help</a>
 </li>
 <li>
-  <a href="../articles/_performance_stats.html">Stats</a>
+  <a href="../articles/performance_stats.html">Stats</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -473,7 +473,7 @@ Likelihood special codes:
                   Module <span class='op'>=</span> <span class='st'>"par"</span>, Err <span class='op'>=</span> <span class='fl'>0.001</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Searching for non-assigned parent-offspring pairs ... (Module = par)</span></div><div class='output co'>#&gt; <span class='message'>Genotype matrix looks OK! There are  142  individuals and  200  SNPs.</span></div><div class='output co'>#&gt; <span class='message'>Ageprior: Flat 0/1, overlapping generations, MaxAgeParent = 10,10</span></div><div class='output co'>#&gt; Counting opposing homozygous loci between all individuals ...
 #&gt; Checking for non-assigned Parent-Offspring pairs ...
-#&gt; Checking for Parent-Parent-Offspring trios ...</div><div class='output co'>#&gt; <span class='message'>Found 127 likely parent-offspring pairs, and 2 other non-assigned pairs of possible relatives</span></div><div class='output co'>#&gt; <span class='message'>Found 33 parent-parent-offspring trios</span></div><div class='input'><span class='va'>FivePairs</span> <span class='op'>&lt;-</span> <span class='va'>MR</span><span class='op'>$</span><span class='va'>MaybePar</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ID1"</span>, <span class='st'>"ID2"</span>, <span class='st'>"Sex1"</span>, <span class='st'>"Sex2"</span><span class='op'>)</span><span class='op'>]</span>
+#&gt; Checking for Parent-Parent-Offspring trios ...</div><div class='output co'>#&gt; <span class='message'>Found 137 likely parent-offspring pairs, and 3 other non-assigned pairs of possible relatives</span></div><div class='output co'>#&gt; <span class='message'>Found 39 parent-parent-offspring trios</span></div><div class='input'><span class='va'>FivePairs</span> <span class='op'>&lt;-</span> <span class='va'>MR</span><span class='op'>$</span><span class='va'>MaybePar</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ID1"</span>, <span class='st'>"ID2"</span>, <span class='st'>"Sex1"</span>, <span class='st'>"Sex2"</span><span class='op'>)</span><span class='op'>]</span>
 <span class='va'>FivePairs</span><span class='op'>$</span><span class='va'>AgeDif</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>   <span class='co'># pretend unknown age differences</span>
 <span class='va'>PairLL</span> <span class='op'>&lt;-</span> <span class='fu'>CalcPairLL</span><span class='op'>(</span>Pairs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>FivePairs</span>, focal <span class='op'>=</span> <span class='st'>"PO"</span><span class='op'>)</span>,
                                     <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>FivePairs</span>, focal <span class='op'>=</span> <span class='st'>"HS"</span><span class='op'>)</span>,
@@ -482,13 +482,13 @@ Likelihood special codes:
                      Err <span class='op'>=</span> <span class='fl'>0.005</span>, Plot<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='va'>PairLL</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>6</span>, <span class='fl'>11</span><span class='op'>)</span>, <span class='op'>]</span>
 </div><div class='output co'>#&gt;            ID1         ID2 Sex1 Sex2 AgeDif focal patmat dropPar1 dropPar2
-#&gt; 1  i115_2006_F i087_2005_F    1    1     NA    PO      1     none     none
-#&gt; 6  i115_2006_F i087_2005_F    1    1     NA    HS      1     none     none
-#&gt; 11 i115_2006_F i087_2005_F    1    1     NA    GP      1     none     none
+#&gt; 1  i075_2004_F i050_2003_M    1    2     NA    PO      2     none     none
+#&gt; 6  i075_2004_F i050_2003_M    1    2     NA    HS      1     none     none
+#&gt; 11 i075_2004_F i050_2003_M    1    2     NA    GP      1     none     none
 #&gt;         PO      FS      HS      GP  FA      HA       U TopRel  LLR
-#&gt; 1  -158.05 -163.82 -162.99 -162.44 777 -162.99 -172.66     PO 4.40
-#&gt; 6  -158.05  222.00 -161.37 -161.37 777 -162.99 -172.66     PO 3.32
-#&gt; 11 -158.05 -163.82 -161.37  222.00 777 -162.99 -172.66     PO 3.32</div><div class='input'><span class='co'># LL(FS)==222 : HSHA, HSGP, FAHA more likely than FS</span>
+#&gt; 1  -158.53 -165.18 -163.59 -162.42 777 -163.59 -171.41     PO 3.89
+#&gt; 6  -158.53  222.00 -162.42 -162.42 777 -163.59 -171.41     PO 3.89
+#&gt; 11 -158.53 -165.18 -162.42  222.00 777 -163.63 -171.41     PO 3.89</div><div class='input'><span class='co'># LL(FS)==222 : HSHA, HSGP, FAHA more likely than FS</span>
 <span class='co'># LL(GP) higher when focal=HS: GP via 'other' parent also considered</span>
 <span class='co'># LL(FA) higher when focal=PO: FAHA, or FS of 'other' parent</span>
 <span class='co'># }</span>
