@@ -1,0 +1,110 @@
+---
+title: "Sequoia - Age 'Prior'"
+author: "Jisca Huisman"
+date: "16 Feb 2021"
+site: bookdown::bookdown_site
+github-repo: "JiscaH/sequoia"
+cover-image: "../../sequoia_logo.png"
+apple-touch-icon: "../../apple-touch-icon-120x120.png"
+apple-touch-icon-size: 120
+favicon: "../../favicon.ico"
+output:
+  bookdown::gitbook: 
+    config:
+      toc:
+        collapse: subsection
+        before: |
+          <li><a href="./../../../index.html"><img src="../../home-solid-silver.svg" height="40" alt="home"/></a></li>
+        after: |
+          <li><a href="./../../vignette_main/book/sec-Background.html">Main Vignette</a></li>
+          <li><a href="./../../index.html">Other Manuals</a></li>
+      sharing:
+        facebook: no
+        github: yes
+        twitter: yes
+        linkedin: no
+      info: yes
+bibliography: ["../sequoia_refs.bib"]
+biblio-style: "apalike"
+link-citations: true
+linkcolor: blue
+---
+
+
+
+# In short
+ -------------
+ 
+```{r setup, include=FALSE}
+# output: 
+#   bookdown::pdf_book: 
+#   pdf_document:
+library(knitr)
+library(sequoia)
+knitr::opts_chunk$set(echo = TRUE, eval=TRUE,
+                      fig.height=4, fig.width=6, 
+                      fig.path='figs/', 
+                      fig.pos="h!")
+```
+
+
+## Age Info is Useful 
+The age difference between a pair of individuals can be useful information during pedigree reconstruction. It can exclude some relationship alternatives from consideration, as for example parent and offspring can never be born in the same time unit. It can also help to distinguish between the different types of second degree relatives, as the age difference between siblings is typically much smaller than between grandparent and grand-offspring. 
+
+
+```{r DeerAP, echo=FALSE, fig.cap="Example of 'ageprior' distribution in a red deer population", out.width="90%"} 
+knitr::include_graphics("figs/Deer-AgePriorExtra.png")   
+```
+
+
+## Implementation
+While the rule that parent and offspring cannot have an age difference of $0$ is universal, the pattern of age difference distributions for various relationships is highly species-specific, or even population-specific (example in Figure \@ref(fig:DeerAP)). Here `sequoia`'s separation between 1) assignment of genotyped parents to genotyped offspring and 2) full pedigree reconstruction including sibship clustering comes in handy. The age difference distribution for each relationship type is estimated based on the former, and then used as input for the latter (Figure \@ref(fig:pipeline)). 
+
+```{r pipeline, echo=FALSE, fig.cap="Pipeline overview", out.width="90%"} 
+knitr::include_graphics("figs/agepriors-pipeline.png")
+```
+
+
+More specifically, age information is implemented via the ratio between the proportion of pairs with age difference $A$ among those with relationship $R$, and the proportion in the entire sample (i.e. $P(A|R)/P(A)$). Scaling by the latter accounts for the fact that any sampling period is finite, so that smaller age differences are always more common than very large age differences. 
+
+Some reshuffling of terms (see [Maths]) shows that this probability ratio can be interpreted as
+
+> *If I were to pick two individuals with an age difference $A$, and two individuals at random, how much more likely are the first pair to have relationship $R$, compared to the second pair? *
+
+i.e. the probability of having relationship $R$ conditional on the age difference $A$ ($P(R|A)/P(R)$). 
+
+As a shorthand, these probability ratios are dubbed 'agepriors', but please note that this is not an official term, nor a proper prior.
+
+During full pedigree reconstruction, the genetic based likelihood that two individuals are related via relationship $R$ is multiplied by this age based probability ratio. The latter may be $0$ for some relationships, and then excludes these relationships from consideration. In other cases, it will 'nudge' the likelihoods up or down. 
+
+
+### Passing the threshold
+By default, age information is used in a restrictive way: a proposed assignment is only accepted if *both* the genetics-only and the genetics + age likelihood ratio (LLR) pass the assignment threshold. The genetics-only likelihoods do exclude those relationships that are impossible based on the age difference. You can change this behaviour to only the genetics LLR or only the genetics + age LLR having to pass the threshold via the `sequoia()` argument `UseAge`. See the section with that name in the main vignette for further details. 
+
+
+
+## Time units
+Throughout this documentation, 'birth year' is used to refer to the year/month/week/day/(other time unit) of birth/hatching/germination/... . The time units should be chosen such that parent and offspring can never be born in the same time unit, i.e. be smaller than or equal to the minimum age of maturity. `sequoia()` only accepts whole numbers as 'birth years'.  
+
+
+## Runtime Messages
+From `sequoia` version 2.0 onwards, you will see heatmaps and messages to inform you about the ageprior that is being used. These are for example 
+
+> `Ageprior: Default 0/1, overlapping generations, MaxAgeParent = 5,5`
+>
+> `Ageprior: Pedigree-based, discrete generations, MaxAgeParent = 1,1`
+>
+> `Ageprior: Pedigree-based, overlapping generations, smoothed, MaxAgeParent = 20,16`
+
+These are *not* warnings, but inform you on what is going on behind the scenes. This will hopefully minimise unintended age priors as a source of error during pedigree reconstruction. There are four parts to the message:
+
+- `Default 0/1`, `Flat 0/1`, or `Pedigree-based` indicates whether the ageprior at that point is respectively the default based on lifehistory data only/no data; based on user-specified maximum parental age; or or based on the age-differences per relationship in a (scaffold or old) pedigree;
+- `discrete` or `overlapping` generations  
+- `smoothed` and/or `flattened` indicate [small-sample corrections](#sec:smallCorr) for the pedigree-based age prior (no mention means it was not applied)  
+- Maximum age of mothers, fathers.
+
+
+## Changing the ageprior
+During pedigree reconstruction, arguments can be passed to `MakeAgePrior()`  via `sequoia()`'s `args.AP`. It is also possible to call `MakeAgePrior()` separately and use the resulting ageprior (via `sequoia()`'s `Seqlist` argument), or use a 'hand-tailored' ageprior (see [Customisation](#sec:customAP)).
+
+

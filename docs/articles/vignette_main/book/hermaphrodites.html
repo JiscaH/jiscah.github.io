@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Hermaphrodites | Sequoia User Guide</title>
+  <meta name="description" content="7 Hermaphrodites | Sequoia User Guide" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Hermaphrodites | Sequoia User Guide" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/../../sequoia_logo.png" />
+  
+  <meta name="github-repo" content="JiscaH/sequoia" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Hermaphrodites | Sequoia User Guide" />
+  
+  
+  <meta name="twitter:image" content="/../../sequoia_logo.png" />
+
+<meta name="author" content="Jisca Huisman" />
+
+
+<meta name="date" content="2021-05-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../apple-touch-icon-120x120.png" />
+  <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+<link rel="prev" href="output-check.html"/>
+<link rel="next" href="faq.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./../../../index.html"><img src="../../home-solid-silver.svg" height="40" alt="home"/></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="sec-Background.html"><a href="sec-Background.html"><i class="fa fa-check"></i><b>1</b> Background</a></li>
+<li class="chapter" data-level="2" data-path="key-points.html"><a href="key-points.html"><i class="fa fa-check"></i><b>2</b> Key Points</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="key-points.html"><a href="key-points.html#sec:MendelErrors"><i class="fa fa-check"></i><b>2.1</b> Mendelian Errors</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="key-points.html"><a href="key-points.html#parent-pairs"><i class="fa fa-check"></i><b>2.1.1</b> Parent-pairs</a></li>
+<li class="chapter" data-level="2.1.2" data-path="key-points.html"><a href="key-points.html#maximum-mismatches"><i class="fa fa-check"></i><b>2.1.2</b> Maximum mismatches</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="key-points.html"><a href="key-points.html#likelihoods"><i class="fa fa-check"></i><b>2.2</b> Likelihoods</a></li>
+<li class="chapter" data-level="2.3" data-path="key-points.html"><a href="key-points.html#sec:GenoErrors"><i class="fa fa-check"></i><b>2.3</b> Genotyping errors</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="key-points.html"><a href="key-points.html#effect"><i class="fa fa-check"></i><b>2.3.1</b> Effect</a></li>
+<li class="chapter" data-level="2.3.2" data-path="key-points.html"><a href="key-points.html#assumed-genotyping-error-rate-err"><i class="fa fa-check"></i><b>2.3.2</b> Assumed genotyping error rate <code>Err</code></a></li>
+<li class="chapter" data-level="2.3.3" data-path="key-points.html"><a href="key-points.html#performance-with-high-genotyping-error-rates"><i class="fa fa-check"></i><b>2.3.3</b> Performance with high genotyping error rates</a></li>
+<li class="chapter" data-level="2.3.4" data-path="key-points.html"><a href="key-points.html#effect-on-runtime"><i class="fa fa-check"></i><b>2.3.4</b> Effect on runtime</a></li>
+<li class="chapter" data-level="2.3.5" data-path="key-points.html"><a href="key-points.html#error-matrix"><i class="fa fa-check"></i><b>2.3.5</b> Error matrix</a></li>
+<li class="chapter" data-level="2.3.6" data-path="key-points.html"><a href="key-points.html#estimate"><i class="fa fa-check"></i><b>2.3.6</b> Estimate</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="key-points.html"><a href="key-points.html#sec:BY-AP"><i class="fa fa-check"></i><b>2.4</b> Birth years &amp; Ageprior</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="key-points.html"><a href="key-points.html#definition-interpretation"><i class="fa fa-check"></i><b>2.4.1</b> Definition &amp; interpretation</a></li>
+<li class="chapter" data-level="2.4.2" data-path="key-points.html"><a href="key-points.html#implementation"><i class="fa fa-check"></i><b>2.4.2</b> Implementation</a></li>
+<li class="chapter" data-level="2.4.3" data-path="key-points.html"><a href="key-points.html#smooth-flatten"><i class="fa fa-check"></i><b>2.4.3</b> Smooth &amp; Flatten</a></li>
+<li class="chapter" data-level="2.4.4" data-path="key-points.html"><a href="key-points.html#age-based-non-assignment"><i class="fa fa-check"></i><b>2.4.4</b> Age-based non-assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="key-points.html"><a href="key-points.html#parent-llr"><i class="fa fa-check"></i><b>2.5</b> Parent LLR</a></li>
+<li class="chapter" data-level="2.6" data-path="key-points.html"><a href="key-points.html#sec:EstConf"><i class="fa fa-check"></i><b>2.6</b> Confidence</a></li>
+<li class="chapter" data-level="2.7" data-path="key-points.html"><a href="key-points.html#sec:lowAR"><i class="fa fa-check"></i><b>2.7</b> Low assignment rate</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="key-points.html"><a href="key-points.html#causes"><i class="fa fa-check"></i><b>2.7.1</b> Causes</a></li>
+<li class="chapter" data-level="2.7.2" data-path="key-points.html"><a href="key-points.html#remedies"><i class="fa fa-check"></i><b>2.7.2</b> Remedies</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="function-overview.html"><a href="function-overview.html"><i class="fa fa-check"></i><b>3</b> Function overview</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="function-overview.html"><a href="function-overview.html#input"><i class="fa fa-check"></i><b>3.1</b> Input</a></li>
+<li class="chapter" data-level="3.2" data-path="function-overview.html"><a href="function-overview.html#simulate"><i class="fa fa-check"></i><b>3.2</b> Simulate</a></li>
+<li class="chapter" data-level="3.3" data-path="function-overview.html"><a href="function-overview.html#ageprior"><i class="fa fa-check"></i><b>3.3</b> Ageprior</a></li>
+<li class="chapter" data-level="3.4" data-path="function-overview.html"><a href="function-overview.html#pedigree-reconstruction"><i class="fa fa-check"></i><b>3.4</b> Pedigree reconstruction</a></li>
+<li class="chapter" data-level="3.5" data-path="function-overview.html"><a href="function-overview.html#pedigree-check"><i class="fa fa-check"></i><b>3.5</b> Pedigree check</a></li>
+<li class="chapter" data-level="3.6" data-path="function-overview.html"><a href="function-overview.html#pairwise-relationships"><i class="fa fa-check"></i><b>3.6</b> Pairwise relationships</a></li>
+<li class="chapter" data-level="3.7" data-path="function-overview.html"><a href="function-overview.html#miscellaneous"><i class="fa fa-check"></i><b>3.7</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sequoia-input.html"><a href="sequoia-input.html"><i class="fa fa-check"></i><b>4</b> <code>sequoia()</code> input</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sequoia-input.html"><a href="sequoia-input.html#sec:GenoFormat"><i class="fa fa-check"></i><b>4.1</b> Genotypes</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="sequoia-input.html"><a href="sequoia-input.html#subset-snps"><i class="fa fa-check"></i><b>4.1.1</b> Subset SNPs</a></li>
+<li class="chapter" data-level="4.1.2" data-path="sequoia-input.html"><a href="sequoia-input.html#plink"><i class="fa fa-check"></i><b>4.1.2</b> PLINK</a></li>
+<li class="chapter" data-level="4.1.3" data-path="sequoia-input.html"><a href="sequoia-input.html#low-call-rate"><i class="fa fa-check"></i><b>4.1.3</b> Low call rate</a></li>
+<li class="chapter" data-level="4.1.4" data-path="sequoia-input.html"><a href="sequoia-input.html#very-large-datasets"><i class="fa fa-check"></i><b>4.1.4</b> Very large datasets</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="sequoia-input.html"><a href="sequoia-input.html#birth-years-sex"><i class="fa fa-check"></i><b>4.2</b> Birth years &amp; sex</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="sequoia-input.html"><a href="sequoia-input.html#lifehistdata"><i class="fa fa-check"></i><b>4.2.1</b> LifeHistData</a></li>
+<li class="chapter" data-level="4.2.2" data-path="sequoia-input.html"><a href="sequoia-input.html#unknown-birth-years"><i class="fa fa-check"></i><b>4.2.2</b> Unknown birth years</a></li>
+<li class="chapter" data-level="4.2.3" data-path="sequoia-input.html"><a href="sequoia-input.html#sec:custom-AP"><i class="fa fa-check"></i><b>4.2.3</b> <code>args.AP</code> (Customising the ageprior)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="sequoia-input.html"><a href="sequoia-input.html#tfilter-tassign"><i class="fa fa-check"></i><b>4.3</b> <code>Tfilter</code> &amp; <code>Tassign</code></a></li>
+<li class="chapter" data-level="4.4" data-path="sequoia-input.html"><a href="sequoia-input.html#sec:Complx"><i class="fa fa-check"></i><b>4.4</b> <code>Complex</code></a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="sequoia-input.html"><a href="sequoia-input.html#sec:WeirdRels"><i class="fa fa-check"></i><b>4.4.1</b> Unusual relationships</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="sequoia-input.html"><a href="sequoia-input.html#herm"><i class="fa fa-check"></i><b>4.5</b> <code>Herm</code></a></li>
+<li class="chapter" data-level="4.6" data-path="sequoia-input.html"><a href="sequoia-input.html#useage"><i class="fa fa-check"></i><b>4.6</b> <code>UseAge</code></a></li>
+<li class="chapter" data-level="4.7" data-path="sequoia-input.html"><a href="sequoia-input.html#sec:reuse"><i class="fa fa-check"></i><b>4.7</b> <code>SeqList</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="running-sequoia.html"><a href="running-sequoia.html"><i class="fa fa-check"></i><b>5</b> Running <code>sequoia()</code></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="running-sequoia.html"><a href="running-sequoia.html#module-maxsibiter"><i class="fa fa-check"></i><b>5.1</b> <code>Module</code> (<code>MaxSibIter</code>)</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="running-sequoia.html"><a href="running-sequoia.html#sec:MaxSibIter"><i class="fa fa-check"></i><b>5.1.1</b> <code>MaxSibIter</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="running-sequoia.html"><a href="running-sequoia.html#input-check"><i class="fa fa-check"></i><b>5.2</b> Input check</a></li>
+<li class="chapter" data-level="5.3" data-path="running-sequoia.html"><a href="running-sequoia.html#check-for-duplicates"><i class="fa fa-check"></i><b>5.3</b> Check for duplicates</a></li>
+<li class="chapter" data-level="5.4" data-path="running-sequoia.html"><a href="running-sequoia.html#parentage-assignment"><i class="fa fa-check"></i><b>5.4</b> Parentage assignment</a></li>
+<li class="chapter" data-level="5.5" data-path="running-sequoia.html"><a href="running-sequoia.html#ageprior-1"><i class="fa fa-check"></i><b>5.5</b> AgePrior</a></li>
+<li class="chapter" data-level="5.6" data-path="running-sequoia.html"><a href="running-sequoia.html#full-reconstruction"><i class="fa fa-check"></i><b>5.6</b> Full reconstruction</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="running-sequoia.html"><a href="running-sequoia.html#dummy-individuals"><i class="fa fa-check"></i><b>5.6.1</b> Dummy Individuals</a></li>
+<li class="chapter" data-level="5.6.2" data-path="running-sequoia.html"><a href="running-sequoia.html#total-likelihood"><i class="fa fa-check"></i><b>5.6.2</b> Total likelihood</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="running-sequoia.html"><a href="running-sequoia.html#save-output"><i class="fa fa-check"></i><b>5.7</b> Save output</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="output-check.html"><a href="output-check.html"><i class="fa fa-check"></i><b>6</b> Output check</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="output-check.html"><a href="output-check.html#pedigree-stats-plots"><i class="fa fa-check"></i><b>6.1</b> Pedigree stats &amp; plots</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="output-check.html"><a href="output-check.html#negative-llrs"><i class="fa fa-check"></i><b>6.1.1</b> Negative LLR’s</a></li>
+<li class="chapter" data-level="6.1.2" data-path="output-check.html"><a href="output-check.html#dyad-plot"><i class="fa fa-check"></i><b>6.1.2</b> Dyad plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="output-check.html"><a href="output-check.html#sec:compPed"><i class="fa fa-check"></i><b>6.2</b> Compare pedigrees</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="output-check.html"><a href="output-check.html#dummy-matching"><i class="fa fa-check"></i><b>6.2.1</b> Dummy matching</a></li>
+<li class="chapter" data-level="6.2.2" data-path="output-check.html"><a href="output-check.html#example"><i class="fa fa-check"></i><b>6.2.2</b> Example</a></li>
+<li class="chapter" data-level="6.2.3" data-path="output-check.html"><a href="output-check.html#colony"><i class="fa fa-check"></i><b>6.2.3</b> Colony</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="output-check.html"><a href="output-check.html#sec:compR"><i class="fa fa-check"></i><b>6.3</b> Relatedness</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="output-check.html"><a href="output-check.html#sec:Rped"><i class="fa fa-check"></i><b>6.3.1</b> Pedigree relatedness</a></li>
+<li class="chapter" data-level="6.3.2" data-path="output-check.html"><a href="output-check.html#genomic-relatedness"><i class="fa fa-check"></i><b>6.3.2</b> Genomic relatedness</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="output-check.html"><a href="output-check.html#cluster-families"><i class="fa fa-check"></i><b>6.4</b> Cluster families</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hermaphrodites.html"><a href="hermaphrodites.html"><i class="fa fa-check"></i><b>7</b> Hermaphrodites</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hermaphrodites.html"><a href="hermaphrodites.html#herm-a-pedigree-prior"><i class="fa fa-check"></i><b>7.1</b> Herm ‘A’: Pedigree prior</a></li>
+<li class="chapter" data-level="7.2" data-path="hermaphrodites.html"><a href="hermaphrodites.html#herm-b-ignore-sex-role"><i class="fa fa-check"></i><b>7.2</b> Herm ‘B’: Ignore sex role</a></li>
+<li class="chapter" data-level="7.3" data-path="hermaphrodites.html"><a href="hermaphrodites.html#hermaphrodite-dummies"><i class="fa fa-check"></i><b>7.3</b> Hermaphrodite dummies</a></li>
+<li class="chapter" data-level="7.4" data-path="hermaphrodites.html"><a href="hermaphrodites.html#assignment-errors"><i class="fa fa-check"></i><b>7.4</b> Assignment errors</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>8</b> FAQ</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="faq.html"><a href="faq.html#error-aboutdue-to-input-data"><i class="fa fa-check"></i><b>8.1</b> Error about/due to input data</a></li>
+<li class="chapter" data-level="8.2" data-path="faq.html"><a href="faq.html#sec:FAQlowAR"><i class="fa fa-check"></i><b>8.2</b> Low assignment rate</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="faq.html"><a href="faq.html#not-enough-snps"><i class="fa fa-check"></i><b>8.2.1</b> Not enough SNPs</a></li>
+<li class="chapter" data-level="8.2.2" data-path="faq.html"><a href="faq.html#genotyping-errors"><i class="fa fa-check"></i><b>8.2.2</b> Genotyping errors</a></li>
+<li class="chapter" data-level="8.2.3" data-path="faq.html"><a href="faq.html#lacking-sex-information"><i class="fa fa-check"></i><b>8.2.3</b> Lacking sex information</a></li>
+<li class="chapter" data-level="8.2.4" data-path="faq.html"><a href="faq.html#insufficient-age-information"><i class="fa fa-check"></i><b>8.2.4</b> Insufficient age information</a></li>
+<li class="chapter" data-level="8.2.5" data-path="faq.html"><a href="faq.html#uninformative-age-prior"><i class="fa fa-check"></i><b>8.2.5</b> Uninformative age prior</a></li>
+<li class="chapter" data-level="8.2.6" data-path="faq.html"><a href="faq.html#mating-system"><i class="fa fa-check"></i><b>8.2.6</b> Mating system</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="faq.html"><a href="faq.html#death-year"><i class="fa fa-check"></i><b>8.3</b> Death year</a></li>
+<li class="chapter" data-level="8.4" data-path="faq.html"><a href="faq.html#accuracy"><i class="fa fa-check"></i><b>8.4</b> Accuracy</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="faq.html"><a href="faq.html#field-pedigree"><i class="fa fa-check"></i><b>8.4.1</b> Field pedigree</a></li>
+<li class="chapter" data-level="8.4.2" data-path="faq.html"><a href="faq.html#genomic-relatedness-1"><i class="fa fa-check"></i><b>8.4.2</b> Genomic relatedness</a></li>
+<li class="chapter" data-level="8.4.3" data-path="faq.html"><a href="faq.html#data-simulation"><i class="fa fa-check"></i><b>8.4.3</b> Data simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="faq.html"><a href="faq.html#add-new-individuals"><i class="fa fa-check"></i><b>8.5</b> Add new individuals</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
+<li class="divider"></li>
+<li><a href="./articles/vignette_age/book/index.html">Ageprior Vignette</a></li>
+<li><a href="./../../index.html">Other Manuals</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Sequoia User Guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hermaphrodites" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Hermaphrodites</h1>
+<hr />
+<p>Hermaphrodites have been re-implemented in versions 2.2 and 2.3, and now also full pedigree reconstruction should work as expected. Selfing is fully supported, also when a selfing parent or its selfed offspring are non-genotyped, and the aim is to infer their genotyped relatives.</p>
+<p>With hermaphrodites it is not self-evident whether an identified parent should be assigned as dam or as sire. Sex-linked markers are not implemented in <code>sequoia</code>, and sequential hermaphroditism (male until age <span class="math inline">\(t\)</span>, and female after, or <em>v.v.</em>) is not the norm.</p>
+<p>Two alternative approaches are available, by specifying parameter <code>Herm='A'</code> or <code>Herm='B'</code>.</p>
+<div id="herm-a-pedigree-prior" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Herm ‘A’: Pedigree prior</h2>
+<p>A genetically identified parent will be assigned when it matches a candidate parent, or when it forms a complementary parent-pair with such an assigned parent. The candidate dam may e.g. be the plant from which the seed was collected. Candidate parent–offspring pairs that are not a genetic match will never be assigned, non-genotyped candidate parents are ignored.</p>
+<p>In absence of a pedigree prior, only instances of selfing will be assigned.</p>
+<p>The pedigree ‘prior’ can only be used during parentage assignment, by specifying <code>SeqList[["PedigreePar"]]</code> as input <em>and</em> setting <code>Module='par'</code> (<code>MaxSibIter=0</code>):</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="hermaphrodites.html#cb24-1" aria-hidden="true" tabindex="-1"></a>cand.dams <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;Candidate_dams.txt&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>,</span>
+<span id="cb24-2"><a href="hermaphrodites.html#cb24-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">stringsAsFactors=</span><span class="cn">FALSE</span>)</span>
+<span id="cb24-3"><a href="hermaphrodites.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cand.dam has columns &#39;id&#39; and &#39;dam&#39;, and does not need entries for all ids</span></span>
+<span id="cb24-4"><a href="hermaphrodites.html#cb24-4" aria-hidden="true" tabindex="-1"></a>cand.par <span class="ot">&lt;-</span> <span class="fu">cbind</span>(cand.dams, <span class="at">sire=</span><span class="cn">NA</span>)</span>
+<span id="cb24-5"><a href="hermaphrodites.html#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="hermaphrodites.html#cb24-6" aria-hidden="true" tabindex="-1"></a>par.herm <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> Geno,</span>
+<span id="cb24-7"><a href="hermaphrodites.html#cb24-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">LifeHistData =</span> LH,</span>
+<span id="cb24-8"><a href="hermaphrodites.html#cb24-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">SeqList =</span> <span class="fu">list</span>(<span class="at">PedigreePar =</span> cand.par),</span>
+<span id="cb24-9"><a href="hermaphrodites.html#cb24-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Module=</span><span class="st">&#39;par&#39;</span>)</span>
+<span id="cb24-10"><a href="hermaphrodites.html#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="hermaphrodites.html#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co"># re-use all settings (including the newly assigned parents):</span></span>
+<span id="cb24-12"><a href="hermaphrodites.html#cb24-12" aria-hidden="true" tabindex="-1"></a>seq.herm <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> Geno,</span>
+<span id="cb24-13"><a href="hermaphrodites.html#cb24-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">LifeHistData =</span> LH,</span>
+<span id="cb24-14"><a href="hermaphrodites.html#cb24-14" aria-hidden="true" tabindex="-1"></a>                    <span class="at">SeqList =</span> par.herm,</span>
+<span id="cb24-15"><a href="hermaphrodites.html#cb24-15" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Module=</span><span class="st">&#39;ped&#39;</span>)</span></code></pre></div>
+</div>
+<div id="herm-b-ignore-sex-role" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Herm ‘B’: Ignore sex role</h2>
+<p>Often it is irrelevant whether the parent was the maternal or paternal parent, and with this setting single parents are assigned as dams, and in parent-pairs dam vs sire is determined by their order in the genotype file.</p>
+</div>
+<div id="hermaphrodite-dummies" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Hermaphrodite dummies</h2>
+<p>Whether half-siblings share a dummy dam or a dummy sire is arbitrary. If one or more individuals in a sibship are the product of selfing, the maternal and paternal halves will be linked, and additional half-siblings will be arbitrarily assigned to either half. Dummy individuals which occur as both dam and sire get dummy prefix <code>'H'</code>, an alternative 3rd <code>DummyPrefix</code> can be specified in (most?) relevant functions.</p>
+<p>In <code>SeqList[["DummyIDs"]]</code>, the offspring-as-dam and offspring-as-sire are shown separately, with the same id (‘H0xxx’) and Sex=1 vs Sex=2 respectively. Selfed offspring will occur in both rows. Estimated birth years and other aspects may differ somewhat between the maternal and paternal halves, as during pedigree reconstruction they are (currently?) only linked in some aspects but not others.</p>
+</div>
+<div id="assignment-errors" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Assignment errors</h2>
+<p><code>PedCompare()</code> is not useful in combination with <code>Herm='B'</code>, as any dam assigned as sire and v.v. will show up as error. Use instead <code>ComparePairs(, patmat=FALSE)</code>, which will also pick up half-siblings for which the mother of <span class="math inline">\(i\)</span> is the father of <span class="math inline">\(j\)</span>.</p>
+<p>One type of assignment error is unavoidable: if the true parent is unsampled and the product of selfing, a sampled grandparent will be indistinguishable from a parent. Similarly, when the true parent is sampled, but both the parent and the grandparent are the product of selfing, they are genetically nearly identical and often erroneously interchanged when birth year information is absent.</p>
+<div class="figure" style="text-align: center"><span id="fig:parent-selfed"></span>
+<img src="figs/selfed_parent.png" alt="Two configurations with identical likelihoods" width="20%" />
+<p class="caption">
+Figure 7.1: Two configurations with identical likelihoods
+</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="output-check.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="faq.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
