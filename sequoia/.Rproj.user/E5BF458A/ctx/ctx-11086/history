@@ -1,0 +1,512 @@
+nInd = which(nSnp==snp & ParMis==pm & Repeat>=MinR & Tfilter==TF &
+Tassign==TA & !is.na(nInd) & MaxSibIter==sIter &
+Complex==cmplx  & ErHQ==gEr & Err==sEr),
+Tfilter = which(nSnp==snp & ParMis==pm & Ped == PED & Repeat>=MinR &
+Tassign==TA & MaxSibIter>=sIter & Complex==cmplx  & ErHQ==gEr & Err==sEr),
+Tassign = which(nSnp==snp & ParMis==pm & Ped == PED & Repeat>=MinR &
+Tfilter==TF & MaxSibIter>=sIter & Complex==cmplx  & ErHQ==gEr & Err==sEr),
+ErHQ = which(nSnp==snp & ParMis==pm & Ped == PED & Repeat>=MinR &
+Tassign==TA & Tfilter==TF & MaxSibIter==sIter & Complex==cmplx & Err==sEr)))
+xx <- xx[order(SpecsDF[xx, focal])]
+xx
+}
+source("functions_plot_ER-AR-time.R")
+LTY <- c(T=1, P=1, E=2, C=2, "F"=3, M=1, F2=3, CM=2)   # Total, Parentage, Exclusion, Colony, FRANz
+LWD <- c(T=2, P=2, E=1, C=1, "F"=2, M=1.5, F2=2, CM=1)
+PCH <- c(T=16, P=21, E=22, C=17, "F"=23, M=21, F2=9, CM=24)
+LWD.pt <- c(T=2, P=2, E=1, C=1, "F"=1, M=1.5, F2=1, CM=1)
+BG.pt <- c(T=1, P="white", E="white", C=1, "F"="white",
+M="darkgrey", F2=1, CM="darkgrey")
+COL <- c(T=1, P=1, E=1, C=1, "F"=1, M=1, F2=1, CM=1)
+PEDS <- c("Ped_AN", "Ped_HSg5", "Ped_deer2k")
+Com <- array(dim = c(nrow(SpecsDF), 3, 2,2),
+dimnames = list(OutFiles,
+c("Mean", "Min", "Max"),
+c("GG", "TT"),  # dummy's separate too?
+c("AR", "Er")))
+OutFiles <- list.files(path="./output_simData", pattern="Seq_full_OUT_")
+MaxRep <- 10
+# economise, otherwise HUGE list
+SpecsDF <- as.data.frame(matrix(NA, length(OutFiles), 20))  # 20: no. variables
+CountsA <- array(dim=c(length(OutFiles), MaxRep, 7, 5, 2),
+dimnames=list(OutFiles, 1:MaxRep, c("GG", "GD", "GT", "DG", "DD", "DT", "TT"),
+c("Total", "Match", "Mismatch", "P1only", "P2only"), c("mat", "pat")))
+TimesM <- matrix(NA, length(OutFiles), MaxRep,
+dimnames=list(OutFiles, 1:MaxRep))
+for (x in 1:length(OutFiles)) {
+load(paste0("output_simData/", OutFiles[x]))
+SpecsDF[x, ] <- DataL$RunSpecs
+CountsA[x,,,,] <- DataL$PCcounts
+TimesM[x, 1:length(DataL$runtime)] <- sapply(1:length(DataL$runtime),
+function(x) DataL$runtime[[x]]["elapsed"])
+}
+rownames(SpecsDF) <- OutFiles
+names(SpecsDF) <- names(DataL$RunSpecs)
+rm(DataL)
+superseded <- duplicated(SpecsDF[, names(SpecsDF)!="FindMaybeRel"])
+superseded
+superseded <- duplicated(SpecsDF[, names(SpecsDF)!="FindMaybeRel"], fromLast=TRUE)
+superseded
+SpecsDF <- SpecsDF[!superseded, ]
+CountsA <- CountsA[!superseded, ]
+CountsA <- CountsA[!superseded,,,,]
+TimesM <- TimesM[!superseded,]
+Com <- array(dim = c(nrow(SpecsDF), 3, 2,2),
+dimnames = list(OutFiles,
+c("Mean", "Min", "Max"),
+c("GG", "TT"),  # dummy's separate too?
+c("AR", "Er")))
+Com <- array(dim = c(nrow(SpecsDF), 3, 2,2),
+dimnames = list(rownames(SpecsDF),
+c("Mean", "Min", "Max"),
+c("GG", "TT"),  # dummy's separate too?
+c("AR", "Er")))
+XLAB <- c("nSnp" = "No. SNPs",
+"Par.mis" = "Prop. genotyped parents",
+"LTX" = "Likelihood threshold",
+"LTl" = expression(T["assign"]),
+"nInd" = "No. individuals")
+XLIM <- list("nSnp" = c(0, 830),
+"Par.mis" = c(0, 1),
+"LTX" = c(1, 7),
+"LTl" = c(0, 2),
+"nInd" = c(0, 5e3))
+YLAB <- c("AR" = "1 - Assignment rate",
+"Er" = "Error rate",
+"time" = "Runtime")
+PedNames <- c("Pedigree I", "Pedigree II", "Pedigree III")
+focal <- "nSnp"
+ZV=c("T")
+par(mfcol=c(3,3), mai=c(.2, .1, 0, 0), omi=c(.5,.9,.4,.1), xpd=F)
+for (p in 1:3) {
+xx <- list()
+xx[[1]] <- selrows(focal, pm=1, PED=PEDS[p])
+cplot(focal, "AR", xx, yax=p==1, xax=FALSE)
+mtext(PedNames[p], side=3, line=1)
+if (p==1) legend("topright", c("Sequoia", "OH-Excl", "FRANz"),
+lty=LTY[ZV], pch=PCH[ZV], lwd=LWD.pt[ZV], pt.bg=BG.pt[ZV],
+bg=grey(0.9), cex=1.4)
+cplot(focal, "Er", xx, yax=p==1, xax=FALSE)
+tplot(focal, xx, ylim=c(.1,10*60), yax=p==1)
+}
+dim(ARER)
+ARER <- array(dim = c(nrow(SpecsDF), 3, 2, 2),
+dimnames = list(rownames(SpecsDF), c("mean", "min", "max"),
+c("AR", "ER"), c("GG", "TT")))
+for (x in 1:length(OutFiles)) {
+ARER[x, , "AR", "GG"] <- MQ(apply(CountsA[x,,"GG","Match",]/CountsA[x,,"GG","Total",], 1, mean))
+ARER[x, , "AR", "TT"] <- MQ(apply(CountsA[x,,"TT","Match",]/
+apply(CountsA[x,,c("GT", "DT"), "Total",], c(1,3), sum), 1, mean))
+ARER[x, , "ER", "GG"] <- MQ(apply((CountsA[x,,"GG","Mismatch",] + CountsA[x,,"GG","P2only",])/
+CountsA[x,,"GG","Total",], 1, mean))
+ARER[x, , "ER", "TT"] <- MQ(apply((CountsA[x,,"TT","Mismatch",] + CountsA[x,,"TT","P2only",])/
+CountsA[x,,"TT","Total",], 1, mean))
+}
+for (x in 1:nrow(SpecsDF)) {
+ARER[x, , "AR", "GG"] <- MQ(apply(CountsA[x,,"GG","Match",]/CountsA[x,,"GG","Total",], 1, mean))
+ARER[x, , "AR", "TT"] <- MQ(apply(CountsA[x,,"TT","Match",]/
+apply(CountsA[x,,c("GT", "DT"), "Total",], c(1,3), sum), 1, mean))
+ARER[x, , "ER", "GG"] <- MQ(apply((CountsA[x,,"GG","Mismatch",] + CountsA[x,,"GG","P2only",])/
+CountsA[x,,"GG","Total",], 1, mean))
+ARER[x, , "ER", "TT"] <- MQ(apply((CountsA[x,,"TT","Mismatch",] + CountsA[x,,"TT","P2only",])/
+CountsA[x,,"TT","Total",], 1, mean))
+}
+ARER <- array(dim = c(nrow(SpecsDF), 3, 2, 2),
+dimnames = list(rownames(SpecsDF), c("mean", "min", "max"),
+c("AR", "ER"), c("GG", "TT")))
+for (x in 1:nrow(SpecsDF)) {
+ARER[x, , "AR", "GG"] <- MQ(apply(CountsA[x,,"GG","Match",]/CountsA[x,,"GG","Total",], 1, mean))
+ARER[x, , "AR", "TT"] <- MQ(apply(CountsA[x,,"TT","Match",]/
+apply(CountsA[x,,c("GT", "DT"), "Total",], c(1,3), sum), 1, mean))
+ARER[x, , "ER", "GG"] <- MQ(apply((CountsA[x,,"GG","Mismatch",] + CountsA[x,,"GG","P2only",])/
+CountsA[x,,"GG","Total",], 1, mean))
+ARER[x, , "ER", "TT"] <- MQ(apply((CountsA[x,,"TT","Mismatch",] + CountsA[x,,"TT","P2only",])/
+CountsA[x,,"TT","Total",], 1, mean))
+}
+dim(ARER)
+ARER[,"mean","ER"]
+ARER[,"mean","ER",]
+?aaply
+?melt
+OUT <- cbind(SpecsDF,
+setNames(ARER[,,"AR","TT"], paste0("AR.", c("mean", "min", "max"))),
+setNames(ARER[,,"ER","TT"], paste0("ER.", c("mean", "min", "max"))))
+View(OUT)
+getwd()
+write.table(OUT, file="Specs_ARER_2018-08-09.txt", row.names=TRUE, sep="\t")
+paste0("AR.", c("mean", "min", "max"))
+bla <- setNames(ARER[,,"AR","TT"], paste0("AR.", c("mean", "min", "max")))
+View(bla)
+bla <- setNames(as.data.frame(ARER[,,"AR","TT"]), paste0("AR.", c("mean", "min", "max")))
+View(bla)
+Pedx <-  read.table("Ped3_TooLargeNS/Pedigree_round03.txt", header=T, stringsAsFactors=F)
+getwd()
+setwd("E:/Sequoia/Performance_check/bugfixes_2018-08")
+Pedx <-  read.table("Ped3_TooLargeNS/Pedigree_round03.txt", header=T, stringsAsFactors=F)
+PCx <- PedCompare(Ped1 = Ped2K, Ped2 = Pedx)
+PCx$Counts
+Pedxe <-  read.table("Ped3_TooLargeNS/Er1e-4/Pedigree_round03.txt", header=T, stringsAsFactors=F)
+PCxe <- PedCompare(Ped1 = Ped2K, Ped2 = Pedxe)
+PCxe$Counts
+ARER <- array(dim = c(nrow(SpecsDF), 3, 2, 2),
+dimnames = list(rownames(SpecsDF), c("mean", "min", "max"),
+c("AR", "ER"), c("GG", "TT")))
+for (x in 1:nrow(SpecsDF)) {
+ARER[x, , "AR", "GG"] <- MQ(apply(CountsA[x,,"GG","Match",]/CountsA[x,,"GG","Total",], 1, mean))
+ARER[x, , "AR", "TT"] <- MQ(apply(CountsA[x,,"TT","Match",]/
+apply(CountsA[x,,c("GG","GD","DG","DD"), "Total",], c(1,3), sum), 1, mean))
+ARER[x, , "ER", "GG"] <- MQ(apply((CountsA[x,,"GG","Mismatch",] + CountsA[x,,"GG","P2only",])/
+CountsA[x,,"GG","Total",], 1, mean))
+ARER[x, , "ER", "TT"] <- MQ(apply((CountsA[x,,"TT","Mismatch",] + CountsA[x,,"TT","P2only",])/
+CountsA[x,,"TT","Total",], 1, mean))
+}
+if (any(ARER < 0 & ARER > -Inf, na.rm=TRUE) |
+any(ARER > 1 & ARER < Inf, na.rm=TRUE))  stop("something fishy")
+OUT <- cbind(SpecsDF,
+setNames(as.data.frame(ARER[,,"AR","TT"]), paste0("AR.", c("mean", "min", "max"))),
+setNames(as.data.frame(ARER[,,"ER","TT"]), paste0("ER.", c("mean", "min", "max"))))
+View(OUT)
+write.table(OUT, file="Specs_ARER_2018-08-09.txt", row.names=TRUE, sep="\t")
+getwd()
+setwd("E:/Sequoia/Performance_check/bugfixes_2018-08")
+Ped <- read.table("../Ped_HSg5.txt", header=T, sep="\t", stringsAsFactors=FALSE)
+LH <- read.table("../LH_HSg5.txt", header=T, sep="\t", stringsAsFactors=FALSE)
+Ped3 <- read.table("PedHSg5/Pedigree_Round03.txt", header=T, stringsAsFactors=F)
+PC3 <- PedCompare(Ped1 = Ped, Ped2 = Ped3)
+PC3$Counts
+Ped3 <- read.table("PedHSg5_pm08_crash/Pedigree_Round03.txt", header=T, stringsAsFactors=F)
+PC3 <- PedCompare(Ped1 = Ped, Ped2 = Ped3)
+PC3$Counts
+Ped2K <- read.table("../Ped_deer2k.txt", header=T, sep="\t", stringsAsFactors=FALSE)
+(56+8+107+10)/(833+127+835+127)
+table(table(Ped3$dam))
+table(table(Ped3$sire))
+library(sequoia)
+Ped <- read.table("../Ped_HSg5.txt", header=T, sep="\t", stringsAsFactors=FALSE)
+LH <- read.table("../LH_HSg5.txt", header=T, sep="\t", stringsAsFactors=FALSE)
+GenoM <- SimGeno(Ped = Ped, ParMis = 0.4, nSnp=400)
+SeqOUT <- sequoia(GenoM = GenoM,
+LifeHistData = LH,
+MaxSibIter = 10)
+PC <- PedCompare(Ped1 = Ped, Ped2 = SeqOUT$Pedigree)
+PC$Counts
+GenoM <- SimGeno(Ped = Ped, ParMis = 0.4, nSnp=10)
+SeqOUT <- sequoia(GenoM = GenoM,
+LifeHistData = LH,
+MaxSibIter = 10,
+FindMaybeRel = FALSE)
+PC <- PedCompare(Ped1 = Ped, Ped2 = SeqOUT$Pedigree)
+PC$Counts
+?sequoia
+library(sequoia)
+?sequoia
+library(sequoia)
+?sequoia
+library(sequoia)
+?sequoia
+library(sequoia)
+?sequoia
+library(sequoia)
+?sequoia
+library(sequoia)
+?sequoia
+library(sequoia)
+?sequoia
+library(sequoia)
+?sequoia
+library(sequoia)
+?sequoia
+library(sequoia)
+?sequoia
+library(sequoia)
+library(sequoia)
+library(sequoia)
+?sequoia
+remove.packages("sequoia")
+library(sequoia)
+install.packages("E:/Sequoia/Rversion/sequoia_1.1.0.tar.gz", repos = NULL)
+install.packages("digest")
+install.packages("roxygen2")
+install.packages("roxygen2", lib="C:/Program Files/R/R-devel/library")
+data(LH_HSg5, SimGeno_example, Ped_HSg5, package="sequoia")
+?sequoia
+library(sequoia)
+?sequoia
+SeqOUT <- sequoia(GenoM = SimGeno_example,
+LifeHistData = LH_HSg5, MaxSibIter = 10)
+install.packages("plyr", lib="C:/Program Files/R/R-devel/library")
+SeqOUT <- sequoia(GenoM = SimGeno_example,
+LifeHistData = LH_HSg5, MaxSibIter = 10)
+names(SeqOUT)
+library(sequoia)
+?sequoia
+data(LH_HSg5, SimGeno_example, Ped_HSg5, package="sequoia")
+SeqOUT2 <- sequoia(GenoM = SimGeno_example,
+LifeHistData = LH_HSg5, MaxSibIter = 10)
+names(SeqOUT2)
+install.packages("devtools", lib="C:/Program Files/R/R-devel/library")
+install.packages("testthat", lib="C:/Program Files/R/R-devel/library")
+install.packages("roxygen2", lib="C:/Program Files/R/R-devel/library")
+.libPaths(c("C:\Program Files\R\R-devel\library",  .libPaths()))
+.libPaths(c("C:/Program Files/R/R-devel/library",  .libPaths()))
+?.libPaths
+.libPaths()
+install.packages("roxygen2", lib="C:/Program Files/R/R-devel/library")
+data(LH_HSg5, SimGeno_example, Ped_HSg5, package="sequoia")
+library(sequoia)
+?sequoia
+SeqOUT <- sequoia(GenoM = SimGeno_example,
+LifeHistData = LH_HSg5, MaxSibIter = 0)
+remove.packages(plyr)
+remove.packages("plyr")
+remove.packages("plyr")
+install.packages("plyr", lib="C:/Program Files/R/R-devel/library")
+SeqOUT <- sequoia(GenoM = SimGeno_example,
+LifeHistData = LH_HSg5, MaxSibIter = 0)
+remove.packages("Rcpp")
+install.packages("Rcpp", lib="C:/Program Files/R/R-devel/library")
+remove.packages("roxygen2")
+remove.packages("roxygen2")
+install.packages("roxygen2", lib="C:/Program Files/R/R-devel/library")
+SeqOUT <- sequoia(GenoM = SimGeno_example,
+LifeHistData = LH_HSg5, MaxSibIter = 0)
+names(SeqOUT)
+dim(SeqOUT$PedigreePar)
+head(SeqOUT$PedigreePar)
+tail(SeqOUT$PedigreePar)
+SeqOUT2 <- sequoia(GenoM = SimGeno_example,
+LifeHistData = LH_HSg5, MaxSibIter = 10)
+SeqOUT2$Pedigree[34:42, ]
+vignette("sequoia")
+library(xlsx)
+library(sequoia)
+tryCatch.W.E <- function(expr)
+{
+W <- NULL
+w.handler <- function(w){ # warning handler
+W <<- w
+invokeRestart("muffleWarning")
+}
+list(value = withCallingHandlers(tryCatch(expr, error = function(e) e),
+warning = w.handler),
+warning = W)
+}
+install.packages("roxygen2")
+remove.packages("Rcpp")
+install.packages("Rcpp")
+.libPaths()
+.libPaths()[1:3]
+.libPaths(.libPaths[1:3])
+.libPaths(.libPaths()[1:3])
+2+2
+install.packages("roxygen2")
+install.packages("Rccp")
+install.packages("Rcpp")
+install.packages("devtools")
+install.packages("E:/Software/roxygen-master.zip", repos = NULL)
+.libPaths()
+remove.packages("devtools")
+remove.packages("devtools")
+install.packages("devtools")
+install.packages("devtools")
+?install.packages
+library(xlsx)
+install.packages("xlsx")
+library(xlsx)
+.libPaths
+.libPaths()
+bla <- .libPaths()
+.libPaths(bla[c(5,1:3)])
+.libPaths()
+library(sequoia)
+setwd("D:/Sequoia/test/test_simdata")
+Ped_deer <- read.table("Ped_2k.txt", header=T, stringsAsFactors=F)
+LH_deer <- read.table("CodeSexBY.txt", header=T, stringsAsFactors=F)
+CntA <- array(dim=c(2,10,7,5,2))
+TimeM <- matrix(NA,2,10)
+LL <- c(400, 200, 100)
+l <- 1
+for (x in 1:10) {
+cat(x, "\t", format(Sys.time(), "%H:%M:%S"), "\n")
+GM <- SimGeno(Ped = Ped_deer, nSnp = LL[l], ParMis=0.4, SnpError = 1e-3)
+#    write.table(GM, paste0("2020-03/deer_GMs/GM_b",x,".txt"), col.names=FALSE)  # TEMP! crash-test
+TimeM[l,x] <- system.time(SeqOUT <- sequoia(GenoM = GM,  LifeHistData = LH_deer,
+Tassign=0.5, Err=1e-3, Module="ped",
+quiet=TRUE, UseAge="yes", Plot=FALSE))["elapsed"]
+PCC <- PedCompare(Ped1=Ped_deer, Ped2=SeqOUT$Pedigree)$Counts
+CntA[l,x,,,] <- PCC
+cat("AR: ", PCC["TT","Match",], "\t",
+"ER: ", apply(PCC["TT",c("Mismatch","P2only"), ], 2, sum), "\n",
+"Min LLR: ", apply(SeqOUT$Pedigree[,4:6], 2, min, na.rm=TRUE), "\n")
+if (LL[l]==400 & sum(PCC["TT", c("Mismatch", "P2only"), ]) > 1)  break
+if (LL[l]==200 & sum(PCC["TT", c("Mismatch", "P2only"), ]) > 10)  break
+if (LL[l]==400 & sum(PCC["TT", c("Match"), ]) < 2560 )  break
+ParLLR <- list("1P" = SeqOUT$Pedigree[is.na(SeqOUT$Pedigree$LLRpair), c("LLRdam", "LLRsire")],
+"2P" = SeqOUT$Pedigree$LLRpair)
+if (min(ParLLR[["1P"]], na.rm=TRUE) < -10 | min(ParLLR[["2P"]], na.rm=TRUE) < -10)  break
+}
+PC <- PedCompare(Ped_deer, SeqOUT$Pedigree)
+PC$Counts["TT",,]
+PedM <- PC$MergedPed
+PedM[PedM$dam.class=="Mismatch", 1:8]
+PedM[which(PedM$dam.1=="SOX04"), ]
+PedM[which(PedM$dam.2=="F0027"), ]
+PedM[which(PedM$dam.2=="F0016"), ]
+PC <- PedCompare(Ped_deer, SeqOUT$Pedigree)
+writeSeq(SeqOUT, GM, folder="2021-02/Ped3-K")
+PedM[which(PedM$dam.2=="F0016"), c("id","id.r", "dam.1", "dam.2")]
+PedM[which(PedM$dam.2=="F0027"), c("id","id.r", "dam.1", "dam.2")]
+PedM[which(PedM$dam.2=="F0027"), ]
+PedM[which(PedM$dam.2=="F0027"), 1:5]
+PedM[which(PedM$dam.1=="SOX04"), 1:5]
+PedM[which(PedM$dam.1=="CHK07"), 1:5]
+which(rownames(GM) == "CHK09")
+which(rownames(GM) == "CHK15")
+which(rownames(GM) == "CHY12")
+which(rownames(GM) == "CHY14")
+Ped_deer[Ped_deer$Code %in% c("SOX04", "CHK07"), ]
+Ped_deer[Ped_deer$id %in% c("SOX04", "CHK07"), ]
+Ped_deer[Ped_deer$id %in% c("SOX04", "CHK07", "UKL05"), ]
+PedS <- read.table("2021-02/Ped3-K/Pedigree_seq.txt", header=TRUE)
+PedS <- read.table("2021-02/Ped3-K/Pedigree_round04.txt", header=TRUE)
+PCS <- PedCompare(Ped_deer, PedS)
+PCS$Counts["TT",,]
+PCS$MergedPed[PCS$MergedPed$dam.class=="Mismatch", ]
+PedS <- read.table("2021-02/Ped3-K/Pedigree_seq.txt", header=TRUE)
+PCS <- PedCompare(Ped_deer, PedS)
+PCS$Counts["TT",,]
+SummarySeq(PedS, Panels="LLR")
+PedS1 <- PedS
+PedS <- read.table("2021-02/Ped3-K/Pedigree_seq.txt", header=TRUE)
+PCS <- PedCompare(Ped_deer, PedS)
+PCS$Counts["TT",,]
+PCX <- PedCompare(PedS1, PedS, Plot=F)
+PCX$Counts["TT",,]
+PCX$MergedPed[PCX$MergedPed$dam.class == "P1only", ]
+PCS$MergedPed[which(PCS$MergedPed$dam.2 == "TIN04"), 1:8]
+Ped_deer[Ped_deer$id=="CLK06", ]
+Ped_deer[which(Ped_deer$dam=="CLK04"), ]
+PCS$MergedPed[which(PCS$MergedPed$dam.2 == "GRA99"), 1:8]
+PCS$MergedPed[which(PCS$MergedPed$dam.1 == "GRA99"), 1:8]
+which(rownames(GM)=="CLK06")
+which(rownames(GM)=="CLK08")
+Ped_deer[Ped_deer$id == "GRA99", ]
+PedS[PedS$id %in% c("FAN90", "BASIL"), ]
+PedM[which(PedM$dam.1=="FAN90"), 1:8]
+PedS2 <- PedS
+PedS <- read.table("2021-02/Ped3-K/Pedigree_round03.txt", header=TRUE)
+PCS <- PedCompare(Ped_deer, PedS)
+PCS$Counts["TT",,]
+PedS <- read.table("2021-02/Ped3-K/Pedigree_round05.txt", header=TRUE)
+PCS <- PedCompare(Ped_deer, PedS)
+PCS$Counts["TT",,]
+PedS <- read.table("2021-02/Ped3-K/Pedigree_seq.txt", header=TRUE)
+PCS <- PedCompare(Ped_deer, PedS)
+PCS$Counts["TT",,]
+SummarySeq(PedS, Panels="LLR")
+library(sequoia)
+CntA <- array(dim=c(2,10,7,5,2))
+TimeM <- matrix(NA,2,10)
+LL <- c(400, 200, 100)
+for (x in 1:10) {
+cat(x, "\t", format(Sys.time(), "%H:%M:%S"), "\n")
+GM <- SimGeno(Ped = Ped_deer, nSnp = LL[l], ParMis=0.4, SnpError = 1e-3)
+#    write.table(GM, paste0("2020-03/deer_GMs/GM_b",x,".txt"), col.names=FALSE)  # TEMP! crash-test
+TimeM[l,x] <- system.time(SeqOUT <- sequoia(GenoM = GM,  LifeHistData = LH_deer,
+Tassign=0.5, Err=1e-3, Module="ped",
+quiet=TRUE, UseAge="yes", Plot=FALSE))["elapsed"]
+PCC <- PedCompare(Ped1=Ped_deer, Ped2=SeqOUT$Pedigree)$Counts
+CntA[l,x,,,] <- PCC
+cat("AR: ", PCC["TT","Match",], "\t",
+"ER: ", apply(PCC["TT",c("Mismatch","P2only"), ], 2, sum), "\n",
+"Min LLR: ", apply(SeqOUT$Pedigree[,4:6], 2, min, na.rm=TRUE), "\n")
+if (LL[l]==400 & sum(PCC["TT", c("Mismatch", "P2only"), ]) > 1)  break
+if (LL[l]==200 & sum(PCC["TT", c("Mismatch", "P2only"), ]) > 10)  break
+if (LL[l]==400 & sum(PCC["TT", c("Match"), ]) < 2560 )  break
+ParLLR <- list("1P" = SeqOUT$Pedigree[is.na(SeqOUT$Pedigree$LLRpair), c("LLRdam", "LLRsire")],
+"2P" = SeqOUT$Pedigree$LLRpair)
+if (min(ParLLR[["1P"]], na.rm=TRUE) < -10 | min(ParLLR[["2P"]], na.rm=TRUE) < -10)  break
+}
+(1441 + 1106)
+(1441 + 1106) / (1642 + 1202)
+x <- 2
+for (x in 2:10) {
+cat(x, "\t", format(Sys.time(), "%H:%M:%S"), "\n")
+GM <- SimGeno(Ped = Ped_deer, nSnp = LL[l], ParMis=0.4, SnpError = 1e-3)
+#    write.table(GM, paste0("2020-03/deer_GMs/GM_b",x,".txt"), col.names=FALSE)  # TEMP! crash-test
+TimeM[l,x] <- system.time(SeqOUT <- sequoia(GenoM = GM,  LifeHistData = LH_deer,
+Tassign=0.5, Err=1e-3, Module="ped",
+quiet=TRUE, UseAge="yes", Plot=FALSE))["elapsed"]
+PCC <- PedCompare(Ped1=Ped_deer, Ped2=SeqOUT$Pedigree)$Counts
+CntA[l,x,,,] <- PCC
+cat("AR: ", PCC["TT","Match",], "\t",
+"ER: ", apply(PCC["TT",c("Mismatch","P2only"), ], 2, sum), "\n",
+"Min LLR: ", apply(SeqOUT$Pedigree[,4:6], 2, min, na.rm=TRUE), "\n")
+if (LL[l]==400 & sum(PCC["TT", c("Mismatch", "P2only"), ]) > 1)  break
+if (LL[l]==200 & sum(PCC["TT", c("Mismatch", "P2only"), ]) > 10)  break
+if (LL[l]==400 & sum(PCC["TT", c("Match"), ]) < 2560 )  break
+ParLLR <- list("1P" = SeqOUT$Pedigree[is.na(SeqOUT$Pedigree$LLRpair), c("LLRdam", "LLRsire")],
+"2P" = SeqOUT$Pedigree$LLRpair)
+if (min(ParLLR[["1P"]], na.rm=TRUE) < -10 | min(ParLLR[["2P"]], na.rm=TRUE) < -10)  break
+}
+(1428 + 1126) / (1642 + 1202)
+for (x in 4:10) {
+cat(x, "\t", format(Sys.time(), "%H:%M:%S"), "\n")
+GM <- SimGeno(Ped = Ped_deer, nSnp = LL[l], ParMis=0.4, SnpError = 1e-3)
+#    write.table(GM, paste0("2020-03/deer_GMs/GM_b",x,".txt"), col.names=FALSE)  # TEMP! crash-test
+TimeM[l,x] <- system.time(SeqOUT <- sequoia(GenoM = GM,  LifeHistData = LH_deer,
+Tassign=0.5, Err=1e-3, Module="ped",
+quiet=TRUE, UseAge="yes", Plot=FALSE))["elapsed"]
+PCC <- PedCompare(Ped1=Ped_deer, Ped2=SeqOUT$Pedigree)$Counts
+CntA[l,x,,,] <- PCC
+cat("AR: ", PCC["TT","Match",], "\t",
+"ER: ", apply(PCC["TT",c("Mismatch","P2only"), ], 2, sum), "\n",
+"Min LLR: ", apply(SeqOUT$Pedigree[,4:6], 2, min, na.rm=TRUE), "\n")
+if (LL[l]==400 & sum(PCC["TT", c("Mismatch", "P2only"), ]) > 1)  break
+if (LL[l]==200 & sum(PCC["TT", c("Mismatch", "P2only"), ]) > 10)  break
+#    if (LL[l]==400 & sum(PCC["TT", c("Match"), ]) < 2560 )  break
+ParLLR <- list("1P" = SeqOUT$Pedigree[is.na(SeqOUT$Pedigree$LLRpair), c("LLRdam", "LLRsire")],
+"2P" = SeqOUT$Pedigree$LLRpair)
+if (min(ParLLR[["1P"]], na.rm=TRUE) < -10 | min(ParLLR[["2P"]], na.rm=TRUE) < -10)  break
+}
+mean(apply(CntA[,7,2,],1,sum)/(1642+1202), na.rm=T)   # 0.881
+mean(apply(CntA[,7,c(3,5),],1,sum)/(2*1998), na.rm=T)  # 0.0023
+mean(TimeM, na.rm=TRUE)
+mean(apply(CntA[l,,7,2,],1,sum)/(1642+1202), na.rm=T)   # 0.898
+mean(apply(CntA[l,,7,c(3,5),],1,sum)/(2*1998), na.rm=T)  # 0.000325
+mean(TimeM[l,], na.rm=TRUE)  # 1625s
+CntA <- array(dim=c(2,10,7,5,2))
+TimeM <- matrix(NA,2,10)
+LL <- c(400, 200, 100)
+for (l in 1:2) {
+cat("\n\n LL: ", LL[l], "\n")
+for (x in 1:10) {
+cat(x, "\t", format(Sys.time(), "%H:%M:%S"), "\n")
+GM <- SimGeno(Ped = Ped_deer, nSnp = LL[l], ParMis=0.4, SnpError = 1e-3)
+#    write.table(GM, paste0("2020-03/deer_GMs/GM_b",x,".txt"), col.names=FALSE)  # TEMP! crash-test
+TimeM[l,x] <- system.time(SeqOUT <- sequoia(GenoM = GM,  LifeHistData = LH_deer,
+Tassign=0.5, Err=1e-3, Module="ped",
+quiet=TRUE, UseAge="yes", Plot=FALSE))["elapsed"]
+PCC <- PedCompare(Ped1=Ped_deer, Ped2=SeqOUT$Pedigree)$Counts
+CntA[l,x,,,] <- PCC
+cat("AR: ", PCC["TT","Match",], "\t",
+"ER: ", apply(PCC["TT",c("Mismatch","P2only"), ], 2, sum), "\n",
+"Min LLR: ", apply(SeqOUT$Pedigree[,4:6], 2, min, na.rm=TRUE), "\n")
+#    if (LL[l]==400 & sum(PCC["TT", c("Mismatch", "P2only"), ]) > 1)  break
+#    if (LL[l]==200 & sum(PCC["TT", c("Mismatch", "P2only"), ]) > 10)  break
+#    if (LL[l]==400 & sum(PCC["TT", c("Match"), ]) < 2560 )  break
+#    ParLLR <- list("1P" = SeqOUT$Pedigree[is.na(SeqOUT$Pedigree$LLRpair), c("LLRdam", "LLRsire")],
+#                   "2P" = SeqOUT$Pedigree$LLRpair)
+#    if (min(ParLLR[["1P"]], na.rm=TRUE) < -10 | min(ParLLR[["2P"]], na.rm=TRUE) < -10)  break
+}
+#  save(CntA, TimeM, file=paste0("Output-2021-Jan/Ped_deer_L",LL,"_Age-yes_1E3.RData"))
+}
+mean(apply(CntA[1,,7,2,],1,sum)/(1642+1202), na.rm=T)   # 0.9015
+mean(apply(CntA[1,,7,c(3,5),],1,sum)/(2*1998), na.rm=T)  # 0
+mean(TimeM[1,], na.rm=TRUE)  # 1015s
+# L200 10x
+mean(apply(CntA[2,,7,2,],1,sum)/(1642+1202), na.rm=T)   # 0.90475
+mean(apply(CntA[2,,7,c(3,5),],1,sum)/(2*1998), na.rm=T)  # 7.51e-05
+mean(TimeM[2,], na.rm=TRUE)
+1 - 0.9047468
+1 - 0.8727496

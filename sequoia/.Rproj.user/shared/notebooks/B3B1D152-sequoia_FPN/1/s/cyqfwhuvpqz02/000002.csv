@@ -1,0 +1,8 @@
+"0","RR <- seq(0, 1, by=0.01)"
+"0","NN <- c(10, 30, 100, 300)"
+"0","COL <- setNames(hcl.colors(5, palette=""viridis"")[4:1], NN)"
+"0",""
+"0","par(mai=c(.9,.9,.4,.6), mfcol=c(1,2))"
+"0","plot(1,1, type=""n"", xlim=c(0,1), ylim=c(0,1),"
+"0","     las=1, xlab=""Proportion at harvest"", ylab=""P(>0 in sample)"","
+"0","     main = """")  # Individuals from referenced brood"

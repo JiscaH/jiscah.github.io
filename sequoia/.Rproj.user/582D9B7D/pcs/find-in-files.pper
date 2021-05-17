@@ -1,0 +1,13 @@
+{
+    "dialog-state" : {
+        "caseSensitive" : false,
+        "filePatterns" : [
+            "*.r",
+            "*.R"
+        ],
+        "path" : "/R",
+        "projectRelative" : true,
+        "query" : "patmat",
+        "regex" : false
+    }
+}

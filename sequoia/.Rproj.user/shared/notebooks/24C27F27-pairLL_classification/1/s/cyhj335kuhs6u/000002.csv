@@ -1,0 +1,7 @@
+"0","Pairs.random.LL$LLR.FS.HS <- with(Pairs.random.LL, "
+"0","                                  ifelse(FS < 0 & HS < 0, FS - HS, NA))"
+"0","Pairs.random.LL.wPed$LLR.FS.HS <- with(Pairs.random.LL.wPed, "
+"0","                                        ifelse(FS < 0 & HS < 0, FS - HS, NA))"
+"0",""
+"0","par(mfcol=c(1,2), mai=c(.8,.8,.2,.2))"
+"0","hist(Pairs.random.LL$LLR.FS.HS, breaks=50, main=""No pedigree"")"

@@ -1,0 +1,4 @@
+"0","RelA <- GetRelM(Ped_griffin, patmat=TRUE, GenBack=1, Return=""Array"")"
+"0","tblA.R <- sapply(c(""M"", ""P"", ""FS"", ""MHS"", ""PHS""),"
+"0","                 function(r) table(factor(AgeDifM[RelA[,,r]==1], "
+"0","                                          levels = 0:MaxT)))"

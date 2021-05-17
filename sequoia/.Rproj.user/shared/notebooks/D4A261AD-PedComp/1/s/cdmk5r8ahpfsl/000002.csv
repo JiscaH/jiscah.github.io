@@ -1,0 +1,8 @@
+"0","library(sequoia)"
+"0","data(SeqOUT_griffin, FieldMums_griffin, package=""sequoia"")"
+"0",""
+"0","PCG  <- PedCompare(Ped1 = cbind(FieldMums_griffin,"
+"0","                                sire = NA),"
+"0","                   Ped2 = SeqOUT_griffin$Pedigree,"
+"0","                   SNPd = SeqOUT_griffin$PedigreePar$id,"
+"0","                   Symmetrical = TRUE, Plot=FALSE)"

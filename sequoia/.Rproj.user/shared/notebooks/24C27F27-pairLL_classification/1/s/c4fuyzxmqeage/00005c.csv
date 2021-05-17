@@ -1,0 +1,4 @@
+"0",""
+"0","with(PList[[""random""]], plot(LLR.FS.U, LLR.HS.HA, pch=16, "
+"0","                             xlim=c(-45,40), ylim=c(-10,5), "
+"0","                             col=adjustcolor(""black"", alpha.f=0.5)))"

@@ -1,0 +1,5 @@
+"0","par(mfcol=c(1,2), mai=c(.8,.8,.2,.2))"
+"0",""
+"0","with(PList[[""random""]], plot(LLR.FS.U, LLR.FS.HS, pch=16,"
+"0","                             xlim = c(-45, 40), ylim=c(-35, 20),"
+"0","                             col=adjustcolor(""black"", alpha.f=0.5)))  # semi-transparant"

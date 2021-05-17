@@ -1,0 +1,7 @@
+"0","data(Ped_griffin, package=""sequoia"")"
+"0",""
+"0","# simulate genotype data"
+"0","Geno.highQ <- sequoia::SimGeno(Ped_griffin, nSnp=500, ParMis=0, SnpError=1e-4)"
+"0","Geno.lowQ  <- sequoia::SimGeno(Ped_griffin, nSnp=100, ParMis=0, SnpError=0.01)"
+"0","# default parameter values: 1% of SNPs missing, MAF uniform between 0.3 and 0.5."
+"0","# ParMis=0 : no non-genotyped parents"

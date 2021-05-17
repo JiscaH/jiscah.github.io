@@ -1,0 +1,11 @@
+h1:sec:smallCorr Small sample correction
+h2:the-problem The problem
+fig:griffinSmoothFlatten Smoothed & Flattened agepriors for overlapping generations (griffin example). Note the different y-axes; non-displayed age differences have an ageprior of zero for all R.
+h2:sec:Smooth Smooth
+h2:sec:Flatten Flatten
+tab:PedComp-ex1 Pedigree-based ageprior (left) and default, flat ageprior (right).
+tab:PedComp-ex1c Flattened ageprior
+h3:weighing-factor-lambdanw Weighing factor & 
+fig:plotFlattenNW Weights versus number of pairs with relationship R, for weighed average between pedigree-derived ageprior and flat 0/1 ageprior
+h3:sample-size-vs.-sampling-probability Sample size vs. sampling probability
+

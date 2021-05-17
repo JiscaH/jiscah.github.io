@@ -1,0 +1,7 @@
+"0","PairLL <- CalcPairLL(data.frame(MR$MaybeRel[, c(""ID1"", ""ID2"")],"
+"0","                                focal = ""U""),  # see help file for details"
+"0","                     Geno.2001,"
+"0","                     LifeHistData = LHX,"
+"0","                     AgePrior = AP,"
+"0","                     Complex = ""simp"","
+"0","                     Err = 0.005)"

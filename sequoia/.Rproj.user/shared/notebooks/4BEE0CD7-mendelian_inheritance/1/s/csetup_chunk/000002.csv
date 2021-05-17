@@ -1,0 +1,2 @@
+"0","knitr::opts_chunk$set(echo = TRUE, fig.height=4, fig.width=6)"
+"0","table_nums <- captioner::captioner(prefix = ""Table"")"

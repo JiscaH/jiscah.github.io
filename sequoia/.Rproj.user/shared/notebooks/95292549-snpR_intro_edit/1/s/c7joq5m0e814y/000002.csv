@@ -1,0 +1,2 @@
+"0","# Import numeric formatted data."
+"0","head(stickFORMATs$`0000`)[,1:6]"

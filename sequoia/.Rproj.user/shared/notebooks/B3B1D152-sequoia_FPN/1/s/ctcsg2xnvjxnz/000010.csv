@@ -1,0 +1,3 @@
+"0","for (a in 1:4) {"
+"0","  lines(RR,  N.required[,a], lwd=2, col=COL[a])"
+"0","}"

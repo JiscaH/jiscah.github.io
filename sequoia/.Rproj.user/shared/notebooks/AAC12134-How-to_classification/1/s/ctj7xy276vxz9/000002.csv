@@ -1,0 +1,6 @@
+"0","# calculate likelihood ratio FS/U and HS/U"
+"0","# values > 0: various missing value codes"
+"0","for (x in c(""FS"", ""HS"", ""U"", ""Unk"")) {"
+"0"," PairsList.LL[[x]]$FS_U <- with(PairsList.LL[[x]], ifelse(FS < 0, FS - U, NA))"
+"0"," PairsList.LL[[x]]$HS_U <- with(PairsList.LL[[x]], ifelse(HS < 0, HS - U, NA))"
+"0","}"

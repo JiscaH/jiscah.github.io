@@ -1,0 +1,14 @@
+pandoc: 2.11.2
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  genotyping_errors: genotyping_errors.html
+  Get_started: Get_started.html
+  help: help.html
+  mendelian_inheritance: mendelian_inheritance.html
+  pairLL_classification: pairLL_classification.html
+  pedcompare_example: pedcompare_example.html
+  quick_start_example1: quick_start_example1.html
+  quick_start_example2: quick_start_example2.html
+last_built: 2021-05-17T15:00Z
+

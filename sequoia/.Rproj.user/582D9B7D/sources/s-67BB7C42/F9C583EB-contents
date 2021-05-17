@@ -1,0 +1,39 @@
+
+# test ChkOwnAnc()
+
+PedX <- Ped_griffin
+PedX$dam[PedX$id == "i027_2002_F"] <- "i166_2009_F"
+
+ChkOwnAnc(PedX)
+# Error in ChkOwnAnc(PedX) : 
+#   Own Ancestor! 7 i027_2002_F i001_2001_Fi005_2001_Fi015_2001_Fi007_2001_Fi027_2002_Fi034_2002_Fi032_2002_Fi013_2001_Fi020_2001_Mi002_2001_Mi010_2001_Mi018_2001_Mi016_2001_Mi036_2002_M
+
+# not wildly insightful. 
+
+
+Ped <- PedX
+
+ChkOwnAnc <- function(Ped) {
+  Ped <- as.matrix(Ped)
+  Ped$gen <- getGenerations(Ped[,1:3])[, "gen"]
+  
+  for (i in 1:nrow(Ped)) {
+    focal <- Ped[i, 1]
+    Par <- unlist(unique(na.exclude(Ped[i, 2:3])))
+    for (g in 1:100) {   # assuming Ped < 100 generations
+      if (length(Par) == 0)  break
+#      cat(g, Par, "\n")
+      if (focal %in% Par) {
+        stop("An individual is its own Ancestor! ", g, " ", focal, " ", Par)
+      }
+      Par <- unlist(unique(na.exclude(c(Ped[Ped[,1] %in% Par, 2:3]))))  # next generation
+    }
+  }
+  cat("ped OK", "\n")
+}
+
+
+
+
+GM <- SimGeno(Ped_HSg5)
+SeqOUT <- sequoia(GM, LH_HSg5, quiet="verbose")

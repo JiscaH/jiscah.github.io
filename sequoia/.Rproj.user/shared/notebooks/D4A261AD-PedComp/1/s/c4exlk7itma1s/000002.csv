@@ -1,0 +1,4 @@
+"0","PedM <- PCG$MergedPed[, c(""id"", ""dam.1"", ""dam.2"")]   # short-hand to minimise typing"
+"0",""
+"0","# does the mismatch affect all of GreenBlue's offspring?"
+"0","PedM[which(PedM$dam.1 == ""GreenBlue""), ]"

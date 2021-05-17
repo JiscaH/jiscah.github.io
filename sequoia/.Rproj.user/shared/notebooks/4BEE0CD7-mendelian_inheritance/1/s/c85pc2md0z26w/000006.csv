@@ -1,0 +1,6 @@
+"0","# using same no. SNPs as in low quality example data below"
+"0","nSnp <- 100   "
+"0",""
+"0","curve(dbinom(x, size = nSnp, prob = P.Mismatch),"
+"0","      from=0, to=10, n=11, type=""b"","
+"0","      xlab=""No. opposing homozygous loci"", ylab=""Probability"")"

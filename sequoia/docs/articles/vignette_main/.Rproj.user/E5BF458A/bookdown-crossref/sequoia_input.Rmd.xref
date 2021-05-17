@@ -1,0 +1,22 @@
+h1:sequoia-input  input
+h2:sec:GenoFormat Genotypes
+h3:subset-snps Subset SNPs
+h3:plink PLINK
+h4:family-ids Family IDs
+h3:low-call-rate Low call rate
+h3:very-large-datasets Very large datasets
+h2:birth-years-sex Birth years & sex
+h3:lifehistdata LifeHistData
+h3:unknown-birth-years Unknown birth years
+tab:BY-example Example LifeHistData with the optional columns for minimum + maximum birth year
+h3:sec:custom-AP  (Customising the ageprior)
+h2:tfilter-tassign  & 
+h2:sec:Complx 
+h3:sec:WeirdRels Unusual relationships
+tab:DoubleRels Double relationships between pairs of individuals. Abbreviations as before, and GGG=great-grandparent, F1C=full first cousins, H1C=half first cousins (parents are HS).
+h2:herm 
+h2:useage 
+tab:UseAge Parameter 
+tab:griffin-useAge-1 LLR example for a grandparent - grand-offspring pair
+h2:sec:reuse 
+

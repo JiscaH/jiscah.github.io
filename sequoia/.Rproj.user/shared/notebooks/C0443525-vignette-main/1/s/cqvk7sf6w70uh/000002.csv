@@ -1,0 +1,8 @@
+"0","Ped1 <- data.frame(id = c(""Alpha"", ""Beta"", ""Abigail"", ""Aster"", ""Blossom"", ""Bob"", ""-""),"
+"0","                    dam = c("""","""", ""Alpha"", ""Alpha"", ""Beta"", ""Beta"", """"),"
+"0","                    sire = c("""","""", ""Zorro"", ""Yann"", """", ""Zorro"", """"))"
+"0","Ped2 <- data.frame(id = c(""Alpha"", ""-"", ""Abigail"", ""Aster"", ""Blossom"", ""Bob"", ""F0007""),"
+"0","                   dam = c("""", """", ""Alpha"", ""Alpha"", ""F0007"", ""F0007"", ""Alpha""),"
+"0","                   sire = c("""", """", ""Zorro"", ""M0004"", """", ""Zorro"", """"))"
+"0","knitr::kable(list(Ped1, Ped2),"
+"0","             caption = ""Example comparison between Pedigree1 (left) and Pedigree2 (right)"")"

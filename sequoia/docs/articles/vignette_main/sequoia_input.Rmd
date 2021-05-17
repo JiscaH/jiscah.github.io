@@ -1,0 +1,258 @@
+# `sequoia()` input
+
+
+## Genotypes {#sec:GenoFormat}
+The SNP data should be provided as a numeric matrix `GenoM` with one line per individual, and one column per SNP, with each SNP is coded as 0, 1, 2 copies of the reference allele, or missing (-9). The rownames should be the individual IDs, and column names are ignored.
+
+```{r }
+GenoM <- as.matrix(read.table("MyGenoData.txt", row.names=1, header=FALSE))
+```
+
+When the genotype data is in another format, such as Colony input files or PLINK's .ped or .raw files, `GenoConvert()` can be used.
+
+
+### Subset SNPs
+Using tens of thousands of SNP markers for pedigree reconstruction is unnecessary, will slow down computation, and may even hamper inferences by their non-independence. Rather, a subset of SNPs with a decent genotyping call rate (e.g. $>0.9$), in low linkage disequilibrium (LD) with each other, and with high minor allele frequencies (e.g. MAF $> 0.3$) ought to be selected first if more than a few hundred SNPs are available. The calculations assume independence of markers, and while low (background) levels of LD are unlikely to interfere with pedigree reconstruction, high levels may give spurious results. The recommended maximum number of SNPs therefore depends on genome size and chromosome number. Markers with a high MAF provide the most information, as although rare allele provide strong evidence when they are inherited, this does not balance out the rarity of such events.
+
+It is advised to 'tweak' the filtering thresholds until a set with a few hundred SNPs (300--700) is created. To assist with this, the function `SnpStats()` gives for each SNP both the allele frequency and the missingness. In addition, when a pedigree is provided (e.g. an existing one, or from a preliminary parentage-only run), the number of Mendelian errors per SNP is calculated and used to estimate the genotyping error rate.
+
+
+### PLINK
+Since the full dataset may be too large to easily load into R, creating a subset of SNPs can for example be done using [PLINK](https://www.cog-genomics.org/plink/):
+
+```{bash}
+plink --file mydata --geno 0.1 --maf 0.3 --indep 50 5 2
+```
+which on a windows machine is equivalent to running inside R
+
+```{r }
+system("cmd", input = "plink --file mydata --maf 0.3 --indep 50 5 2")
+```
+
+This will create a list of SNPs with a missingness below 0.1, a minor allele frequency of at least 0.3, and which in a window of 50 SNPs, sliding by 5 SNPs per step, have a VIF of maximum 2. VIF, or variance inflation factor, is $1/(1-r^2)$. For further details, see the [plink website](https://www.cog-genomics.org/plink2/ld#indep).
+
+The resulting list (`plink.prune.in`) can be used to create the genotype file used as input for Sequoia, with SNPs codes as 0, 1, 2, or NA, with the command
+
+```{bash}
+plink --file mydata --extract plink.prune.in --recodeA --out inputfile_for_sequoia
+```
+This will create a file with the extension .RAW, which can be converted to the required input format using  
+```{r }
+GenoM <- GenoConvert(InFile = "inputfile_for_sequoia.raw", InFormat="raw")
+```
+This function can also convert from two-columns-per-SNP format, as e.g. used by Colony.
+
+
+#### Family IDs
+By default, the 'Family ID' (1st) column in the PLINK file is ignored, and IDs are extracted from the second column only. If the family IDs are essential to distinguish between individuals, use `GenoConvert()` with the flag `UseFID = TRUE` which will combine individual IDs and family IDs as FID__IID. Ensure the IDs in the life history file are in the same format, for example by using `LHConvert()`. The FID and IID can be split again in the resulting pedigree using `PedStripFID()`.
+
+
+
+### Low call rate
+Samples with a very low genotyping success rate (call rate) can sometimes wrongly be assigned as parents to unrelated individuals, as `sequoia()` does not (yet) deal perfectly with these cases. In addition, at least in my experience with SNP arrays, a low sample call rate is often indicative of poor sample quality or a poor genotyping run, and associated with a high sample error rate.
+Samples with a call rate below 5% are automatically excluded, but it is strongly advised to create a subset where all individuals are genotyped for at least 50% of SNPs, and preferably for at least 80%.
+
+In addition, SNPs with a call rate below 10% are excluded, as these contribute almost no information. Again, a stricter threshold is advised of at least 50% to minimise the risk of spurious results.
+
+Checks for individuals and SNPs with low call rate, and monomorphic SNPs, are done automatically when calling `sequoia()` and various other functions, and can be done separately by calling `CheckGeno()`.
+
+
+
+### Very large datasets
+When the number of individuals is very large, it may be impossible to load the genotype data into R as it will exceed R's memory limit. A stand-alone version of the algorithm underlying this R package does not suffer from this limitation, and is available as Fortran source code from [github](https://github.com/JiscaH/sequoia/tree/master/Standalone), where you can also find its manual. The standalone is not faster than the R package, as the bulk of the computations are done in Fortran regardless. 
+
+
+## Birth years \& sex
+The relative age of individuals can greatly improve pedigree reconstruction (see [Birth years & Ageprior](#sec:BY-AP)), and sex information is necessary to determine whether a candidate parent is the mother or father. 
+
+
+### LifeHistData
+The life history data (`LifeHistData`) should be a dataframe with three or five columns (column names are ignored, order is important!):
+
+  * **ID**  
+  It is probably safest to stick to R's 'syntactically valid names', defined as "consists of letters, numbers and the dot or underline characters and starts with a letter, or the dot not followed by a number".
+  * **Sex**  
+  1 = female, 2 = male, 3=unknown, 4=hermaphrodites. All other numbers, letters, or NA = unknown
+  * **BirthYear**  
+  Year of birth/hatching/germination/... In species with more than one generation per year, a finer time scale than year of birth ought to be used (in round numbers), ensuring that parents are always 'born' in a time unit prior to their first offspring (e.g. parent's BirthYear=2001 ($t=1$) and offspring BirthYear=2005 ($t=5$)). Negative numbers and NA's are interpreted as unknown.
+  * **BY.min** (optional)  
+  Earliest year in which individual may have been born, if exact year is unknown. Ignored when BirthYear is non-missing. 
+  * **BY.max** (optional)  
+  Latest year in which individual may have been born
+
+
+Ideally this basic life history information is provided for all genotyped individuals, but this is not strictly necessary. This dataframe may be in a different order than the genotype data, and may include many more individuals (which are ignored).
+
+
+### Unknown birth years
+The year of birth may be unknown for some individuals, and for those `sequoia()` cannot determine whether they are the parent or the offspring if a genetic parent-offspring pair is found (unless a 'complementary' co-parent is identified). Especially in wild populations this information can be unknown for a substantial part of the sample, but often a minimum and/or maximum possible birth year (`BY.min` and `BY.max`) can be determined. For example, `BY.max` is at the latest the first year in which an individual was observed.
+
+```{r BY-example, echo=FALSE, eval=TRUE}
+LH <- data.frame(ID = c("Alpha", "Beta", "Gamma"), 
+                 Sex = c(2,2,1),
+                 BirthYear = c(NA, 2012, NA),
+                 BY.min = c(NA, NA, 2008),
+                 BY.max = c(2010, NA, 2009))
+knitr::kable(LH,
+             caption = "Example LifeHistData with the optional columns for minimum + maximum birth year", booktabs=TRUE, position="b")
+```
+
+Even very wide ranges may help in pedigree reconstruction: for example, Alpha and Beta are genetically identified to be parent and offspring, Alpha was first seen in 2011 as an adult, and Beta was known to be born 2012 (Table \@ref(tab:BY-example)). Then Alpha is certainly the parent of Beta. Before version 2.0 there was no method to inform `sequoia` that Alpha could not have been born after 2012, and thus could not be an offspring of Beta. It was (and still is) possible to 'guestimate' birth years, but this can be time consuming and is potentially prone to errors. For example, if Alpha also forms a genetic parent-offspring pair with Gamma, then setting Alpha's birth year to 2010 will result in it being assigned as Gamma's offspring, while it may just as well be Gamma's parent. 
+
+To minimise such pedigree errors where parent and offspring are flipped the wrong way around, and the 'secondary' errors derived from these cases, it is recommended to set the possible birth year range as wide as possible, at least during an initial (preliminary) round of parentage assignment. To see the pairs that are genetically parent and offspring, but for which it cannot be determined which of the two is the parent, use function `GetMaybeRel()`.
+
+
+### `args.AP` (Customising the ageprior) {#sec:custom-AP}
+When running `sequoia()`, you can pass arguments to `MakeAgePrior()` via `args.AP`. For example, when you are sure generations do not overlap, you can specify this via `MakeAgePrior()`'s argument `Discrete`:
+```{r }
+SeqOUT <- sequoia(GenoM = Geno, LifeHistData = LH,
+                  args.AP = list(Discrete = TRUE))
+```
+
+Or you can specify that the maximum age of (non-genotyped) parents exceeds the observed age range among SNP-genotyped parent-offspring pairs in `PedigreePar`:
+
+```{r }
+SeqOUT <- sequoia(GenoM = Geno, LifeHistData = LH,
+                  args.AP = list(MaxAgeParent = c(11, 9)),  # dams, sires
+                  SeqList = ParOUT[c("Specs", "PedigreePar")])
+```
+
+Alternatively, if you have a field-pedigree or microsatellite-based pedigree that contains many more individuals than have been SNP-genotyped, an ageprior estimated from that old pedigree will be more informative than the one estimated from a limited number of SNP-genotyped parent-offspring pairs. This can be done as follows:
+```{r }
+APfromOld <- MakeAgePrior(Pedigree = MyOldPedigree,
+                          LifeHistData = LH,
+                          Smooth = TRUE)
+SeqOUT <- sequoia(GenoM = Geno,
+                  LifeHistData = LH,
+                  SeqList = list(AgePriors = APfromOld))
+```
+When argument `SeqList` contains an element `AgePriors`, it is used during both parentage assignment and sibship clustering. Thus, if you wish to use different agepriors during those different phases, you need to run them separately (see [reuse](#sec:reuse)).
+
+For further information on the ageprior, please see the separate vignette on this topic. If you wish to manually edit the `AgePriors` matrix before using it as input in `sequoia()`, or have done so in the past, it is advised to look at the latest version of this document, as the implementation has changed in package version 2.0, and the documentation was clarified in version 2.1. 
+
+
+## `Tfilter` & `Tassign`
+These are threshold values for log10-likelihood ratios (LLRs). 
+
+`Tfilter` is the threshold LLR between a proposed relationship versus unrelated, to select candidate relatives. It is typically negative, and a more negative value may prevent filtering out of true relatives, but will increase computational time. 
+
+`Tassign` is the threshold used for acceptance of a proposed relationship, and is relative to next most likely relationship. It must be positive, with higher values resulting in more conservative assignments. Counter-intuitively a high `Tassign` can sometimes *increase* the number of wrong assignments, as a correct low-threshold assignment may prevent wrong assignments among close relatives (a.o. by revealing genotyping errors and changing the most-likely true genotype of an individual).
+
+The default values of `Tfilter` and `Tassign` seem to work well in a wide range of datasets, but their interaction with genotyping error rate and other dataset characteristics has not been thoroughly explored. 
+
+
+
+## `Complex`  {#sec:Complx}
+The complexity of the mating system considered. One of:
+
+* **`mono`** 
+Only consider monogamous matings. This can be especially useful for small SNP panels that have insufficient power to distinguish reliably between full siblings and half-siblings, but may have ample power to distinguish between full siblings and third degree relatives (e.g. full cousins). Works well when full aunts/uncles and grandparents differ consistently more in age than full siblings, and do not have to be considered as alternatives to full sibling either.
+* **`simp`**
+Consider polygamous matings, but ignore all inbred and double relationships (see below). Such relationships may still be assigned as side-effect. This again can be useful if the SNP panel has limited power, and the occurrence of such complex relationships is very rare.
+* **`full`**
+The default, do consider all kinds of relationship combinations.
+
+
+### Unusual relationships {#sec:WeirdRels}
+Pedigree inference is often applied in small, (semi-)closed populations, and is regularly done to check for inbreeding. In such cases, pairs of individuals may be related via more than one route. For example, maternal half-siblings may also be niece and aunt via the paternal side, and be mistaken for full-siblings. Or a pair may be both paternal half-siblings, and maternal full cousins. A range of such double relationships is considered explicitly (Table \@ref(tab:DoubleRels)) to minimise such mistakes. If such a type is common in your population but not yet considered by `sequoia`, and seems to be causing problems, please send me an email as adding additional relationships is relatively straightforward.
+
+
+```{r DoubleRels, echo=FALSE, eval=TRUE, results="asis"}
+DR <- rbind(PO = c("--", "--", "Y", "Y","","Y","","","", "Y"),
+            FS = c("--", "--", "--", "--", "--", "Y","", "--", "Y", "Y"),
+            HS = c("Y", "--", "(FS)", "Y", "Y ^2^", "Y", "Y ^2^","","", "Y"),
+            GP = c("Y", "--", "Y", "^1^","","","","","", "Y"),
+            FA = c("", "--","","","", "Y","","","", "Y"),
+            HA = c("", "Y", "Y ^2^","","","","","","", "Y"),
+            GGG = c("", "--","","","","", "^3^","","", "Y"),
+            F1C = c("","","","","","","","","", "Y"))
+colnames(DR) <- c(rownames(DR), "H1C", "U")
+knitr::kable(DR,
+             caption = "Double relationships between pairs of individuals. Abbreviations as before, and GGG=great-grandparent, F1C=full first cousins, H1C=half first cousins (parents are HS).",
+             format = "pipe", booktabs=TRUE)  # forces ^1^ etc. through pandoc first 
+```
+--: impossible  
+Y: explicitly considered  
+empty: not (yet) explicitly considered (but may be inferred as 'side effect')  
+^1^: Can not be considered explicitly, as likelihood identical to PO   
+^2^: Including the special case were one is inbred  
+^3^: Can not be considered explicitly, as likelihood identical to GP  
+
+<!-- &nbsp;    extra empty line-->
+
+
+
+## `Herm`
+Hermaphrodites, one of:
+* **`no`**
+Dioecious (separate sexes) species
+* **`A`**
+Heed dam versus sire role of individuals, and assign a parent only if it is clear that it was the female or male parent of an individual. Requires a pedigree prior (e.g. the plant from which the seed was collected), or age difference between maternal versus paternal role (see [Hermaphrodites](#sec:Herm). 
+* **`B`**
+No distinction is made between dam versus sire role; any parent is assigned in the first available 'slot', and no conclusions can be drawn from whether individuals are assigned as maternal, paternal or 'cross' half-siblings. 
+
+If any individuals in the life history data have sex=4, `Herm='no'` will automatically be changed into `Herm='A'`. Hermaphrodites may be mixed with known-sex (or known sex role) individuals. `Herm='A'` or 'B' can also be selected if none of the genotyped individuals are hermaphrodites, but non-genotyped (dummy) parents could be. 
+
+
+
+## `UseAge`
+The strength of reliance on birth year information during full pedigree reconstruction. 
+
+In addition to providing no birth year information at all, there are three possible levels of reliance on [birth years and ageprior](#sec:BY-AP) during full pedigree reconstruction:
+
+* **`no`**
+Only use the ageprior matrix to determine which age difference -- relationship combinations are possible and which are not, i.e. simplifying the ageprior to a 0/1 (FALSE/TRUE) matrix. 
+* **`yes`** (default)
+Use age information in a restrictive way: only accept a proposed assignment if both the purely genetic LLR ($LLR_{SNP}$) and the sum of $LLR_{SNP}$ and log10 of the ageprior's probability ratios ($LLR_{age}$) pass $T_{assign}$ (Note that the ageprior matrix is not on a log scale, and that $log(0) = -Inf$, and $log(1)=0$). Thus, relationships that are genetically likely but unlikely based on the age difference, will not be assigned. 
+* **`extra`**
+Use age information in a permissive way: accept a proposed assignment if $LLR_{SNP} + LLR_{age}$ passes $T_{assign}$, even if $LLR_{SNP}$ on its own does not. Thus, a pair for which genetically the relationship is ambivalent (e.g. 'either one of HS, GP, FA'), but whose age difference makes one of these relationships (much) more likely, are now also assigned (see example). The risk of a cascading avalanche of assignment errors is reduced by first running the algorithm as for `UseAge = 'yes'`, and only once the total likelihood has plateaued switching to `UseAge = 'extra'` (and continuing until the total likelihood plateaus again). 
+
+```{r UseAge, echo=FALSE, eval=TRUE, results="asis"}
+UA <- cbind("no" = c("Y", "Y", ""),
+            "yes" = c("Y", "Y", "Y"),
+            "extra" = c("Y", "", "Y"))
+rownames(UA) <- c("$LR_{age} > 0$", "$LLR_{SNP} > T_{assign}$", 
+                  "$LLR_{SNP} + LLR_{age} > T_{assign}$")
+
+knitr::kable(UA, caption = "Parameter 'UseAge' (see text for definitions)", align='ccc', escape=FALSE, booktabs=TRUE, position="!h")
+```
+
+
+Below an example of how to calculate $LLR_{SNP}$ and $LLR_{age}$, for a grandparent -- grand-offspring pair from the griffin example pedigree, with an age difference of 4 years. This pair would not be assigned with `UseAge = 'yes'`, as purely genetically the likelihoods for the pair being HS, GP or FA are identical (unless both individuals already have at least 1 parent assigned), but would get assigned with `UseAge = 'extra'`, as in this fictional population 4-year-older paternal grandmothers are about 10x as common as 4-year-older paternal aunts (difference of 1 unit on log10-scale).
+
+Such assignments which rely strongly on the age difference of a pair, in combination with the estimated age distribution of relative pairs, are often not desirable, and are therefore not made by default (`UseAge = 'yes'`).  
+
+```{r griffin-useAge-1, echo=TRUE, eval=TRUE}
+data(Ped_griffin, SeqOUT_griffin, package="sequoia")
+GenoX <- SimGeno(Ped_griffin, nSnp = 400, ParMis=0)
+LLR_SNP <- CalcPairLL(Pairs = data.frame(ID1="i122_2007_M", ID2="i042_2003_F"), 
+                      GenoM = GenoX, Plot=FALSE)
+LLR_Age <- GetLLRAge(SeqOUT_griffin$AgePriorExtra, agedif=4, patmat=2)
+knitr::kable(rbind(SNP = LLR_SNP[,colnames(LLR_Age)],
+                   Age = LLR_Age,
+                   "SNP + Age" = LLR_SNP[,colnames(LLR_Age)] +
+                     LLR_Age),
+             digits=1, booktabs=TRUE, 
+             caption = "LLR example for a grandparent - grand-offspring pair")
+```
+
+
+
+## `SeqList` {#sec:reuse}
+Parameter settings and input data from one `sequoia()` run can be re-used in a subsequent `sequoia()` run, and as input by various other functions (Table \@ref(tab:CoreFun)). This makes it easier to have consistent parameter values and input data across different pedigree inference runs and different functions.
+
+
+The parameter values used as arguments when calling `sequoia()` are returned in the list element `Specs`. This 1-row dataframe may be edited (with caution!) before re-use. Other elements of the `sequoia()` output list (`SeqList`) that are used as input by one or more functions are `LifeHist`, `AgePriors`, and `PedigreePar`/`Pedigree`. Details on which elements are used is provided in the help file of each function. 
+`SeqList[["Specs"]]` nearly always take precedent over similarly-named input parameters, with exception of e.g. `sequoia()`'s `Module` (`MaxSibIter`) argument. The other `SeqList` elements generally also take precedent, but not always with a warning. If you wish to use a mixture of `SeqList` elements and 'new' data, it is safest to provide only the minimal subset of `SeqList`, and specify the other data as separate input (or as 'fake' `SeqList` elements).
+
+For example, if you wish to change the dummy prefix, but do not want to re-run parentage assignment:
+```{r }
+load("Sequoia_output_date.RData")  # output from an old sequoia run that was saved to disk
+ParOUT$Specs$DummyPrefixFemale <- "D-FEM"
+ParOUT$Specs$DummyPrefixMale <- "D-MALE"
+SeqOUTX <- sequoia(GenoM = Geno,
+                  SeqList = ParOUT[c("Specs", "PedigreePar", "LifeHist")],
+                  Module = "ped")
+```
+
+

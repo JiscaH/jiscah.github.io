@@ -1,0 +1,74 @@
+# Maths
+ -----------
+ 
+
+## AgePrior
+The ageprior $\alpha_{A,R}$ (Glossary in Table \@ref(tab:Glossary)) tells us how the probability that two individuals have relationship $R$ changes when learning their age difference $A$, or 
+
+\begin{equation}
+	\alpha_{A,R} = \frac{P(R|A)}{P(R)} \text{ .}
+	(\#eq:AP)
+\end{equation}
+
+Using Bayes' rule that  
+\begin{equation}
+	P(R|A) = \frac{P(A|R) P(R)}{P(A)}
+\end{equation}
+
+it follows that, if $P(A)$ and $P(R)$ are independent, 
+\begin{equation}
+	\alpha_{A,R} = \frac{P(R|A)}{P(R)} = \frac{P(A|R)}{P(A)} \text{ .}
+	(\#eq:AP2)
+\end{equation}
+
+When a pedigree and birth years are known, $P(A)$ and $P(A|R)$ are estimated as the observed proportions of individual pairs with age-difference $A$ among all pairs ($P(A)$) and among parent-offspring and sibling pairs with relationship $R$ ($P(A|R)$) (see worked-out example in Section [Overlapping generations](#sec:overlap)). 
+
+
+```{r Glossary, echo=FALSE, results="asis"}
+Glossary <- matrix(c("$BY_i$", "Birth year", "Time unit (year, decade, month) of $i$'s birth/ hatching",
+         "$A_{i,j}$", "Age difference",  "$BY_i - BY_j$, i.e. if $j$ is older than $i$, than $A_{i,j}$ is positive",
+         "$R_{i,j}$", "Relationship", "Relationship between $i$ and $j$, e.g. parent-offspring",
+         "$\\alpha_{A,R}$", "Ageprior", "Probability ratio of relationship $R$ given $A$, versus $R$ for a random pair"),
+       ncol=3, byrow=TRUE)
+
+knitr::kable(Glossary, col.names = c("Symbol", "Term", "Definition"),
+            caption="Terms and abbreviations", escape=FALSE, booktabs=TRUE)
+```
+
+
+
+
+## Unsampled individuals {#sec:unsampled}
+When using the scaffold parentage-only pedigree as input, $\alpha_{A_R}$ is based only on pairs which are both genotyped and which both have a known birth year. During full pedigree reconstruction, we assume that the association between age difference and relationship probability is roughly the same for pairs where either or both individuals are unsampled (i.e. dummy individuals), or for whom the birthyear is unknown:
+
+
+\begin{equation}
+	\frac{P(R|A, \text{sampled})}{P(R| \text{sampled})} \approx \frac{P(R|A, \text{unsampled})}{P(R | \text{unsampled})} 
+	(\#eq:APsampled)
+\end{equation}
+
+
+This does *not* mean that sampling probability is assumed to be independent of $A$: any sampling period is finite, thus there are always fewer both-sampled pairs with large age differences than with small age differences ($P(A|sampled) \neq P(A|unsampled)$). It *does* assume that the probability to both be sampled is independent of relationship $R$ ($P(A|sampled) \approx P(A|unsampled)$), so that 
+
+\begin{equation}
+	\frac{P(A|R, \text{sampled})}{P(A| \text{sampled})} \approx
+	\frac{P(A|R, \text{unsampled})}{P(A| \text{unsampled})}  \text{,}
+\end{equation}
+
+i.e. it is assumed that $\alpha_{A_R}$ calculated from both-sampled pairs is valid for pairs where one or both are unsampled. 
+
+This assumption is relaxed via the [small-sample correction](#sec:smallCorr). 
+
+
+
+## Genetics $\times$ Age
+During pedigree reconstruction, the ageprior $\alpha_{A,R}$ is multiplied by the genotypes-depended probability,
+
+\begin{equation}
+	P(R_{i,j}| G_i, G_j, A_{i,j}) = P(R_{i,j} | G_i, G_j) \times \alpha_{R_{i,j}, A_{i,j}}  \text{ ,}
+	(\#eq:GxA)
+\end{equation}
+as it can be reasonably assumed that conditional on the relationship $R$, the genotypes $G$ and age difference $A$ are independent (at least on the time scales relevant for pedigree reconstruction). The calculation of $P(R_{i,j} | G_i, G_j)$ is described in detail in @huisman17. 
+
+For a pair of individuals, $P(R_{i,j} | G_i, G_j)$ in \@ref(eq:GxA) for various relationships can be obtained with `CalcPairLL()`, and $\alpha_{R_{i,j}, A_{i,j}}$ with `GetGetLLRAge()`.
+

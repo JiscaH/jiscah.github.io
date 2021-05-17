@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# convert from Colony to Sequoia format\n# 2-column format, alleles coded as 1-4 (A,C,T,G) rather than 0-1\n\nsetwd(\"E:/Sequoia/Bugs & queries/bug genoconvert 2018-05-03\")\n\nInFile <- \"data.txt\"\n\nGenoTmp <- readLines(InFile)\n\n\n  TmpL    <- strsplit(GenoTmp, split = \" \")\n  GC <- plyr::ldply(TmpL)\n  IDs_geno <- GC[, 1]\n  GC <- as.matrix(GC[, -1])\n  GCM <- matrix(NA, nrow(GC), ncol(GC))\n  for (i in 1:ncol(GC)) {\n    GCM[,i] <- as.numeric(as.factor(GC[, i]))-1\n  }\n  GCA <- array(dim=c(2, nrow(GC), ncol(GC)/2))\n  GCA[1,,] <- GCM[, seq(1,ncol(GC)-1,2)]\n  GCA[2,,] <- GCM[, seq(2,ncol(GC),2)]\n  GS <- apply(GCA, 2:3, sum)\n  if (max(GS, na.rm=TRUE) > 2)\n  GS[is.na(GS)] <- -9\n  row.names(GS) <- IDs_geno\n  if (!is.na(OutFile)) {\n    utils::write.table(GS, OutFile, quote = FALSE, col.names = FALSE)\n  } else return(GS)\n\n\ndim(GC)  # 141 x 536  (268 loci?)\n\nnAlleles <- apply(GC, 2, function(x) length(unique(x)))\ntable(nAlleles)\n\nwhich(nAlleles>3)\n# V136 V450 V452 V453\n#  135  449  451  452\n\n\n\nGenoM <- GenoConvert(\"data.txt\", InFormat=\"col\")\n\n\n\n#####################################################\n\nsource(\"sequoia_GenoConvert_2018-05-05.R\")\n\nGenoM <- GenoConvert(\"data_new.txt\", InFormat=\"col\")\n\nGenoM <- GenoConvert(\"data_new.csv\", InFormat=\"col\")\n\n\nInFile <- \"data_new.txt\"\n\nGenoTmp <- readLines(InFile)\n\n\n  TmpL <- strsplit(GenoTmp, split = \" \")\n  if (length(TmpL[[1]])==1) {\n    TmpL <- strsplit(GenoTmp, split = \"\\t\")\n  }\n  if (length(TmpL[[1]])==1) {\n    TmpL <- strsplit(GenoTmp, split = \",\")\n  }\n  if (length(TmpL[[1]])==1) {\n    TmpL <- strsplit(GenoTmp, split = \";\")\n  }\n  GC <- plyr::ldply(TmpL)\n  IDs_geno <- GC[, 1]\n  GC <- as.matrix(GC[, -1])\n  GC[GC==0] <- NA\n\n  GCA <- array(dim=c(2, nrow(GC), ncol(GC)/2))\n  GCA[1,,] <- GC[, seq(1,ncol(GC)-1,2)]\n  GCA[2,,] <- GC[, seq(2,ncol(GC),2)]\n\n  Alleles <- apply(GCA, 3, function(x) unique(na.exclude(as.character(x))))\n  if(any(sapply(Alleles, length)>2)) stop(paste(\"Some SNPs have >2 alleles\",\n                                  \"(n=\", sum(sapply(Alleles, length)>2)),\")\")\n  if(any(sapply(Alleles, length)==1)) warning(paste(\"Some SNPs are monomorphic\",\n                                     \"(n=\", sum(sapply(Alleles, length)==1)),\")\")\n\n  GCF <- array(dim=dim(GCA))\n  for (i in 1:dim(GCA)[[3]]) {\n    GCF[,,i] <- as.numeric(as.factor(GCA[,,i]))-1\n  }\n\n  GS <- apply(GCF, 2:3, sum)\n  GS[is.na(GS)] <- -9\n  row.names(GS) <- IDs_geno\n  if (!is.na(OutFile)) {\n    utils::write.table(GS, OutFile, quote = FALSE, col.names = FALSE)\n  } else return(GS)\n\n\nseq.test <- sequoia(GenoM = GenoM, MaxSibIter =0)\n",
+    "created" : 1526030741664.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "623345410",
+    "id" : "8255E79A",
+    "lastKnownWriteTime" : 1526031697,
+    "last_content_update" : 1526031697080,
+    "path" : "E:/Sequoia/Bugs & queries/bug genoconvert 2018-05-03/Genoconvert_data1-4.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

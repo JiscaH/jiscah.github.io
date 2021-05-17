@@ -1,0 +1,436 @@
+
+setwd("E:/Rum red deer/Pedigree 2019 cohort")
+load("InputData-Sequoia.RData")
+
+
+load("DeerSeq_2020-07-29.RData")
+DeerSeq.A <- DeerSeq
+
+
+DeerSeq.B <- sequoia(GenoM = GenoM,
+                   LifeHistData = LH,
+                   Err = 5e-4,
+                   Plot = FALSE,
+                   UseAge = "yes",
+                   Module = "ped")
+
+
+DeerSeq.C <- sequoia(GenoM = GenoM,
+                   LifeHistData = LH,
+                   Err = 5e-4,
+                   Plot = FALSE,
+                   UseAge = "extra",
+                   Module = "ped")
+
+
+
+PC.AB <- PedCompare(DeerSeq.A$Pedigree, DeerSeq.B$Pedigree)
+PC.AB$Counts["TT",,]
+#          parent
+# class       dam sire
+#   Total    2987 2979
+#   Match    2987 2978
+#   Mismatch    0    0
+#   P1only      0    0
+#   P2only      0    1   # OK.
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ZAP13 (P-O mating): parental LLR inconsistent between SA & Rversion
+
+DeerPar$PedigreePar[DeerPar$PedigreePar$id == "ZAP13", ]
+#         id   dam  sire LLRdam LLRsire LLRpair OHdam OHsire MEpair
+# 3027 ZAP13 NAV08 ALD99   -1.9   17.95   19.59     0      0      0
+
+# SA:
+# ZAP13 NAV08  ALD99    -1.90     42.42   19.59     0      0      0
+
+
+# 42.42 seems... unlikely.
+
+# difference due to ageprior?
+
+SeqX  <- sequoia(GenoM = GenoM,
+                   LifeHistData = LH,
+                   Err = 5e-4,
+                   Plot = FALSE,
+                   Module = "pre")
+writeSeq(SeqX, folder="SA2")
+
+# mystery solved!
+
+
+DeerPar2 <- sequoia(GenoM = GenoM,
+                   SeqList = DeerPar[c("LifeHist", "AgePriors", "Specs")],
+                   Module = "par")
+
+DeerPar2$PedigreePar[DeerPar2$PedigreePar$id == "ZAP13", ]
+#         id   dam  sire LLRdam LLRsire LLRpair OHdam OHsire MEpair
+# 3027 ZAP13 NAV08 ALD99   -1.9   42.42   19.59     0      0      0
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# test PairLL
+
+zPed <- data.frame(id = c("ZAP13", "NAV08", "ALD99"),
+                   dam = c("NAV08", NA, NA),
+                   sire = c("ALD99", NA, NA))
+
+PairsDeer <- data.frame( ID1 = "ZAP13",
+                         ID2 = c("NAV08", "ALD99", "SEQ05", "SEQ05"),
+                         Sex1 = NA,
+                         Sex2 = c(1, 2, 1, 1),
+                         AgeDif = c(5, 14, 8, 8),
+                         focal = c("PO", "PO", "PO", "GP"))
+
+CalcPairLL(PairsDeer, GenoM)
+#     ID1   ID2 Sex1 Sex2 AgeDif focal      PO      FS      HS      GP      FA      HA       U TopRel   LLR
+# 1 ZAP13 NAV08   NA    1      5    PO -348.99 -362.31 -358.74 -379.78 -366.71 -358.74 -407.14     PO  9.76
+# 2 ZAP13 ALD99   NA    2     14    PO -339.50 -350.39 -354.98 -381.62 -365.53 -354.98 -414.29     PO 10.89
+# 3 ZAP13 SEQ05   NA    1      8    PO -580.14 -431.56 -411.13 -411.13 -411.13 -400.87 -410.47     HA  9.61
+#   ZAP13 SEQ05   NA    1      8    GP  999.00  999.00  999.00 -411.13  999.00  999.00 -410.47      U  0.65
+
+CalcPairLL(PairsDeer, GenoM, zPed)
+#     ID1   ID2 Sex1 Sex2 AgeDif focal  PO  FS  HS  GP      FA      HA       U TopRel   LLR
+# 1 ZAP13 NAV08   NA    1      5    PO 888 777 777 777 -401.48 -253.36 -304.12     HA 50.76
+# 2 ZAP13 ALD99   NA    2     14    PO 888 777 777 777 -409.84 -256.55 -311.27     HA 54.72
+# 3 ZAP13 SEQ05   NA    1      8    PO 777 999 999 999  999.00  999.00  999.00      U    NA
+#   ZAP13 SEQ05   NA    1      8    GP 999 222 -276.99 -277 -298.37 -289.66 -307.46    2nd 12.67
+
+
+# >> something wrong with ZAP13 - SEQ05 ?
+
+# >> fixed: pairGP & PairCC
+#~~~~~~~~~~~~~~~~~
+
+PC <- PedCompare(DeerPar.A$PedigreePar, DeerPar$PedigreePar)
+PC$Counts["TT",,]  # OK! identical
+
+plot(DeerPar.A$PedigreePar$LLRdam, DeerPar$PedigreePar$LLRdam, pch=16)  # new LR bit lower, but OK
+plot(DeerPar.A$PedigreePar$LLRsire, DeerPar$PedigreePar$LLRsire, pch=16)
+plot(DeerPar.A$PedigreePar$LLRpair, DeerPar$PedigreePar$LLRpair, pch=16)   # identical for all but 1 pair.
+
+
+
+CalcPairLL(PairsDeer, GenoM)
+#     ID1   ID2 Sex1 Sex2 AgeDif focal      PO      FS      HS      GP      FA      HA       U TopRel   LLR
+# 1 ZAP13 NAV08   NA    1      5    PO -348.99 -362.31 -358.74 -359.09 -366.71 -358.74 -407.14     PO  9.76
+# 2 ZAP13 ALD99   NA    2     14    PO -339.50 -350.39 -354.98 -354.74 -365.53 -354.98 -414.29     PO 10.89
+# 3 ZAP13 SEQ05   NA    1      8    PO -580.14 -431.56 -405.18 -400.76 -409.62 -405.18 -410.47     GP  4.41
+# 4 ZAP13 SEQ05   NA    1      8    GP -580.14 -431.56 -405.18 -400.76 -409.62 -405.18 -410.47     GP  4.41
+
+CalcPairLL(PairsDeer, GenoM, zPed)
+#     ID1   ID2 Sex1 Sex2 AgeDif focal  PO  FS      HS   GP      FA      HA       U TopRel   LLR
+# 1 ZAP13 NAV08   NA    1      5    PO 888 777  777.00  777 -401.48 -253.36 -304.12     HA 50.76
+# 2 ZAP13 ALD99   NA    2     14    PO 888 777  777.00  777 -409.84 -256.55 -311.27     HA 54.72
+# 3 ZAP13 SEQ05   NA    1      8    PO 777 999  999.00  999  999.00  999.00  999.00      U    NA
+# 4 ZAP13 SEQ05   NA    1      8    GP 999 222 -276.99 -277 -298.37 -289.66 -307.46    2nd 12.67  << TODO.
+
+
+PairsDeer$Sex1 <- 1
+# no change. But SA output different: PO calculated, HS not.
+CalcPairLL(PairsDeer, GenoM, zPed,
+           AgePrior=MakeAgePrior(MaxAgeParent = 20))
+# no change. Why PO not calculated?
+
+CalcPairLL(PairsDeer[c(1,2,4), ], GenoM, zPed)  # nope not it
+
+# >> HS: made impossible in regular run by agedifference NAV08 -- SEQ05,
+# which is not considered by CalcPairLL
+
+CalcPairLL(PairsDeer, GenoM, zPed, LifeHistData = LH)
+#     ID1   ID2 Sex1 Sex2 AgeDif focal  PO  FS  HS   GP      FA      HA       U TopRel   LLR
+# 1 ZAP13 NAV08   NA    1      5    PO 888 777 777  777 -401.48 -284.46 -304.12     HA 19.66
+# 2 ZAP13 ALD99   NA    2     14    PO 888 777 777  777 -409.84 -286.83 -311.27     HA 24.44
+# 3 ZAP13 SEQ05   NA    1      8    PO 777 999 999  999  999.00  999.00  999.00      U    NA
+# 4 ZAP13 SEQ05   NA    1      8    GP 999 777 777 -277 -298.37 -289.66 -307.46     GP 12.67  << not fixed yet
+
+
+
+
+
+
+
+
+
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ # Error in `[<-.data.frame`(`*tmp*`, is.na(LifeHistData[, x]), x, value = -999) :
+ #  replacement has 1 row, data has 0
+
+# occurs with R3.5.1, but not R4.0
+# sequoia 2.0.7 (CRAN)
+
+
+setwd("E:/Rum red deer/Pedigree 2019 cohort")
+load("InputData-Sequoia.RData")
+
+DeerPar <- sequoia(GenoM = GenoM,
+                   LifeHistData = LH,
+                   Err = 5e-4,
+                   Plot = FALSE,
+                   MaxSibIter = 0)
+
+# OK, error reproduced.
+
+LHX <- LH
+LHX$Code <- as.character(LHX$Code)
+LHX$Sex <- as.numeric(LHX$Sex)
+LHX$BirthYear <- as.numeric(LHX$BirthYear)
+LHX$BirthYear[LHX$BirthYear < 0] <- NA
+
+# not resolved.
+
+# Does problem indeed occur in CheckLH() ?
+
+
+load("E:/Rum red deer/Pedigree 2019 cohort/InputData-Sequoia.RData")
+DeerPar <- sequoia(GenoM, LH, Plot=FALSE, MaxSibIter = -1)
+
+
+# error seems to occur when calling MakeAgePrior for 2nd time?
+# But that shouldn't happen when MaxSibIter = -1 ?
+
+PedX <- read.table("Pedigree_2018.txt", header=TRUE, stringsAsFactors=FALSE)
+
+AP <- MakeAgePrior(PedX, LH, Plot=FALSE)
+
+DeerPar <- sequoia(GenoM, LH, Plot=FALSE, MaxSibIter = -1, SeqList = list(AgePriors = AP))
+
+# nope, still same error.
+
+
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+DeerPar <- sequoia(GenoM = GenoM,
+                   LifeHistData = LH,
+                   Err = 5e-4,
+                   Plot = FALSE,
+                   MaxSibIter = 0)
+DeerPar$PedigreePar[DeerPar$PedigreePar$id == "AML16", ]
+#         id  dam sire LLRdam LLRsire LLRpair OHdam OHsire MEpair
+# 3046 AML16 <NA> <NA>     NA      NA      NA    NA     NA     NA
+
+
+DeerPar2 <- sequoia(GenoM = GenoM,
+                   LifeHistData = LH,
+                   Err = 1e-3,
+                   Plot = FALSE,
+                   MaxSibIter = 0)
+DeerPar2$PedigreePar[DeerPar2$PedigreePar$id == "AML16", ]
+#         id  dam sire LLRdam LLRsire LLRpair OHdam OHsire MEpair
+# 3046 AML16 <NA> <NA>     NA      NA      NA    NA     NA     NA
+
+
+
+PedX[PedX$Code == "AML16", ]
+#      Code MumCode  Sire
+# 251 AML16   DAW12 ZAPHO
+
+PedXX <- CalcOHLLR(PedX, GenoM, CalcLLR = FALSE)
+PedXX[PedXX$id == "AML16", ]
+#       id   dam  sire OHdam OHsire MEpair SNPd.id.dam SNPd.id.sire
+# 78 AML16 DAW12 ZAPHO    10     12     22         439          439
+
+SummarySeq(PedXX, Panels=c("OH"))
+
+
+ table(PedXX$MEpair)
+#    0    1   22   29   34
+# 1721    1    1    1    1
+
+
+PedXX[which(PedXX$MEpair > 1), ]
+
+
+
+# problem with new genotype data? or old, hidden issue?
+GM <- as.matrix(read.table("E:/Rum red deer/Pedigree 2018 cohort/Deer_Geno_2019-06-18.txt",
+                           row.names=1, stringsAsFactors=F))
+
+PedZ <- CalcOHLLR(PedX, GM, CalcLLR = FALSE)
+PedZ[PedZ$id == "AML16", ]
+#       id   dam  sire OHdam OHsire MEpair SNPd.id.dam SNPd.id.sire
+# 78 AML16 DAW12 ZAPHO     0      0      0         439          439
+
+
+
+# really? not CalcOHLLR acting up?
+
+table(factor(GenoM["AML16", ], levels=c(0,1,2,-9)),   # making it a factor first makes the table MUCH faster
+      factor(GenoM["DAW12", ], levels=c(0,1,2,-9)))
+  #      0   1   2  -9
+  # 0   71  67   8   0
+  # 1   61 108  43   0
+  # 2    2  46  33   0
+  # -9   0   1   0   0
+# indeed, 2 + 8 opposing homozygous loci
+
+
+# assuming dangerously that order of SNPs hasn't changed...
+table(factor(GenoM["AML16", ], levels=c(0,1,2,-9)),
+      factor(GM["AML16", ], levels=c(0,1,2,-9)))
+  #      0   1   2  -9
+  # 0  143   3   0   0
+  # 1    1 207   4   0
+  # 2    2   2  77   0
+  # -9   0   0   0   1
+
+
+
+PC <- PedCompare(PedX, DeerPar$PedigreePar)
+
+
+
+#~~~~~~~~~~~~~~~~~~~~
+# DeerPar$PedigreePar[DeerPar$PedigreePar$id == "SPD12", ]
+#         id   dam sire LLRdam LLRsire LLRpair OHdam OHsire MEpair
+# 2487 SPD12 KNO95 <NA>   15.2      NA      NA     0     NA     NA
+# > DeerPar$PedigreePar[DeerPar$PedigreePar$id == "BIG76", ]
+#        id  dam  sire LLRdam LLRsire LLRpair OHdam OHsire MEpair
+# 217 BIG76 <NA> SOLOM     NA   10.35      NA    NA      0     NA
+
+# old parents --> dropped during sibship clustering
+# check if still happening with new threshold
+
+
+DeerSeq <- sequoia(GenoM = GenoM,
+                   LifeHistData = LH,
+                   Err = 5e-4,
+                   Plot = FALSE,
+                   Module = "ped")
+# running in just 30 min!
+
+save(DeerSeq, file = "DeerSeq_2020-07-29.RData")
+
+DeerSeq$Pedigree[DeerSeq$Pedigree$id %in% c("SPD12", "BIG76"), ]
+#         id   dam sire LLRdam LLRsire LLRpair OHdam OHsire MEpair
+# 217  BIG76  <NA> <NA>     NA      NA      NA    NA     NA     NA  << not fixed
+
+LH[LH$Code == "SOLOM", ]
+#       Code Sex BirthYear
+# 4011 SOLOM   2      1972   # 4 years old.
+
+#        M     P     FS    MS    PS
+# 0  0.000 0.000  0.008 0.009 5.538
+# 1  0.001 0.001 11.995 4.419 8.151
+# 2  0.023 0.013  7.955 5.197 5.470
+# 3  1.017 0.064  4.566 4.053 3.580
+# 4  3.549 0.195  1.829 3.568 2.292
+
+
+MR <- GetMaybeRel(GenoM, SeqList = DeerSeq, ParSib = "par")
+# Error in PedToNum(Pedigree, gID, DoDummies = "new") :
+#   Didn't expect to find prefix F0 or M0among pedigree ids.  >> fixed.
+
+MR
+# $MaybePar
+#        ID1      ID2 TopRel   LLR OH BirthYear1 BirthYear2 AgeDif Sex1 Sex2 SNPdBoth
+# 1 PM98-S02    COY76     PO 14.97  0       1993       1976     17    2    2      440
+# 2    DICKS PM88-H03     PO 13.56  0       1970         NA     NA    2    1      440
+# 3 PM88-S01    QUA87     PO  6.82  0         NA       1987     NA    2    2      440
+#
+# $MaybeTrio
+# NULL
+
+# Why BIG76 - SOLOM not listed here?  [217] - [2466]
+
+# vaguely recall them having an odd R_GRM - can't find back just now.
+# noteworthy? R_GRM BIG76 - CRUSA = 0.32  (CRUSA: offspring in '65 - '71)
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+PedX <- read.table("SA/Pedigree_seq.txt", header=TRUE, stringsAsFactors=FALSE)
+
+PC <- PedCompare(DeerSeq$Pedigree, PedX)
+PC$Counts["TT",,]
+#          parent
+# class       dam sire
+#   Total    2987 2979
+#   Match    2987 2977
+#   Mismatch    0    0
+#   P1only      0    1
+#   P2only      0    1
+
+PC$P2only
+#        id dam.1 sire.1 dam.2 sire.2  id.r dam.r sire.r id.dam.cat id.sire.cat dam.class sire.class
+
+
+# 218 BIG76  <NA>   <NA>  <NA>  SOLOM BIG76  <NA>   <NA>         GX          GG         _     P2only
+
+# SPD12 already fixed in DeerSeq
+
+
+PC$P1only
+#        id dam.1 sire.1 dam.2 sire.2  id.r dam.r sire.r id.dam.cat id.sire.cat dam.class sire.class
+# 982 F0062  <NA>  M0100  <NA>   <NA> F0062  <NA>   <NA>         DX          DD         _     P1only
+
+# F0062 = mum of THOxx = YTA74
+# M0100: SCO71 + TAL77 + F0024 (RED74) + F0062 (YTA74)
+# earlier also assigned as PHS --> why dropped?
+# why YTA76 no longer member of this paternal sibship? YTA74 + YTA76 full sibs (?)
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# problem in PedCompare(): individuals listed in output with id.dam.cat=="GG", that aren't actually genotyped.
+PC <- PedCompare(Ped18, DeerSeq$Pedigree, SNPd = DeerSeq$PedigreePar$id)
+
+PC$Counts["TT",,]
+# lots of non-genotyped indivs in Ped18
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DeerSeqNew <- sequoia(GenoM = GenoM,
+                   LifeHistData = LH,
+                   Err = 5e-4,
+                   Plot = FALSE,
+                   Module = "ped")
+
+PCX <- PedCompare(DeerSeq$Pedigree, DeerSeqNew$Pedigree,
+                  SNPd = DeerSeq$PedigreePar$id)
+PCX$Counts["TT",,]
+#           parent
+# class       dam sire
+#   Total    3048 3043
+#   Match    2851 2802
+#   Mismatch   25   68
+#   P1only     61   64
+#   P2only    111  109
+
+
+View(PCX$Mismatch)
+
+# fucky genotype data
+# > "COF01" %in% rownames(GenoM)
+# [1] FALSE
+# > "COF01" %in% rownames(GM)
+# [1] TRUE
+
+
+
+PCXX <- PedCompare(PedX,  # from standalone
+                   DeerSeqNew$Pedigree)
+#           parent
+# class       dam sire
+#   Total    2987 2979
+#   Match    2987 2978
+#   Mismatch    0    0
+#   P1only      0    0
+#   P2only      0    1
+
+PCXX$P2only
+#       id dam.1 sire.1 dam.2 sire.2  id.r dam.r sire.r id.dam.cat id.sire.cat dam.class
+# 982 F0062  <NA>   <NA>  <NA>  M0100 F0062  <NA>  M0100         DX          DD         _
+#     sire.class
+# 982     P2only
+
+# OK, SA/R issue, not R-sequoia versions issue.

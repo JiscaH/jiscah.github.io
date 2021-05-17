@@ -1,0 +1,3 @@
+"0","# all of OrangeGreen's offspring are in sibship F0003"
+"0",""
+"0","PedM[which(PedM$dam.2 == ""F0003""), c(""id"", ""dam.1"", ""dam.2"")]"

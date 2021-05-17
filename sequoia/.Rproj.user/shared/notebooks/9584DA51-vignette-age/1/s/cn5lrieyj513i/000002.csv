@@ -1,0 +1,4 @@
+"0","knitr::kable("
+"0","  MakeAgePrior(Ped_griffin, Smooth=FALSE, Flatten=TRUE, quiet=TRUE, Plot=FALSE),"
+"0","  caption = ""Flattened ageprior"","
+"0","  format = ""html"", table.attr = ""style='width:50%;'"")"

@@ -1,0 +1,79 @@
+# Customise {#sec:customAP}
+ ----------------
+
+Customising the ageprior is generally not necessary, as a sample-specific ageprior will be estimated after parentage assignment based on the scaffold-pedigree. 
+
+Parentage assignment is rarely improved by a non-default ageprior, unless the number of SNPs is so low or their quality so poor that it is difficult to genetically distinguish between parent-offspring and full sibling pairs. 
+
+The ageprior used for full pedigree reconstruction may require tweaking if for example the assigned parents reflect only a portion of the biologically possible parental ages, or if some assigned parents are wrong and have a biologically impossible age.  
+
+
+
+## Via `args.AP`
+During pedigree reconstruction, you can pass arguments to `MakeAgePrior()` via  `sequoia()`'s argument `args.AP`. Use this to explicitly specify [`Discrete`](#sec:Discrete), [`Smooth`](#sec:Smooth) or [`Flatten`](#sec:Flatten), or to increase [`MaxAgeParent`](#sec:MaxAgePO).  
+
+
+## Different input pedigree
+If you have a reasonable quality pedigree that contains many more individuals than have been SNP-genotyped, for example based on field observations and/or microsatellite data, an ageprior estimated from that old pedigree may be more informative than the one estimated from a limited number of SNP-genotyped parent-offspring pairs. A pedigree cannot be passed via `args.AP`, but this can be done as follows instead:
+
+```{r APold, eval=FALSE}
+APfromOld <- MakeAgePrior(Pedigree = MyOldPedigree,
+                          LifeHistData = LH,
+                          Smooth = TRUE)
+SeqOUT <- sequoia(GenoM = Geno,
+                  LifeHistData = LH,
+                  SeqList = list(AgePriors = APfromOld))
+```
+
+The ageprior in `SeqList` will be used for both parentage assignment and full pedigree reconstruction. 
+
+
+## Other tweaks
+The easiest way to create a fully custom ageprior is to generate an approximate ageprior with `MakeAgePrior`, and tweak it by hand or using your own function. For example, imagine a species where females breed only every other year, but may have twins:
+```{r skip, fig.cap="", out.width = "70%"}
+AP <- MakeAgePrior(MaxAgeParent = c(12, 8), Plot=FALSE)
+AP[as.character(seq(1,12,by=2)), c("MS", "FS")] <- 0
+PlotAgePrior(AP)
+```
+
+### Age at first reproduction
+Or, if you wish to specify the minimum age at first reproduction, to e.g. age 3 for females, and age 4 for males:
+```{r minAFR, fig.cap="", error=TRUE}
+AP <- MakeAgePrior(MaxAgeParent = c(12, 8), Plot=FALSE)
+AP[c("1","2"), "M"] <- 0
+AP[c(1:3) +1, "P"] <- 0   # 1st row = age difference of 0. 
+
+# check if valid ageprior:
+chk <- sequoia(SimGeno_example, LifeHistData=LH_HSg5, 
+               SeqList = list(AgePriors = AP), 
+               Module="pre", quiet=TRUE, Plot=FALSE)
+```
+
+```{r minAFR2, fig.cap="", out.width = "70%"}
+# Fix: a female may breed from age 3 to age 12
+# --> maternal sibs have max age dif. of 9 years
+AP[c(10:12) +1, "MS"] <- 0     # +1 because 1st row is '0'
+# a male may breed from age 4 up to age 8  --> max age dif of PS is 4 years
+AP[c(5:12) +1, c("PS", "FS")] <- 0
+PlotAgePrior(AP)
+```
+
+
+## From age-difference distribution
+If you know approximately the distributions of parental ages, and the age differences between siblings, you might be able to create a table similar to `tblA.R` and follow the subsequent steps described [here](#sec:tblAR) to generate an ageprior matrix. The most challenging may be to generate the age-difference distribution of 'all individuals' (column X), used for standardisation. 
+
+
+## Specifications
+The ageprior must abide by the following rules:
+
+- a matrix or dataframe with values between 0 and 1000 inclusive. In the `MakeAgePrior()` output, the smallest possible non-zero value is 1/1000, to avoid excessive weight of the ageprior relative to the genetic likelihood;
+- columns named M, P, FS, MS, and PS, any other columns are ignored;
+- each relationship must be possible ($>0$) for at least one age difference;
+- rownames are ignored and rows are presumed to be for age difference 0, 1, 2, ..., *except* when rownames include negative numbers (as for `AgePriorExtra`), then negative-numbered rows are deleted and the remainder are presumed to be ordered and for age difference 0, 1, 2, ...;
+- any age differences not included (i.e. > `nrows` -1) are presumed impossible for all types of parents and siblings ($0$ in all 5 columns);
+- the maximum age difference between siblings must be consistent with the maximum breeding tenure of a parent (minimum -- maximum age of reproduction).
+
+To check whether your ageprior matrix satisfies these criteria, use it in any function that takes `AgePriors` (or `SeqList`) as input, which will call the internal function `CheckAP()`.
+
+
+

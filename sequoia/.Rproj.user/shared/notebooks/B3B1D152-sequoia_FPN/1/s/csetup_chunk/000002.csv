@@ -1,0 +1,7 @@
+"0","knitr::opts_chunk$set(echo = FALSE,"
+"0","                      fig.height=6, fig.width=8, fig.pos=""ht!"","
+"0","                      root.dir = ""D:/Work/Identigen/2021-01"")"
+"0","library(plyr)"
+"0","library(sequoia)"
+"0","library(kableExtra)"
+"0","source(""fun_plot_FPN.R"")"

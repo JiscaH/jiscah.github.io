@@ -1,0 +1,3 @@
+"0","par(mfcol=c(1,2), mai=c(.9,.9,.5,.6))"
+"0","hist(OH.highQ, breaks=seq(-1,max(OH.highQ,na.rm=TRUE))+.5, xlim=c(-1,20), ylim=c(0,100),"
+"0","     xlab=""No. SNPs opposing homozygous"", main=""500 SNPs, error rate 0.01%"")"

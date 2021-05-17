@@ -1,0 +1,139 @@
+# Function overview
+ ------------------
+
+```{r CoreFun, echo=FALSE, eval=TRUE, results="asis"}
+tbl_core_fun <- rbind(
+c("sequoia","Y","","","+","+","Pedigree, SeqList","SeqListSummary"),
+c("GetMaybeRel","Y","","","+","+","Pairs","PlotRelPairs"),
+c("CalcOHLLR","Y","Y","","+","+","","SeqListSummary"),
+c("CalcPairLL","Y","+","Y","+","+","","PlotPairLL "),
+c("MakeAgePrior","","+","","","","AgePrior","PlotAgePrior"),
+c("SimGeno","","Y","","","","GenoM","SnpStats"),
+c("PedCompare","","YY","","","","","PlotPedComp"),
+c("ComparePairs","","Y+","+","","","Pairs","PlotRelPairs"))
+colnames(tbl_core_fun) <- 
+ c("Function","GenoM","Pedigree","Pairs","AgePrior","SeqList","Reusable output","Plot function")
+
+knitr::kable(tbl_core_fun, align='lcccccll',
+             caption = "Core functions with selected subset of their required (Y) and optional (+) input, and their output that can be re-used as input in other functions.", escape=FALSE, booktabs=TRUE)
+```
+
+
+## Input
+
+* **GenoConvert**  
+Read in genotype data from PLINK file, Colony file, or many user-specified formats, and return a matrix in sequoia's (or Colony) format. *Does not support vcf yet*.
+
+* **LHConvert**  
+Extract sex and birth year from PLINK file; optionally recode sex to 1=female, 2=male, check consistency with other LifeHistData, or combine family ID and individual ID into FID__IID.
+
+* **CheckGeno**  
+Check that the provided genotype matrix is in the correct format, and check for low call rate samples and SNPs
+
+* **SnpStats**  
+Calculate per-SNP allele frequency, missingness, and, if a pedigree provided, number of Mendelian errors.
+
+* **CalcMaxMismatch**  
+Calculate the maximum expected number of mismatches for duplicate samples, and Mendelian errors for parent-offspring pairs and parent-parent-offspring trios.
+
+
+
+## Simulate
+
+* **SimGeno**  
+Simulate genotype data for independent SNPs. Specify pedigree, founder MAF, call rate, proportion of non-genotyped parents, genotyping error \& error model.
+
+* **MkGenoErrors**  
+Add genotyping errors and missingness to genotype data; more fine-scale control than with SimGeno.
+
+
+
+## Ageprior
+
+* **MakeAgePrior**  
+For various categories of pairwise relatives (R), calculate age-difference (A) based probability ratios $P(A|R) / P(A) = P(R|A) / P(R)$, or how much likelier a relationship is given the age difference. It applies corrections when the skeleton-pedigree contains few/no pairs with known age difference for some relationships.
+
+* **PlotAgePrior**  
+Visualise the age-difference based prior probability ratios as a heatmap.
+
+
+## Pedigree reconstruction
+
+* **sequoia**  
+Main function to run parentage assignment and full pedigree reconstruction, calls many of the other functions.
+
+* **GetMaybeRel**  
+Identify pairs of individuals likely to be related, but not assigned as such in the provided pedigree. Either search only for potential parent-offspring pairs, or for all 1st and 2nd degree relatives.
+
+
+
+## Pedigree check
+*These functions can be applied to any pedigree, not just pedigrees reconstructed by sequoia. Required input between brackets*
+
+* **SummarySeq** (1 pedigree)  
+Graphical overview of the assignment rate, the proportion dummy parents, sibship sizes, parental LLR distributions, and Mendelian errors, $+$ tables with pedigree summary statistics.
+
+* **CalcOHLLR** (pedigree + genotypes)  
+Count opposite homozygous (OH) loci between parent-offspring pairs and Mendelian errors (ME) between parent-parent-offspring trios, and calculate the parental log-likelihood ratios (LLR). 
+
+* **EstConf** (pedigree + genotypes)    
+Estimate assignment error rate (false positives \& false negatives). Using a reference pedigree, repeatedly simulate genotype data, run sequoia, and compare inferred to reference pedigree.
+
+* **getAssignCat** (1 pedigree)  
+Identify which individuals are genotyped, and which can potentially be substituted by a dummy individual. 'Dummifiable' are those non-genotyped individuals with at least 2 genotyped offspring, or at least 1 genotyped offspring and 1 genotyped parent.
+
+* **PedCompare** (2 pedigrees)  
+Compare 2 pedigrees, e.g. field and genetically inferred, or reference and inferred-from-simulated-data. Matches dummy parents to non-genotyped parents.
+
+* **CalcRped** (1 pedigree)
+This is a wrapper for `kinship()` in package `kinship2`. 
+
+
+
+## Pairwise relationships
+
+* **CalcPairLL** (pairs + genotypes)
+For each pair, calculate the log10-likelihoods of being various different types of relative, or unrelated. 
+
+* **GetRelCat** (1 pedigree)  
+Determine the relationship between individual X and all other individuals in the pedigree, going up to 1 or 2 generations back.
+
+* **GetRelM** (pedigree or pairs)
+Generate a matrix with all pairwise relationships from a pedigree or dataframe with pairs
+
+* **ComparePairs** (1 or 2 pedigrees)  
+Compare, count and identify different types of relative pairs between two pedigrees, or within one pedigree. [^d] 
+
+[^d]: The matrix returned by `DyadCompare` \emph{(Deprecated)} is a subset of the matrix returned here using default settings.
+
+* **PlotRelPairs** (matrix)
+plot pairwise relationships between all individuals, as by Colony.
+
+
+
+## Miscellaneous
+
+* **PedPolish**  
+Ensure all parents \& all genotyped individuals are included, remove duplicates, rename columns, and replace 0 by NA or v.v. Can also generate 'filler' parents for software that requires individuals to have either 0 or 2 parents, never 1. 
+
+* **getGenerations**
+For each individual in a pedigree, count the number of generations since its most distant pedigree founder.
+
+* **ErrToM**  
+Generate a matrix with the probabilities of observed genotypes (columns) conditional on actual genotypes (rows), or return a function to generate such matrices. The error matrix can be used as input for `sequoia` and `CalcOHLLR`, the error function as input for `SimGeno`
+
+* **writeSeq**  
+Write the list with sequoia output in human-readable format, either as a folder with .txt files, or as a many-tabbed excel file. The latter uses R package `xlsx`, which requires java and can (therefore) be cumbersome to install.
+
+* **writeColumns**  
+write data.frame or matrix to a text file, using white space padding to keep columns aligned.
+
+
+* **FindFamilies**  
+Add a column with family IDs (FIDs) to a pedigree, with each number denoting a cluster of connected individuals.
+
+* **PedStripFID**  
+Reverse the joining of FID and IID in GenoConvert and LHConvert
+
+* ** CalcBYprobs**
+Estimate the probability that individual i with unknown birth year is born in year y, based on the birthyears of its parents and offspring. 

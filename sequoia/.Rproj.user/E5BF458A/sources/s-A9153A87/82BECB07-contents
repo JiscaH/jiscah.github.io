@@ -1,0 +1,147 @@
+template:
+  params:
+    bootswatch: sandstone
+  opengraph:
+    image:
+      src: man/figures/sequoia_hexlogo_s.png
+      alt: "sequoia hexlogo"
+
+home:
+  title: Pedigrees from SNP data
+  description: An R package to reconstruct multi-generational pedigrees, with any proportion of genotyped parents
+  links:
+  - text: Browse source code
+    href: https://github.com/JiscaH/sequoia
+  - text: Report a bug
+    href: https://github.com/JiscaH/sequoia/issues
+  - text: Download old versions
+    href: https://github.com/JiscaH/sequoia_archives
+  - text: Download non-R version
+    href: https://github.com/JiscaH/sequoia_notR
+
+navbar:
+  title: "sequoia"
+  left:
+    - icon: fas fa-home
+      href: index.html
+    - text: "Get started"
+      href: articles/Get_started.html
+    - text: "Functions"
+      href: reference/index.html
+    - text: "Manuals"
+      menu:
+        - text: "Main vignette: User guide"
+          href: articles/vignette_main/_book/sec-Background.html
+        - text: "Age prior vignette"
+          href: articles/vignette_age/_book/index.html
+        - text: "Examples"
+          href: articles/index.html
+        - text: "More info on ..."
+          href: articles/index.html
+    - text: "Change log"
+      href: news/index.html
+    - text: "Help"
+      href: articles/help.html
+    - text: "Stats"
+      href: articles/_performance_stats.html
+  right:
+    - icon: fab fa-twitter
+      href: https://twitter.com/HuismanJisca
+    - icon: fas fa-envelope
+      href: mailto:jisca.huisman@gmail.com
+    - icon: fab fa-github
+      href: https://github.com/JiscaH/sequoia
+    - icon: fab fa-linkedin-in
+      href: https://www.linkedin.com/in/jisca-huisman-a4751153/
+
+
+articles:
+- title: Examples
+  description: All examples are in base R, not tidyverse.
+  contents:
+    - quick_start_example1
+    - quick_start_example2
+    - pedcompare_example
+
+- title: More info on
+  contents:
+    - genotyping_errors
+    - mendelian_inheritance
+    - pairLL_classification
+
+
+reference:
+- title: Input
+  descr: Read, convert and check input data
+- contents:
+    - "GenoConvert"
+    - "LHConvert"
+    - "CheckGeno"
+    - "SnpStats"
+    - "CalcMaxMismatch"
+
+- title: Simulate
+  descr: Simulate genotype data assuming independent SNPs
+- contents:
+  - "SimGeno"
+  - "MkGenoErrors"
+  - "Inherit"
+
+- title: AgePrior
+  descr: See [ageprior vignette](../articles/vignette_age/_book/index.html) for details
+- contents:
+    - "MakeAgePrior"
+    - "PlotAgePrior"
+    - "CalcBYprobs"
+
+- title: Pedigree reconstruction
+  descr: The core of the package, see [main vignette](../articles/vignette_main/_book/key-points.html) for details
+- contents:
+    - "sequoia"
+    - "GetMaybeRel"
+
+- title: Likelihood (ratios)
+- contents:
+  - "CalcOHLLR"
+  - "CalcPairLL"
+  - "PlotPairLL"
+  - "GetLLRAge"
+
+- title: Pedigree check
+  descr: These functions can be applied to any pedigree, no genetic data needed
+- contents:
+    - "SummarySeq"
+    - "EstConf"
+    - "GetRelM"
+    - "PlotRelPairs"
+    - "getAssignCat"
+    - "getGenerations"
+    - "CalcRped"
+
+- subtitle: Compare 2 pedigrees
+- contents:
+  - "PedCompare"
+  - "PlotPedComp"
+  - "ComparePairs"
+- subtitle: Deprecated
+- contents:
+    - "DyadCompare"
+
+- title: Miscellaneous
+- contents:
+    - "PedPolish"
+    - "ErrToM"
+    - "writeSeq"
+    - "writeColumns"
+    - "FindFamilies"
+    - "PedStripFID"
+
+- title: Example data
+- contents:
+    - "Ped_HSg5"
+    - "LH_HSg5"
+    - "SimGeno_example"
+    - "Ped_griffin"
+    - "LH_griffin"
+    - "SeqOUT_griffin"
+    - "FieldMums_griffin"

@@ -1,0 +1,10 @@
+h1:function-overview Function overview
+tab:CoreFun Core functions with selected subset of their required (Y) and optional (+) input, and their output that can be re-used as input in other functions.
+h2:input Input
+h2:simulate Simulate
+h2:ageprior Ageprior
+h2:pedigree-reconstruction Pedigree reconstruction
+h2:pedigree-check Pedigree check
+h2:pairwise-relationships Pairwise relationships
+h2:miscellaneous Miscellaneous
+

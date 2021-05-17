@@ -1,0 +1,13 @@
+h1:pedigree-based-ageprior Pedigree-based ageprior
+h2:sec:Discrete Discrete generations
+fig:APdiscrete Discrete generations
+h3:generation-interval-different-from-1 Generation interval different from 1
+h2:sec:overlap Overlapping generations
+fig:APall Ageprior for overlapping generations (griffin example)
+h3:birthyearrange 
+h3:sec:MaxAgePO 
+h3:sec:tblAR Counts: 
+h3:par-pa.r P(A|R): 
+h3:sec:FSuseHS Full sibling correction
+h3:sec:standardise Ageprior P(A|R)/P(A): 
+

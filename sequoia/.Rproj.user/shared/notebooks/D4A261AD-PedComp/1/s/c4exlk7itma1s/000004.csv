@@ -1,0 +1,4 @@
+"0","# > yes, these 4 are all of her known offspring"
+"0",""
+"0","# does genetic mother i081_2005_F have any field-observed offspring?"
+"0","PedM[which(PedM$dam.1 == ""i081_2005_F""), ]"

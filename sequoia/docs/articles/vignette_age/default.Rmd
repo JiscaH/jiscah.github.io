@@ -1,0 +1,22 @@
+# Default ageprior  {#sec:Default}
+ -------------------------------
+
+The default ageprior used during parentage assignment is flat and minimally informative: it only specifies that parent and offspring cannot have an age difference of 0 ($\alpha_{A,R}=0$ for $A=0$ and $R=M$ or $R=P$, black in Figure \@ref(fig:AP-default)) and that all other age / relationship combinations are allowed ($\alpha_{A,R}=1$, pale green). 
+
+```{r AP-default, fig.cap="Default minimally informative ageprior", out.width = "70%"}
+MakeAgePrior(LifeHistData = LH_HSg5)
+```
+
+
+The range of possible age differences is taken from `LifeHistData`: 
+
+```{r AP-default-2}
+table(LH_HSg5$BirthYear)
+```
+
+The maximum age of parents `MaxAgeParent` is initially set to the maximum age difference possible among individuals in `LifeHistData` (here 2005-2000 = 5 years) $+1$. This ensures that all pairs are age-wise considered as potential siblings [^a]; the age difference between siblings can never be larger than `MaxAgeParent` $-1$. 
+
+
+[^a]: Up to version 2.0, initial `MaxAgeParent` was  set to `diff(BYrange)`, but sibling relationships were also allowed at this age difference, so this change (probably) won't affect parentage assignment or full pedigree reconstruction.  
+
+

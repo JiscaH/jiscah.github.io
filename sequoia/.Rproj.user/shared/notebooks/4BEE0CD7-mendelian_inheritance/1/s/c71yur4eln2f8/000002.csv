@@ -1,0 +1,6 @@
+"0","N <- 3000"
+"0","stats::qbinom(0.999^(1/N), size = nSnp, prob = P.Mismatch)"
+"1","[1]"
+"1"," 5"
+"1","
+"

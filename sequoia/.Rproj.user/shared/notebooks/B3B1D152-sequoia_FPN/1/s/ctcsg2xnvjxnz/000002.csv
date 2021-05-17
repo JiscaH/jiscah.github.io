@@ -1,0 +1,6 @@
+"0","par(mai=c(.9,.9,.4,.6), mfcol=c(1,2))"
+"0",""
+"0","# zoom left"
+"0","plot(1,1, type=""n"", xlim=c(0,0.4), ylim=c(0, 500),"
+"0","     las=1, xlab=""Proportion at harvest"","
+"0","     ylab=""Required N"", main=""Zoom left"")"

@@ -1,0 +1,2 @@
+"0","# Specify maximum age for fathers, but estimate max mother age from pedigree "
+"0","APX <- MakeAgePrior(Ped_griffin, Smooth=FALSE, MaxAgeParent = c(NA, 5))"

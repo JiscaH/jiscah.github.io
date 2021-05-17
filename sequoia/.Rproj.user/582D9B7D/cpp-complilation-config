@@ -1,0 +1,12 @@
+{
+    "args" : [
+        "-IC:/Program Files/RStudio/resources/libclang/builtin-headers/5.0.2",
+        "-IC:/Program Files/RStudio/resources/libclang/builtin-headers/libc++/5.0.2",
+        "-std=gnu++11",
+        "-IC:/R/R-40~1.2/include",
+        "-DNDEBUG"
+    ],
+    "hash" : "1593593111",
+    "is_cpp" : false,
+    "pch" : ""
+}

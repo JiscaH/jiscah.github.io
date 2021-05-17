@@ -1,0 +1,17 @@
+{
+    "dialog-state": {
+        "query": "Huisman",
+        "path": "",
+        "regex": false,
+        "caseSensitive": false,
+        "filePatterns": [
+            "*.rmd",
+            "*.Rmd"
+        ],
+        "excludeFilePatterns": [],
+        "resultsCount": 10,
+        "errorCount": 0,
+        "replaceErrors": "",
+        "projectRelative": true
+    }
+}

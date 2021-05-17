@@ -1,0 +1,2 @@
+rmd_files: ["index.Rmd", "background.Rmd", "key_points.Rmd", "function_overview.Rmd", "sequoia_input.Rmd", "running_sequoia.Rmd", "output_check.Rmd", "hermaphrodites.Rmd", "faq.Rmd", "references.Rmd"]
+delete_merged_file: true
