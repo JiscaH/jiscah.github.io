@@ -3,7 +3,7 @@
 
 ### Questions
 
-If after repeated tries, checking the [help files](../reference/index.html), the [examples](../articles/Get_started.html) and [vignettes](../articles/vignette_main/book/index.html), you can't figure out why sequoia isn't working the way you think it should be working: please do feel free to email me at <jisca.huisman at gmail.com>. Usually I'll get back to you within 1--2 days (during European daytime). 
+If after repeated tries, checking the [help files](../reference/index.html), the [examples](../articles/index.html) and [vignettes](../articles/vignette_main/book/index.html), you can't figure out why sequoia isn't working the way you think it should be working: please do feel free to email me at <jisca.huisman at gmail.com>. Usually I'll get back to you within 1--2 days (during European daytime). 
 
 For example:
 
