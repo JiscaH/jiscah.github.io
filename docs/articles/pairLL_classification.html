@@ -141,7 +141,7 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>Pedigree reconstruction with <code><a href="../reference/sequoia.html">sequoia()</a></code> sometimes suffers from high rates of non-assignment of true relatives (false negatives). This is often because it cannot tell whether a pair are maternal or paternal relatives, or it cannot tell what type of second degree relatives they are. More information on this can be found <a href="vignette_main/_book/key-points.html#sec:lowAR">here in the user guide</a>).</p>
+<p>Pedigree reconstruction with <code><a href="../reference/sequoia.html">sequoia()</a></code> sometimes suffers from high rates of non-assignment of true relatives (false negatives). This is often because it cannot tell whether a pair are maternal or paternal relatives, or it cannot tell what type of second degree relatives they are. More information on this can be found <a href="vignette_main/book/key-points.html#sec:lowAR">here in the user guide</a>).</p>
 <p>A fairly common situation is to have full sibling (FS), half sibling (HS), or unrelated (U) as the only three plausible relationships among the genotyped individuals, e.g. when nestlings are sampled but their parents are not. Typically none of the half sibling pairs will be assigned by <code><a href="../reference/sequoia.html">sequoia()</a></code>, as it cannot tell whether they are maternal or paternal half-siblings. When generations overlap, the possibility that they are full avuncular or grandparental also remains open genetically, even if this is biologically highly unlikely for clutch mates (for most species).</p>
 <p>In such a situation, the likelihoods to be FS, HS, and U are the only three that are relevant, but there is no good way during pedigree reconstruction to set the prior for all other relationships to zero (including e.g. full cousins) and to abandon the distinction between maternal and paternal relatives (only implemented for hermaphrodites).</p>
 <div id="likelihood-ratios" class="section level3">
@@ -157,7 +157,7 @@
 <div id="applicable-to-other-relationships" class="section level3">
 <h3 class="hasAnchor">
 <a href="#applicable-to-other-relationships" class="anchor"></a>Applicable to other relationships</h3>
-<p>Here the example of full siblings, half siblings and unrelated is used, but one could also have a situation where parent and full avuncular are the alternatives, or any other combination. Just keep in mind that all 3rd degree relationships are piled together under the ‘HA’ category, and that when <code>Complx='full'</code> all kinds of <a href="vignette_main/_book/key-points.html#sec:WeirdRels">double relationships</a> are considered too.</p>
+<p>Here the example of full siblings, half siblings and unrelated is used, but one could also have a situation where parent and full avuncular are the alternatives, or any other combination. Just keep in mind that all 3rd degree relationships are piled together under the ‘HA’ category, and that when <code>Complx='full'</code> all kinds of <a href="vignette_main/book/key-points.html#sec:WeirdRels">double relationships</a> are considered too.</p>
 </div>
 </div>
 <div id="with-or-without-pedigree" class="section level2">
@@ -503,7 +503,7 @@ Example LLR(FS/HS) for a putative full sibling trio
 ## 2 -298.18 -298.18 -298.18 -297.16 -300.29     HA 1.02
 ## 3 -303.97 -303.97 -303.97 -302.96 -306.08     HA 1.02
 ## 4 -295.22 -295.22 -295.22 -294.20 -297.33     HA 1.02</code></pre>
-<p>For each pair, the likelihoods to be half-siblings (HS), grand-parental (GP) or full avuncular (FA) will be identical – another common <a href="vignette_main/_book/key-points.html#sec:lowAR">cause for non-assignment</a></p>
+<p>For each pair, the likelihoods to be half-siblings (HS), grand-parental (GP) or full avuncular (FA) will be identical – another common <a href="vignette_main/book/key-points.html#sec:lowAR">cause for non-assignment</a></p>
 <p>Note again that values &gt;0 in the output denote different kinds of <code>NA</code>, and are listed in the help file. For the ‘PO’ column, ‘777’ denotes ‘impossible’: the individuals in the first column already have a mother assigned in the pedigree that is conditioned upon, this parent is not temporarily dropped to do the calculations (<code>dropPar = 'none'</code>), and an individual can only have one mother. (the pair were also born in the same year and can therefore not be parent and offspring, but this information is not used: <code>AgeDif=NA</code>.)</p>
 </div>
 <div id="likelihood-ratios-2" class="section level3">

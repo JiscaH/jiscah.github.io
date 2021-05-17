@@ -1,6 +1,6 @@
 {
     "dialog-state": {
-        "query": "Huisman",
+        "query": "_book",
         "path": "",
         "regex": false,
         "caseSensitive": false,
@@ -9,7 +9,7 @@
             "*.Rmd"
         ],
         "excludeFilePatterns": [],
-        "resultsCount": 10,
+        "resultsCount": 9,
         "errorCount": 0,
         "replaceErrors": "",
         "projectRelative": true
