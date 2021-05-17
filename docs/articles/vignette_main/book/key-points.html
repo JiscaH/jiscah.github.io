@@ -292,7 +292,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
-<li><a href="./articles/vignette_age/book/index.html">Ageprior Vignette</a></li>
+<li><a href="./../../vignette_age/book/index.html">Ageprior Vignette</a></li>
 <li><a href="./../../index.html">Other Manuals</a></li>
 
 </ul>
@@ -461,7 +461,7 @@ Figure 2.3: Runtimes are shorter with lower genotyping error rates and more SNPs
 </div>
 <div id="sec:BY-AP" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Birth years &amp; Ageprior</h2>
-<p><em>For details, including worked examples, mathematical framework, and full range of options, please see the</em> <a href="./articles/vignette_age/book/index.html">age vignette</a>.</p>
+<p><em>For details, including worked examples, mathematical framework, and full range of options, please see the</em> <a href="./../../vignette_age/book/index.html">age vignette</a>.</p>
 <p>Providing individual birth years will typically greatly improve the completeness and speed of pedigree reconstruction. Age data is used to subset the potential relationships between each pair, and is required to orientate parent–offspring pairs the right way around. Birth year information is not strictly required for every individual: parent-parent-offspring trios can be assigned even in absence of any age data, as long as the sex of either parent is known.</p>
 <p>‘Birth year’ should be interpreted loosely, as the time unit (week/month/year/decade/…) of birth/hatching/germination/… .</p>
 <p>For individuals (or ‘mystery samples’) with unknown birth years, the probability that they were born in year <span class="math inline">\(y\)</span> can be estimated using <code>CalcBYprobs()</code>. This relies on the (estimated) birth years of their parents and offspring, and the age distribution of parent-offspring pairs as specified in the <code>age prior</code>.</p>
@@ -473,7 +473,7 @@ Figure 2.3: Runtimes are shorter with lower genotyping error rates and more SNPs
 </blockquote>
 <p>The value may vary from <span class="math inline">\(0\)</span> (impossible), to <span class="math inline">\(1\)</span> (just as likely), and typically not far beyond <span class="math inline">\(10\)</span> (10x as likely). This quantification allows age differences to be used jointly with genetic information, which is mostly done in a conservative fashion (except when <code>UseAge='extra'</code>): only when the focal relationship is the most likely both when considering only genetic data, and when considering genetic + age data, is the assignment made. ‘Most likely’ applies to <em>from the set of possible relationships</em>, i.e. those with an age prior value <span class="math inline">\(&gt;0\)</span>.</p>
 <p>For example, in datasets with only one or two ageclasses, it is worth contemplating whether or not avuncular relationships should be considered as alternatives to siblings. The behaviour can be changed by explicitly declaring generations as <code>Discrete</code> (avuncular cannot have age difference of 0), and/or by setting <code>MaxAgeParent</code>.</p>
-<p>You can find extensive details about the ageprior <a href="vignette-age.html">in this separate vignette</a>, including worked examples, mathematical framework, and full range of options.</p>
+<p>You can find extensive details about the ageprior <a href="./../../vignette_age/book/index.html">in this separate vignette</a>, including worked examples, mathematical framework, and full range of options.</p>
 </div>
 <div id="implementation" class="section level3" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> Implementation</h3>
@@ -623,7 +623,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["_main.pdf"],
 "toc": {
 "collapse": "subsection"
 },

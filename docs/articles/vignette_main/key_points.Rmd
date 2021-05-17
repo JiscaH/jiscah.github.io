@@ -113,7 +113,7 @@ Function `SnpStats()` can estimate the genotyping error rate per SNP, conditiona
 
 
 ## Birth years \& Ageprior {#sec:BY-AP}
-*For details, including worked examples, mathematical framework, and full range of options, please see the*  [age vignette](./articles/vignette_age/book/index.html).
+*For details, including worked examples, mathematical framework, and full range of options, please see the*  [age vignette](./../../vignette_age/book/index.html).
 
 Providing individual birth years will typically greatly improve the completeness and speed of pedigree reconstruction. Age data is used to subset the potential relationships between each pair, and is required to orientate parent--offspring pairs the right way around. Birth year information is not strictly required for every individual: parent-parent-offspring trios can be assigned even in absence of any age data, as long as the sex of either parent is known.
 
@@ -132,7 +132,7 @@ The value may vary from $0$ (impossible), to $1$ (just as likely), and typically
 
 For example, in datasets with only one or two ageclasses, it is worth contemplating whether or not avuncular relationships should be considered as alternatives to siblings. The behaviour can be changed by explicitly declaring generations as `Discrete` (avuncular cannot have age difference of 0), and/or by setting `MaxAgeParent`. 
 
-You can find extensive details about the ageprior [in this separate vignette](vignette-age.html), including worked examples, mathematical framework, and full range of options.
+You can find extensive details about the ageprior [in this separate vignette](./../../vignette_age/book/index.html), including worked examples, mathematical framework, and full range of options.
 
 
 ### Implementation

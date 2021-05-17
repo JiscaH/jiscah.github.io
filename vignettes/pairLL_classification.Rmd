@@ -29,7 +29,7 @@ options(scipen = 7)
 
 
 ## Introduction
-Pedigree reconstruction with `sequoia()` sometimes suffers from high rates of non-assignment of true relatives (false negatives). This is often because it cannot tell whether a pair are maternal or paternal relatives, or it cannot tell what type of second degree relatives they are. More information on this can be found [here in the user guide](vignette_main/book/key-points.html#sec:lowAR)). 
+Pedigree reconstruction with `sequoia()` sometimes suffers from high rates of non-assignment of true relatives (false negatives). This is often because it cannot tell whether a pair are maternal or paternal relatives, or it cannot tell what type of second degree relatives they are. More information on this can be found [here in the user guide](./vignette_main/book/key-points.html#sec:lowAR)). 
 
 A fairly common situation is to have full sibling (FS), half sibling (HS), or unrelated (U) as the only three plausible relationships among the genotyped individuals, e.g. when nestlings are sampled but their parents are not. Typically none of the half sibling pairs will be assigned by `sequoia()`, as it cannot tell whether they are maternal or paternal half-siblings. When generations overlap, the possibility that they are full avuncular or grandparental also remains open genetically, even if this is biologically highly unlikely for clutch mates (for most species).
 
@@ -47,7 +47,7 @@ Comparisons between pairs should be done with caution: If pair A + B has a highe
 
 
 ### Applicable to other relationships
-Here the example of full siblings, half siblings and unrelated is used, but one could also have a situation where parent and full avuncular are the alternatives, or any other combination. Just keep in mind that all 3rd degree relationships are piled together under the 'HA' category, and that when `Complx='full'` all kinds of [double relationships](vignette_main/book/key-points.html#sec:WeirdRels) are considered too. 
+Here the example of full siblings, half siblings and unrelated is used, but one could also have a situation where parent and full avuncular are the alternatives, or any other combination. Just keep in mind that all 3rd degree relationships are piled together under the 'HA' category, and that when `Complx='full'` all kinds of [double relationships](./vignette_main/book/key-points.html#sec:WeirdRels) are considered too. 
 
 
 
@@ -391,7 +391,7 @@ somePairs.LL <- CalcPairLL(somePairs, Geno.2001,
 somePairs.LL
 ```
 
-For each pair, the likelihoods to be half-siblings (HS), grand-parental (GP) or full avuncular (FA) will be identical -- another common [cause for non-assignment](vignette_main/book/key-points.html#sec:lowAR)
+For each pair, the likelihoods to be half-siblings (HS), grand-parental (GP) or full avuncular (FA) will be identical -- another common [cause for non-assignment](./vignette_main/book/key-points.html#sec:lowAR)
 
 Note again that values >0 in the output denote different kinds of `NA`, and are listed in the help file. For the 'PO' column, '777' denotes 'impossible': the individuals in the first column already have a mother assigned in the pedigree that is conditioned upon, this parent is not temporarily dropped to do the calculations (`dropPar = 'none'`), and an individual can only have one mother. (the pair were also born in the same year and can therefore not be parent and offspring, but this information is not used: `AgeDif=NA`.)
 

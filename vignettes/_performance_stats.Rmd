@@ -253,7 +253,7 @@ At first glance, the average across iterations seems to suggest that version 2.3
 For the 'FS' pedigree, the assignment rate was noticeably higher in the oldest version, but so was the error rate. The difference is largely due to considering 'full cousin' (3rd degree relatives) as a relationship alternative. See also [pairwise likelihoods](./pairLL_classification.html) on how to recover some of these non-assigned pairs.
 
 
-The variation between replicates is partly due to variation in which parents are simulated as genotyped: if several parents in a complicated pedigree loop are all non-genotyped, assignment errors are more likely than when in these  more complicated regions of the pedigree a high proportion of parents are genotyped. See [main vignette](vignette_main/book/key-points.html#sec:GenoErrors) for more information on the difference in assignment rate between genotyped-genotyped versus genotyped-dummy and dummy-dummy pairs. 
+The variation between replicates is partly due to variation in which parents are simulated as genotyped: if several parents in a complicated pedigree loop are all non-genotyped, assignment errors are more likely than when in these  more complicated regions of the pedigree a high proportion of parents are genotyped. See [main vignette](./vignette_main/book/key-points.html#sec:GenoErrors) for more information on the difference in assignment rate between genotyped-genotyped versus genotyped-dummy and dummy-dummy pairs. 
 
 
  -------------------

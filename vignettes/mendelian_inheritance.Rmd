@@ -313,7 +313,7 @@ Ped.true.OH <- CalcOHLLR(Pedigree = Ped_griffin,
 SummarySeq(Ped.true.OH, Panels="OH")
 ```
 
-The reason some parents remained unassigned was not because they did not pass this filtering step, but because of the subsequent likelihood calculations. Probably the likelihood to be parent and offspring is very similar to the likelihood to be full siblings, and thus no assignment was made. These likelihoods can be calculated and retrieved with function `CalcPairLL()`. For further details, see [here in the vignette](vignette_main/book/key-points.html#sec:lowAR) and [more info on pairwise likelihoods](PairwiseLL.html). 
+The reason some parents remained unassigned was not because they did not pass this filtering step, but because of the subsequent likelihood calculations. Probably the likelihood to be parent and offspring is very similar to the likelihood to be full siblings, and thus no assignment was made. These likelihoods can be calculated and retrieved with function `CalcPairLL()`. For further details, see [here in the vignette](vignette_main/book/key-points.html#sec:lowAR) and [more info on pairwise likelihoods](./pairLL_classification.html). 
 
 
 ### Notes

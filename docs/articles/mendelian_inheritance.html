@@ -386,9 +386,9 @@
 <pre><code>##           parent
 ## class      dam sire
 ##   Total    167  163
-##   Match    162  158
+##   Match    167  162
 ##   Mismatch   0    0
-##   P1only     5    5
+##   P1only     0    1
 ##   P2only     0    0</code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># P1only: false negative (assignment in pedigree 1 (= original) only)</span>
@@ -407,7 +407,7 @@
 <code class="sourceCode R"><span class="co"># distribution of OH &amp; trio Mendelian errors:</span>
 <span class="fu"><a href="../reference/SummarySeq.html">SummarySeq</a></span><span class="op">(</span><span class="va">Ped.true.OH</span>, Panels<span class="op">=</span><span class="st">"OH"</span><span class="op">)</span></code></pre></div>
 <p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-13-1.png" width="576"></p>
-<p>The reason some parents remained unassigned was not because they did not pass this filtering step, but because of the subsequent likelihood calculations. Probably the likelihood to be parent and offspring is very similar to the likelihood to be full siblings, and thus no assignment was made. These likelihoods can be calculated and retrieved with function <code><a href="../reference/CalcPairLL.html">CalcPairLL()</a></code>. For further details, see <a href="vignette_main/book/key-points.html#sec:lowAR">here in the vignette</a> and <a href="PairwiseLL.html">more info on pairwise likelihoods</a>.</p>
+<p>The reason some parents remained unassigned was not because they did not pass this filtering step, but because of the subsequent likelihood calculations. Probably the likelihood to be parent and offspring is very similar to the likelihood to be full siblings, and thus no assignment was made. These likelihoods can be calculated and retrieved with function <code><a href="../reference/CalcPairLL.html">CalcPairLL()</a></code>. For further details, see <a href="vignette_main/book/key-points.html#sec:lowAR">here in the vignette</a> and <a href="./pairLL_classification.html">more info on pairwise likelihoods</a>.</p>
 </div>
 <div id="notes" class="section level3">
 <h3 class="hasAnchor">

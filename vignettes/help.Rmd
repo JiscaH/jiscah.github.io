@@ -3,7 +3,7 @@
 
 ### Questions
 
-If after repeated tries, checking the [help files](../reference/index.html), the [examples](../articles/Get_started.html) and [vignettes](../articles/vignettes_blogdown/quick-start-examples.html), you can't figure out why sequoia isn't working the way you think it should be working: please do feel free to email me at <jisca.huisman at gmail.com>. Usually I'll get back to you within 1--2 days (during European daytime). 
+If after repeated tries, checking the [help files](../reference/index.html), the [examples](../articles/Get_started.html) and [vignettes](../articles/vignette_main/book/index.html), you can't figure out why sequoia isn't working the way you think it should be working: please do feel free to email me at <jisca.huisman at gmail.com>. Usually I'll get back to you within 1--2 days (during European daytime). 
 
 For example:
 
@@ -11,10 +11,10 @@ For example:
     - Are you really sure there aren't any weird symbols in the datafile?
 - Assignment rate is (close to) zero, while you are sure there are relatives in the dataset
     - Are you really sure the genotyping error rate is as low as you claim it to be?
-    - Are you really sure `sequoia()` is able to distinguish between different kind of relatives in your dataset? Please see [here](../articles/vignettes_blogdown/faq.html) in the main vignette
+    - Are you really sure `sequoia()` is able to distinguish between different kind of relatives in your dataset? Please see [here](../articles/vignette_main/book/faq.html) in the main vignette
     - Are you really sure those genotypes belong to relatives? Did you try `CalcPairLL()` ?
 - You are getting an error or warning message you can't make sense of, or which stats "Please report bug"
-    - Please do email me; something may have slipped through the input check. You can check the [changelog](././news) for bugs that have been patched in the development version
+    - Please do email me; something may have slipped through the input check. You can check the [changelog](./../news/index.html) for bugs that have been patched in the development version
     
 
 
