@@ -23,7 +23,7 @@ navbar:
   title: "sequoia"
   left:
     - icon: fas fa-home
-      href: index.html
+      href: ./index.html
     - text: "Get started"
       href: articles/Get_started.html
     - text: "Functions"
@@ -31,9 +31,9 @@ navbar:
     - text: "Manuals"
       menu:
         - text: "Main vignette: User guide"
-          href: articles/vignette_main/_book/sec-Background.html
+          href: articles/vignette_main/book/sec-Background.html
         - text: "Age prior vignette"
-          href: articles/vignette_age/_book/index.html
+          href: articles/vignette_age/book/index.html
         - text: "Examples"
           href: articles/index.html
         - text: "More info on ..."
@@ -43,7 +43,7 @@ navbar:
     - text: "Help"
       href: articles/help.html
     - text: "Stats"
-      href: articles/_performance_stats.html
+      href: articles/performance_stats.html
   right:
     - icon: fab fa-twitter
       href: https://twitter.com/HuismanJisca
