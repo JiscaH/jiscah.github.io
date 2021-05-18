@@ -86,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sequoia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.5</span>
       </span>
     </div>
 
@@ -339,27 +339,27 @@ one was assigned based on the simulated data (P2only)</p></li>
 <span class='va'>conf.A</span> <span class='op'>&lt;-</span> <span class='fu'>EstConf</span><span class='op'>(</span>Pedigree <span class='op'>=</span> <span class='va'>Ped_HSg5</span>, LifeHistData <span class='op'>=</span> <span class='va'>LH_HSg5</span>,
    args.sim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>nSnp <span class='op'>=</span> <span class='fl'>100</span>, SnpError <span class='op'>=</span> <span class='fl'>5e-3</span>, ParMis<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.2</span>, <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>,
    args.seq <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>Module<span class='op'>=</span><span class='st'>"par"</span>, Err<span class='op'>=</span><span class='fl'>1e-3</span>, Tassign<span class='op'>=</span><span class='fl'>0.5</span><span class='op'>)</span>, nSim <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Simulating parentage assignment only ...</span></div><div class='output co'>#&gt; i= 1 	 19:19:06 
-#&gt; i= 2 	 19:19:11 
-#&gt; i= 3 	 19:19:17 </div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>Simulating parentage assignment only ...</span></div><div class='output co'>#&gt; i= 1 	 09:00:18 
+#&gt; i= 2 	 09:00:23 
+#&gt; i= 3 	 09:00:27 </div><div class='input'>
 <span class='co'># parent-pair confidence, per category:</span>
 <span class='va'>conf.A</span><span class='op'>$</span><span class='va'>ConfProb</span>
 </div><div class='output co'>#&gt;   id.cat dam.cat sire.cat dam.conf sire.conf pair.conf    N
-#&gt; 1      G       G        G        1    0.9991    0.9991 1074
-#&gt; 2      G       G        X        0        NA        NA  981
-#&gt; 3      G       X        G       NA    0.0000        NA  291
-#&gt; 4      G       X        X       NA        NA        NA  462</div><div class='input'>
+#&gt; 1      G       G        G        1    0.9991    0.9991 1076
+#&gt; 2      G       G        X        0        NA        NA  989
+#&gt; 3      G       X        G       NA    0.0000        NA  280
+#&gt; 4      G       X        X       NA        NA        NA  463</div><div class='input'>
 <span class='co'># calculate (correct) assignment rates (ignores co-parent)</span>
 <span class='fl'>1</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>conf.A</span><span class='op'>$</span><span class='va'>PedErrors</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>3</span><span class='op'>)</span>, <span class='va'>sum</span>, na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     parent
 #&gt; cat        dam      sire
-#&gt;   GG 0.9372347 0.9787446
+#&gt;   GG 0.9404826 0.9678134
 #&gt;   GD 0.0000000 0.0000000
-#&gt;   GT 0.7506371 0.4899128
+#&gt;   GT 0.7532085 0.4844195
 #&gt;   DG 0.0000000 0.0000000
 #&gt;   DD 0.0000000 0.0000000
 #&gt;   DT 0.0000000 0.0000000
-#&gt;   TT 0.7107639 0.4638889</div><div class='input'>
+#&gt;   TT 0.7131944 0.4586806</div><div class='input'>
 <span class='co'>## Example B: with sibship clustering, based on sequoia inferred pedigree</span>
 <span class='va'>RealGenotypes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='SimGeno.html'>SimGeno</a></span><span class='op'>(</span>Ped <span class='op'>=</span> <span class='va'>Ped_HSg5</span>, nSnp <span class='op'>=</span> <span class='fl'>100</span>,
                          ParMis<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.19</span>,<span class='fl'>0.53</span><span class='op'>)</span>, SnpError <span class='op'>=</span> <span class='fl'>6e-3</span><span class='op'>)</span>
@@ -376,24 +376,24 @@ one was assigned based on the simulated data (P2only)</p></li>
               nSim <span class='op'>=</span> <span class='fl'>2</span>, nCores<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Simulating full pedigree reconstruction ...</span></div><div class='output co'>#&gt; <span class='message'>Using 2 out of 6 cores</span></div><div class='input'><span class='va'>conf.B</span><span class='op'>$</span><span class='va'>ConfProb</span>
 </div><div class='output co'>#&gt;    id.cat dam.cat sire.cat dam.conf sire.conf pair.conf   N
-#&gt; 1       G       G        G    0.989     0.980     0.979 663
-#&gt; 2       G       G        D    1.000     0.914     0.914 748
-#&gt; 3       G       G        X    1.000        NA        NA  12
-#&gt; 4       G       D        G    0.878     0.928     0.878 180
-#&gt; 5       G       D        D    0.934     0.890     0.835 182
-#&gt; 6       G       D        X    0.750        NA        NA   4
-#&gt; 7       G       X        G       NA     1.000        NA   7
-#&gt; 8       G       X        D       NA     1.000        NA   6
-#&gt; 9       G       X        X       NA        NA        NA  72
-#&gt; 10      D       G        G    1.000     1.000     1.000  34
-#&gt; 11      D       G        D    1.000     0.951     0.951  48
-#&gt; 12      D       G        X    0.000        NA        NA   7
-#&gt; 13      D       D        G    0.778     0.852     0.778  15
-#&gt; 14      D       D        D    0.754     0.877     0.754  13
+#&gt; 1       G       G        G    0.978     0.979     0.976 712
+#&gt; 2       G       G        D    0.990     0.916     0.912 678
+#&gt; 3       G       G        X    1.000        NA        NA  17
+#&gt; 4       G       D        G    0.831     0.938     0.831 177
+#&gt; 5       G       D        D    0.864     0.910     0.804 199
+#&gt; 6       G       D        X    0.000        NA        NA   4
+#&gt; 7       G       X        G       NA     0.778        NA   9
+#&gt; 8       G       X        D       NA     0.429        NA   7
+#&gt; 9       G       X        X       NA        NA        NA  75
+#&gt; 10      D       G        G    1.000     0.972     0.972  40
+#&gt; 11      D       G        D    0.971     0.912     0.912  43
+#&gt; 12      D       G        X    0.000        NA        NA   1
+#&gt; 13      D       D        G    0.833     1.000     0.833   8
+#&gt; 14      D       D        D    0.917     1.000     0.917  16
 #&gt; 15      D       D        X      NaN        NA        NA   0
-#&gt; 16      D       X        G       NA     0.000        NA   1
+#&gt; 16      D       X        G       NA       NaN        NA   0
 #&gt; 17      D       X        D       NA     0.000        NA   1
-#&gt; 18      D       X        X       NA        NA        NA  30</div><div class='input'>
+#&gt; 18      D       X        X       NA        NA        NA  39</div><div class='input'>
 <span class='va'>Ped.withConf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='getAssignCat.html'>getAssignCat</a></span><span class='op'>(</span>Pedigree <span class='op'>=</span> <span class='va'>SeqOUT</span><span class='op'>$</span><span class='va'>Pedigree</span>,
                              SNPd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>RealGenotypes</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>Ped.withConf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>Ped.withConf</span>, <span class='va'>conf.B</span><span class='op'>$</span><span class='va'>ConfProb</span>, all.x<span class='op'>=</span><span class='cn'>TRUE</span>, sort<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
@@ -401,19 +401,19 @@ one was assigned based on the simulated data (P2only)</p></li>
                                  <span class='st'>"id.cat"</span>, <span class='st'>"dam.cat"</span>, <span class='st'>"sire.cat"</span><span class='op'>)</span><span class='op'>]</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Ped.withConf</span><span class='op'>[</span><span class='va'>Ped.withConf</span><span class='op'>$</span><span class='va'>dam.cat</span><span class='op'>==</span><span class='st'>"G"</span>, <span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;        id    dam  sire dam.conf sire.conf id.cat dam.cat sire.cat
-#&gt; 33 a01002 a00014 M0019        1     0.914      G       G        D
-#&gt; 34 a01001 a00014 M0019        1     0.914      G       G        D
-#&gt; 35 b01006 a00013 M0034        1     0.914      G       G        D
-#&gt; 36 b01007 a00013 M0034        1     0.914      G       G        D
-#&gt; 37 a01008 a00013 M0034        1     0.914      G       G        D
-#&gt; 38 b01009 a00008 M0015        1     0.914      G       G        D</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Ped.withConf</span><span class='op'>[</span><span class='va'>Ped.withConf</span><span class='op'>$</span><span class='va'>dam.cat</span><span class='op'>==</span><span class='st'>"D"</span>, <span class='op'>]</span><span class='op'>)</span>
+#&gt; 32 a01002 a00014 M0016     0.99     0.916      G       G        D
+#&gt; 33 b01004 a00014 M0016     0.99     0.916      G       G        D
+#&gt; 34 a01001 a00014 M0016     0.99     0.916      G       G        D
+#&gt; 35 b01006 a00013 M0006     0.99     0.916      G       G        D
+#&gt; 36 b01007 a00013 M0006     0.99     0.916      G       G        D
+#&gt; 37 a01008 a00013 M0006     0.99     0.916      G       G        D</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Ped.withConf</span><span class='op'>[</span><span class='va'>Ped.withConf</span><span class='op'>$</span><span class='va'>dam.cat</span><span class='op'>==</span><span class='st'>"D"</span>, <span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;         id   dam  sire dam.conf sire.conf id.cat dam.cat sire.cat
-#&gt; 406 b02186 F0016 M0035    0.934      0.89      G       D        D
-#&gt; 407 b03020 F0013 M0024    0.934      0.89      G       D        D
-#&gt; 408 b02092 F0003 M0009    0.934      0.89      G       D        D
-#&gt; 409 a05058 F0023 M0011    0.934      0.89      G       D        D
-#&gt; 410 b02128 F0017 M0036    0.934      0.89      G       D        D
-#&gt; 411 b04097 F0024 M0016    0.934      0.89      G       D        D</div><div class='input'>
+#&gt; 403 b02130 F0012 M0035    0.864      0.91      G       D        D
+#&gt; 404 b02092 F0006 M0035    0.864      0.91      G       D        D
+#&gt; 405 a05058 F0018 M0045    0.864      0.91      G       D        D
+#&gt; 406 b02129 F0012 M0035    0.864      0.91      G       D        D
+#&gt; 407 b02186 F0014 M0025    0.864      0.91      G       D        D
+#&gt; 408 a04126 F0007 M0002    0.864      0.91      G       D        D</div><div class='input'>
 
 <span class='co'>## P(actual FS | inferred as FS) etc.</span>
 <span class='va'>PairL</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
@@ -429,14 +429,14 @@ one was assigned based on the simulated data (P2only)</p></li>
 <span class='va'>PairRel.prop</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>PairA</span>, <span class='fl'>2</span><span class='op'>:</span><span class='fl'>3</span>, <span class='va'>mean</span>, na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>  <span class='co'># mean across simulations</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>PairRel.prop</span>, <span class='fl'>2</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;      Ped2
-#&gt; Ped1  M    P O FS  MHS  PHS    U    X
-#&gt;   M   1 0.00 0  0 0.00 0.00 0.00 0.00
-#&gt;   P   0 0.98 0  0 0.00 0.00 0.00 0.01
-#&gt;   FS  0 0.00 0  1 0.30 0.08 0.00 0.00
-#&gt;   MHS 0 0.00 0  0 0.69 0.00 0.00 0.00
-#&gt;   PHS 0 0.00 0  0 0.00 0.91 0.00 0.01
-#&gt;   U   0 0.02 1  0 0.01 0.01 0.99 0.98
-#&gt;   X   0 0.00 0  0 0.00 0.00 0.00 0.00</div><div class='input'><span class='co'>#' # or: P(inferred relationship | actual relationship)</span>
+#&gt; Ped1     M    P O FS  MHS  PHS    U    X
+#&gt;   M   0.99 0.00 0  0 0.00 0.00 0.00 0.00
+#&gt;   P   0.00 0.97 0  0 0.00 0.00 0.00 0.01
+#&gt;   FS  0.00 0.00 0  1 0.30 0.08 0.00 0.00
+#&gt;   MHS 0.00 0.00 0  0 0.69 0.00 0.00 0.00
+#&gt;   PHS 0.00 0.00 0  0 0.00 0.91 0.00 0.01
+#&gt;   U   0.01 0.03 1  0 0.01 0.01 0.99 0.98
+#&gt;   X   0.00 0.00 0  0 0.00 0.00 0.00 0.00</div><div class='input'><span class='co'>#' # or: P(inferred relationship | actual relationship)</span>
 <span class='va'>PairA2</span> <span class='op'>&lt;-</span> <span class='fu'>plyr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/plyr/man/laply.html'>laply</a></span><span class='op'>(</span><span class='va'>PairL</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>M</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/sweep.html'>sweep</a></span><span class='op'>(</span><span class='va'>M</span>, <span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>M</span><span class='op'>)</span>, <span class='st'>"/"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># }</span>
 

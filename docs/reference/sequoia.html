@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sequoia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.5</span>
       </span>
     </div>
 
@@ -536,11 +536,11 @@ correct. Use of sequoia is entirely at your own risk.</p>
 #&gt; 34 a01002   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA
 #&gt; 35 b01003   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA
 #&gt; 36 b01004   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA
-#&gt; 37 a01005 a00013 b00001   2.72    3.92    6.31     0      0      1
-#&gt; 38 b01006 a00013 b00001   2.65    3.11    5.79     0      0      1
-#&gt; 39 b01007 a00013 b00001   2.27    3.75    4.53     0      0      2
-#&gt; 40 a01008 a00013 b00001  -0.24    3.93    5.59     0      0      2
-#&gt; 41 b01009 a00008 b00016   0.13    4.10    6.54     0      0      2
+#&gt; 37 a01005 a00013 b00001   2.72    3.92    6.31     1      0      1
+#&gt; 38 b01006 a00013 b00001   2.65    3.11    5.79     1      0      1
+#&gt; 39 b01007 a00013 b00001   2.27    3.75    4.53     1      0      2
+#&gt; 40 a01008 a00013 b00001  -0.24    3.93    5.59     2      0      2
+#&gt; 41 b01009 a00008 b00016   0.13    4.10    6.54     1      0      2
 #&gt; 42 a01010 a00008 b00016   3.44    4.44    7.46     0      0      1</div><div class='input'>
 <span class='co'># compare to true (or old) pedigree:</span>
 <span class='va'>PC</span> <span class='op'>&lt;-</span> <span class='fu'><a href='PedCompare.html'>PedCompare</a></span><span class='op'>(</span><span class='va'>Ped_HSg5</span>, <span class='va'>SeqOUT</span><span class='op'>$</span><span class='va'>PedigreePar</span><span class='op'>)</span>
@@ -583,7 +583,7 @@ correct. Use of sequoia is entirely at your own risk.</p>
 #&gt; [1] 151
 #&gt; Clustering ...
 #&gt; Total LL, time:
-#&gt; [1] -1.23158e+04  2.34375e-01
+#&gt; [1] -12315.79551      0.21875
 #&gt; Merge clusters ...
 #&gt; Total LL, time:
 #&gt; [1] -12315.79551      0.03125
@@ -616,10 +616,10 @@ correct. Use of sequoia is entirely at your own risk.</p>
 #&gt; [1] -1.23158e+04  1.56250e-02
 #&gt; Sibship grandparents ...
 #&gt; Total LL, time:
-#&gt; [1] -1.23158e+04  1.56250e-02
+#&gt; [1] -12315.79551      0.03125
 #&gt; Parents &amp; grow clusters...
 #&gt; Total LL, time:
-#&gt; [1] -12315.79551      0.03125
+#&gt; [1] -1.23158e+04  1.56250e-02
 #&gt; Round 02 end, Total LogLik; time (sec):
 #&gt; [1] -12315.79551      0.15625
 #&gt; No. dams, sires for real indiv.:
@@ -634,19 +634,19 @@ correct. Use of sequoia is entirely at your own risk.</p>
 #&gt; [1] 0
 #&gt; Clustering ...
 #&gt; Total LL, time:
-#&gt; [1] -1.23158e+04  1.56250e-02
+#&gt; [1] -12315.79551      0.03125
 #&gt; Grandparent - grandoffspring pairs ...
 #&gt; Total LL, time:
-#&gt; [1] -12315.79551      0.03125
+#&gt; [1] -1.23158e+04  1.56250e-02
 #&gt; Merge clusters ...
 #&gt; Total LL, time:
-#&gt; [1] -1.23158e+04  1.56250e-02
+#&gt; [1] -12315.79551      0.03125
 #&gt; Sibship parent replacement...
 #&gt; Total LL, time:
 #&gt; [1] -1.23158e+04  1.56250e-02
 #&gt; Sibship grandparents ...
 #&gt; Total LL, time:
-#&gt; [1] -12315.79551      0.03125
+#&gt; [1] -1.23158e+04  1.56250e-02
 #&gt; Parents &amp; grow clusters...
 #&gt; Total LL, time:
 #&gt; [1] -1.23158e+04  1.56250e-02
@@ -663,11 +663,11 @@ correct. Use of sequoia is entirely at your own risk.</p>
 #&gt; 34 a01002  F0002  M0001   4.11    3.34    7.74    NA     NA     NA
 #&gt; 35 b01003  F0002  M0001   5.28    1.96    5.26    NA     NA     NA
 #&gt; 36 b01004  F0002  M0001   4.25    3.29    5.82    NA     NA     NA
-#&gt; 37 a01005 a00013 b00001   5.78    7.83   11.00     0      0      1
-#&gt; 38 b01006 a00013 b00001   4.97    8.10   10.16     0      0      1
-#&gt; 39 b01007 a00013 b00001   4.75    6.53    8.73     0      0      2
-#&gt; 40 a01008 a00013 b00001   5.01    6.41   10.56     0      0      2
-#&gt; 41 b01009 a00008 b00016   5.94    5.18    8.36     0      0      2
+#&gt; 37 a01005 a00013 b00001   5.78    7.83   11.00     1      0      1
+#&gt; 38 b01006 a00013 b00001   4.97    8.10   10.16     1      0      1
+#&gt; 39 b01007 a00013 b00001   4.75    6.53    8.73     1      0      2
+#&gt; 40 a01008 a00013 b00001   5.01    6.41   10.56     2      0      2
+#&gt; 41 b01009 a00008 b00016   5.94    5.18    8.36     1      0      2
 #&gt; 42 a01010 a00008 b00016   7.22    6.21    9.65     0      0      1</div><div class='input'>
 <span class='va'>PC2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='PedCompare.html'>PedCompare</a></span><span class='op'>(</span><span class='va'>Ped_HSg5</span>, <span class='va'>SeqOUT2</span><span class='op'>$</span><span class='va'>Pedigree</span><span class='op'>)</span>
 </div><div class='img'><img src='sequoia-11.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>PC2</span><span class='op'>$</span><span class='va'>Counts</span><span class='op'>[</span><span class='st'>"GT"</span>,,<span class='op'>]</span>
@@ -710,32 +710,32 @@ correct. Use of sequoia is entirely at your own risk.</p>
 #&gt; Initial total LL :
 #&gt; [1] -18301.9
 #&gt; Post-parentage total LL :
-#&gt; [1] -13795.2
+#&gt; [1] -13816.08
 #&gt; Estimating birth years ...
-#&gt; Calculating parental LLR ...</div><div class='output co'>#&gt; <span class='message'>assigned 123 dams and 159 sires to 214 individuals</span></div><div class='output co'>#&gt; <span class='message'>Ageprior: Flat 0/1, discrete generations, MaxAgeParent = 1,1</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; Calculating parental LLR ...</div><div class='output co'>#&gt; <span class='message'>assigned 122 dams and 159 sires to 214 individuals</span></div><div class='output co'>#&gt; <span class='message'>Ageprior: Flat 0/1, discrete generations, MaxAgeParent = 1,1</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>~~~ Full pedigree reconstruction ~~~</span></div><div class='output co'>#&gt; Sibships - Initial Total LL :
-#&gt; [1] -13795.2
+#&gt; [1] -13816.08
 #&gt; Round 01 end, Total LogLik; time (sec):
-#&gt; [1] -1.25634e+04  9.21875e-01
+#&gt; [1] -12605.71      1.25
 #&gt; No. dams, sires for real indiv.:
-#&gt; [1] 178 180
+#&gt; [1] 179 180
 #&gt; Round 02 end, Total LogLik; time (sec):
-#&gt; [1] -12563.4046      0.1875
+#&gt; [1] -12605.7086      0.1875
 #&gt; No. dams, sires for real indiv.:
-#&gt; [1] 178 180
+#&gt; [1] 179 180
 #&gt; Round 03 end, Total LogLik; time (sec):
-#&gt; [1] -1.25634e+04  2.03125e-01
+#&gt; [1] -12605.70858      0.21875
 #&gt; No. dams, sires for real indiv.:
-#&gt; [1] 178 180
+#&gt; [1] 179 180
 #&gt; Estimating birth years ...
-#&gt; Calculating parental LLR ...</div><div class='output co'>#&gt; <span class='message'>assigned 178 dams and 180 sires to 214 + 10 individuals (real + dummy)</span></div><div class='input'><span class='va'>PC2.b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='PedCompare.html'>PedCompare</a></span><span class='op'>(</span><span class='va'>Ped_HSg5</span>, <span class='va'>SeqOUT2.b</span><span class='op'>$</span><span class='va'>Pedigree</span><span class='op'>)</span>
+#&gt; Calculating parental LLR ...</div><div class='output co'>#&gt; <span class='message'>assigned 179 dams and 180 sires to 214 + 12 individuals (real + dummy)</span></div><div class='input'><span class='va'>PC2.b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='PedCompare.html'>PedCompare</a></span><span class='op'>(</span><span class='va'>Ped_HSg5</span>, <span class='va'>SeqOUT2.b</span><span class='op'>$</span><span class='va'>Pedigree</span><span class='op'>)</span>
 </div><div class='img'><img src='sequoia-17.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>PC2.b</span><span class='op'>$</span><span class='va'>Counts</span><span class='op'>[</span><span class='st'>"GT"</span>,,<span class='op'>]</span>
 </div><div class='output co'>#&gt;           parent
 #&gt; class      dam sire
 #&gt;   Total    182  182
-#&gt;   Match    174  180
-#&gt;   Mismatch   4    0
-#&gt;   P1only     4    2
+#&gt;   Match    173  176
+#&gt;   Mismatch   6    4
+#&gt;   P1only     3    2
 #&gt;   P2only     0    0</div><div class='input'><span class='co'># }</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># ===  EXAMPLE 2: real data  ===</span>

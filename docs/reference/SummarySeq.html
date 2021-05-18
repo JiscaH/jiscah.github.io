@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sequoia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.5</span>
       </span>
     </div>
 
@@ -270,25 +270,25 @@ homozygote SNPs).</p></td>
 #&gt; Initial total LL :
 #&gt; [1] -18301.9
 #&gt; Post-parentage total LL :
-#&gt; [1] -13795.2
+#&gt; [1] -13816.08
 #&gt; Estimating birth years ...
-#&gt; Calculating parental LLR ...</div><div class='output co'>#&gt; <span class='message'>assigned 123 dams and 159 sires to 214 individuals</span></div><div class='img'><img src='SummarySeq-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; <span class='message'>Ageprior: Flat 0/1, discrete generations, MaxAgeParent = 1,1</span></div><div class='img'><img src='SummarySeq-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; Calculating parental LLR ...</div><div class='output co'>#&gt; <span class='message'>assigned 122 dams and 159 sires to 214 individuals</span></div><div class='img'><img src='SummarySeq-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; <span class='message'>Ageprior: Flat 0/1, discrete generations, MaxAgeParent = 1,1</span></div><div class='img'><img src='SummarySeq-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>~~~ Full pedigree reconstruction ~~~</span></div><div class='output co'>#&gt; Sibships - Initial Total LL :
-#&gt; [1] -13795.2
+#&gt; [1] -13816.08
 #&gt; Round 01 end, Total LogLik; time (sec):
-#&gt; [1] -1.25634e+04  9.21875e-01
+#&gt; [1] -12605.71      1.25
 #&gt; No. dams, sires for real indiv.:
-#&gt; [1] 178 180
+#&gt; [1] 179 180
 #&gt; Round 02 end, Total LogLik; time (sec):
-#&gt; [1] -1.25634e+04  1.71875e-01
+#&gt; [1] -12605.708581      0.171875
 #&gt; No. dams, sires for real indiv.:
-#&gt; [1] 178 180
+#&gt; [1] 179 180
 #&gt; Round 03 end, Total LogLik; time (sec):
-#&gt; [1] -1.25634e+04  2.03125e-01
+#&gt; [1] -12605.70858      0.21875
 #&gt; No. dams, sires for real indiv.:
-#&gt; [1] 178 180
+#&gt; [1] 179 180
 #&gt; Estimating birth years ...
-#&gt; Calculating parental LLR ...</div><div class='output co'>#&gt; <span class='message'>assigned 178 dams and 180 sires to 214 + 10 individuals (real + dummy)</span></div><div class='img'><img src='SummarySeq-4.png' alt='' width='700' height='433' /></div><div class='img'><img src='SummarySeq-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='SummarySeq-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>Ped_example</span> <span class='op'>&lt;-</span> <span class='va'>SeqOUT</span><span class='op'>[[</span><span class='st'>"Pedigree"</span><span class='op'>]</span><span class='op'>]</span>
+#&gt; Calculating parental LLR ...</div><div class='output co'>#&gt; <span class='message'>assigned 179 dams and 180 sires to 214 + 12 individuals (real + dummy)</span></div><div class='img'><img src='SummarySeq-4.png' alt='' width='700' height='433' /></div><div class='img'><img src='SummarySeq-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='SummarySeq-6.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>Ped_example</span> <span class='op'>&lt;-</span> <span class='va'>SeqOUT</span><span class='op'>[[</span><span class='st'>"Pedigree"</span><span class='op'>]</span><span class='op'>]</span>
 <span class='va'>Ped_example</span><span class='op'>$</span><span class='va'>dam</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"Mum"</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>)</span>  <span class='co'># some fake field mums</span>
 <span class='va'>PedSum1</span> <span class='op'>&lt;-</span> <span class='fu'>SummarySeq</span><span class='op'>(</span><span class='va'>SeqOUT</span>, Pedigree<span class='op'>=</span><span class='va'>Ped_example</span>, Panels<span class='op'>=</span><span class='st'>"G.parents"</span><span class='op'>)</span>
 </div><div class='img'><img src='SummarySeq-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>PedSum1</span><span class='op'>)</span>
@@ -298,18 +298,18 @@ homozygote SNPs).</p></td>
 #&gt; GPCount     48     -none- numeric
 #&gt; SibSize      3     -none- list   </div><div class='input'><span class='va'>PedSum1</span><span class='op'>$</span><span class='va'>PedSummary</span>
 </div><div class='output co'>#&gt;                        All SNPd
-#&gt; records                244  214
-#&gt; maternities            198  122
-#&gt; paternities            180  168
-#&gt; full sibs              263  263
-#&gt; maternal half sib      292  292
-#&gt; paternal half sibs     665  665
-#&gt; maternal grandmothers  122  122
+#&gt; records                246  214
+#&gt; maternities            199  121
+#&gt; paternities            180  164
+#&gt; full sibs              260  260
+#&gt; maternal half sib      290  290
+#&gt; paternal half sibs     644  644
+#&gt; maternal grandmothers  121  121
 #&gt; maternal grandfathers    0    0
 #&gt; paternal grandmothers   36   36
 #&gt; paternal grandfathers    0    0
 #&gt; maximum pedigree depth   2    1
-#&gt; founders                43   37</div><div class='input'><span class='co'># }</span>
+#&gt; founders                45   41</div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>

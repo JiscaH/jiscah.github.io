@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sequoia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.5</span>
       </span>
     </div>
 
@@ -244,8 +244,8 @@ per-SNP error rates. A higher value results in a flatter distribution.</p></td>
 <span class='va'>ErrorCount</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>GenoM</span><span class='op'>)</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>GenoM.actual</span><span class='op'>[</span><span class='va'>i</span>,<span class='op'>]</span> <span class='op'>!=</span> <span class='va'>GenoM</span><span class='op'>[</span><span class='va'>i</span>,<span class='op'>]</span> <span class='op'>&amp;</span> <span class='va'>GenoM</span><span class='op'>[</span><span class='va'>i</span>,<span class='op'>]</span> <span class='op'>!=</span> <span class='op'>-</span><span class='fl'>9</span><span class='op'>)</span> <span class='op'>}</span> <span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>ErrorCount</span><span class='op'>[</span><span class='va'>LowQ</span><span class='op'>]</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 4.47619</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>ErrorCount</span><span class='op'>[</span><span class='op'>-</span><span class='va'>LowQ</span><span class='op'>]</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 0.08823529</div><div class='input'>
+</div><div class='output co'>#&gt; [1] 5.428571</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>ErrorCount</span><span class='op'>[</span><span class='op'>-</span><span class='va'>LowQ</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.1013072</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

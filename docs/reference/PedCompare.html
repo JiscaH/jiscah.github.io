@@ -83,7 +83,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sequoia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.5</span>
       </span>
     </div>
 
@@ -401,19 +401,19 @@ In 'ConsensusPed', the priority used is parent.r (if not "nomatch") &gt;
 </div><div class='output co'>#&gt;           parent
 #&gt; class      dam sire
 #&gt;   Total    960  960
-#&gt;   Match    174  180
-#&gt;   Mismatch   4    0
-#&gt;   P1only   782  780
+#&gt;   Match    173  176
+#&gt;   Mismatch   6    4
+#&gt;   P1only   781  780
 #&gt;   P2only     0    0</div><div class='input'><span class='va'>compare</span><span class='op'>$</span><span class='va'>Counts</span><span class='op'>[</span>,,<span class='st'>"dam"</span><span class='op'>]</span>  <span class='co'># dams only</span>
 </div><div class='output co'>#&gt;     class
 #&gt; cat  Total Match Mismatch P1only P2only
-#&gt;   GG   130   122        4      4      0
+#&gt;   GG   130   121        6      3      0
 #&gt;   GD    52    52        0      0      0
-#&gt;   GT   182   174        4      4      0
+#&gt;   GT   182   173        6      3      0
 #&gt;   DG     0     0        0      0      0
 #&gt;   DD     0     0        0      0      0
 #&gt;   DT     0     0        0      0      0
-#&gt;   TT   960   174        4    782      0</div><div class='input'><span class='co'># 2 mismatch &amp; 3+1 non-assigned, due to simulated genotyping errors</span>
+#&gt;   TT   960   173        6    781      0</div><div class='input'><span class='co'># 2 mismatch &amp; 3+1 non-assigned, due to simulated genotyping errors</span>
 
 <span class='co'># inspect 'assignable but non-assigned in Ped2', id + dam both genotyped:</span>
 <span class='va'>compare</span><span class='op'>$</span><span class='va'>P1only</span><span class='op'>[</span><span class='va'>compare</span><span class='op'>$</span><span class='va'>P1only</span><span class='op'>$</span><span class='va'>id.dam.cat</span><span class='op'>==</span><span class='st'>"GG"</span>, <span class='op'>]</span>
@@ -422,32 +422,30 @@ In 'ConsensusPed', the priority used is parent.r (if not "nomatch") &gt;
 #&gt; 65  a01114 a00010 b00010   &lt;NA&gt;   &lt;NA&gt; a01114  &lt;NA&gt;   &lt;NA&gt;         GG
 #&gt; 104 a01189 a00012 b00007   &lt;NA&gt; b00007 a01189  &lt;NA&gt;   &lt;NA&gt;         GG
 #&gt; 139 b01033 a00006 b00002 a00006   &lt;NA&gt; b01033  &lt;NA&gt;   &lt;NA&gt;         GG
-#&gt; 160 b01075 a00013 b00006   &lt;NA&gt; b00006 b01075  &lt;NA&gt;   &lt;NA&gt;         GG
 #&gt;     id.sire.cat dam.class sire.class
 #&gt; 50           GG    P1only      Match
 #&gt; 65           GG    P1only     P1only
 #&gt; 104          GG    P1only      Match
-#&gt; 139          GG     Match     P1only
-#&gt; 160          GG    P1only      Match</div><div class='input'><span class='co'># further inspection:</span>
+#&gt; 139          GG     Match     P1only</div><div class='input'><span class='co'># further inspection:</span>
 <span class='va'>compare</span><span class='op'>$</span><span class='va'>MergedPed</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>compare</span><span class='op'>$</span><span class='va'>MergedPed</span><span class='op'>$</span><span class='va'>dam.1</span><span class='op'>==</span><span class='st'>"a00013"</span><span class='op'>)</span>, <span class='op'>]</span>
-</div><div class='output co'>#&gt;         id  dam.1 sire.1  dam.2 sire.2   id.r dam.r sire.r id.dam.cat
-#&gt; 20  a01005 a00013 b00001 a00013 b00001 a01005  &lt;NA&gt;   &lt;NA&gt;         GG
-#&gt; 21  a01008 a00013 b00001 a00013 b00001 a01008  &lt;NA&gt;   &lt;NA&gt;         GG
-#&gt; 46  a01073 a00013 b00006 a00013 b00006 a01073  &lt;NA&gt;   &lt;NA&gt;         GG
-#&gt; 47  a01074 a00013 b00006 a00013 b00006 a01074  &lt;NA&gt;   &lt;NA&gt;         GG
-#&gt; 48  a01076 a00013 b00006 a00013 b00006 a01076  &lt;NA&gt;   &lt;NA&gt;         GG
-#&gt; 124 b01006 a00013 b00001 a00013 b00001 b01006  &lt;NA&gt;   &lt;NA&gt;         GG
-#&gt; 125 b01007 a00013 b00001 a00013 b00001 b01007  &lt;NA&gt;   &lt;NA&gt;         GG
-#&gt; 160 b01075 a00013 b00006   &lt;NA&gt; b00006 b01075  &lt;NA&gt;   &lt;NA&gt;         GG
+</div><div class='output co'>#&gt;         id  dam.1 sire.1  dam.2 sire.2   id.r   dam.r sire.r id.dam.cat
+#&gt; 20  a01005 a00013 b00001 a00013 b00001 a01005    &lt;NA&gt;   &lt;NA&gt;         GG
+#&gt; 21  a01008 a00013 b00001  F0007 b00001 a01008 nomatch   &lt;NA&gt;         GG
+#&gt; 46  a01073 a00013 b00006 a00013 b00006 a01073    &lt;NA&gt;   &lt;NA&gt;         GG
+#&gt; 47  a01074 a00013 b00006 a00013 b00006 a01074    &lt;NA&gt;   &lt;NA&gt;         GG
+#&gt; 48  a01076 a00013 b00006 a00013 b00006 a01076    &lt;NA&gt;   &lt;NA&gt;         GG
+#&gt; 124 b01006 a00013 b00001 a00013 b00001 b01006    &lt;NA&gt;   &lt;NA&gt;         GG
+#&gt; 125 b01007 a00013 b00001 a00013 b00001 b01007    &lt;NA&gt;   &lt;NA&gt;         GG
+#&gt; 160 b01075 a00013 b00006  F0007 b00006 b01075 nomatch   &lt;NA&gt;         GG
 #&gt;     id.sire.cat dam.class sire.class
 #&gt; 20           GG     Match      Match
-#&gt; 21           GG     Match      Match
+#&gt; 21           GG  Mismatch      Match
 #&gt; 46           GG     Match      Match
 #&gt; 47           GG     Match      Match
 #&gt; 48           GG     Match      Match
 #&gt; 124          GG     Match      Match
 #&gt; 125          GG     Match      Match
-#&gt; 160          GG    P1only      Match</div><div class='input'>
+#&gt; 160          GG  Mismatch      Match</div><div class='input'>
 <span class='co'># overview of all non-genotyped -- dummy matches</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>compare</span><span class='op'>$</span><span class='va'>DummyMatch</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;    id.2    id.1 Sex dam.class sire.class off.Match off.Mismatch off.P1only
@@ -483,7 +481,7 @@ In 'ConsensusPed', the priority used is parent.r (if not "nomatch") &gt;
 #&gt; </div><div class='input'><span class='va'>compare</span><span class='op'>$</span><span class='va'>Counts.detail</span><span class='op'>[</span><span class='st'>"G"</span>,<span class='st'>"G"</span>,,<span class='st'>"Match"</span>,<span class='op'>]</span>
 </div><div class='output co'>#&gt;         sire.class
 #&gt; sire.cat Match Mismatch P1only P2only   _
-#&gt;        G   113        0      1      0   0
+#&gt;        G   112        0      1      0   0
 #&gt;        D     8        0      0      0   0
 #&gt;        X     0        0      0      0   0</div><div class='input'><span class='co'># }</span>
 </div></pre>

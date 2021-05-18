@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sequoia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.5</span>
       </span>
     </div>
 
@@ -365,14 +365,14 @@ likely relationship category:
                       SeqList <span class='op'>=</span> <span class='va'>SeqOUT</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Searching for non-assigned parent-offspring pairs ... (Module = par)</span></div><div class='output co'>#&gt; <span class='message'>using PedigreePar in SeqList</span></div><div class='output co'>#&gt; <span class='message'>using LifeHist in SeqList</span></div><div class='output co'>#&gt; <span class='message'>using AgePriors in SeqList</span></div><div class='output co'>#&gt; <span class='message'>Genotype matrix looks OK! There are  214  individuals and  200  SNPs.</span></div><div class='output co'>#&gt; <span class='message'>settings in SeqList$Specs will overrule input parameters</span></div><div class='output co'>#&gt; Counting opposing homozygous loci between all individuals ...
 #&gt; Checking for non-assigned Parent-Offspring pairs ...
-#&gt; Checking for Parent-Parent-Offspring trios ...</div><div class='output co'>#&gt; <span class='message'>Found 8 likely parent-offspring pairs, and 0 other non-assigned pairs of possible relatives</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>MaybePO</span><span class='op'>$</span><span class='va'>MaybePar</span><span class='op'>)</span>
+#&gt; Checking for Parent-Parent-Offspring trios ...</div><div class='output co'>#&gt; <span class='message'>Found 6 likely parent-offspring pairs, and 0 other non-assigned pairs of possible relatives</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>MaybePO</span><span class='op'>$</span><span class='va'>MaybePar</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;      ID1    ID2 TopRel  LLR OH BirthYear1 BirthYear2 AgeDif Sex1 Sex2 SNPdBoth
-#&gt; 1 a01063 b00013     PO 3.63  0       2001       2000      1    1    2      199
-#&gt; 2 a01166 b00002     PO 3.17  0       2001       2000      1    1    2      199
-#&gt; 3 a01139 b00009     PO 2.52  0       2001       2000      1    1    2      194
-#&gt; 4 a01167 b00002     PO 2.16  0       2001       2000      1    1    2      199
-#&gt; 5 b01102 b00014     PO 1.75  0       2001       2000      1    2    2      197
-#&gt; 6 a01114 b00010     PO 0.35  0       2001       2000      1    1    2      200</div><div class='input'>
+#&gt; 1 a01063 b00013     PO 3.63  1       2001       2000      1    1    2      199
+#&gt; 2 a01166 b00002     PO 3.17  1       2001       2000      1    1    2      199
+#&gt; 3 a01139 b00009     PO 2.52  1       2001       2000      1    1    2      194
+#&gt; 4 a01167 b00002     PO 2.16  1       2001       2000      1    1    2      199
+#&gt; 5 b01102 b00014     PO 1.75  1       2001       2000      1    2    2      197
+#&gt; 6 a01114 b00010     PO 0.35  2       2001       2000      1    1    2      200</div><div class='input'>
 <span class='co'># instead of providing the entire SeqList, one may</span>
 <span class='co'># specify the relevant elements separately</span>
 <span class='va'>Maybe</span> <span class='op'>&lt;-</span> <span class='fu'>GetMaybeRel</span><span class='op'>(</span>GenoM <span class='op'>=</span> <span class='va'>SimGeno_example</span>,
@@ -382,14 +382,14 @@ likely relationship category:
                      Module <span class='op'>=</span> <span class='st'>"ped"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Searching for non-assigned relative pairs ... (Module = ped)</span></div><div class='output co'>#&gt; <span class='message'>Genotype matrix looks OK! There are  214  individuals and  200  SNPs.</span></div><div class='output co'>#&gt; <span class='message'>Ageprior: Flat 0/1, discrete generations, MaxAgeParent = 1,1</span></div><div class='output co'>#&gt; Counting opposing homozygous loci between all individuals ...
 #&gt; Checking for non-assigned relatives ...
-#&gt; Checking for Parent-Parent-Offspring trios ...</div><div class='output co'>#&gt; <span class='message'>Found 15 likely parent-offspring pairs, and 253 other non-assigned pairs of possible relatives</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Maybe</span><span class='op'>$</span><span class='va'>MaybeRel</span><span class='op'>)</span>
+#&gt; Checking for Parent-Parent-Offspring trios ...</div><div class='output co'>#&gt; <span class='message'>Found 16 likely parent-offspring pairs, and 256 other non-assigned pairs of possible relatives</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Maybe</span><span class='op'>$</span><span class='va'>MaybeRel</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;      ID1    ID2 TopRel  LLR OH BirthYear1 BirthYear2 AgeDif Sex1 Sex2 SNPdBoth
-#&gt; 1 b01075 a00013     PO 6.76  0       2001       2000      1    2    1      197
-#&gt; 2 a01189 a00012     PO 4.30  0       2001       2000      1    1    1      199
-#&gt; 3 a01063 b00013     PO 3.63  0       2001       2000      1    1    2      199
-#&gt; 4 a01043 a00018     PO 3.44  0       2001       2000      1    1    1      197
-#&gt; 5 a01166 b00002     PO 3.17  0       2001       2000      1    1    2      199
-#&gt; 6 b01033 b00002     PO 3.03  0       2001       2000      1    2    2      198</div><div class='input'>
+#&gt; 1 a01008 a00013     PO 7.31  2       2001       2000      1    1    1      197
+#&gt; 2 b01075 a00013     PO 6.76  1       2001       2000      1    2    1      197
+#&gt; 3 a01189 a00012     PO 4.30  2       2001       2000      1    1    1      199
+#&gt; 4 a01063 b00013     PO 3.63  1       2001       2000      1    1    2      199
+#&gt; 5 a01043 a00018     PO 3.44  1       2001       2000      1    1    1      197
+#&gt; 6 a01166 b00002     PO 3.17  1       2001       2000      1    1    2      199</div><div class='input'>
 <span class='co'># visualise results, turn dataframe into matrix first:</span>
 <span class='va'>MaybeM</span> <span class='op'>&lt;-</span> <span class='fu'><a href='GetRelM.html'>GetRelM</a></span><span class='op'>(</span>Pairs<span class='op'>=</span><span class='va'>Maybe</span><span class='op'>$</span><span class='va'>MaybeRel</span><span class='op'>)</span>
 <span class='fu'><a href='PlotRelPairs.html'>PlotRelPairs</a></span><span class='op'>(</span><span class='va'>MaybeM</span><span class='op'>)</span>
