@@ -31,8 +31,8 @@
   <a class="nav-link" href="../reference/index.html">Functions</a>
 </li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-manuals">Manuals</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-manuals">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/vignette_main/book/sec-Background.html">Main vignette: User guide</a>
     <a class="dropdown-item" href="../articles/vignette_age/book/index.html">Age prior vignette</a>
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
@@ -93,9 +93,9 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.4" id="sequoia-24">sequoia 2.4<a class="anchor" aria-label="anchor" href="#sequoia-24"></a></h2>
+<h2 class="pkg-version" data-toc-text="2.4.1" id="sequoia-241">sequoia 2.4.1<a class="anchor" aria-label="anchor" href="#sequoia-241"></a></h2><p class="text-muted">CRAN release: 2023-01-08</p>
 <div class="section level4">
-<h4 id="new-features--major-changes-2-4">New features &amp; major changes<a class="anchor" aria-label="anchor" href="#new-features--major-changes-2-4"></a></h4>
+<h4 id="new-features--major-changes-2-4-1">New features &amp; major changes<a class="anchor" aria-label="anchor" href="#new-features--major-changes-2-4-1"></a></h4>
 <ul><li>R markdown file to create (or serve as a first draft of) a summary report of input and output, called via <code><a href="../reference/sequoia_report.html">sequoia_report()</a></code>
 </li>
 <li>
@@ -104,7 +104,7 @@
 <code><a href="../reference/GetRelM.html">GetRelM()</a></code> now allows input of Pedigree AND Pairs. This a.o. allows <code><a href="../reference/PlotRelPairs.html">PlotRelPairs()</a></code> with both inferred pedigree plus <code><a href="../reference/GetMaybeRel.html">GetMaybeRel()</a></code> output.</li>
 </ul></div>
 <div class="section level4">
-<h4 id="minor-changes-2-4">Minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-2-4"></a></h4>
+<h4 id="minor-changes-2-4-1">Minor changes<a class="anchor" aria-label="anchor" href="#minor-changes-2-4-1"></a></h4>
 <ul><li>switch from library xlsx to openxlsx in <code><a href="../reference/writeSeq.html">writeSeq()</a></code> (easier to install)</li>
 <li>adds purl=FALSE to vignette chunks &amp; include <code>SeqOUT_HSg5</code> for quicker vignette compilation</li>
 <li>include additional griffin example data: <code>Geno_griffin</code>, <code>Conf_griffin</code> (output from <code><a href="../reference/EstConf.html">EstConf()</a></code>) and <code>MaybeRel_griffin</code> (output from <code><a href="../reference/GetMaybeRel.html">GetMaybeRel()</a></code>), as well as the script used to create these (<code>mk_griffin_data.R</code>)</li>
@@ -118,7 +118,7 @@
 <code><a href="../reference/SnpStats.html">SnpStats()</a></code> now includes HWE tests</li>
 </ul></div>
 <div class="section level4">
-<h4 id="bug-fixes-2-4">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-4"></a></h4>
+<h4 id="bug-fixes-2-4-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-4-1"></a></h4>
 <ul><li>fixes several memory issues identified by CRAN</li>
 <li>fixes various bugs in <code><a href="../reference/SimGeno.html">SimGeno()</a></code> for non-autosomal inheritance; this option is still experimental and non-autosomal SNPs are not supported by the pedigree reconstruction.</li>
 <li>fixes <code>cannot allocate vector of size ...</code> issue in <code><a href="../reference/GetRelM.html">GetRelM()</a></code> with very large pedigrees, which affected <code><a href="../reference/MakeAgePrior.html">MakeAgePrior()</a></code> and thereby <code><a href="../reference/sequoia.html">sequoia()</a></code>.</li>
