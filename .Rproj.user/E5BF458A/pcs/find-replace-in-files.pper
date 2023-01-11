@@ -1,15 +1,18 @@
 {
     "dialog-state": {
-        "query": "vignette",
+        "query": "monodon",
         "path": "",
         "regex": false,
         "caseSensitive": false,
+        "wholeWord": false,
         "filePatterns": [
             "*.rmd",
             "*.Rmd"
         ],
+        "useGitGrep": true,
+        "excludeGitIgnore": false,
         "excludeFilePatterns": [],
-        "resultsCount": 57,
+        "resultsCount": 0,
         "errorCount": 0,
         "replaceErrors": "",
         "projectRelative": true

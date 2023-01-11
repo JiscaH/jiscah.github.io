@@ -66,9 +66,6 @@ This could for example be an egg-laying species were females have two broods per
 
 
 ```{r}
-data(Ped_HSg5, LH_HSg5, package = "sequoia")
-for (i in c("id","dam","sire"))  Ped_HSg5[,i] <- as.character(Ped_HSg5[,i])
-
 # looking at 2001 'hatchlings' only. 
 Ped.2001 <- Ped_HSg5[Ped_HSg5$id %in% LH_HSg5$ID[LH_HSg5$BirthYear <= 2001], ]
 # total 192 individuals, across 24 dams x 16 sires

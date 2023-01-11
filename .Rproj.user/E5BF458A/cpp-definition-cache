@@ -1,22 +1,7 @@
 [
     {
-        "file": "D:/Sequoia/Rversion/sequoia/src/init.c",
-        "file_last_write": 1619462344.0,
-        "definitions": [
-            {
-                "usr": "c:@F@R_init_sequoia",
-                "kind": 6,
-                "parent_name": "",
-                "name": "R_init_sequoia(DllInfo *)",
-                "file": "D:/Sequoia/Rversion/sequoia/src/init.c",
-                "line": 175,
-                "column": 24
-            }
-        ]
-    },
-    {
         "file": "D:/Website/jiscah.github.io/src/init.c",
-        "file_last_write": 1619462344.0,
+        "file_last_write": 1673109287.0,
         "definitions": [
             {
                 "usr": "c:@F@R_init_sequoia",
@@ -24,24 +9,11 @@
                 "parent_name": "",
                 "name": "R_init_sequoia(DllInfo *)",
                 "file": "D:/Website/jiscah.github.io/src/init.c",
-                "line": 175,
-                "column": 24
+                "line": 185,
+                "column": 24,
+                "hidden": false
             }
-        ]
-    },
-    {
-        "file": "D:/Website/sequoia/src/init.c",
-        "file_last_write": 1619462344.0,
-        "definitions": [
-            {
-                "usr": "c:@F@R_init_sequoia",
-                "kind": 6,
-                "parent_name": "",
-                "name": "R_init_sequoia(DllInfo *)",
-                "file": "D:/Website/sequoia/src/init.c",
-                "line": 175,
-                "column": 24
-            }
-        ]
+        ],
+        "hidden": false
     }
 ]

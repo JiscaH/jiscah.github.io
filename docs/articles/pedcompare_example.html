@@ -4,7 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Compare the genetically inferred pedigree to a field/paper-records pedigree 
+">
 <title>PedCompare Example (Griffin Pedigree) • sequoia</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -12,192 +14,240 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/sandstone/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="PedCompare Example (Griffin Pedigree)">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="PedCompare Example (Griffin Pedigree)">
 <meta property="og:description" content="Compare the genetically inferred pedigree to a field/paper-records pedigree 
 ">
-<meta property="og:image" content="/reference/figures/sequoia_hexlogo_s.png">
+<meta property="og:image" content="https://jiscah.github.io/reference/figures/sequoia_hexlogo_s.png">
 <meta property="og:image:alt" content="sequoia hexlogo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@HuismanJisca">
+<meta name="twitter:site" content="@HuismanJisca">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">sequoia</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.5</span>
-      </span>
-    </div>
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href=".././index.html">
-    <span class="fas fa-home"></span>
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">sequoia</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href=".././index.html">
+    <span class="fas fa fas fa-home"></span>
      
   </a>
 </li>
-<li>
-  <a href="../articles/Get_started.html">Get started</a>
+<li class="nav-item">
+  <a class="nav-link" href="../articles/sequoia.html">Get started</a>
 </li>
-<li>
-  <a href="../reference/index.html">Functions</a>
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Functions</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Manuals
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/vignette_main/book/sec-Background.html">Main vignette: User guide</a>
-    </li>
-    <li>
-      <a href="../articles/vignette_age/book/index.html">Age prior vignette</a>
-    </li>
-    <li>
-      <a href="../articles/index.html">Examples</a>
-    </li>
-    <li>
-      <a href="../articles/index.html">More info on ...</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../news/index.html">Change log</a>
-</li>
-<li>
-  <a href="../articles/help.html">Help</a>
-</li>
-<li>
-  <a href="../articles/performance_stats.html">Stats</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://twitter.com/HuismanJisca">
-    <span class="fab fa-twitter"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../mailto:jisca.huisman@gmail.com">
-    <span class="fas fa-envelope"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://github.com/JiscaH/sequoia">
-    <span class="fab fa-github"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://www.linkedin.com/in/jisca-huisman-a4751153/">
-    <span class="fab fa-linkedin-in"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-manuals">Manuals</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-manuals">
+    <a class="dropdown-item" href="../articles/vignette_main/book/sec-Background.html">Main vignette: User guide</a>
+    <a class="dropdown-item" href="../articles/vignette_age/book/index.html">Age prior vignette</a>
+    <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
+    <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Change log</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../articles/help.html">Help</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../articles/performance_stats.html">Stats</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="nav-link" href="../mailto:jisca.huisman@gmail.com">
+    <span class="fas fa fas fa-envelope"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/JiscaH/sequoia">
+    <span class="fab fa fab fa-github"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://ecoevo.social/@HuismanJisca">
+    <span class="fab fa fab fa-mastodon"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://twitter.com/HuismanJisca">
+    <span class="fab fa fab fa-twitter"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://www.linkedin.com/in/jisca-huisman-a4751153/">
+    <span class="fab fa fab fa-linkedin-in"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
+    
+  </div>
+</nav><div class="container template-article">
 
-      </header><script src="pedcompare_example_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>PedCompare Example (Griffin Pedigree)</h1>
+
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="" class="logo" alt=""><h1>PedCompare Example (Griffin Pedigree)</h1>
             
       
       
-      <div class="hidden name"><code>pedcompare_example.Rmd</code></div>
-
+      <div class="d-none name"><code>pedcompare_example.Rmd</code></div>
     </div>
 
     
     
 <hr>
-<div id="why-compare-pedigrees" class="section level2 unnumbered">
-<h2 class="hasAnchor">
-<a href="#why-compare-pedigrees" class="anchor"></a>Why compare pedigrees</h2>
-<p>It is often worthwhile to compare a newly inferred genetic pedigree to an older (field-)pedigree, as no dataset is flawless, nor is genetic pedigree reconstruction infallible.</p>
-<p>Discrepancies between the pedigrees may bring to light mislabeled samples, incorrect birth or death years, or incorrectly inferred pedigree links. For example, if an individual’s genetically inferred mother differs from its field-observed mother, this may be due to a mislabeled DNA sample, a pedigree inference error, an error in the field records, or egg dumping/adoption. Eliminating possibilities and tracking down the most likely scenario can be rather time consuming, but will increase the overall quality of the dataset and pedigree.</p>
-<p>In addition, the pedigree comparison may be able to match dummy parents in the genetic pedigree to real, non-genotyped parents in the field pedigree. This allows pedigree records (offspring number, mates, etc.) to be combined with phenotypic records (age, size, etc.) of those non-genotyped individuals.</p>
-<p>Here, the process is illustrated by comparing genetically assigned and field observed mothers in a fictional population of griffins.</p>
+<div class="section level2 unnumbered">
+<h2 class="unnumbered" id="why-compare-pedigrees">Why compare pedigrees<a class="anchor" aria-label="anchor" href="#why-compare-pedigrees"></a>
+</h2>
+<p>It is often worthwhile to compare a newly inferred genetic pedigree
+to an older (field-)pedigree, as no dataset is flawless, nor is genetic
+pedigree reconstruction infallible.</p>
+<p>Discrepancies between the pedigrees may bring to light mislabeled
+samples, incorrect birth or death years, or incorrectly inferred
+pedigree links. For example, if an individual’s genetically inferred
+mother differs from its field-observed mother, this may be due to a
+mislabeled DNA sample, a pedigree inference error, an error in the field
+records, or egg dumping/adoption. Eliminating possibilities and tracking
+down the most likely scenario can be rather time consuming, but will
+increase the overall quality of the dataset and pedigree.</p>
+<p>In addition, the pedigree comparison may be able to match dummy
+parents in the genetic pedigree to real, non-genotyped parents in the
+field pedigree. This allows pedigree records (offspring number, mates,
+etc.) to be combined with phenotypic records (age, size, etc.) of those
+non-genotyped individuals.</p>
+<p>Here, the process is illustrated by comparing genetically assigned
+and field observed mothers in a fictional population of griffins.</p>
 </div>
-<div id="study-population" class="section level2">
-<h2 class="hasAnchor">
-<a href="#study-population" class="anchor"></a>Study population</h2>
-<p>Nests have been monitored in a small, closed population of griffins, where each year exactly 20 baby griffins hatch. The mother of most individuals is known from field observations (example data <code>FieldMums_griffin</code> included in the package). From 2001 to 2010, most hatchlings are tagged, and sampled for SNP genotyping. From this, a genetic pedigree has been reconstructed (example data <code>SeqOUT_griffin</code>). Breeding females without tags, are given a two-colour code <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. This may including females who have lost their tags.</p>
+<div class="section level2">
+<h2 id="study-population">Study population<a class="anchor" aria-label="anchor" href="#study-population"></a>
+</h2>
+<p>Nests have been monitored in a small, closed population of griffins,
+where each year exactly 20 baby griffins hatch. The mother of most
+individuals is known from field observations (example data
+<code>FieldMums_griffin</code> included in the package). From 2001 to
+2010, most hatchlings are tagged, and sampled for SNP genotyping. From
+this, a genetic pedigree has been reconstructed (example data
+<code>SeqOUT_griffin</code>). Breeding females without tags, are given a
+two-colour code <a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;with animal-friendly spray paint&lt;/p&gt;"><sup>1</sup></a>. This may including females who have lost
+their tags.</p>
 </div>
-<div id="comparing-pedigrees" class="section level2">
-<h2 class="hasAnchor">
-<a href="#comparing-pedigrees" class="anchor"></a>Comparing pedigrees</h2>
+<div class="section level2">
+<h2 id="comparing-pedigrees">Comparing pedigrees<a class="anchor" aria-label="anchor" href="#comparing-pedigrees"></a>
+</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jiscah.github.io/">sequoia</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">SeqOUT_griffin</span>, <span class="va">FieldMums_griffin</span>, package<span class="op">=</span><span class="st">"sequoia"</span><span class="op">)</span>
-
-<span class="va">PCG</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/PedCompare.html">PedCompare</a></span><span class="op">(</span>Ped1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">FieldMums_griffin</span>,
-                                sire <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>,
-                   Ped2 <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">Pedigree</span>,
-                   SNPd <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">PedigreePar</span><span class="op">$</span><span class="va">id</span>,
-                   Symmetrical <span class="op">=</span> <span class="cn">TRUE</span>, Plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<p>In essence, <code><a href="../reference/PedCompare.html">PedCompare()</a></code> lies the two pedigrees side-by-side and classifies each individual’s parent as being the same in the two pedigrees (<code>Match</code>) or not (<code>Mismatch</code>), or only having a parent in only one of the pedigrees (<code>P1only</code> or <code>P2only</code>).</p>
-<p>While <code>Match</code> versus <code>Mismatch</code> is straightforward when all individuals are genotyped, and all IDs are (thus) consistent between the two pedigrees, it becomes more complicated when non-genotyped individuals and dummy IDs are involved. <code><a href="../reference/PedCompare.html">PedCompare()</a></code> tries to match each sibship-dummy-parent in Pedigree2 (F0001, F0002, etc.) to a non-genotyped parent in Pedigree1 (here these are the IDs consisting of 2 colours: PinkBlue, BlueRed, etc.).</p>
-<div id="mergedped" class="section level3">
-<h3 class="hasAnchor">
-<a href="#mergedped" class="anchor"></a><code>$MergedPed</code>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jiscah.github.io/">sequoia</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">SeqOUT_griffin</span>, <span class="va">FieldMums_griffin</span>, package<span class="op">=</span><span class="st">"sequoia"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">PCG</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/PedCompare.html">PedCompare</a></span><span class="op">(</span>Ped1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">FieldMums_griffin</span>,</span>
+<span>                                sire <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>                   Ped2 <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">Pedigree</span>,</span>
+<span>                   SNPd <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">PedigreePar</span><span class="op">$</span><span class="va">id</span>,</span>
+<span>                   Symmetrical <span class="op">=</span> <span class="cn">TRUE</span>, Plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p>In essence, <code><a href="../reference/PedCompare.html">PedCompare()</a></code> lies the two pedigrees
+side-by-side and classifies each individual’s parent as being the same
+in the two pedigrees (<code>Match</code>) or not
+(<code>Mismatch</code>), or only having a parent in only one of the
+pedigrees (<code>P1only</code> or <code>P2only</code>).</p>
+<p>While <code>Match</code> versus <code>Mismatch</code> is
+straightforward when all individuals are genotyped, and all IDs are
+(thus) consistent between the two pedigrees, it becomes more complicated
+when non-genotyped individuals and dummy IDs are involved.
+<code><a href="../reference/PedCompare.html">PedCompare()</a></code> tries to match each sibship-dummy-parent in
+Pedigree2 (F0001, F0002, etc.) to a non-genotyped parent in Pedigree1
+(here these are the IDs consisting of 2 colours: PinkBlue, BlueRed,
+etc.).</p>
+<div class="section level3">
+<h3 id="mergedped">
+<code>$MergedPed</code><a class="anchor" aria-label="anchor" href="#mergedped"></a>
 </h3>
-<p>The side-by-side pedigrees are given in the list element <code>$MergedPed</code> of the output:</p>
+<p>The side-by-side pedigrees are given in the list element
+<code>$MergedPed</code> of the output:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">127</span><span class="op">:</span><span class="fl">133</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span>, <span class="st">"dam.class"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code>##              id       dam.1       dam.2 dam.class
-## 127 i161_2009_M        &lt;NA&gt;        &lt;NA&gt;         _
-## 128 i165_2009_F    PinkBlue       F0006     Match
-## 129 i166_2009_F    PinkBlue       F0006     Match
-## 130 i169_2009_M i133_2007_F i133_2007_F     Match
-## 131 i170_2009_F     BlueRed       F0003     Match
-## 132 i171_2009_M        &lt;NA&gt;       F0016    P2only
-## 133 i173_2009_F     BlueRed       F0003     Match</code></pre>
-<p>This part-pedigree for example shows that individuals i165_2009_F and i166_2009_F have the non-genotyped female ‘PinkBlue’ as field observed mother (<code>dam.1</code> = dam in Pedigree1). The pair are also genetically assigned as maternal siblings, with ‘F0006’ as dummy ID for the mother (<code>dam.2</code>). And, while the ID of the mother differs between the two pedigrees, it is nonetheless considered a <code>Match</code> (<code>dam.class</code>, short for classification).</p>
-<div id="id-columns" class="section level4">
-<h4 class="hasAnchor">
-<a href="#id-columns" class="anchor"></a>id columns</h4>
+<code class="sourceCode R"><span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">127</span><span class="op">:</span><span class="fl">133</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span>, <span class="st">"dam.class"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##              id       dam.1       dam.2 dam.class</span></span>
+<span><span class="co">## 127 i161_2009_M        &lt;NA&gt;        &lt;NA&gt;         _</span></span>
+<span><span class="co">## 128 i165_2009_F    PinkBlue       F0006     Match</span></span>
+<span><span class="co">## 129 i166_2009_F    PinkBlue       F0006     Match</span></span>
+<span><span class="co">## 130 i169_2009_M i133_2007_F i133_2007_F     Match</span></span>
+<span><span class="co">## 131 i170_2009_F     BlueRed       F0003     Match</span></span>
+<span><span class="co">## 132 i171_2009_M        &lt;NA&gt;       F0016    P2only</span></span>
+<span><span class="co">## 133 i173_2009_F     BlueRed       F0003     Match</span></span></code></pre>
+<p>This part-pedigree for example shows that individuals i165_2009_F and
+i166_2009_F have the non-genotyped female ‘PinkBlue’ as field observed
+mother (<code>dam.1</code> = dam in Pedigree1). The pair are also
+genetically assigned as maternal siblings, with ‘F0006’ as dummy ID for
+the mother (<code>dam.2</code>). And, while the ID of the mother differs
+between the two pedigrees, it is nonetheless considered a
+<code>Match</code> (<code>dam.class</code>, short for
+classification).</p>
+<div class="section level4">
+<h4 id="id-columns">id columns<a class="anchor" aria-label="anchor" href="#id-columns"></a>
+</h4>
 <p>A point of clarification on the <code>id</code> columns:</p>
 <ul>
-<li>column <code>id</code> are the ids common to both pedigrees, plus those only occurring in Pedigree2 (typically the dummy IDs F0001, F0002 etc.)<br>
+<li>column <code>id</code> are the ids common to both pedigrees, plus
+those only occurring in Pedigree2 (typically the dummy IDs F0001, F0002
+etc.)<br>
 </li>
-<li>column <code>id.r</code> are the ‘consensus’ ids, plus those only occurring in Pedigree1</li>
+<li>column <code>id.r</code> are the ‘consensus’ ids, plus those only
+occurring in Pedigree1</li>
 </ul>
-<p>For example, ‘PinkBlue’ does not have a mother in Pedigree1 (first row in <code>MergedPed</code> below: <code>id.r=PinkBlue</code>, <code>dam.1=NA</code>). Pedigree2 tells us that ‘F0006’ has genetic mother ‘F0007’, which is not hugely informative of itself (<code>MergedPed</code>: <code>id=F0006</code>, <code>dam.2=F0007</code>). But <code><a href="../reference/PedCompare.html">PedCompare()</a></code> then tells us that this means that ‘PinkBlue’ (<code>id.r</code>) has ‘YellowPink’ as mother (<code>dam.r</code>), which has a lot more meaning (to someone working in the field).</p>
+<p>For example, ‘PinkBlue’ does not have a mother in Pedigree1 (first
+row in <code>MergedPed</code> below: <code>id.r=PinkBlue</code>,
+<code>dam.1=NA</code>). Pedigree2 tells us that ‘F0006’ has genetic
+mother ‘F0007’, which is not hugely informative of itself
+(<code>MergedPed</code>: <code>id=F0006</code>,
+<code>dam.2=F0007</code>). But <code><a href="../reference/PedCompare.html">PedCompare()</a></code> then tells us
+that this means that ‘PinkBlue’ (<code>id.r</code>) has ‘YellowPink’ as
+mother (<code>dam.r</code>), which has a lot more meaning (to someone
+working in the field).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># subset some individuals:</span>
-<span class="va">these</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"i177_2009_M"</span>, <span class="st">"i179_2009_M"</span>, <span class="st">"i165_2009_F"</span>, <span class="st">"i166_2009_F"</span>, <span class="st">"F0006"</span>,
-           <span class="st">"F0007"</span>, <span class="st">"YellowPink"</span>, <span class="st">"PinkBlue"</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Ped1 <span class="op">=</span> <span class="va">FieldMums_griffin</span><span class="op">[</span><span class="va">FieldMums_griffin</span><span class="op">$</span><span class="va">id</span> <span class="op">%in%</span> <span class="va">these</span>, <span class="op">]</span>, 
-                  Ped2 <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">Pedigree</span><span class="op">[</span><span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">Pedigree</span><span class="op">$</span><span class="va">id</span> <span class="op">%in%</span> <span class="va">these</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span>,
-             caption <span class="op">=</span> <span class="st">"Subsets of Pedigree1 (left) and Pedigree2 (right)"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># subset some individuals:</span></span>
+<span><span class="va">these</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"i177_2009_M"</span>, <span class="st">"i179_2009_M"</span>, <span class="st">"i165_2009_F"</span>, <span class="st">"i166_2009_F"</span>, <span class="st">"F0006"</span>,</span>
+<span>           <span class="st">"F0007"</span>, <span class="st">"YellowPink"</span>, <span class="st">"PinkBlue"</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Ped1 <span class="op">=</span> <span class="va">FieldMums_griffin</span><span class="op">[</span><span class="va">FieldMums_griffin</span><span class="op">$</span><span class="va">id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">these</span>, <span class="op">]</span>, </span>
+<span>                  Ped2 <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">Pedigree</span><span class="op">[</span><span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">Pedigree</span><span class="op">$</span><span class="va">id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">these</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>             caption <span class="op">=</span> <span class="st">"Subsets of Pedigree1 (left) and Pedigree2 (right)"</span><span class="op">)</span></span></code></pre></div>
 <table class="table kable_wrapper">
 <caption>
 Subsets of Pedigree1 (left) and Pedigree2 (right)
@@ -285,249 +335,365 @@ Subsets of Pedigree1 (left) and Pedigree2 (right)
 </tr></tbody>
 </table>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">$</span><span class="va">id</span> <span class="op">%in%</span> <span class="va">these</span>, 
-              <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"id.r"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span>, <span class="st">"dam.r"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code>##              id        id.r      dam.1 dam.2      dam.r
-## 6         F0006    PinkBlue       &lt;NA&gt; F0007 YellowPink
-## 7         F0007  YellowPink       &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;
-## 128 i165_2009_F i165_2009_F   PinkBlue F0006   PinkBlue
-## 129 i166_2009_F i166_2009_F   PinkBlue F0006   PinkBlue
-## 137 i177_2009_M i177_2009_M YellowPink F0007 YellowPink
-## 138 i179_2009_M i179_2009_M YellowPink F0007 YellowPink</code></pre>
+<code class="sourceCode R"><span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">$</span><span class="va">id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">these</span>, </span>
+<span>              <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"id.r"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span>, <span class="st">"dam.r"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##              id        id.r      dam.1 dam.2      dam.r</span></span>
+<span><span class="co">## 6         F0006    PinkBlue       &lt;NA&gt; F0007 YellowPink</span></span>
+<span><span class="co">## 7         F0007  YellowPink       &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;</span></span>
+<span><span class="co">## 128 i165_2009_F i165_2009_F   PinkBlue F0006   PinkBlue</span></span>
+<span><span class="co">## 129 i166_2009_F i166_2009_F   PinkBlue F0006   PinkBlue</span></span>
+<span><span class="co">## 137 i177_2009_M i177_2009_M YellowPink F0007 YellowPink</span></span>
+<span><span class="co">## 138 i179_2009_M i179_2009_M YellowPink F0007 YellowPink</span></span></code></pre>
 </div>
 </div>
-<div id="dummymatch" class="section level3">
-<h3 class="hasAnchor">
-<a href="#dummymatch" class="anchor"></a><code>$DummyMatch</code>
+<div class="section level3">
+<h3 id="dummymatch">
+<code>$DummyMatch</code><a class="anchor" aria-label="anchor" href="#dummymatch"></a>
 </h3>
-<p>The output list element <code>$DummyMatch</code> summarises the matches:</p>
+<p>The output list element <code>$DummyMatch</code> summarises the
+matches:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">PCG</span><span class="op">$</span><span class="va">DummyMatch</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">]</span>, n<span class="op">=</span><span class="fl">6</span><span class="op">)</span></code></pre></div>
-<pre><code>##    id.2        id.1 off.Match off.Mismatch off.P1only off.P2only
-## 1 F0001 GreenYellow         3            2          0          0
-## 2 F0002     nomatch         0            2          0          0
-## 3 F0003     BlueRed         4            4          0          3
-## 4 F0004   RedOrange         3            0          0          0
-## 5 F0005     nomatch         0            0          0          2
-## 6 F0006    PinkBlue         3            0          0          0</code></pre>
-<p>For the match between ‘F0006’ in Pedigree2 and ‘PinkBlue’ in Pedigree1 (bottom row), there are 3 matching offspring, and no offspring by ‘PinkBlue’ that are genetically assigned to a different sibship cluster or mother (<code>off.Mismatch</code>) or have no genetic mother assigned (<code>off.P1only</code>), nor are there any members of the genetic sibship F0006 with no mother in Pedigree1 (<code>off.P2only</code>). Thus, a perfect one-to-one match.</p>
-<p>For genetic sibship ‘F0003’, however, the situation is more complicated, and this will be worked through in detail below.</p>
-<p>‘nomatch’ in the <code>id.1</code> column indicates either that none of the individuals in this genetic sibship had a field-observed mother, or that the field-observed mother is matched to a different genetic sibship, with which there was a larger overlap.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">PCG</span><span class="op">$</span><span class="va">DummyMatch</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">]</span>, n<span class="op">=</span><span class="fl">6</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##    id.2        id.1 off.Match off.Mismatch off.P1only off.P2only</span></span>
+<span><span class="co">## 1 F0001 GreenYellow         3            2          0          0</span></span>
+<span><span class="co">## 2 F0002     nomatch         0            2          0          0</span></span>
+<span><span class="co">## 3 F0003     BlueRed         4            4          0          3</span></span>
+<span><span class="co">## 4 F0004   RedOrange         3            0          0          0</span></span>
+<span><span class="co">## 5 F0005     nomatch         0            0          0          2</span></span>
+<span><span class="co">## 6 F0006    PinkBlue         3            0          0          0</span></span></code></pre>
+<p>For the match between ‘F0006’ in Pedigree2 and ‘PinkBlue’ in
+Pedigree1 (bottom row), there are 3 matching offspring, and no offspring
+by ‘PinkBlue’ that are genetically assigned to a different sibship
+cluster or mother (<code>off.Mismatch</code>) or have no genetic mother
+assigned (<code>off.P1only</code>), nor are there any members of the
+genetic sibship F0006 with no mother in Pedigree1
+(<code>off.P2only</code>). Thus, a perfect one-to-one match.</p>
+<p>For genetic sibship ‘F0003’, however, the situation is more
+complicated, and this will be worked through in detail below.</p>
+<p>‘nomatch’ in the <code>id.1</code> column indicates either that none
+of the individuals in this genetic sibship had a field-observed mother,
+or that the field-observed mother is matched to a different genetic
+sibship, with which there was a larger overlap.</p>
 </div>
-<div id="counts" class="section level3">
-<h3 class="hasAnchor">
-<a href="#counts" class="anchor"></a><code>$Counts</code>
+<div class="section level3">
+<h3 id="counts">
+<code>$Counts</code><a class="anchor" aria-label="anchor" href="#counts"></a>
 </h3>
-<p>The total number of matches and mismatches is summarised in the 3D array <code>$Counts</code>, which can be visualised with <code><a href="../reference/PlotPedComp.html">PlotPedComp()</a></code>:</p>
+<p>The total number of matches and mismatches is summarised in the 3D
+array <code>$Counts</code>, which can be visualised with
+<code><a href="../reference/PlotPedComp.html">PlotPedComp()</a></code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/PlotPedComp.html">PlotPedComp</a></span><span class="op">(</span><span class="va">PCG</span><span class="op">$</span><span class="va">Counts</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/PlotPedComp.html">PlotPedComp</a></span><span class="op">(</span><span class="va">PCG</span><span class="op">$</span><span class="va">Counts</span><span class="op">)</span></span></code></pre></div>
 <p><img src="pedcompare_example_files/figure-html/Counts-plot-1.png" width="576"></p>
-<p>Since there are no sires in our field pedigree, we will have a look at the <code>dam</code> slice only:</p>
+<p>Since there are no sires in our field pedigree, we will have a look
+at the <code>dam</code> slice only:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">PCG</span><span class="op">$</span><span class="va">Counts</span><span class="op">[</span>,,<span class="st">"dam"</span><span class="op">]</span></code></pre></div>
-<pre><code>##     class
-## cat  Total Match Mismatch P1only P2only
-##   GG    65    61        4      0      0
-##   GD    38    16        7      0     15
-##   GT   107    77       11      1     18
-##   DG     6     0        0      0      6
-##   DD     3     0        0      0      3
-##   DT     9     0        0      0      9
-##   TT   127    77       11      2     37</code></pre>
-<p>The counts for each classification are subdivided into various categories (rows), based on whether the focal individual (first letter) and parent (second letter) are <strong>G</strong>enotyped or a <strong>D</strong>ummy individual, as well as the <strong>T</strong>otals. The totals counts includes individuals in Pedigree1 who are neither genotyped nor ‘dummifiable’, such as a non-genotyped parent with a single offspring, and therefore exceeds the sum of <strong>G</strong> and <strong>D</strong>.</p>
-<p>We will go through each of the three classes of discrepancies in turn – <code>Mismatch</code>, <code>P1only</code> (only field mum), and <code>P2only</code> (only genetic mum).</p>
+<code class="sourceCode R"><span><span class="va">PCG</span><span class="op">$</span><span class="va">Counts</span><span class="op">[</span>,,<span class="st">"dam"</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##     class</span></span>
+<span><span class="co">## cat  Total Match Mismatch P1only P2only</span></span>
+<span><span class="co">##   GG    65    61        4      0      0</span></span>
+<span><span class="co">##   GD    41    16        7      0     18</span></span>
+<span><span class="co">##   GT   107    77       11      1     18</span></span>
+<span><span class="co">##   DG    14     0        0      0     14</span></span>
+<span><span class="co">##   DD     5     0        0      0      5</span></span>
+<span><span class="co">##   DT    19     0        0      0     19</span></span>
+<span><span class="co">##   TT   127    77       11      2     37</span></span></code></pre>
+<p>The counts for each classification are subdivided into various
+categories (rows), based on whether the focal individual (first letter)
+and parent (second letter) are <strong>G</strong>enotyped or a
+<strong>D</strong>ummy individual, as well as the
+<strong>T</strong>otals. The totals counts includes individuals in
+Pedigree1 who are neither genotyped nor ‘dummifiable’, such as a
+non-genotyped parent with a single offspring, and therefore exceeds the
+sum of <strong>G</strong> and <strong>D</strong>.</p>
+<p>We will go through each of the three classes of discrepancies in turn
+– <code>Mismatch</code>, <code>P1only</code> (only field mum), and
+<code>P2only</code> (only genetic mum).</p>
 </div>
 </div>
-<div id="mismatch" class="section level2">
-<h2 class="hasAnchor">
-<a href="#mismatch" class="anchor"></a>Mismatch</h2>
-<p>To get more detail on the 11 mismatches, we head back to <code>$MergedPed</code>. For brevity, we display only the columns in which we’re currently interested:</p>
+<div class="section level2">
+<h2 id="mismatch">Mismatch<a class="anchor" aria-label="anchor" href="#mismatch"></a>
+</h2>
+<p>To get more detail on the 11 mismatches, we head back to
+<code>$MergedPed</code>. For brevity, we display only the columns in
+which we’re currently interested:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">$</span><span class="va">dam.class</span> <span class="op">==</span> <span class="st">"Mismatch"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span>, <span class="st">"id.dam.cat"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code>##              id       dam.1       dam.2 id.dam.cat
-## 88  i108_2006_F   GreenBlue i081_2005_F         GG
-## 99  i122_2007_M   GreenBlue i081_2005_F         GG
-## 100 i123_2007_F OrangeGreen       F0003         GD
-## 101 i124_2007_M   GreenBlue i081_2005_F         GG
-## 105 i130_2007_F OrangeGreen       F0003         GD
-## 106 i131_2007_F OrangeGreen       F0003         GD
-## 108 i133_2007_F OrangeGreen       F0003         GD
-## 113 i142_2008_M   GreenBlue i081_2005_F         GG
-## 117 i147_2008_F  YellowBlue       F0001         GD
-## 118 i148_2008_F GreenYellow       F0002         GD
-## 125 i159_2008_F  YellowBlue       F0002         GD</code></pre>
-<p>Thus while there are 11 individuals with mismatching mothers, there are only 4 unique mothers involved, which we will look at in turn.</p>
-<div id="mismatch-issue1-greenblue" class="section level3">
-<h3 class="hasAnchor">
-<a href="#mismatch-issue1-greenblue" class="anchor"></a>Mismatch Issue1: GreenBlue</h3>
+<code class="sourceCode R"><span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">$</span><span class="va">dam.class</span> <span class="op">==</span> <span class="st">"Mismatch"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span>, <span class="st">"id.dam.cat"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##              id       dam.1       dam.2 id.dam.cat</span></span>
+<span><span class="co">## 88  i108_2006_F   GreenBlue i081_2005_F         GG</span></span>
+<span><span class="co">## 99  i122_2007_M   GreenBlue i081_2005_F         GG</span></span>
+<span><span class="co">## 100 i123_2007_F OrangeGreen       F0003         GD</span></span>
+<span><span class="co">## 101 i124_2007_M   GreenBlue i081_2005_F         GG</span></span>
+<span><span class="co">## 105 i130_2007_F OrangeGreen       F0003         GD</span></span>
+<span><span class="co">## 106 i131_2007_F OrangeGreen       F0003         GD</span></span>
+<span><span class="co">## 108 i133_2007_F OrangeGreen       F0003         GD</span></span>
+<span><span class="co">## 113 i142_2008_M   GreenBlue i081_2005_F         GG</span></span>
+<span><span class="co">## 117 i147_2008_F  YellowBlue       F0001         GD</span></span>
+<span><span class="co">## 118 i148_2008_F GreenYellow       F0002         GD</span></span>
+<span><span class="co">## 125 i159_2008_F  YellowBlue       F0002         GD</span></span></code></pre>
+<p>Thus while there are 11 individuals with mismatching mothers, there
+are only 4 unique mothers involved, which we will look at in turn.</p>
+<div class="section level3">
+<h3 id="mismatch-issue1-greenblue">Mismatch Issue1: GreenBlue<a class="anchor" aria-label="anchor" href="#mismatch-issue1-greenblue"></a>
+</h3>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">PedM</span> <span class="op">&lt;-</span> <span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span><span class="op">)</span><span class="op">]</span>   <span class="co"># short-hand to minimise typing</span>
-
-<span class="co"># does the mismatch affect all of GreenBlue's offspring?</span>
-<span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.1</span> <span class="op">==</span> <span class="st">"GreenBlue"</span><span class="op">)</span>, <span class="op">]</span></code></pre></div>
-<pre><code>##              id     dam.1       dam.2
-## 88  i108_2006_F GreenBlue i081_2005_F
-## 99  i122_2007_M GreenBlue i081_2005_F
-## 101 i124_2007_M GreenBlue i081_2005_F
-## 113 i142_2008_M GreenBlue i081_2005_F</code></pre>
+<code class="sourceCode R"><span><span class="va">PedM</span> <span class="op">&lt;-</span> <span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span><span class="op">)</span><span class="op">]</span>   <span class="co"># short-hand to minimise typing</span></span>
+<span></span>
+<span><span class="co"># does the mismatch affect all of GreenBlue's offspring?</span></span>
+<span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.1</span> <span class="op">==</span> <span class="st">"GreenBlue"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##              id     dam.1       dam.2</span></span>
+<span><span class="co">## 88  i108_2006_F GreenBlue i081_2005_F</span></span>
+<span><span class="co">## 99  i122_2007_M GreenBlue i081_2005_F</span></span>
+<span><span class="co">## 101 i124_2007_M GreenBlue i081_2005_F</span></span>
+<span><span class="co">## 113 i142_2008_M GreenBlue i081_2005_F</span></span></code></pre>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># &gt; yes, these 4 are all of her known offspring</span>
-
-<span class="co"># does genetic mother i081_2005_F have any field-observed offspring?</span>
-<span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.1</span> <span class="op">==</span> <span class="st">"i081_2005_F"</span><span class="op">)</span>, <span class="op">]</span></code></pre></div>
-<pre><code>## [1] id    dam.1 dam.2
-## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<code class="sourceCode R"><span><span class="co"># &gt; yes, these 4 are all of her known offspring</span></span>
+<span></span>
+<span><span class="co"># does genetic mother i081_2005_F have any field-observed offspring?</span></span>
+<span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.1</span> <span class="op">==</span> <span class="st">"i081_2005_F"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] id    dam.1 dam.2</span></span>
+<span><span class="co">## &lt;0 rows&gt; (or 0-length row.names)</span></span></code></pre>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># no.</span>
-
-<span class="co"># does i081_2005_F have any other genetic offspring?</span>
-<span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.2</span> <span class="op">==</span> <span class="st">"i081_2005_F"</span><span class="op">)</span>, <span class="op">]</span></code></pre></div>
-<pre><code>##              id     dam.1       dam.2
-## 88  i108_2006_F GreenBlue i081_2005_F
-## 99  i122_2007_M GreenBlue i081_2005_F
-## 101 i124_2007_M GreenBlue i081_2005_F
-## 113 i142_2008_M GreenBlue i081_2005_F</code></pre>
+<code class="sourceCode R"><span><span class="co"># no.</span></span>
+<span></span>
+<span><span class="co"># does i081_2005_F have any other genetic offspring?</span></span>
+<span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.2</span> <span class="op">==</span> <span class="st">"i081_2005_F"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##              id     dam.1       dam.2</span></span>
+<span><span class="co">## 88  i108_2006_F GreenBlue i081_2005_F</span></span>
+<span><span class="co">## 99  i122_2007_M GreenBlue i081_2005_F</span></span>
+<span><span class="co">## 101 i124_2007_M GreenBlue i081_2005_F</span></span>
+<span><span class="co">## 113 i142_2008_M GreenBlue i081_2005_F</span></span></code></pre>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># no.</span></code></pre></div>
-<p>It seems ‘GreenBlue’ is a perfect match with ‘i081_2005_F’: all four of GreenBlue’s observed offspring are genetically assigned i081_2005_F as mother, and all four of i081_2005_F’s genetic offspring have GreenBlue as observed mother. Perhaps this female lost her tag, was therefore not recognised, and received a new field ID. Field records may be able to back this theory up, or disprove it: Did GreenBlue look about 1 year old when first recorded in 2007? Was i081_2005_F ever seen in or after the 2006 breeding season? Does i081_2005_F have a known death date? If so, was there a post-mortem, or was she presumed dead because she had not seen for several months/years?</p>
-<p>An alternative explanation might be a pedigree inference error, but this is highly unlikely when offspring and parent are both genotyped (<code>id.dam.cat = 'GG'</code>), and only plausible with a limited number of SNPs with low call rate and high genotyping error rate. The four assignments are independent if they were done during parentage assignment, but not necessarily so during full pedigree reconstruction: they may first have been clustered as maternal siblings, and subsequently the dummy mother may have been replaced by i081_2005_F.</p>
-<p>Dummy individuals in Pedigree2 are never matched to genotyped individuals in Pedigree1, even if there is a perfect match such as here – there is almost always something odd going on that requires user inspection.</p>
-<p><strong>Resolution: Merge IDs ‘i081_2005_F’ and ‘GreenBlue’ </strong></p>
+<code class="sourceCode R"><span><span class="co"># no.</span></span></code></pre></div>
+<p>It seems ‘GreenBlue’ is a perfect match with ‘i081_2005_F’: all four
+of GreenBlue’s observed offspring are genetically assigned i081_2005_F
+as mother, and all four of i081_2005_F’s genetic offspring have
+GreenBlue as observed mother. Perhaps this female lost her tag, was
+therefore not recognised, and received a new field ID. Field records may
+be able to back this theory up, or disprove it: Did GreenBlue look about
+1 year old when first recorded in 2007? Was i081_2005_F ever seen in or
+after the 2006 breeding season? Does i081_2005_F have a known death
+date? If so, was there a post-mortem, or was she presumed dead because
+she had not seen for several months/years?</p>
+<p>An alternative explanation might be a pedigree inference error, but
+this is highly unlikely when offspring and parent are both genotyped
+(<code>id.dam.cat = 'GG'</code>), and only plausible with a limited
+number of SNPs with low call rate and high genotyping error rate. The
+four assignments are independent if they were done during parentage
+assignment, but not necessarily so during full pedigree reconstruction:
+they may first have been clustered as maternal siblings, and
+subsequently the dummy mother may have been replaced by i081_2005_F.</p>
+<p>Dummy individuals in Pedigree2 are never matched to genotyped
+individuals in Pedigree1, even if there is a perfect match such as here
+– there is almost always something odd going on that requires user
+inspection.</p>
+<p><strong>Resolution: Merge IDs ‘i081_2005_F’ and ‘GreenBlue’
+</strong></p>
 </div>
-<div id="mismatch-issue2-orangegreen" class="section level3">
-<h3 class="hasAnchor">
-<a href="#mismatch-issue2-orangegreen" class="anchor"></a>Mismatch Issue2: OrangeGreen</h3>
+<div class="section level3">
+<h3 id="mismatch-issue2-orangegreen">Mismatch Issue2: OrangeGreen<a class="anchor" aria-label="anchor" href="#mismatch-issue2-orangegreen"></a>
+</h3>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># why is this flagged as a mismatch?</span>
-<span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.1</span> <span class="op">==</span> <span class="st">"OrangeGreen"</span><span class="op">)</span>, <span class="op">]</span></code></pre></div>
-<pre><code>##              id       dam.1 dam.2
-## 100 i123_2007_F OrangeGreen F0003
-## 105 i130_2007_F OrangeGreen F0003
-## 106 i131_2007_F OrangeGreen F0003
-## 108 i133_2007_F OrangeGreen F0003</code></pre>
+<code class="sourceCode R"><span><span class="co"># why is this flagged as a mismatch?</span></span>
+<span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.1</span> <span class="op">==</span> <span class="st">"OrangeGreen"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##              id       dam.1 dam.2</span></span>
+<span><span class="co">## 100 i123_2007_F OrangeGreen F0003</span></span>
+<span><span class="co">## 105 i130_2007_F OrangeGreen F0003</span></span>
+<span><span class="co">## 106 i131_2007_F OrangeGreen F0003</span></span>
+<span><span class="co">## 108 i133_2007_F OrangeGreen F0003</span></span></code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># all of OrangeGreen's offspring are in sibship F0003</span>
-
-<span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.2</span> <span class="op">==</span> <span class="st">"F0003"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code>##              id       dam.1 dam.2
-## 2         F0002        &lt;NA&gt; F0003
-## 16        F0016        &lt;NA&gt; F0003
-## 100 i123_2007_F OrangeGreen F0003
-## 105 i130_2007_F OrangeGreen F0003
-## 106 i131_2007_F OrangeGreen F0003
-## 108 i133_2007_F OrangeGreen F0003
-## 124 i158_2008_M     BlueRed F0003
-## 126 i160_2008_F     BlueRed F0003
-## 131 i170_2009_F     BlueRed F0003
-## 133 i173_2009_F     BlueRed F0003
-## 169       M0011        &lt;NA&gt; F0003</code></pre>
+<code class="sourceCode R"><span><span class="co"># all of OrangeGreen's offspring are in sibship F0003</span></span>
+<span></span>
+<span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.2</span> <span class="op">==</span> <span class="st">"F0003"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##              id       dam.1 dam.2</span></span>
+<span><span class="co">## 2         F0002        &lt;NA&gt; F0003</span></span>
+<span><span class="co">## 16        F0016        &lt;NA&gt; F0003</span></span>
+<span><span class="co">## 100 i123_2007_F OrangeGreen F0003</span></span>
+<span><span class="co">## 105 i130_2007_F OrangeGreen F0003</span></span>
+<span><span class="co">## 106 i131_2007_F OrangeGreen F0003</span></span>
+<span><span class="co">## 108 i133_2007_F OrangeGreen F0003</span></span>
+<span><span class="co">## 124 i158_2008_M     BlueRed F0003</span></span>
+<span><span class="co">## 126 i160_2008_F     BlueRed F0003</span></span>
+<span><span class="co">## 131 i170_2009_F     BlueRed F0003</span></span>
+<span><span class="co">## 133 i173_2009_F     BlueRed F0003</span></span>
+<span><span class="co">## 169       M0011        &lt;NA&gt; F0003</span></span></code></pre>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># but sibship F0003 is split across two field mothers</span></code></pre></div>
-<p>So, the genetic sibship with ‘F0003’ as dummy mother includes individuals with two different field-observed mothers, ‘OrangeGreen’ and ‘BlueRed’. OrangeGreen’s offspring hatched in 2007, and BlueRed’s in 2008 and 2009. Perhaps this female was not regularly monitored, was not recognised at the start of the 2008 breeding season, and got a new ID?</p>
-<p>As for the previous case, field records that could disprove this theory are census records of BlueRed in or before 2007, or of OrangeGreen in or after 2008 (or if they were seen together!). Records backing up this theory are notes like ‘this could be…’ or ‘looks similar to …’ when BlueRed was first described. This cautionary approach to use a new ID is advisable, as it is often much easier to combine the records of two IDs later on, than to try to tease apart records under a single ID into their respective IDs.</p>
-<p>An alternative explanation is again a pedigree inference error, namely that <code>sequoia</code> has erroneously merged two actual sibships. This may sporadically happen when the two mothers are closely related. When the mothers are related by <span class="math inline">\(&gt;0.5\)</span> (closer than regular full siblings, due to inbreeding), such erroneous merging can happen even with large powerful SNP sets.</p>
-<p><strong>Resolution: <em>Probably</em> merge IDs OrangeGreen’ and ‘BlueRed’ </strong></p>
+<code class="sourceCode R"><span><span class="co"># but sibship F0003 is split across two field mothers</span></span></code></pre></div>
+<p>So, the genetic sibship with ‘F0003’ as dummy mother includes
+individuals with two different field-observed mothers, ‘OrangeGreen’ and
+‘BlueRed’. OrangeGreen’s offspring hatched in 2007, and BlueRed’s in
+2008 and 2009. Perhaps this female was not regularly monitored, was not
+recognised at the start of the 2008 breeding season, and got a new
+ID?</p>
+<p>As for the previous case, field records that could disprove this
+theory are census records of BlueRed in or before 2007, or of
+OrangeGreen in or after 2008 (or if they were seen together!). Records
+backing up this theory are notes like ‘this could be…’ or ‘looks similar
+to …’ when BlueRed was first described. This cautionary approach to use
+a new ID is advisable, as it is often much easier to combine the records
+of two IDs later on, than to try to tease apart records under a single
+ID into their respective IDs.</p>
+<p>An alternative explanation is again a pedigree inference error,
+namely that <code>sequoia</code> has erroneously merged two actual
+sibships. This may sporadically happen when the two mothers are closely
+related. When the mothers are related by <span class="math inline">\(&gt;0.5\)</span> (closer than regular full
+siblings, due to inbreeding), such erroneous merging can happen even
+with large powerful SNP sets.</p>
+<p><strong>Resolution: <em>Probably</em> merge IDs OrangeGreen’ and
+‘BlueRed’ </strong></p>
 </div>
-<div id="mismatch-issue3-yellowblue" class="section level3">
-<h3 class="hasAnchor">
-<a href="#mismatch-issue3-yellowblue" class="anchor"></a>Mismatch Issue3: YellowBlue</h3>
+<div class="section level3">
+<h3 id="mismatch-issue3-yellowblue">Mismatch Issue3: YellowBlue<a class="anchor" aria-label="anchor" href="#mismatch-issue3-yellowblue"></a>
+</h3>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># as before</span>
-<span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.1</span> <span class="op">==</span> <span class="st">"YellowBlue"</span><span class="op">)</span>, <span class="op">]</span></code></pre></div>
-<pre><code>##              id      dam.1 dam.2
-## 117 i147_2008_F YellowBlue F0001
-## 125 i159_2008_F YellowBlue F0002</code></pre>
+<code class="sourceCode R"><span><span class="co"># as before</span></span>
+<span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.1</span> <span class="op">==</span> <span class="st">"YellowBlue"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##              id      dam.1 dam.2</span></span>
+<span><span class="co">## 117 i147_2008_F YellowBlue F0001</span></span>
+<span><span class="co">## 125 i159_2008_F YellowBlue F0002</span></span></code></pre>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># something odd going on involving sibships F0001 &amp; F0002</span>
-
-<span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.2</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F0001"</span>, <span class="st">"F0002"</span><span class="op">)</span><span class="op">)</span>, <span class="op">]</span></code></pre></div>
-<pre><code>##              id       dam.1 dam.2
-## 98  i121_2007_M GreenYellow F0001
-## 109 i135_2007_F GreenYellow F0001
-## 115 i144_2008_M GreenYellow F0001
-## 117 i147_2008_F  YellowBlue F0001
-## 118 i148_2008_F GreenYellow F0002
-## 125 i159_2008_F  YellowBlue F0002</code></pre>
+<code class="sourceCode R"><span><span class="co"># something odd going on involving sibships F0001 &amp; F0002</span></span>
+<span></span>
+<span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.2</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"F0001"</span>, <span class="st">"F0002"</span><span class="op">)</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##              id       dam.1 dam.2</span></span>
+<span><span class="co">## 98  i121_2007_M GreenYellow F0001</span></span>
+<span><span class="co">## 109 i135_2007_F GreenYellow F0001</span></span>
+<span><span class="co">## 115 i144_2008_M GreenYellow F0001</span></span>
+<span><span class="co">## 117 i147_2008_F  YellowBlue F0001</span></span>
+<span><span class="co">## 118 i148_2008_F GreenYellow F0002</span></span>
+<span><span class="co">## 125 i159_2008_F  YellowBlue F0002</span></span></code></pre>
 <p>so:</p>
 <ul>
-<li>i147_2008_F has field mum YellowBlue, but its three genetic sibs suggest GreenYellow as mum</li>
-<li>i148_2008_F has field mum GreenYellow, but its genetic sib (i159_2008_F) suggest YellowBlue as mum</li>
+<li>i147_2008_F has field mum YellowBlue, but its three genetic sibs
+suggest GreenYellow as mum</li>
+<li>i148_2008_F has field mum GreenYellow, but its genetic sib
+(i159_2008_F) suggest YellowBlue as mum</li>
 </ul>
-<p>A likely explanation is that the samples of these individuals were accidentally swapped around in the lab during DNA extraction, i.e. that genotype ‘i147_2008_F’ belongs to field id ‘i148_2008_F’, and <em>v.v.</em>. Lab notes might shed light on this theory, e.g. was the DNA extracted in the same batch? Where the samples adjacent on the same 96-well plate?</p>
-<p>An alternative explanation is sloppy handwriting or typing error. Whether in this case genotype ‘i147_2008_F’ belongs to field id ‘i147_2008_FM’ or ‘i148_2008_F’ depends on when this mixup happened, i.e. whether the field data are swapped between the individuals too.</p>
-<p>A pedigree inference error seems unlikely in this particular case – individuals may occasionally get assigned to the wrong sibship, due to genotyping errors, a low call rate sample, or an uncommon draw in the Mendelian inheritance lottery, but it seems highly unlikely that this would result in two individuals swapping place.</p>
-<p><strong>Resolution: Swap IDs ‘i147_2008_F’ and ‘i148_2008_F’ in genetic data <em>(and/or in field data)</em> </strong></p>
+<p>A likely explanation is that the samples of these individuals were
+accidentally swapped around in the lab during DNA extraction, i.e. that
+genotype ‘i147_2008_F’ belongs to field id ‘i148_2008_F’, and
+<em>v.v.</em>. Lab notes might shed light on this theory, e.g. was the
+DNA extracted in the same batch? Where the samples adjacent on the same
+96-well plate?</p>
+<p>An alternative explanation is sloppy handwriting or typing error.
+Whether in this case genotype ‘i147_2008_F’ belongs to field id
+‘i147_2008_FM’ or ‘i148_2008_F’ depends on when this mixup happened,
+i.e. whether the field data are swapped between the individuals too.</p>
+<p>A pedigree inference error seems unlikely in this particular case –
+individuals may occasionally get assigned to the wrong sibship, due to
+genotyping errors, a low call rate sample, or an uncommon draw in the
+Mendelian inheritance lottery, but it seems highly unlikely that this
+would result in two individuals swapping place.</p>
+<p><strong>Resolution: Swap IDs ‘i147_2008_F’ and ‘i148_2008_F’ in
+genetic data <em>(and/or in field data)</em> </strong></p>
 </div>
-<div id="mismatch-issue4-greenyellow" class="section level3">
-<h3 class="hasAnchor">
-<a href="#mismatch-issue4-greenyellow" class="anchor"></a>Mismatch Issue4: GreenYellow</h3>
+<div class="section level3">
+<h3 id="mismatch-issue4-greenyellow">Mismatch Issue4: GreenYellow<a class="anchor" aria-label="anchor" href="#mismatch-issue4-greenyellow"></a>
+</h3>
 <p>This turned out to be the same as Issue3!</p>
 </div>
 </div>
-<div id="pedigree1-only" class="section level2">
-<h2 class="hasAnchor">
-<a href="#pedigree1-only" class="anchor"></a>Pedigree1-only</h2>
-<div id="general" class="section level3">
-<h3 class="hasAnchor">
-<a href="#general" class="anchor"></a>General</h3>
-<p>The second class of discrepancies are individuals who have a parent assigned in Pedigree1 (the field-observation-based pedigree), but not in Pedigree2 (the genetically inferred pedigree), i.e. there is no genetic confirmation of the field parent. It is important here to distinguish between:</p>
+<div class="section level2">
+<h2 id="pedigree1-only">Pedigree1-only<a class="anchor" aria-label="anchor" href="#pedigree1-only"></a>
+</h2>
+<div class="section level3">
+<h3 id="general">General<a class="anchor" aria-label="anchor" href="#general"></a>
+</h3>
+<p>The second class of discrepancies are individuals who have a parent
+assigned in Pedigree1 (the field-observation-based pedigree), but not in
+Pedigree2 (the genetically inferred pedigree), i.e. there is no genetic
+confirmation of the field parent. It is important here to distinguish
+between:</p>
 <ol style="list-style-type: decimal">
-<li>Parent and/or siblings in Pedigree1 are definitely not closely genetically related to the focal individual<br>
+<li>Parent and/or siblings in Pedigree1 are definitely not closely
+genetically related to the focal individual<br>
 </li>
-<li>Parent and/or siblings in Pedigree1 <em>are</em> a genetic match, but not assigned due to
+<li>Parent and/or siblings in Pedigree1 <em>are</em> a genetic match,
+but not assigned due to
 <ul>
-<li>lacking birth year information (who is the parent and who is the offspring?),<br>
+<li>lacking birth year information (who is the parent and who is the
+offspring?),<br>
 </li>
-<li>ambiguity about what kind of second degree relative the sibling in Pedigree 1 is, or<br>
+<li>ambiguity about what kind of second degree relative the sibling in
+Pedigree 1 is, or<br>
 </li>
-<li>the likelihood ratio falling short of the assignment threshold.<br>
+<li>the likelihood ratio falling short of the assignment
+threshold.<br>
 </li>
 </ul>
 </li>
-<li>Parent and siblings are not genotyped, or have such a low call rate that they are automatically excluded; i.e. there is no evidence one way or another.</li>
+<li>Parent and siblings are not genotyped, or have such a low call rate
+that they are automatically excluded; i.e. there is no evidence one way
+or another.</li>
 </ol>
-<p>A range of tools is available to help distinguish between these three alternatives:</p>
+<p>A range of tools is available to help distinguish between these three
+alternatives:</p>
 <ul>
 <li>
-<code><a href="../reference/CalcOHLLR.html">CalcOHLLR()</a></code>: Calculate Mendelian errors and parental LLR for the parents assigned in Pedigree1; any genetic incompatibilities will stand out as outliers (if the SNP panel is powerful enough)<br>
+<code><a href="../reference/CalcOHLLR.html">CalcOHLLR()</a></code>: Calculate Mendelian errors and parental
+LLR for the parents assigned in Pedigree1; any genetic incompatibilities
+will stand out as outliers (if the SNP panel is powerful enough)<br>
 </li>
 <li>
-<code><a href="../reference/getAssignCat.html">getAssignCat()</a></code>: get an (anti-conservative) indication which of the non-genotyped individuals in Pedigree1 could get dummy ID stand-ins during genetic pedigree reconstruction; non-‘dummyfiable’ parents suggest the third alternative and are no reason for worry</li>
+<code><a href="../reference/getAssignCat.html">getAssignCat()</a></code>: get an (anti-conservative) indication
+which of the non-genotyped individuals in Pedigree1 could get dummy ID
+stand-ins during genetic pedigree reconstruction; non-‘dummyfiable’
+parents suggest the third alternative and are no reason for worry</li>
 <li>
-<code><a href="../reference/GetMaybeRel.html">GetMaybeRel()</a></code>: find all pairs of individuals that are likely relatives, but not assigned (2nd alternative)</li>
+<code><a href="../reference/GetMaybeRel.html">GetMaybeRel()</a></code>: find all pairs of individuals that are
+likely relatives, but not assigned (2nd alternative)</li>
 <li>
-<code><a href="../reference/CalcPairLL.html">CalcPairLL()</a></code>: For a batch of pairs, get the likelihoods of them being PO, FS, HS, …; i.e. get the data underlying the parental LLR or the LLR in the <code><a href="../reference/GetMaybeRel.html">GetMaybeRel()</a></code> output.<br>
+<code><a href="../reference/CalcPairLL.html">CalcPairLL()</a></code>: For a batch of pairs, get the likelihoods
+of them being PO, FS, HS, …; i.e. get the data underlying the parental
+LLR or the LLR in the <code><a href="../reference/GetMaybeRel.html">GetMaybeRel()</a></code> output.<br>
 </li>
-<li>Genomic relatedness: especially if there are many more SNPs scored than those used for pedigree reconstruction, the genomic relatedness can provide an additional clue on whether or not two individuals are closely related.</li>
+<li>Genomic relatedness: especially if there are many more SNPs scored
+than those used for pedigree reconstruction, the genomic relatedness can
+provide an additional clue on whether or not two individuals are closely
+related.</li>
 </ul>
 </div>
-<div id="griffins" class="section level3">
-<h3 class="hasAnchor">
-<a href="#griffins" class="anchor"></a>Griffins</h3>
+<div class="section level3">
+<h3 id="griffins">Griffins<a class="anchor" aria-label="anchor" href="#griffins"></a>
+</h3>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">$</span><span class="va">dam.class</span> <span class="op">==</span> <span class="st">"P1only"</span><span class="op">)</span>, 
-              <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"id.r"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span>, <span class="st">"id.dam.cat"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code>##              id        id.r    dam.1 dam.2 id.dam.cat
-## 53  i057_2003_M i057_2003_M GreenRed  &lt;NA&gt;         GX
-## 175        &lt;NA&gt; i053_2003_M GreenRed  &lt;NA&gt;         XX</code></pre>
-<p>The <code>id.dam.cat = 'XX'</code> indicates that neither the focal individual nor their dam in Pedigree1 is genotyped or ‘dummifiable’ (has at the very minimum one genotyped offspring, see <code><a href="../reference/getAssignCat.html">?getAssignCat</a></code>). Thus there is in this case simply no way of genetically testing whether or not these two are indeed maternal siblings, as the field data indicates.</p>
-<p>Genetic data could become available in the future, due to DNA sampling of i053_2003_M’s offspring, or of himself (e.g. post-mortem). This is one of the reasons why it is recommended to rerun pedigree analysis with all individuals when additional individuals have been genotyped.</p>
+<code class="sourceCode R"><span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">$</span><span class="va">dam.class</span> <span class="op">==</span> <span class="st">"P1only"</span><span class="op">)</span>, </span>
+<span>              <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"id.r"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span>, <span class="st">"id.dam.cat"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##              id        id.r    dam.1 dam.2 id.dam.cat</span></span>
+<span><span class="co">## 53  i057_2003_M i057_2003_M GreenRed  &lt;NA&gt;         GX</span></span>
+<span><span class="co">## 174        &lt;NA&gt; i053_2003_M GreenRed  &lt;NA&gt;         XX</span></span></code></pre>
+<p>The <code>id.dam.cat = 'XX'</code> indicates that neither the focal
+individual nor their dam in Pedigree1 is genotyped or ‘dummifiable’ (has
+at the very minimum one genotyped offspring, see
+<code><a href="../reference/getAssignCat.html">?getAssignCat</a></code>). Thus there is in this case simply no way of
+genetically testing whether or not these two are indeed maternal
+siblings, as the field data indicates.</p>
+<p>Genetic data could become available in the future, due to DNA
+sampling of i053_2003_M’s offspring, or of himself (e.g. post-mortem).
+This is one of the reasons why it is recommended to rerun pedigree
+analysis with all individuals when additional individuals have been
+genotyped.</p>
 </div>
 </div>
-<div id="pedigree2-only-newly-assigned-mum" class="section level2">
-<h2 class="hasAnchor">
-<a href="#pedigree2-only-newly-assigned-mum" class="anchor"></a>Pedigree2-only (newly assigned mum)</h2>
-<div id="general-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#general-1" class="anchor"></a>General</h3>
-<p>Analogous to the Pedigree1-only classification, it is here useful to differentiate between</p>
+<div class="section level2">
+<h2 id="pedigree2-only-newly-assigned-mum">Pedigree2-only (newly assigned mum)<a class="anchor" aria-label="anchor" href="#pedigree2-only-newly-assigned-mum"></a>
+</h2>
+<div class="section level3">
+<h3 id="general-1">General<a class="anchor" aria-label="anchor" href="#general-1"></a>
+</h3>
+<p>Analogous to the Pedigree1-only classification, it is here useful to
+differentiate between</p>
 <ol style="list-style-type: decimal">
-<li>The new genetic assignment is impossible or extremely unlikely based on field data
+<li>The new genetic assignment is impossible or extremely unlikely based
+on field data
 <ul>
-<li>The assigned parent died before the birth year of the putative offspring</li>
+<li>The assigned parent died before the birth year of the putative
+offspring</li>
 <li>The putative offspring’s parents are known with great certainty</li>
-<li>The spatial locations of the assigned parent-pair were too far apart around the time of conception for them to have mated</li>
-<li>The putative offspring is a dummy individual, but the assigned mother’s offspring are all accounted for:
+<li>The spatial locations of the assigned parent-pair were too far apart
+around the time of conception for them to have mated</li>
+<li>The putative offspring is a dummy individual, but the assigned
+mother’s offspring are all accounted for:
 <ul>
 <li>SNP genotyped and different ID, or</li>
 <li>different sex, or</li>
@@ -539,65 +705,77 @@ Subsets of Pedigree1 (left) and Pedigree2 (right)
 </li>
 <li>The assignment is quite likely based on field data
 <ul>
-<li>The assigned mother was not seen in the breeding season her new offspring was born (e.g. bred outside the study area)</li>
-<li>The offspring and newly assigned mother are part of the same social group</li>
+<li>The assigned mother was not seen in the breeding season her new
+offspring was born (e.g. bred outside the study area)</li>
+<li>The offspring and newly assigned mother are part of the same social
+group</li>
 </ul>
 </li>
 <li>There is no field data to suggest one way or the other</li>
 </ol>
-<p>When the field data indicate that a newly assigned parent is highly implausible, there are various possible explanations, such as:</p>
+<p>When the field data indicate that a newly assigned parent is highly
+implausible, there are various possible explanations, such as:</p>
 <ul>
 <li>Sample mislabeling (offspring or parent sample)<br>
 </li>
-<li>Parent-offspring pair assigned the wrong way around (i.e. actual offspring assigned as parent), due to missing/incorrect birth years, or as a low-confidence dummy–dummy pedigree link</li>
-<li>A presumed-dead individual emigrated and re-immigrated, or mistaken identity during post-mortem (i.e. incorrect death date).</li>
+<li>Parent-offspring pair assigned the wrong way around (i.e. actual
+offspring assigned as parent), due to missing/incorrect birth years, or
+as a low-confidence dummy–dummy pedigree link</li>
+<li>A presumed-dead individual emigrated and re-immigrated, or mistaken
+identity during post-mortem (i.e. incorrect death date).</li>
 </ul>
 </div>
-<div id="griffins-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#griffins-1" class="anchor"></a>Griffins</h3>
-<p>As example, let’s take the assignment of ‘YellowPink’ (aka F0007) as mother of ‘PinkBlue’ (aka F0006):</p>
+<div class="section level3">
+<h3 id="griffins-1">Griffins<a class="anchor" aria-label="anchor" href="#griffins-1"></a>
+</h3>
+<p>As example, let’s take the assignment of ‘YellowPink’ (aka F0007) as
+mother of ‘PinkBlue’ (aka F0006):</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">DummyIDs</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>,<span class="fl">7</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam"</span>, <span class="st">"BY.est"</span>, <span class="st">"NumOff"</span>, <span class="st">"O1"</span>, <span class="st">"O2"</span>, <span class="st">"O3"</span>, <span class="st">"O4"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code>##        id   dam BY.est NumOff          O1          O2          O3    O4
-## 148 F0006 F0007   2008      3 i165_2009_F i166_2009_F i175_2009_M  &lt;NA&gt;
-## 149 F0007  &lt;NA&gt;   2007      4 i141_2008_M i177_2009_M i179_2009_M F0006</code></pre>
+<code class="sourceCode R"><span><span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">DummyIDs</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>,<span class="fl">7</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam"</span>, <span class="st">"BY.est"</span>, <span class="st">"NumOff"</span>, <span class="st">"O1"</span>, <span class="st">"O2"</span>, <span class="st">"O3"</span>, <span class="st">"O4"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##        id   dam BY.est NumOff          O1          O2          O3    O4</span></span>
+<span><span class="co">## 148 F0006 F0007   2008      3 i165_2009_F i166_2009_F i175_2009_M  &lt;NA&gt;</span></span>
+<span><span class="co">## 149 F0007  &lt;NA&gt;   2007      4 i141_2008_M i177_2009_M i179_2009_M F0006</span></span></code></pre>
 <!--- other example: 140,146,8  -->
-<p>Dummy - dummy pedigree links as these have a higher error rate than genotyped - genotyped pedigree links, especially when the sibships are small, as all genetic information is ‘second hand’. They are therefore worth checking if independent data is available.</p>
-<p>The question here is whether it is plausible that YellowPink had a non-genotyped daughter in 2008 that survived to breeding age. She had one genotyped offspring in 2008 (‘i141_2008_M’), so the nest was monitored that year. Field and lab records will indicate whether there were any additional hatchlings that were not sampled, or not successfully genotyped (+ tag loss of PinkBlue). If YellowPink had only one female, non-genotyped, potentially-surviving offspring that year, then that hatchling’s data can be combined with PinkBlue’s breeding records. If she definitely had no offspring that are unaccounted for, the pedigree is most likely incorrect and the parent-offspring link would best be removed.</p>
+<p>Dummy - dummy pedigree links as these have a higher error rate than
+genotyped - genotyped pedigree links, especially when the sibships are
+small, as all genetic information is ‘second hand’. They are therefore
+worth checking if independent data is available.</p>
+<p>The question here is whether it is plausible that YellowPink had a
+non-genotyped daughter in 2008 that survived to breeding age. She had
+one genotyped offspring in 2008 (‘i141_2008_M’), so the nest was
+monitored that year. Field and lab records will indicate whether there
+were any additional hatchlings that were not sampled, or not
+successfully genotyped (+ tag loss of PinkBlue). If YellowPink had only
+one female, non-genotyped, potentially-surviving offspring that year,
+then that hatchling’s data can be combined with PinkBlue’s breeding
+records. If she definitely had no offspring that are unaccounted for,
+the pedigree is most likely incorrect and the parent-offspring link
+would best be removed.</p>
 </div>
 </div>
-<div class="footnotes">
-<hr>
-<ol>
-<li id="fn1"><p>with animal-friendly spray paint<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
-</div>
-  </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p>Developed by Jisca Huisman.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by Jisca Huisman.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
 
+  
 
   </body>
 </html>

@@ -1,42 +1,48 @@
 template:
-  params:
-    bootswatch: sandstone
+  bootstrap: 5
+  bootswatch: sandstone
   opengraph:
     image:
       src: man/figures/sequoia_hexlogo_s.png
       alt: "sequoia hexlogo"
+    twitter:
+      card: summary_large_image
+      creator: "@HuismanJisca"
+
+url: https://jiscah.github.io/
 
 home:
   title: Pedigrees from SNP data
   description: An R package to reconstruct multi-generational pedigrees, with any proportion of genotyped parents
   links:
   - text: Browse source code
-    href: https://github.com/JiscaH/sequoia
+    href: https://github.com/JiscaH/sequoia/
   - text: Report a bug
-    href: https://github.com/JiscaH/sequoia/issues
+    href: https://github.com/JiscaH/sequoia/issues/
   - text: Download old versions
-    href: https://github.com/JiscaH/sequoia_archives
+    href: https://github.com/JiscaH/sequoia_archives/
   - text: Download non-R version
-    href: https://github.com/JiscaH/sequoia_notR
+    href: https://github.com/JiscaH/sequoia_notR/
 
 navbar:
   title: "sequoia"
+  bg: dark
   left:
     - icon: fas fa-home
       href: ./index.html
     - text: "Get started"
-      href: articles/Get_started.html
+      href: articles/sequoia.html
     - text: "Functions"
       href: reference/index.html
-    - text: "Manuals"
+    - text: "Articles"
       menu:
         - text: "Main vignette: User guide"
           href: articles/vignette_main/book/sec-Background.html
         - text: "Age prior vignette"
           href: articles/vignette_age/book/index.html
-        - text: "Examples"
-          href: articles/index.html
-        - text: "More info on ..."
+        - text: "Mock report"
+          href: articles/sequoia_report.html
+        - text: "Examples & More info on ..."
           href: articles/index.html
     - text: "Change log"
       href: news/index.html
@@ -45,14 +51,17 @@ navbar:
     - text: "Stats"
       href: articles/performance_stats.html
   right:
-    - icon: fab fa-twitter
-      href: https://twitter.com/HuismanJisca
     - icon: fas fa-envelope
       href: mailto:jisca.huisman@gmail.com
     - icon: fab fa-github
       href: https://github.com/JiscaH/sequoia
+    - icon: fab fa-mastodon
+      href: https://ecoevo.social/@HuismanJisca
+    - icon: fab fa-twitter
+      href: https://twitter.com/HuismanJisca
     - icon: fab fa-linkedin-in
       href: https://www.linkedin.com/in/jisca-huisman-a4751153/
+
 
 
 articles:
@@ -63,11 +72,13 @@ articles:
     - quick_start_example2
     - pedcompare_example
 
+
 - title: More info on
   contents:
     - genotyping_errors
     - mendelian_inheritance
     - pairLL_classification
+
 
 
 reference:
@@ -85,7 +96,7 @@ reference:
 - contents:
   - "SimGeno"
   - "MkGenoErrors"
-  - "Inherit"
+  - "Inherit_patterns"
 
 - title: AgePrior
   descr: See [ageprior vignette](../articles/vignette_age/book/index.html) for details
@@ -110,13 +121,15 @@ reference:
 - title: Pedigree check
   descr: These functions can be applied to any pedigree, no genetic data needed
 - contents:
-    - "SummarySeq"
     - "EstConf"
     - "GetRelM"
     - "PlotRelPairs"
+    - "SummarySeq"
+    - 'PlotSeqSum'
     - "getAssignCat"
     - "getGenerations"
     - "CalcRped"
+    - 'sequoia_report'
 
 - subtitle: Compare 2 pedigrees
 - contents:
@@ -141,7 +154,12 @@ reference:
     - "Ped_HSg5"
     - "LH_HSg5"
     - "SimGeno_example"
+    - 'Geno_HSg5'
+    - 'SeqOUT_HSg5'
     - "Ped_griffin"
     - "LH_griffin"
-    - "SeqOUT_griffin"
     - "FieldMums_griffin"
+    - 'Geno_griffin'
+    - "SeqOUT_griffin"
+    - 'Conf_griffin'
+    - 'MaybeRel_griffin'
