@@ -1,5 +1,5 @@
 
-# sequoia 2.4
+# sequoia 2.4.1
 
 ### New features & major changes
 - R markdown file to create (or serve as a first draft of) a summary report of input and output, called via `sequoia_report()`
