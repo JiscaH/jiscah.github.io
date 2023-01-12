@@ -40,11 +40,19 @@ if (!all(params$output_sequoia %in% c('NA', NA))) {
 Maybe <- params$output_GetMaybeRel
 ```
 
+
+------------------------------------------------------------------------
+
+*This report was created with `sequoia_report()`, which uses 
+the various griffin example files included with the package 
+when no input is specified.* 
+
+
 ------------------------------------------------------------------------
 
 This pedigree was reconstructed using the R package `sequoia`.
 
-This package reconstructs the pedigree in two steps: first genotyped parents are
+The R package `sequoia` reconstructs the pedigree in two steps: first genotyped parents are
 assigned to genotyped offspring ('parentage assignment'), followed by clustering
 of siblings sharing a non-genotyped parent and assignment of grandparents ('full
 pedigree reconstruction').
