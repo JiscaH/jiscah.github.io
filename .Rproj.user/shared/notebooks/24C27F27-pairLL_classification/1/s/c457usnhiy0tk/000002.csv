@@ -1,5 +1,0 @@
-"0","somePairs.LL$LLR.FS.HS <- with(somePairs.LL, ifelse(FS < 0 & HS < 0, FS - HS, NA))"
-"0","somePairs.LL$LLR.HS.U <- with(somePairs.LL, ifelse(HS < 0, HS - U, NA))"
-"0","somePairs.LL$LLR.HS.HA <- with(somePairs.LL, ifelse(HS < 0 & HA < 0, HS - HA, NA))"
-"0",""
-"0","somePairs.LL[, c(""ID1"", ""ID2"", ""FS"", ""HS"", ""HA"", ""U"", ""LLR.FS.HS"", ""LLR.HS.U"", ""LLR.HS.HA"")]"

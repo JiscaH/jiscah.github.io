@@ -1,7 +1,0 @@
-"0","# bla <- CPX[[""pl""]]"
-"0","# # U | FS, average across all NR"
-"0","# mean(bla[,""noped"",""FS"",""U""] / apply(bla[,""noped"",""FS"",], 1, sum))  # 0.00182"
-"0","# mean(bla[,""MR"",""FS"",""U""] / apply(bla[,""MR"",""FS"",], 1, sum))        # 0.000166"
-"0",""
-"0","# mean(bla[,""noped"",""FS"",""HS""] / apply(bla[,""noped"",""FS"",], 1, sum))   # 0.02276"
-"0",""

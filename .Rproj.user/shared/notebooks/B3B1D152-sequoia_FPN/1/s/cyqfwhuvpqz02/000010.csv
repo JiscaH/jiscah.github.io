@@ -1,4 +1,0 @@
-"0",""
-"0","plot(1,1, type=""n"", xlim=c(0,0.52), ylim=c(0.85,1),"
-"0","     las=1, xlab=""Proportion at harvest"","
-"0","     ylab=""P(>0 in sample)"", main=""Zoomed in view"")"

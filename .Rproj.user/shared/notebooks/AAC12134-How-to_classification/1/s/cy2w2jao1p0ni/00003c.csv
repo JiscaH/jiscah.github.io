@@ -1,3 +1,0 @@
-"0","for (x in c(""FS"", ""HS"", ""U"")) {"
-"0","  plot(HistList_FSU_ped[[x]], col=l(COL[x]), border=NA, add=TRUE)"
-"0","}"

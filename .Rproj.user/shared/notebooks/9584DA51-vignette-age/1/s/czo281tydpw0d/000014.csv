@@ -1,8 +1,0 @@
-"0","Glossary <- matrix(c(""$BY_i$"", ""Birth year"", ""Time unit (year, decade, month) of $i$'s birth/ hatching"","
-"0","         ""$A_{i,j}$"", ""Age difference"",  ""$BY_i - BY_j$, i.e. if $j$ is older than $i$, than $A_{i,j}$ is positive"","
-"0","         ""$R_{i,j}$"", ""Relationship"", ""Relationship between $i$ and $j$, e.g. parent-offspring"","
-"0","         ""$\\alpha_{A,R}$"", ""Ageprior"", ""Probability ratio of relationship $R$ given $A$, versus $R$ for a random pair""),"
-"0","       ncol=3, byrow=TRUE)"
-"0",""
-"0","knitr::kable(Glossary, col.names = c(""Symbol"", ""Term"", ""Definition""),"
-"0","            caption=""Terms and abbreviations"", escape=FALSE, booktabs=TRUE)"

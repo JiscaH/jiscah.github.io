@@ -1,5 +1,0 @@
-"0","library(knitr)"
-"0","library(sequoia)"
-"0","knitr::opts_chunk$set(echo = TRUE, "
-"0","                      fig.height=4, fig.width=6, "
-"0","                      fig.pos=""ht!"")"

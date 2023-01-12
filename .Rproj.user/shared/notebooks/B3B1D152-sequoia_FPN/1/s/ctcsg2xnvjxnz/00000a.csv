@@ -1,6 +1,0 @@
-"0",""
-"0",""
-"0","# zoom bottom"
-"0","plot(1,1, type=""n"", xlim=c(0,1), ylim=c(0, 100),"
-"0","     las=1, xlab=""Proportion at harvest"","
-"0","     ylab=""Required N"", main=""Zoom bottom"")"

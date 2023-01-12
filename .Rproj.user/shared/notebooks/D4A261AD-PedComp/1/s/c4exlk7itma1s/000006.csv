@@ -1,4 +1,0 @@
-"0","# no."
-"0",""
-"0","# does i081_2005_F have any other genetic offspring?"
-"0","PedM[which(PedM$dam.2 == ""i081_2005_F""), ]"

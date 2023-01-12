@@ -1,4 +1,0 @@
-"0","# something odd going on involving sibships F0001 & F0002"
-"0",""
-"0","chk <- PedM[which(PedM$dam.2 %in% c(""F0001"", ""F0002"")), ]"
-"0","chk[order(chk$dam.2), ]"

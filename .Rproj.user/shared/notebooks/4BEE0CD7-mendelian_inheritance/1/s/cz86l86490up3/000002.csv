@@ -1,8 +1,0 @@
-"0","# parentage assignment using sequoia"
-"0","data(LH_griffin, package=""sequoia"")  # sex + birth year information"
-"0",""
-"0","SeqPAR.lowQ <- sequoia::sequoia(Geno.lowQ, LifeHistData=LH_griffin, "
-"0","                               Err=0.01, Module=""par"", "
-"0","                               quiet=TRUE, Plot=FALSE)"
-"0",""
-"0","SeqPAR.lowQ$Specs[c(""MaxMismatchOH"", ""MaxMismatchME"")]"

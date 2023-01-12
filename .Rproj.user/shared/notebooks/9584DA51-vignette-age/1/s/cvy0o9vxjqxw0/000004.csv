@@ -1,5 +1,0 @@
-"0","# running sequoia to also get the extra ageprior columns: "
-"0","Seq_HSg5 <- sequoia(SimGeno_example, LH_HSg5, Module=""par"","
-"0","                    args.AP=list(Discrete = TRUE),"
-"0","                    CalcLLR=FALSE, Plot=FALSE, quiet=TRUE)"
-"0","PlotAgePrior(Seq_HSg5$AgePriorExtra) "

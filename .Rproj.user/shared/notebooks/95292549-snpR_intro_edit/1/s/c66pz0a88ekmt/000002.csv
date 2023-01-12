@@ -1,1 +1,0 @@
-"0","print(head(stickFORMATs$NN)[,1:6], row.names = F)"

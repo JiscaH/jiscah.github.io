@@ -1,4 +1,0 @@
-"0","SeqOUT <- sequoia(Geno.2001, LifeHistData = LHX,"
-"0","                  Err = 0.005, Tassign = 1.0,  "
-"0","                  Complex = ""simp"", Module=""ped"", "
-"0","                  Plot=FALSE, quiet=TRUE)"

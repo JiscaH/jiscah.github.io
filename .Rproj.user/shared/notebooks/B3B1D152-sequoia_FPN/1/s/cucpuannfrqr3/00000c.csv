@@ -1,2 +1,0 @@
-"0","# plot.FPN(aperm(CPX[[""pl""]], perm=c(""M"", ""NR"", ""Ped1"", ""Ped2"")), COL=COL[[""pl""]],"
-"0","#          YMAX=c(FN=0.25, FP=0.15), New=FALSE, LBL = c(FN=""C"", FP=""D""), main=""PairLL()"")"

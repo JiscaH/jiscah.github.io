@@ -1,4 +1,0 @@
-"0","# known relationships:"
-"0","for (x in c(""FS"", ""HS"", ""U"")) {"
-"0","  plot(HistL_FSU[[x]], col=l(COL[x]), border=NA, add=TRUE)"
-"0","}"

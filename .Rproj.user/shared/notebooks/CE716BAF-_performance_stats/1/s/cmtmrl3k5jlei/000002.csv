@@ -1,8 +1,0 @@
-"0","PlotSpecs <- data.frame(pedigree = ""HSg5"","
-"0","                        Err = c(""1e-4"", ""1e-4"", ""1e-3""),"
-"0","                        Complx = c(""full"", ""simp"", ""full""),"
-"0","                        Tassign = 0.5,"
-"0","                        Discrete = FALSE,"
-"0","                        UseAge = ""yes"")"
-"0","ccat <- ""TT""   # use 'GD' for ped_FS; singletons are not assignable"
-"0","COL <- setNames(hcl.colors(n=length(Version)+1, palette=""inferno"")[seq_along(Version)], rev(Version))                        "

@@ -1,5 +1,0 @@
-"0","# calculate LR(FS/U) and LR(HS/U)"
-"0","for (x in c(""FS"", ""HS"", ""U"", ""Unk"")) {"
-"0","  PairsList.LL.ped[[x]]$FS_U <- with(PairsList.LL.ped[[x]], ifelse(FS < 0, FS - U, NA))"
-"0","  PairsList.LL.ped[[x]]$HS_U <- with(PairsList.LL.ped[[x]], ifelse(HS < 0, HS - U, NA))"
-"0","}"
