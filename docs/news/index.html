@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,10 +93,51 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.5.3" id="sequoia-253">sequoia 2.5.3<a class="anchor" aria-label="anchor" href="#sequoia-253"></a></h2><p class="text-muted">CRAN release: 2023-03-21</p>
+<ul><li>fixes CRAN error ‘DLL requires the use of native symbols’</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.5.1" id="sequoia-251">sequoia 2.5.1<a class="anchor" aria-label="anchor" href="#sequoia-251"></a></h2>
+<div class="section level4">
+<h4 id="bug-fixes--minor-changes-2-5-1">Bug fixes &amp; minor changes<a class="anchor" aria-label="anchor" href="#bug-fixes--minor-changes-2-5-1"></a></h4>
+<ul><li>fix error ‘sibship number out of bounds’</li>
+<li>fix error when <code>LifeHistData$Sex</code> includes <code>NA</code>
+</li>
+<li>fix several minor bugs affecting rare cases</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.5.0" id="sequoia-250">sequoia 2.5.0<a class="anchor" aria-label="anchor" href="#sequoia-250"></a></h2>
+<div class="section level4">
+<h4 id="new-features--major-changes-2-5-0">New features &amp; major changes<a class="anchor" aria-label="anchor" href="#new-features--major-changes-2-5-0"></a></h4>
+<ul><li>improved performance when a large proportion of birth years is not exactly known</li>
+<li>optional column <code>Year.last</code> added to <code>LifeHistData</code> (last possible offspring birth year)</li>
+<li>New functions <code>GetAncestors</code> and <code>GetDescendants</code>
+</li>
+</ul></div>
+<div class="section level4">
+<h4 id="bug-fixes--minor-changes-2-5-0">Bug fixes &amp; minor changes<a class="anchor" aria-label="anchor" href="#bug-fixes--minor-changes-2-5-0"></a></h4>
+<ul><li>New parameter <code>MinAgeParent</code> for <code><a href="../reference/MakeAgePrior.html">MakeAgePrior()</a></code>
+</li>
+<li>New parameter <code>StrictGenoCheck</code>, <code>Strict</code> for <code><a href="../reference/CheckGeno.html">CheckGeno()</a></code> ; update msgs</li>
+<li>update <code>CheckLH</code>, now flexible column order in LifeHistData.</li>
+<li>changed maxmismatch from <code>qntl = 0.999^(1/nrow(GenoM))</code> to <code>0.9999^(1/nrow(GenoM))</code> in all functions calling <code>CalcMaxMismatch</code>
+</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.4.2" id="sequoia-242">sequoia 2.4.2<a class="anchor" aria-label="anchor" href="#sequoia-242"></a></h2>
+<div class="section level4">
+<h4 id="bug-fixes--minor-changes-2-4-2">Bug fixes &amp; minor changes<a class="anchor" aria-label="anchor" href="#bug-fixes--minor-changes-2-4-2"></a></h4>
+<ul><li>checks up to 6 generations back when making assignment to avoid individual being its own ancestor (was 5)</li>
+<li>fix bug in <code><a href="../reference/SnpStats.html">SnpStats()</a></code> when AF=0 or SNP is missing for all individuals.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.1" id="sequoia-241">sequoia 2.4.1<a class="anchor" aria-label="anchor" href="#sequoia-241"></a></h2><p class="text-muted">CRAN release: 2023-01-08</p>
 <div class="section level4">
 <h4 id="new-features--major-changes-2-4-1">New features &amp; major changes<a class="anchor" aria-label="anchor" href="#new-features--major-changes-2-4-1"></a></h4>
-<ul><li>R markdown file to create (or serve as a first draft of) a summary report of input and output, called via <code><a href="../reference/sequoia_report.html">sequoia_report()</a></code>
+<ul><li>R markdown file to create (or serve as a first draft of) a summary report of input and output, called via <code>sequoia_report()</code>
 </li>
 <li>
 <code><a href="../reference/PedCompare.html">PedCompare()</a></code> parameter <code>minSibSize</code> (minimum sibship size for which the non-genotyped parent is considered ‘dummyfiable’) changed default value from <code>2sib</code> (2 genotyped siblings) to <code>1sib1GP</code>. This reflects the increased success of reconstructing grandoffspring-grandparent pairs in newest version, which make the output of <code>PedCompare(,minSibSize='2sib')</code> confusing. This also affects <code><a href="../reference/EstConf.html">EstConf()</a></code>.</li>

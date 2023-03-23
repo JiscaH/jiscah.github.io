@@ -12,7 +12,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,10 +107,8 @@
 <span>  LifeHistData <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  SeqList <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  Module <span class="op">=</span> <span class="st">"ped"</span>,</span>
-<span>  MaxSibIter <span class="op">=</span> <span class="fl">42</span>,</span>
 <span>  Err <span class="op">=</span> <span class="fl">1e-04</span>,</span>
 <span>  ErrFlavour <span class="op">=</span> <span class="st">"version2.0"</span>,</span>
-<span>  MaxMismatch <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  Tfilter <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>,</span>
 <span>  Tassign <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  MaxSibshipSize <span class="op">=</span> <span class="fl">100</span>,</span>
@@ -119,10 +117,13 @@
 <span>  Herm <span class="op">=</span> <span class="st">"no"</span>,</span>
 <span>  UseAge <span class="op">=</span> <span class="st">"yes"</span>,</span>
 <span>  args.AP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Flatten <span class="op">=</span> <span class="cn">NULL</span>, Smooth <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>  FindMaybeRel <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  CalcLLR <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  Plot <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  Plot <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  StrictGenoCheck <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  MaxSibIter <span class="op">=</span> <span class="fl">42</span>,</span>
+<span>  MaxMismatch <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  FindMaybeRel <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -135,7 +136,7 @@ one column per SNP, coded as 0, 1, 2 or -9 (missing). See also
 
 
 <dt>LifeHistData</dt>
-<dd><p>dataframe with 3 columns (optionally 5):</p><dl><dt>ID</dt>
+<dd><p>data.frame with up to 6 columns:</p><dl><dt>ID</dt>
 <dd><p>max. 30 characters long</p></dd>
 
  <dt>Sex</dt>
@@ -144,20 +145,24 @@ one column per SNP, coded as 0, 1, 2 or -9 (missing). See also
 
 <dt>BirthYear </dt>
 <dd><p>birth or hatching year, integer, with missing values as NA
-  or any negative value.</p></dd>
+  or any negative number.</p></dd>
 
 <dt>BY.min</dt>
 <dd><p>minimum birth year, only used if BirthYear is missing</p></dd>
 
 <dt>BY.max</dt>
 <dd><p>maximum birth year, only used if BirthYear is missing</p></dd>
+
+<dt>Year.last</dt>
+<dd><p>Last year in which individual could have had offspring. Can
+  e.g. in mammals be the year before death for females, and year after death
+  for males.</p></dd>
  
-</dl><p>If the species has multiple generations per year, use an integer coding such
-that the candidate parents' `Birth year' is at least one smaller than their
-putative offspring's. Column names are ignored, so ensure column order is ID
-- sex - birth year (- BY.min - BY.max). Individuals do not need to be in the
-same order as in `GenoM', nor do all genotyped individuals need to be
-included.</p></dd>
+</dl><p>"Birth year" may be in any arbitrary discrete time unit relevant to the
+species (day, month, decade), as long as parents are never born in the same
+time unit as their offspring, and only integers are used. Individuals do not
+need to be in the same order as in `GenoM', nor do all genotyped individuals
+need to be included.</p></dd>
 
 
 <dt>SeqList</dt>
@@ -192,14 +197,6 @@ from the default (<code>42</code>), and `Module` equals the default
 (<code>'ped'</code>), MaxSibIter overrides `Module`.</em></p></dd>
 
 
-<dt>MaxSibIter</dt>
-<dd><p><strong>[will be deprecated]</strong> number of iterations of
-sibship clustering, including assignment of grandparents to sibships and
-avuncular relationships between sibships. Clustering continues until
-convergence or until MaxSibIter is reached. Set to 0 for parentage
-assignment only.</p></dd>
-
-
 <dt>Err</dt>
 <dd><p>estimated genotyping error rate, as a single number or 3x3 matrix.
 Details below. The error rate is presumed constant across SNPs, and
@@ -213,11 +210,6 @@ and returns a 3x3 matrix of observed (columns) conditional on actual (rows)
 genotypes, or choose from inbuilt options 'version2.0', 'version1.3', or
 'version1.1', referring to the sequoia version in which they were the
 default. Ignored if <code>Err</code> is a matrix. See <code><a href="ErrToM.html">ErrToM</a></code>.</p></dd>
-
-
-<dt>MaxMismatch</dt>
-<dd><p><strong>DEPRECATED AND IGNORED</strong>. Now calculated
-automatically using <code><a href="CalcMaxMismatch.html">CalcMaxMismatch</a></code>.</p></dd>
 
 
 <dt>Tfilter</dt>
@@ -259,19 +251,16 @@ selfing.</p></dd>
 
 
 <dt>UseAge</dt>
-<dd><p>either "yes" (default), "no", or "extra" (additional rounds
-with extra reliance on ageprior, may boost assignments but increased risk
-of erroneous assignments); used during full reconstruction only.</p></dd>
+<dd><p>either "yes" (default), "no" (only use age differences for
+filtering), or "extra" (additional rounds with extra reliance on ageprior,
+may boost assignments but increased risk of erroneous assignments). Used
+during full reconstruction only.</p></dd>
 
 
 <dt>args.AP</dt>
 <dd><p>list with arguments to be passed on to
-<code><a href="MakeAgePrior.html">MakeAgePrior</a></code>.</p></dd>
-
-
-<dt>FindMaybeRel</dt>
-<dd><p><strong>DEPRECATED AND IGNORED</strong>, advised to run
-<code><a href="GetMaybeRel.html">GetMaybeRel</a></code> separately.</p></dd>
+<code><a href="MakeAgePrior.html">MakeAgePrior</a></code>, e.g. `Discrete` (non-overlapping generations),
+`MinAgeParent`, `MaxAgeParent`.</p></dd>
 
 
 <dt>CalcLLR</dt>
@@ -291,6 +280,32 @@ and <code><a href="SummarySeq.html">SummarySeq</a></code>. Defaults (NULL) to TR
 large', enlarge the plotting area (drag with mouse). Error 'invalid
 graphics state' can be dealt with by clearing the plotting area with
 dev.off().</p></dd>
+
+
+<dt>StrictGenoCheck</dt>
+<dd><p>Automatically exclude any individuals genotyped for
+&lt;5<!-- % of SNPs, and any SNPs genotyped for &lt;5% of individuals (TRUE); this was -->
+the unavoidable default up to version 2.4.1. Otherwise only excluded are
+(very nearly) monomorphic SNPs, SNPs scored for fewer than 2 individuals,
+and individuals scored for fewer than 2 SNPs.</p></dd>
+
+
+<dt>MaxSibIter</dt>
+<dd><p><strong>will be DEPRECATED, use <code>Module</code></strong> number of
+iterations of sibship clustering, including assignment of grandparents to
+sibships and avuncular relationships between sibships. Clustering continues
+until convergence or until MaxSibIter is reached. Set to 0 for parentage
+assignment only.</p></dd>
+
+
+<dt>MaxMismatch</dt>
+<dd><p><strong>DEPRECATED AND IGNORED</strong>. Now calculated
+automatically using <code><a href="CalcMaxMismatch.html">CalcMaxMismatch</a></code>.</p></dd>
+
+
+<dt>FindMaybeRel</dt>
+<dd><p><strong>DEPRECATED AND IGNORED</strong>, advised to run
+<code><a href="GetMaybeRel.html">GetMaybeRel</a></code> separately.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -496,7 +511,6 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <li><p><code><a href="GetMaybeRel.html">GetMaybeRel</a></code> to find pairs of potential relatives,</p></li>
 <li><p><code><a href="SummarySeq.html">SummarySeq</a></code> and <code><a href="PlotAgePrior.html">PlotAgePrior</a></code> to visualise
   results,</p></li>
-<li><p><code><a href="sequoia_report.html">sequoia_report</a></code> for a summary report of input + results,</p></li>
 <li><p><code><a href="GetRelM.html">GetRelM</a></code> to turn a pedigree into pairwise relationships,</p></li>
 <li><p><code><a href="CalcOHLLR.html">CalcOHLLR</a></code> to calculate Mendelian errors and LLR for any
    pedigree,</p></li>
@@ -552,7 +566,7 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimating birth years ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Calculating parental LLR ...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> assigned 130 dams and 167 sires to 214 individuals</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Possibly not all parents were assigned, consider running GetMaybeRel() to check</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Possibly not all parents were assigned, consider running GetMaybeRel() conditional on this pedigree to check</span>
 <span class="r-plt img"><img src="sequoia-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">SeqOUT</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Specs"         "ErrM"          "args.AP"       "AgePriors"    </span>
@@ -624,18 +638,18 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 151</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Clustering ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.23158e+04  2.34375e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.8      0.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Merge clusters ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.23158e+04  1.56250e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.03</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sibship parent replacement...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.23158e+04  1.56250e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Parents &amp; grow clusters...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.7955      0.1875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.8      0.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Round 01 end, Total LogLik; time (sec):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.79551      0.71875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.75</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No. dams, sires for real indiv.:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 182 182</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No. dummies:</span>
@@ -648,21 +662,21 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Clustering ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.23158e+04  1.56250e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.03</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Merge clusters ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.23158e+04  1.56250e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sibship parent replacement...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.79551      0.03125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.03</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sibship grandparents ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.23158e+04  1.56250e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Parents &amp; grow clusters...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.79551      0.03125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.03</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Round 02 end, Total LogLik; time (sec):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.79551      0.15625</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.17</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No. dams, sires for real indiv.:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 182 182</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No. dummies:</span>
@@ -675,24 +689,24 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Clustering ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.23158e+04  1.56250e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.03</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Grandparent - grandoffspring pairs ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.79551      0.03125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Merge clusters ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.23158e+04  1.56250e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sibship parent replacement...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.23158e+04  1.56250e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.03</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sibship grandparents ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.79551      0.03125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Parents &amp; grow clusters...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.23158e+04  1.56250e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.03</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Round 03 end, Total LogLik; time (sec):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.23158e+04  1.71875e-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.17</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No. dams, sires for real indiv.:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 182 182</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No. dummies:</span>
@@ -702,7 +716,7 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Calculating parental LLR ...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> assigned 182 dams and 182 sires to 214 + 8 individuals (real + dummy)</span>
 <span class="r-plt img"><img src="sequoia-6.png" alt="" width="700" height="433"></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Possibly not all relatives were assigned, consider running GetMaybeRel() to check</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Possibly not all relatives were assigned, consider running GetMaybeRel() conditional on this pedigree to check</span>
 <span class="r-plt img"><img src="sequoia-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">SeqOUT2</span><span class="op">$</span><span class="va">Pedigree</span><span class="op">[</span><span class="fl">34</span><span class="op">:</span><span class="fl">42</span>, <span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        id    dam   sire LLRdam LLRsire LLRpair OHdam OHsire MEpair</span>
@@ -713,8 +727,8 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 38 b01006 a00013 b00001   3.82    6.66    7.83     1      0      1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 39 b01007 a00013 b00001   3.63    5.30    6.58     1      0      2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 40 a01008 a00013 b00001   3.65    5.13    8.06     2      0      2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41 b01009 a00008 b00016   4.66    4.10    6.54     1      0      2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42 a01010 a00008 b00016   5.85    4.99    7.66     0      0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41 b01009 a00008 b00016   3.69    4.10    6.54     1      0      2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42 a01010 a00008 b00016   5.73    4.99    7.66     0      0      1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">PC2</span> <span class="op">&lt;-</span> <span class="fu"><a href="PedCompare.html">PedCompare</a></span><span class="op">(</span><span class="va">Ped_HSg5</span>, <span class="va">SeqOUT2</span><span class="op">$</span><span class="va">Pedigree</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="sequoia-8.png" alt="" width="700" height="433"></span>
@@ -770,40 +784,40 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Initial total LL :</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -18301.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Post-parentage total LL :</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13816.08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13732.71</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimating birth years ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Calculating parental LLR ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> assigned 122 dams and 159 sires to 214 individuals</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> assigned 125 dams and 162 sires to 214 individuals</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Flat 0/1, discrete generations, MaxAgeParent = 1,1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ~~~ Full pedigree reconstruction ~~~</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sibships - Initial Total LL :</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13816.08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13732.71</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Round 01 end, Total LogLik; time (sec):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12605.70858      1.21875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12499.10      0.89</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No. dams, sires for real indiv.:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 179 180</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 180 181</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Round 02 end, Total LogLik; time (sec):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12605.7086      0.1875</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12499.10      0.17</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No. dams, sires for real indiv.:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 179 180</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 180 181</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Round 03 end, Total LogLik; time (sec):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12605.708581      0.203125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12499.1      0.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No. dams, sires for real indiv.:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 179 180</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 180 181</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Estimating birth years ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Calculating parental LLR ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> assigned 179 dams and 180 sires to 214 + 12 individuals (real + dummy)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Possibly not all relatives were assigned, consider running GetMaybeRel() to check</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> assigned 180 dams and 181 sires to 214 + 9 individuals (real + dummy)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Possibly not all relatives were assigned, consider running GetMaybeRel() conditional on this pedigree to check</span>
 <span class="r-in"><span><span class="va">PC2.b</span> <span class="op">&lt;-</span> <span class="fu"><a href="PedCompare.html">PedCompare</a></span><span class="op">(</span><span class="va">Ped_HSg5</span>, <span class="va">SeqOUT2.b</span><span class="op">$</span><span class="va">Pedigree</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="sequoia-14.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">PC2.b</span><span class="op">$</span><span class="va">Counts</span><span class="op">[</span><span class="st">"GT"</span>,,<span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           parent</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class      dam sire</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Total    182  182</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Match    173  176</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Mismatch   6    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   P1only     3    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Match    178  181</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Mismatch   2    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P1only     2    1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   P2only     0    0</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
@@ -823,7 +837,9 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-in"><span><span class="va">SeqOUT</span> <span class="op">&lt;-</span> <span class="fu">sequoia</span><span class="op">(</span><span class="va">GenoM</span>, <span class="va">LHdata</span>, Err<span class="op">=</span><span class="fl">0.005</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="SummarySeq.html">SummarySeq</a></span><span class="op">(</span><span class="va">SeqOUT</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="writeSeq.html">writeSeq</a></span><span class="op">(</span><span class="va">SeqOUT</span>, folder<span class="op">=</span><span class="st">"sequoia_output"</span><span class="op">)</span>  <span class="co"># several text files</span></span></span>
+<span class="r-in"><span><span class="va">SeqOUT</span><span class="op">$</span><span class="va">notes</span> <span class="op">&lt;-</span> <span class="st">"Trial run on cleaned data"</span>  <span class="co"># add notes for future reference</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">SeqOUT</span>, file<span class="op">=</span><span class="st">"sequoia_output_42.RDS"</span><span class="op">)</span>  <span class="co"># save to R-specific file</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="writeSeq.html">writeSeq</a></span><span class="op">(</span><span class="va">SeqOUT</span>, folder<span class="op">=</span><span class="st">"sequoia_output"</span><span class="op">)</span>  <span class="co"># save to several plain text files</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># runtime:</span></span></span>
 <span class="r-in"><span><span class="va">SeqOUT</span><span class="op">$</span><span class="va">Specs</span><span class="op">$</span><span class="va">TimeEnd</span> <span class="op">-</span> <span class="va">SeqOUT</span><span class="op">$</span><span class="va">Specs</span><span class="op">$</span><span class="va">TimeStart</span></span></span>

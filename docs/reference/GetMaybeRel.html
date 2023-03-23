@@ -12,7 +12,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -148,7 +148,7 @@ precedent (for this function only).</p></dd>
 
 
 <dt>LifeHistData</dt>
-<dd><p>dataframe with 3 columns (optionally 5):</p><dl><dt>ID</dt>
+<dd><p>data.frame with up to 6 columns:</p><dl><dt>ID</dt>
 <dd><p>max. 30 characters long</p></dd>
 
  <dt>Sex</dt>
@@ -157,20 +157,24 @@ precedent (for this function only).</p></dd>
 
 <dt>BirthYear </dt>
 <dd><p>birth or hatching year, integer, with missing values as NA
-  or any negative value.</p></dd>
+  or any negative number.</p></dd>
 
 <dt>BY.min</dt>
 <dd><p>minimum birth year, only used if BirthYear is missing</p></dd>
 
 <dt>BY.max</dt>
 <dd><p>maximum birth year, only used if BirthYear is missing</p></dd>
+
+<dt>Year.last</dt>
+<dd><p>Last year in which individual could have had offspring. Can
+  e.g. in mammals be the year before death for females, and year after death
+  for males.</p></dd>
  
-</dl><p>If the species has multiple generations per year, use an integer coding such
-that the candidate parents' `Birth year' is at least one smaller than their
-putative offspring's. Column names are ignored, so ensure column order is ID
-- sex - birth year (- BY.min - BY.max). Individuals do not need to be in the
-same order as in `GenoM', nor do all genotyped individuals need to be
-included.</p></dd>
+</dl><p>"Birth year" may be in any arbitrary discrete time unit relevant to the
+species (day, month, decade), as long as parents are never born in the same
+time unit as their offspring, and only integers are used. Individuals do not
+need to be in the same order as in `GenoM', nor do all genotyped individuals
+need to be included.</p></dd>
 
 
 <dt>AgePrior</dt>
@@ -385,22 +389,22 @@ likely relationship category:</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Pedigree-based, overlapping generations, smoothed, MaxAgeParent = 5,5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Counting opposing homozygous loci between all individuals ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Checking for non-assigned relatives ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Found 0 likely parent-offspring pairs, and 66 other non-assigned pairs of possible relatives</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Found 0 likely parent-offspring pairs, and 130 other non-assigned pairs of possible relatives</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Maybe</span><span class="op">$</span><span class="va">MaybeRel</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           ID1         ID2 TopRel  LLR OH BirthYear1 BirthYear2 AgeDif Sex1 Sex2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 i081_2005_F i083_2005_M     FS 5.42  3       2005       2005      0    1    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 i165_2009_F i175_2009_M     FS 5.34  3       2009       2009      0    1    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 i131_2007_F i133_2007_F     FS 5.09  3       2007       2007      0    1    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 i160_2008_F i130_2007_F     FS 2.25  3       2008       2007      1    1    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 i066_2004_M i068_2004_F     HS 5.89  3       2004       2004      0    2    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 i103_2006_M i119_2006_M     HS 3.09  3       2006       2006      0    2    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   SNPdBoth</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           ID1         ID2 TopRel   LLR OH BirthYear1 BirthYear2 AgeDif Sex1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 i081_2005_F i083_2005_M     FS  5.42  3       2005       2005      0    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 i165_2009_F i175_2009_M     FS  5.34  3       2009       2009      0    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 i131_2007_F i133_2007_F     FS  5.09  3       2007       2007      0    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 i160_2008_F i130_2007_F     FS  2.25  3       2008       2007      1    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 i158_2008_M i133_2007_F     HS 17.36  3       2008       2007      1    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 i158_2008_M i130_2007_F     HS 16.15  3       2008       2007      1    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Sex2 SNPdBoth</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    2      392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    2      392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    1      392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    1      392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    1      392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    1      392</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># visualise results, turn dataframe into matrix first:</span></span></span>
 <span class="r-in"><span><span class="va">MaybeM</span> <span class="op">&lt;-</span> <span class="fu"><a href="GetRelM.html">GetRelM</a></span><span class="op">(</span>Pairs <span class="op">=</span> <span class="va">Maybe</span><span class="op">$</span><span class="va">MaybeRel</span><span class="op">)</span></span></span>

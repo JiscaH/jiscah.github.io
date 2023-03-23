@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -515,7 +515,7 @@ individuals will be homozygous for the common allele.&lt;/p&gt;"><sup>4</sup></a
 <span></span>
 <span><span class="va">SeqPAR.lowQ</span><span class="op">$</span><span class="va">Specs</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MaxMismatchOH"</span>, <span class="st">"MaxMismatchME"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##       MaxMismatchOH MaxMismatchME</span></span>
-<span><span class="co">## Specs             4             7</span></span></code></pre>
+<span><span class="co">## Specs             5             8</span></span></code></pre>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># check reconstructed pedigree</span></span>
 <span><span class="va">PC.lowQ</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/PedCompare.html">PedCompare</a></span><span class="op">(</span><span class="va">Ped_griffin</span>, <span class="va">SeqPAR.lowQ</span><span class="op">$</span><span class="va">PedigreePar</span>, Plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
@@ -523,9 +523,9 @@ individuals will be homozygous for the common allele.&lt;/p&gt;"><sup>4</sup></a
 <pre><code><span><span class="co">##           parent</span></span>
 <span><span class="co">## class      dam sire</span></span>
 <span><span class="co">##   Total    167  163</span></span>
-<span><span class="co">##   Match    166  161</span></span>
+<span><span class="co">##   Match    164  163</span></span>
 <span><span class="co">##   Mismatch   0    0</span></span>
-<span><span class="co">##   P1only     1    2</span></span>
+<span><span class="co">##   P1only     3    0</span></span>
 <span><span class="co">##   P2only     0    0</span></span></code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># P1only: false negative (assignment in pedigree 1 (= original) only)</span></span>

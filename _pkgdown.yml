@@ -80,7 +80,6 @@ articles:
     - pairLL_classification
 
 
-
 reference:
 - title: Input
   descr: Read, convert and check input data
@@ -128,8 +127,9 @@ reference:
     - 'PlotSeqSum'
     - "getAssignCat"
     - "getGenerations"
+    - "GetAncestors"
+    - "GetDescendants"
     - "CalcRped"
-    - 'sequoia_report'
 
 - subtitle: Compare 2 pedigrees
 - contents:

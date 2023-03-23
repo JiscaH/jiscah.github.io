@@ -1,7 +1,7 @@
 ---
 title: "Sequoia report"
 description: >
-  Report generated with `sequoia_report()` on griffin example data.  
+  Report generated on griffin example data.  
 output:
   html_document: default
   pdf_document: default
@@ -43,9 +43,8 @@ Maybe <- params$output_GetMaybeRel
 
 ------------------------------------------------------------------------
 
-*This report was created with `sequoia_report()`, which uses 
-the various griffin example files included with the package 
-when no input is specified.* 
+*This report was created with the various griffin example files included with the
+package. The markdown file can be found at [https://github.com/JiscaH/sequoiaExtra] .* 
 
 
 ------------------------------------------------------------------------

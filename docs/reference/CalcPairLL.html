@@ -18,7 +18,7 @@ NOTE values \(&amp;gt;0\) are various NA types, see 'Likelihood
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -185,7 +185,7 @@ individuals, which will be treated as dummy individuals.</p></dd>
 
 
 <dt>LifeHistData</dt>
-<dd><p>dataframe with 3 columns (optionally 5):</p><dl><dt>ID</dt>
+<dd><p>data.frame with up to 6 columns:</p><dl><dt>ID</dt>
 <dd><p>max. 30 characters long</p></dd>
 
  <dt>Sex</dt>
@@ -194,20 +194,24 @@ individuals, which will be treated as dummy individuals.</p></dd>
 
 <dt>BirthYear </dt>
 <dd><p>birth or hatching year, integer, with missing values as NA
-  or any negative value.</p></dd>
+  or any negative number.</p></dd>
 
 <dt>BY.min</dt>
 <dd><p>minimum birth year, only used if BirthYear is missing</p></dd>
 
 <dt>BY.max</dt>
 <dd><p>maximum birth year, only used if BirthYear is missing</p></dd>
+
+<dt>Year.last</dt>
+<dd><p>Last year in which individual could have had offspring. Can
+  e.g. in mammals be the year before death for females, and year after death
+  for males.</p></dd>
  
-</dl><p>If the species has multiple generations per year, use an integer coding such
-that the candidate parents' `Birth year' is at least one smaller than their
-putative offspring's. Column names are ignored, so ensure column order is ID
-- sex - birth year (- BY.min - BY.max). Individuals do not need to be in the
-same order as in `GenoM', nor do all genotyped individuals need to be
-included.</p></dd>
+</dl><p>"Birth year" may be in any arbitrary discrete time unit relevant to the
+species (day, month, decade), as long as parents are never born in the same
+time unit as their offspring, and only integers are used. Individuals do not
+need to be in the same order as in `GenoM', nor do all genotyped individuals
+need to be included.</p></dd>
 
 
 <dt>AgePrior</dt>
@@ -399,7 +403,14 @@ non-assignment, but will increase computational time.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## likelihoods underlying parent LLR in pedigree:</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">CalcPairLL</span><span class="op">(</span>Pairs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>ID1<span class="op">=</span><span class="st">'i116_2006_M'</span>, ID2<span class="op">=</span><span class="st">'i119_2006_M'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>           GenoM <span class="op">=</span> <span class="va">Geno_griffin</span>, Err <span class="op">=</span> <span class="fl">1e-04</span>, Plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           ID1         ID2 Sex1 Sex2 AgeDif focal patmat dropPar1 dropPar2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 i116_2006_M i119_2006_M    3    3     NA     U      1     none     none</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        PO     FS      HS      GP      FA      HA       U TopRel LLR</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -379.69 -336.6 -329.03 -329.03 -329.03 -329.03 -334.64    2nd   0</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## likelihoods underlying parent LLR in pedigree:</span></span></span>
 <span class="r-in"><span><span class="co"># Example: dams for bottom 3 individuals</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">PedigreePar</span>, n<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              id         dam        sire LLRdam LLRsire LLRpair OHdam OHsire</span>
