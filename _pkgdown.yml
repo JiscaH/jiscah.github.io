@@ -37,7 +37,7 @@ navbar:
     - text: "Articles"
       menu:
         - text: "Main vignette: User guide"
-          href: articles/vignette_main/book/sec-Background.html
+          href: articles/vignette_main/book/background.html
         - text: "Age prior vignette"
           href: articles/vignette_age/book/index.html
         - text: "Mock report"

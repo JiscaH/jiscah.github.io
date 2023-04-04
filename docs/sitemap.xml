@@ -37,7 +37,22 @@
     <loc>https://jiscah.github.io/articles/sequoia_report.html</loc>
   </url>
   <url>
+    <loc>https://jiscah.github.io/articles/vignette_age/book/404.html</loc>
+  </url>
+  <url>
     <loc>https://jiscah.github.io/articles/vignette_age/book/ageprior-matrix-explained.html</loc>
+  </url>
+  <url>
+    <loc>https://jiscah.github.io/articles/vignette_age/book/customise.html</loc>
+  </url>
+  <url>
+    <loc>https://jiscah.github.io/articles/vignette_age/book/default-ageprior.html</loc>
+  </url>
+  <url>
+    <loc>https://jiscah.github.io/articles/vignette_age/book/estimate-birth-years.html</loc>
+  </url>
+  <url>
+    <loc>https://jiscah.github.io/articles/vignette_age/book/grandparents-avuncular.html</loc>
   </url>
   <url>
     <loc>https://jiscah.github.io/articles/vignette_age/book/index.html</loc>
@@ -52,16 +67,13 @@
     <loc>https://jiscah.github.io/articles/vignette_age/book/references.html</loc>
   </url>
   <url>
-    <loc>https://jiscah.github.io/articles/vignette_age/book/sec-customAP.html</loc>
+    <loc>https://jiscah.github.io/articles/vignette_age/book/small-sample-correction.html</loc>
   </url>
   <url>
-    <loc>https://jiscah.github.io/articles/vignette_age/book/sec-Default.html</loc>
+    <loc>https://jiscah.github.io/articles/vignette_main/book/404.html</loc>
   </url>
   <url>
-    <loc>https://jiscah.github.io/articles/vignette_age/book/sec-GP-AU.html</loc>
-  </url>
-  <url>
-    <loc>https://jiscah.github.io/articles/vignette_age/book/sec-smallCorr.html</loc>
+    <loc>https://jiscah.github.io/articles/vignette_main/book/background.html</loc>
   </url>
   <url>
     <loc>https://jiscah.github.io/articles/vignette_main/book/faq.html</loc>
@@ -86,9 +98,6 @@
   </url>
   <url>
     <loc>https://jiscah.github.io/articles/vignette_main/book/running-sequoia.html</loc>
-  </url>
-  <url>
-    <loc>https://jiscah.github.io/articles/vignette_main/book/sec-Background.html</loc>
   </url>
   <url>
     <loc>https://jiscah.github.io/articles/vignette_main/book/sequoia-input.html</loc>
@@ -323,9 +332,6 @@
   </url>
   <url>
     <loc>https://jiscah.github.io/reference/sequoia.html</loc>
-  </url>
-  <url>
-    <loc>https://jiscah.github.io/reference/sequoia_report.html</loc>
   </url>
   <url>
     <loc>https://jiscah.github.io/reference/SibMatch.html</loc>

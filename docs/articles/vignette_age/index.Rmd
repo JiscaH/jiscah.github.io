@@ -16,7 +16,7 @@ output:
         before: |
           <li><a href="./../../../index.html"><img src="../../home-solid-silver.svg" height="40" alt="home"/></a></li>
         after: |
-          <li><a href="./../../vignette_main/book/sec-Background.html">Main Vignette</a></li>
+          <li><a href="./../../vignette_main/book/background.html">Main Vignette</a></li>
           <li><a href="./../../index.html">Other Manuals</a></li>
       sharing:
         facebook: no

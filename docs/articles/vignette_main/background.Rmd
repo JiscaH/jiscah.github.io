@@ -1,6 +1,6 @@
-# Background 
+# Background  
 
-## The core of `Sequoia`    {#sec:Background}
+## The core of `Sequoia`  {#sec:Background}
 
   * Assign genotyped parents to genotyped individuals ('parentage assignment'), even if the sex or birth year of some candidate parents is unknown;
   * Cluster genotyped half- and full-siblings for which the parent is not genotyped into sibships, assigning a 'dummy parent' to each sibship
