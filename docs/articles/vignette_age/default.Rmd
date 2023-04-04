@@ -1,5 +1,10 @@
-# Default ageprior  {#sec:Default}
+# Default ageprior
  -------------------------------
+```{r, echo=FALSE, warning=FALSE}
+library(sequoia)
+```
+
+## Default {#sec:Default}
 
 The default ageprior used during parentage assignment is flat and minimally informative: it only specifies that parent and offspring cannot have an age difference of 0 ($\alpha_{A,R}=0$ for $A=0$ and $R=M$ or $R=P$, black in Figure \@ref(fig:AP-default)) and that all other age / relationship combinations are allowed ($\alpha_{A,R}=1$, pale green). 
 

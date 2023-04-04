@@ -1,6 +1,8 @@
-# Small sample correction {#sec:smallCorr}
+# Small sample correction 
  -----------------------------
- 
+
+## {#sec:smallCorr}
+
 Calculating the proportion of pairs with relationship $R$ and age difference $A$ in a pedigree is [reasonably straightforward](#sec:overlap), but generating a matrix that is useful for subsequent pedigree reconstruction under a wide range of 'non-ideal' situations is not. 
 
 

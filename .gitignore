@@ -1,5 +1,6 @@
 # RStudio files
 .Rproj.user/
 .Rproj.user/**
+**\.Rproj.user\**
 **/.Rproj.user/**
 .Rhistory

@@ -1,8 +1,8 @@
-# Maths
+# Maths 
  -----------
  
 
-## AgePrior
+## AgePrior {#sec:Maths}
 The ageprior $\alpha_{A,R}$ (Glossary in Table \@ref(tab:Glossary)) tells us how the probability that two individuals have relationship $R$ changes when learning their age difference $A$, or 
 
 \begin{equation}

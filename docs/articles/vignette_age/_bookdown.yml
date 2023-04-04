@@ -1,2 +1,3 @@
 rmd_files: ["index.Rmd", "maths.Rmd", "matrix_explained.Rmd", "default.Rmd", "pedigree_based.Rmd", "small_sample_correction.Rmd", "grandparents_avuncular.Rmd", "customise.Rmd", "references.Rmd"]
 delete_merged_file: true
+new_session: false

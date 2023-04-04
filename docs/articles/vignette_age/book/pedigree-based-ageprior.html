@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Pedigree-based ageprior | Sequoia - Age ‘Prior’</title>
   <meta name="description" content="5 Pedigree-based ageprior | Sequoia - Age ‘Prior’" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Pedigree-based ageprior | Sequoia - Age ‘Prior’" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/../../sequoia_logo.png" />
   
   <meta name="github-repo" content="JiscaH/sequoia" />
@@ -24,17 +23,17 @@
 <meta name="author" content="Jisca Huisman" />
 
 
-<meta name="date" content="2021-02-16" />
+<meta name="date" content="2023-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../apple-touch-icon-120x120.png" />
   <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
-<link rel="prev" href="sec-Default.html"/>
-<link rel="next" href="sec-smallCorr.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="prev" href="default-ageprior.html"/>
+<link rel="next" href="small-sample-correction.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,15 +49,16 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -170,7 +170,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2" data-path="maths.html"><a href="maths.html"><i class="fa fa-check"></i><b>2</b> Maths</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="maths.html"><a href="maths.html#ageprior"><i class="fa fa-check"></i><b>2.1</b> AgePrior</a></li>
+<li class="chapter" data-level="2.1" data-path="maths.html"><a href="maths.html#sec:Maths"><i class="fa fa-check"></i><b>2.1</b> AgePrior</a></li>
 <li class="chapter" data-level="2.2" data-path="maths.html"><a href="maths.html#sec:unsampled"><i class="fa fa-check"></i><b>2.2</b> Unsampled individuals</a></li>
 <li class="chapter" data-level="2.3" data-path="maths.html"><a href="maths.html#genetics-times-age"><i class="fa fa-check"></i><b>2.3</b> Genetics <span class="math inline">\(\times\)</span> Age</a></li>
 </ul></li>
@@ -178,7 +178,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.1" data-path="ageprior-matrix-explained.html"><a href="ageprior-matrix-explained.html#agepriorextra"><i class="fa fa-check"></i><b>3.1</b> <code>AgePriorExtra</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="sec-Default.html"><a href="sec-Default.html"><i class="fa fa-check"></i><b>4</b> Default ageprior</a></li>
+<li class="chapter" data-level="4" data-path="default-ageprior.html"><a href="default-ageprior.html"><i class="fa fa-check"></i><b>4</b> Default ageprior</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="default-ageprior.html"><a href="default-ageprior.html#sec:Default"><i class="fa fa-check"></i><b>4.1</b> Default</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="pedigree-based-ageprior.html"><a href="pedigree-based-ageprior.html"><i class="fa fa-check"></i><b>5</b> Pedigree-based ageprior</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="pedigree-based-ageprior.html"><a href="pedigree-based-ageprior.html#sec:Discrete"><i class="fa fa-check"></i><b>5.1</b> Discrete generations</a>
@@ -195,36 +198,36 @@ div.csl-indent {
 <li class="chapter" data-level="5.2.6" data-path="pedigree-based-ageprior.html"><a href="pedigree-based-ageprior.html#sec:standardise"><i class="fa fa-check"></i><b>5.2.6</b> Ageprior P(A|R)/P(A): <code>LR.RU.A.raw</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="sec-smallCorr.html"><a href="sec-smallCorr.html"><i class="fa fa-check"></i><b>6</b> Small sample correction</a>
+<li class="chapter" data-level="6" data-path="small-sample-correction.html"><a href="small-sample-correction.html"><i class="fa fa-check"></i><b>6</b> Small sample correction</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="sec-smallCorr.html"><a href="sec-smallCorr.html#the-problem"><i class="fa fa-check"></i><b>6.1</b> The problem</a></li>
-<li class="chapter" data-level="6.2" data-path="sec-smallCorr.html"><a href="sec-smallCorr.html#sec:Smooth"><i class="fa fa-check"></i><b>6.2</b> Smooth</a></li>
-<li class="chapter" data-level="6.3" data-path="sec-smallCorr.html"><a href="sec-smallCorr.html#sec:Flatten"><i class="fa fa-check"></i><b>6.3</b> Flatten</a>
+<li class="chapter" data-level="6.1" data-path="small-sample-correction.html"><a href="small-sample-correction.html#sec:smallCorr"><i class="fa fa-check"></i><b>6.1</b> </a></li>
+<li class="chapter" data-level="6.2" data-path="small-sample-correction.html"><a href="small-sample-correction.html#the-problem"><i class="fa fa-check"></i><b>6.2</b> The problem</a></li>
+<li class="chapter" data-level="6.3" data-path="small-sample-correction.html"><a href="small-sample-correction.html#sec:Smooth"><i class="fa fa-check"></i><b>6.3</b> Smooth</a></li>
+<li class="chapter" data-level="6.4" data-path="small-sample-correction.html"><a href="small-sample-correction.html#sec:Flatten"><i class="fa fa-check"></i><b>6.4</b> Flatten</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="sec-smallCorr.html"><a href="sec-smallCorr.html#weighing-factor-lambdanw"><i class="fa fa-check"></i><b>6.3.1</b> Weighing factor &amp; <code>lambdaNW</code></a></li>
-<li class="chapter" data-level="6.3.2" data-path="sec-smallCorr.html"><a href="sec-smallCorr.html#sample-size-vs.-sampling-probability"><i class="fa fa-check"></i><b>6.3.2</b> Sample size vs. sampling probability</a></li>
+<li class="chapter" data-level="6.4.1" data-path="small-sample-correction.html"><a href="small-sample-correction.html#weighing-factor-lambdanw"><i class="fa fa-check"></i><b>6.4.1</b> Weighing factor &amp; <code>lambdaNW</code></a></li>
+<li class="chapter" data-level="6.4.2" data-path="small-sample-correction.html"><a href="small-sample-correction.html#sample-size-vs.-sampling-probability"><i class="fa fa-check"></i><b>6.4.2</b> Sample size vs. sampling probability</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="sec-GP-AU.html"><a href="sec-GP-AU.html"><i class="fa fa-check"></i><b>7</b> Grandparents &amp; Avuncular</a>
+<li class="chapter" data-level="7" data-path="grandparents-avuncular.html"><a href="grandparents-avuncular.html"><i class="fa fa-check"></i><b>7</b> Grandparents &amp; Avuncular</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="sec-GP-AU.html"><a href="sec-GP-AU.html#maths-1"><i class="fa fa-check"></i><b>7.1</b> Maths</a>
+<li class="chapter" data-level="7.1" data-path="grandparents-avuncular.html"><a href="grandparents-avuncular.html#sec:GP-AU"><i class="fa fa-check"></i><b>7.1</b> Maths</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="sec-GP-AU.html"><a href="sec-GP-AU.html#ageprior-to-probability-to-ageprior"><i class="fa fa-check"></i><b>7.1.1</b> Ageprior to Probability to Ageprior</a></li>
-<li class="chapter" data-level="7.1.2" data-path="sec-GP-AU.html"><a href="sec-GP-AU.html#change-from-v1.3-to-v2.0"><i class="fa fa-check"></i><b>7.1.2</b> change from v1.3 to v2.0</a></li>
+<li class="chapter" data-level="7.1.1" data-path="grandparents-avuncular.html"><a href="grandparents-avuncular.html#ageprior-to-probability-to-ageprior"><i class="fa fa-check"></i><b>7.1.1</b> Ageprior to Probability to Ageprior</a></li>
+<li class="chapter" data-level="7.1.2" data-path="grandparents-avuncular.html"><a href="grandparents-avuncular.html#change-from-v1.3-to-v2.0"><i class="fa fa-check"></i><b>7.1.2</b> change from v1.3 to v2.0</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sec-customAP.html"><a href="sec-customAP.html"><i class="fa fa-check"></i><b>8</b> Customise</a>
+<li class="chapter" data-level="8" data-path="customise.html"><a href="customise.html"><i class="fa fa-check"></i><b>8</b> Customise</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="sec-customAP.html"><a href="sec-customAP.html#via-args.ap"><i class="fa fa-check"></i><b>8.1</b> Via <code>args.AP</code></a></li>
-<li class="chapter" data-level="8.2" data-path="sec-customAP.html"><a href="sec-customAP.html#different-input-pedigree"><i class="fa fa-check"></i><b>8.2</b> Different input pedigree</a></li>
-<li class="chapter" data-level="8.3" data-path="sec-customAP.html"><a href="sec-customAP.html#other-tweaks"><i class="fa fa-check"></i><b>8.3</b> Other tweaks</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="sec-customAP.html"><a href="sec-customAP.html#age-at-first-reproduction"><i class="fa fa-check"></i><b>8.3.1</b> Age at first reproduction</a></li>
+<li class="chapter" data-level="8.1" data-path="customise.html"><a href="customise.html#sec:customAP"><i class="fa fa-check"></i><b>8.1</b> </a></li>
+<li class="chapter" data-level="8.2" data-path="customise.html"><a href="customise.html#via-args.ap"><i class="fa fa-check"></i><b>8.2</b> Via <code>args.AP</code></a></li>
+<li class="chapter" data-level="8.3" data-path="customise.html"><a href="customise.html#different-input-pedigree"><i class="fa fa-check"></i><b>8.3</b> Different input pedigree</a></li>
+<li class="chapter" data-level="8.4" data-path="customise.html"><a href="customise.html#other-tweaks"><i class="fa fa-check"></i><b>8.4</b> Other tweaks</a></li>
+<li class="chapter" data-level="8.5" data-path="customise.html"><a href="customise.html#from-age-difference-distribution"><i class="fa fa-check"></i><b>8.5</b> From age-difference distribution</a></li>
+<li class="chapter" data-level="8.6" data-path="customise.html"><a href="customise.html#specifications"><i class="fa fa-check"></i><b>8.6</b> Specifications</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="sec-customAP.html"><a href="sec-customAP.html#from-age-difference-distribution"><i class="fa fa-check"></i><b>8.4</b> From age-difference distribution</a></li>
-<li class="chapter" data-level="8.5" data-path="sec-customAP.html"><a href="sec-customAP.html#specifications"><i class="fa fa-check"></i><b>8.5</b> Specifications</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
+<li class="chapter" data-level="9" data-path="estimate-birth-years.html"><a href="estimate-birth-years.html"><i class="fa fa-check"></i><b>9</b> Estimate birth years</a></li>
+<li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
 <li class="divider"></li>
 <li><a href="./../../vignette_main/book/sec-Background.html">Main Vignette</a></li>
 <li><a href="./../../index.html">Other Manuals</a></li>
@@ -246,27 +249,27 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pedigree-based-ageprior" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Pedigree-based ageprior</h1>
+<div id="pedigree-based-ageprior" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Pedigree-based ageprior<a href="pedigree-based-ageprior.html#pedigree-based-ageprior" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <hr />
-<div id="sec:Discrete" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Discrete generations</h2>
+<div id="sec:Discrete" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Discrete generations<a href="pedigree-based-ageprior.html#sec:Discrete" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When a pedigree is provided as input, <code>MakeAgePrior()</code> always checks whether generations are non-overlapping, i.e. whether all parents have the same the same age (typically 1), and all siblings have an age difference of 0. If these conditions are met, and there are at least 20 pairs each of mother-offspring, father-offspring, maternal half/full siblings, and paternal half/full siblings, it is concluded that generations are discrete. This auto-detection can be turned off by explicitly declaring <code>Discrete=TRUE</code> or <code>Discrete=FALSE</code>. If <code>Discrete=TRUE</code> is declared, a check is still performed, and any violations result in an error. When discrete generations are automatically inferred or explicitly declared, small-sample corrections <code>Smooth</code> and <code>Flatten</code> are always set to <code>FALSE</code>.</p>
 <p>When <code>Discrete = TRUE</code> is specified prior to parentage assignment, being full siblings is no longer considered as a potential relationship alternative for candidate parents (age difference of 1), but being an aunt/uncle is (Figure <a href="pedigree-based-ageprior.html#fig:APdiscrete">5.1</a>). When the genetic information is ambiguous (few SNPs and/or high genotyping error rate) this may increase the assignment rate, but it may also increase the number of incorrect assignments.</p>
-<p>Similarly, during full pedigree reconstruction, pairs with an age difference of 0 are considered potentially full siblings, half siblings, cousins (not shown in ageprior plot), or unrelated. In contrast, with overlapping generations they are (typically) also considered as potential full avuncular pairs, which are often difficult to distinguish from half-sibling pairs.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>Similarly, during full pedigree reconstruction, pairs with an age difference of 0 are considered potentially full siblings, half siblings, cousins (not shown in ageprior plot), or unrelated. In contrast, with overlapping generations they are (typically) also considered as potential full avuncular pairs, which are often difficult to distinguish from half-sibling pairs <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="pedigree-based-ageprior.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># running sequoia to also get the extra ageprior columns: </span></span>
 <span id="cb12-2"><a href="pedigree-based-ageprior.html#cb12-2" aria-hidden="true" tabindex="-1"></a>Seq_HSg5 <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(SimGeno_example, LH_HSg5, <span class="at">Module=</span><span class="st">&quot;par&quot;</span>,</span>
 <span id="cb12-3"><a href="pedigree-based-ageprior.html#cb12-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">args.AP=</span><span class="fu">list</span>(<span class="at">Discrete =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb12-4"><a href="pedigree-based-ageprior.html#cb12-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">CalcLLR=</span><span class="cn">FALSE</span>, <span class="at">Plot=</span><span class="cn">FALSE</span>, <span class="at">quiet=</span><span class="cn">TRUE</span>)</span>
 <span id="cb12-5"><a href="pedigree-based-ageprior.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotAgePrior</span>(Seq_HSg5<span class="sc">$</span>AgePriorExtra) </span></code></pre></div>
-<div class="figure"><span id="fig:APdiscrete"></span>
-<img src="figs/APDiscrete-1.png" alt="Discrete generations" width="576" />
+<div class="figure"><span style="display:block;" id="fig:APdiscrete"></span>
+<img src="figs/APdiscrete-1.png" alt="Discrete generations" width="576" />
 <p class="caption">
 Figure 5.1: Discrete generations
 </p>
 </div>
-<div id="generation-interval-different-from-1" class="section level3" number="5.1.1">
-<h3><span class="header-section-number">5.1.1</span> Generation interval different from 1</h3>
+<div id="generation-interval-different-from-1" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Generation interval different from 1<a href="pedigree-based-ageprior.html#generation-interval-different-from-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When generations do not overlap, it is often most straightforward to use generation number instead of birth year, such that parents and offspring are born 1 time unit apart. This is assumed to be the case when <code>Discrete=TRUE</code> is specified, but can be altered via <code>MaxAgeParent</code> (which in this situation is the <em>only</em> allowed age for parents). For example, pink salmon have a strict two-year life-cycle with odd-year and even-year populations:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="pedigree-based-ageprior.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">MakeAgePrior</span>(<span class="at">Discrete =</span> <span class="cn">TRUE</span>, <span class="at">MaxAgeParent =</span> <span class="dv">2</span>, <span class="at">Plot=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Ageprior: Flat 0/1, discrete generations, MaxAgeParent = 2,2</code></pre>
@@ -277,8 +280,8 @@ Figure 5.1: Discrete generations
 ## 3 0 0  0  0  0</code></pre>
 </div>
 </div>
-<div id="sec:overlap" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Overlapping generations</h2>
+<div id="sec:overlap" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Overlapping generations<a href="pedigree-based-ageprior.html#sec:overlap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Estimation of the agepriors from a pedigree and birth years normally requires little to no user input, but it can be useful to understand what goes on ‘under the hood’ in case you wish to customise the ageprior, when things go wrong, or just out of curiosity.</p>
 <p>The process is here illustrated using an imaginary population of griffins, were each year exactly 20 baby griffins hatch. From 2001 to 2010, all juveniles are sampled, and parents assigned.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="pedigree-based-ageprior.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(Ped_griffin)      <span class="co"># the pedigree</span></span></code></pre></div>
@@ -289,11 +292,11 @@ Figure 5.1: Discrete generations
 ## 198 i198_2010_M i166_2009_F i178_2009_M      2010
 ## 199 i199_2010_F i165_2009_F i141_2008_M      2010
 ## 200 i200_2010_F i166_2009_F i142_2008_M      2010</code></pre>
-<p>We can calculate the ageprior matrix, and also return all the intermediate steps by specifying <code>Return='all'</code> (we come back to <code>Smooth</code> and <code>Flatten</code> <a href="sec-smallCorr.html#sec:smallCorr">later</a>):</p>
+<p>We can calculate the ageprior matrix, and also return all the intermediate steps by specifying <code>Return='all'</code> (we come back to <code>Smooth</code> and <code>Flatten</code> <a href="small-sample-correction.html#sec:smallCorr">later</a>):</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="pedigree-based-ageprior.html#cb18-1" aria-hidden="true" tabindex="-1"></a>AP.griffin <span class="ot">&lt;-</span> <span class="fu">MakeAgePrior</span>(Ped_griffin, <span class="at">Smooth=</span><span class="cn">FALSE</span>, <span class="at">Flatten=</span><span class="cn">FALSE</span>, </span>
 <span id="cb18-2"><a href="pedigree-based-ageprior.html#cb18-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">Return=</span><span class="st">&quot;all&quot;</span>)   </span></code></pre></div>
 <pre><code>## Ageprior: Pedigree-based, overlapping generations, MaxAgeParent = 3,3</code></pre>
-<div class="figure"><span id="fig:APall"></span>
+<div class="figure"><span style="display:block;" id="fig:APall"></span>
 <img src="figs/APall-1.png" alt="Ageprior for overlapping generations (griffin example)" width="70%" />
 <p class="caption">
 Figure 5.2: Ageprior for overlapping generations (griffin example)
@@ -304,26 +307,26 @@ Figure 5.2: Ageprior for overlapping generations (griffin example)
 ## [5] &quot;LR.RU.A.raw&quot;    &quot;Weights&quot;        &quot;LR.RU.A&quot;        &quot;Specs.AP&quot;</code></pre>
 <!--- We see in the plot that both dams and sires have a maximum age of 3 years, and that for dams (M: Maternal) age 1 is most common (darkest green), while for sires (P:Paternal) age 2 is most common.  --->
 <p>The order of elements in the output list is also the order in which they are calculated inside <code>MakeAgePrior()</code>.</p>
-<div id="birthyearrange" class="section level3" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> <code>BirthYearRange</code></h3>
+<div id="birthyearrange" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> <code>BirthYearRange</code><a href="pedigree-based-ageprior.html#birthyearrange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>BirthYearRange</code> is the minimum and maximum birth year in <code>LifeHistData</code> (or in the <code>birthyear</code> column in the pedigree). This determines the maximum age difference between pairs of (sampled) individuals.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="pedigree-based-ageprior.html#cb22-1" aria-hidden="true" tabindex="-1"></a>AP.griffin<span class="sc">$</span>BirthYearRange</span></code></pre></div>
 <pre><code>## [1] 2001 2010</code></pre>
 </div>
-<div id="sec:MaxAgePO" class="section level3" number="5.2.2">
-<h3><span class="header-section-number">5.2.2</span> <code>MaxAgeParent</code></h3>
-<p>The maximum age of female and male parents, <code>MaxAgeParent</code>, is initially set equal to the maximum age difference between any kind of pairs (<code>diff(BirthYearRange)</code>) <span class="math inline">\(+1\)</span> (see <a href="sec-Default.html#sec:Default">Default Ageprior</a>), when not explicitly specified as input. If the pedigree includes at least 20 mother-offspring and/or father-offspring pairs with known age difference, the maximum parental age for that sex is updated to the maximum of the user-specified and pedigree-calculated values.</p>
+<div id="sec:MaxAgePO" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> <code>MaxAgeParent</code><a href="pedigree-based-ageprior.html#sec:MaxAgePO" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The maximum age of female and male parents, <code>MaxAgeParent</code>, is initially set equal to the maximum age difference between any kind of pairs (<code>diff(BirthYearRange)</code>) <span class="math inline">\(+1\)</span> (see <a href="default-ageprior.html#sec:Default">Default Ageprior</a>), when not explicitly specified as input. If the pedigree includes at least 20 mother-offspring and/or father-offspring pairs with known age difference, the maximum parental age for that sex is updated to the maximum of the user-specified and pedigree-calculated values.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="pedigree-based-ageprior.html#cb24-1" aria-hidden="true" tabindex="-1"></a>AP.griffin<span class="sc">$</span>MaxAgeParent</span></code></pre></div>
 <pre><code>## M P 
 ## 3 3</code></pre>
-<p>For example, if you know that males can live and breed to age 5, but you have only sampled males up to age 3, you can and should adjust the age prior – this will namely also affect the maximum age difference between paternal siblings during the full pedigree reconstruction. This adjustment works via <a href="sec-smallCorr.html#sec:Flatten"><code>Flatten</code></a>.</p>
+<p>For example, if you know that males can live and breed to age 5, but you have only sampled males up to age 3, you can and should adjust the age prior – this will namely also affect the maximum age difference between paternal siblings during the full pedigree reconstruction. This adjustment works via <a href="small-sample-correction.html#sec:Flatten"><code>Flatten</code></a>.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="pedigree-based-ageprior.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify maximum age for fathers, but estimate max mother age from pedigree </span></span>
 <span id="cb26-2"><a href="pedigree-based-ageprior.html#cb26-2" aria-hidden="true" tabindex="-1"></a>APX <span class="ot">&lt;-</span> <span class="fu">MakeAgePrior</span>(Ped_griffin, <span class="at">Smooth=</span><span class="cn">FALSE</span>, <span class="at">MaxAgeParent =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">5</span>))</span></code></pre></div>
 <pre><code>## Ageprior: Pedigree-based, overlapping generations, flattened, MaxAgeParent = 3,5</code></pre>
 <p><img src="figs/IncrMAP-1.png" width="70%" /></p>
 </div>
-<div id="sec:tblAR" class="section level3" number="5.2.3">
-<h3><span class="header-section-number">5.2.3</span> Counts: <code>tblA.R</code></h3>
+<div id="sec:tblAR" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Counts: <code>tblA.R</code><a href="pedigree-based-ageprior.html#sec:tblAR" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The list element <code>tblA.R</code> contains the raw counts of each age difference <span class="math inline">\(A\)</span> per relationship <span class="math inline">\(R\)</span>:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="pedigree-based-ageprior.html#cb28-1" aria-hidden="true" tabindex="-1"></a>AP.griffin[[<span class="st">&quot;tblA.R&quot;</span>]]</span></code></pre></div>
 <pre><code>##      M  P FS  MS PS    X
@@ -388,7 +391,7 @@ Figure 5.2: Ageprior for overlapping generations (griffin example)
 ## 3   8 22  0   0   0
 ## 4   0  0  0   0   0
 ## 5   0  0  0   0   0</code></pre>
-<p>The ageprior is for ‘maternal siblings,’ which includes both maternal half-siblings and full siblings, and similarly for paternal siblings. Lastly, a column with the total count of pairs per age difference is added (i.e. the denominator in the calculation of <span class="math inline">\(\alpha_{A,R}\)</span>. For this reference age-difference distribution all individuals in the pedigree with known birth year in <code>LifeHistData</code> are used.</p>
+<p>The ageprior is for ‘maternal siblings’, which includes both maternal half-siblings and full siblings, and similarly for paternal siblings. Lastly, a column with the total count of pairs per age difference is added (i.e. the denominator in the calculation of <span class="math inline">\(\alpha_{A,R}\)</span>. For this reference age-difference distribution all individuals in the pedigree with known birth year in <code>LifeHistData</code> are used.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="pedigree-based-ageprior.html#cb35-1" aria-hidden="true" tabindex="-1"></a>tblA.R <span class="ot">&lt;-</span> <span class="fu">cbind</span>(tblA.R,</span>
 <span id="cb35-2"><a href="pedigree-based-ageprior.html#cb35-2" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;MS&quot;</span> <span class="ot">=</span> tblA.R[,<span class="st">&quot;MHS&quot;</span>] <span class="sc">+</span> tblA.R[,<span class="st">&quot;FS&quot;</span>],</span>
 <span id="cb35-3"><a href="pedigree-based-ageprior.html#cb35-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;PS&quot;</span> <span class="ot">=</span> tblA.R[,<span class="st">&quot;PHS&quot;</span>] <span class="sc">+</span> tblA.R[,<span class="st">&quot;FS&quot;</span>])</span>
@@ -408,8 +411,8 @@ Figure 5.2: Ageprior for overlapping generations (griffin example)
 <span id="cb35-17"><a href="pedigree-based-ageprior.html#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(tblA.R <span class="sc">==</span> AP.griffin[[<span class="st">&quot;tblA.R&quot;</span>]])</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
-<div id="par-pa.r" class="section level3" number="5.2.4">
-<h3><span class="header-section-number">5.2.4</span> P(A|R): <code>PA.R</code></h3>
+<div id="par-pa.r" class="section level3 hasAnchor" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> P(A|R): <code>PA.R</code><a href="pedigree-based-ageprior.html#par-pa.r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The probability of age difference <span class="math inline">\(A\)</span> conditional on relationship <span class="math inline">\(R\)</span> is estimated as the proportion of pairs with relationship <span class="math inline">\(R\)</span> and known age difference, that have age difference <span class="math inline">\(A\)</span>.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="pedigree-based-ageprior.html#cb37-1" aria-hidden="true" tabindex="-1"></a>NAK.R <span class="ot">&lt;-</span> <span class="fu">colSums</span>(tblA.R, <span class="at">na.rm=</span><span class="cn">TRUE</span>)  <span class="co"># total count per relationship</span></span>
 <span id="cb37-2"><a href="pedigree-based-ageprior.html#cb37-2" aria-hidden="true" tabindex="-1"></a>NAK.R</span></code></pre></div>
@@ -426,9 +429,9 @@ Figure 5.2: Ageprior for overlapping generations (griffin example)
 ## 5 0.00 0.00 0.0 0.00 0.00 0.10</code></pre>
 <p>Pairs where one or both individuals have an unknown age difference, are excluded from both the numerator and the denominator. It is assumed that the age difference distribution of these pairs of relatives follows the same distribution as for relatives for which the age difference <em>is</em> known (Section <a href="maths.html#sec:unsampled">Unsampled individuals</a>).</p>
 </div>
-<div id="sec:FSuseHS" class="section level3" number="5.2.5">
-<h3><span class="header-section-number">5.2.5</span> Full sibling correction</h3>
-<p>Sometimes full sibling pairs are rare, causing an imprecise estimate of their age-difference distribution. A reasonable assumption is that the distribution for full siblings is broadly similar to “happens to be both maternal and paternal sibling.”<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> If many half-sibling pairs have been sampled, their age distribution is used to improve the estimate of <span class="math inline">\(P(A|FS)\)</span> (this is not optional):</p>
+<div id="sec:FSuseHS" class="section level3 hasAnchor" number="5.2.5">
+<h3><span class="header-section-number">5.2.5</span> Full sibling correction<a href="pedigree-based-ageprior.html#sec:FSuseHS" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sometimes full sibling pairs are rare, causing an imprecise estimate of their age-difference distribution. A reasonable assumption is that the distribution for full siblings is broadly similar to “happens to be both maternal and paternal sibling” <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. If many half-sibling pairs have been sampled, their age distribution is used to improve the estimate of <span class="math inline">\(P(A|FS)\)</span> (this is not optional):</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="pedigree-based-ageprior.html#cb41-1" aria-hidden="true" tabindex="-1"></a>MinPairs.AgeKnown <span class="ot">&lt;-</span> <span class="dv">20</span>   <span class="co"># not user-setable.</span></span>
 <span id="cb41-2"><a href="pedigree-based-ageprior.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the product of the distributions if there are many MS &amp; PS,</span></span>
 <span id="cb41-3"><a href="pedigree-based-ageprior.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and the average across the two distributions if there are a medium number:</span></span>
@@ -451,8 +454,8 @@ Figure 5.2: Ageprior for overlapping generations (griffin example)
 ## 3 0.05 0.13 0.00 0.00 0.00 0.14
 ## 4 0.00 0.00 0.00 0.00 0.00 0.12</code></pre>
 </div>
-<div id="sec:standardise" class="section level3" number="5.2.6">
-<h3><span class="header-section-number">5.2.6</span> Ageprior P(A|R)/P(A): <code>LR.RU.A.raw</code></h3>
+<div id="sec:standardise" class="section level3 hasAnchor" number="5.2.6">
+<h3><span class="header-section-number">5.2.6</span> Ageprior P(A|R)/P(A): <code>LR.RU.A.raw</code><a href="pedigree-based-ageprior.html#sec:standardise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The age-difference based probability ratio <span class="math inline">\(\alpha_{A,R}\)</span> is calculated by dividing <span class="math inline">\(P(A|R)\)</span> (each relationship column) by <span class="math inline">\(P(A)\)</span> (the <code>X</code> column):</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="pedigree-based-ageprior.html#cb43-1" aria-hidden="true" tabindex="-1"></a>LR.RU.A <span class="ot">&lt;-</span> <span class="fu">sweep</span>(PA.R[, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], <span class="dv">1</span>, <span class="at">STATS=</span>PA.R[,<span class="st">&quot;X&quot;</span>], <span class="at">FUN=</span><span class="st">&quot;/&quot;</span>)</span>
 <span id="cb43-2"><a href="pedigree-based-ageprior.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">round</span>(LR.RU.A, <span class="dv">2</span>))</span></code></pre></div>
@@ -484,12 +487,11 @@ Figure 5.2: Ageprior for overlapping generations (griffin example)
           </div>
         </div>
       </div>
-<a href="sec-Default.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sec-smallCorr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="default-ageprior.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="small-sample-correction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -529,6 +531,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 },
@@ -543,7 +549,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

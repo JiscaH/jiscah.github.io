@@ -62,7 +62,7 @@ The heuristic sequential filtering approach makes parentage assignment quick, an
 ## AgePrior
 The assigned parents are used to update the ageprior, before returning the results to the user of continuing with full pedigree reconstruction. Any arguments to `MakeAgePrior()` can be passed via [`args.AP`](#sec:custom-AP). For example, you can specify the maximum age of dams and sires:
 
-```{r AP-2, eval=TRUE, out.width="70%", fig.align="center"}
+```{r AP2, eval=TRUE, out.width="70%", fig.align="center"}
 SeqOUT.B <- sequoia(GenoM = SimGeno_example, Err = 0.005,
                     LifeHistData = LH_HSg5, Module="par", Plot=FALSE, quiet=TRUE,
                     args.AP = list(MaxAgeParent = c(3,2), Smooth=FALSE))

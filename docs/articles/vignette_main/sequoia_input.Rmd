@@ -59,7 +59,7 @@ Checks for individuals and SNPs with low call rate, and monomorphic SNPs, are do
 
 
 ### Very large datasets
-When the number of individuals is very large, it may be impossible to load the genotype data into R as it will exceed R's memory limit. A stand-alone version of the algorithm underlying this R package does not suffer from this limitation, and is available as Fortran source code from [github](https://github.com/JiscaH/sequoia/tree/master/Standalone), where you can also find its manual. The standalone is not faster than the R package, as the bulk of the computations are done in Fortran regardless. 
+When the number of individuals is very large, it may be impossible to load the genotype data into R as it will exceed R's memory limit. A stand-alone version of the algorithm underlying this R package does not suffer from this limitation, and is available as Fortran source code from [github](https://github.com/JiscaH/sequoia_notR), where you can also find its manual. The standalone is not faster than the R package, as the bulk of the computations are done in Fortran regardless. 
 
 
 ## Birth years \& sex

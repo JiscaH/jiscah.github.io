@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Running sequoia() | Sequoia User Guide</title>
   <meta name="description" content="5 Running sequoia() | Sequoia User Guide" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Running sequoia() | Sequoia User Guide" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/../../sequoia_logo.png" />
   
   <meta name="github-repo" content="JiscaH/sequoia" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Jisca Huisman" />
 
 
-<meta name="date" content="2021-05-02" />
+<meta name="date" content="2023-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
 <link rel="prev" href="sequoia-input.html"/>
 <link rel="next" href="output-check.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,15 +49,16 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -158,7 +158,10 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="sec-Background.html"><a href="sec-Background.html"><i class="fa fa-check"></i><b>1</b> Background</a></li>
+<li class="chapter" data-level="1" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>1</b> Background</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="background.html"><a href="background.html#sec:Background"><i class="fa fa-check"></i><b>1.1</b> The core of <code>Sequoia</code></a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="key-points.html"><a href="key-points.html"><i class="fa fa-check"></i><b>2</b> Key Points</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="key-points.html"><a href="key-points.html#sec:MendelErrors"><i class="fa fa-check"></i><b>2.1</b> Mendelian Errors</a>
@@ -289,6 +292,7 @@ div.csl-indent {
 <li class="chapter" data-level="8.4.3" data-path="faq.html"><a href="faq.html#data-simulation"><i class="fa fa-check"></i><b>8.4.3</b> Data simulation</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="faq.html"><a href="faq.html#add-new-individuals"><i class="fa fa-check"></i><b>8.5</b> Add new individuals</a></li>
+<li class="chapter" data-level="8.6" data-path="faq.html"><a href="faq.html#results-differ-from-colony"><i class="fa fa-check"></i><b>8.6</b> Results differ from COLONY</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
@@ -312,11 +316,11 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="running-sequoia" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Running <code>sequoia()</code></h1>
+<div id="running-sequoia" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Running <code>sequoia()</code><a href="running-sequoia.html#running-sequoia" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <hr />
-<div id="module-maxsibiter" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> <code>Module</code> (<code>MaxSibIter</code>)</h2>
+<div id="module-maxsibiter" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> <code>Module</code> (<code>MaxSibIter</code>)<a href="running-sequoia.html#module-maxsibiter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Most datasets initially contain imperfections. Pedigree reconstruction can be a useful tool in quality control, to find outliers with many Mendelian errors among e.g. known mother–offspring pairs (sample mislabeling?) or among SNPs (poor quality SNPs to be excluded).</p>
 <p>To speed up iterative quality control, it is possible to run <code>sequoia()</code> only up to a certain point, use the output thus far to, as necessary, exclude SNPs, exclude/relabel samples, or adjust input parameters, and re-run again from the start or resume from the last point.</p>
 <p>There are three possible intermediate stopping points, plus the final end point, each named after the last ‘<code>Module</code>’ that is run:</p>
@@ -331,8 +335,8 @@ to estimate <code>AgePriors</code> based on the just-assigned parents.</li>
 <li><strong><code>'ped'</code></strong>: full pedigree reconstruction<br />
 Cluster half- and full-siblings and assign each cluster a dummy-parent; assign grandparents to sibships and singletons.</li>
 </ol>
-<div id="sec:MaxSibIter" class="section level3" number="5.1.1">
-<h3><span class="header-section-number">5.1.1</span> <code>MaxSibIter</code></h3>
+<div id="sec:MaxSibIter" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> <code>MaxSibIter</code><a href="running-sequoia.html#sec:MaxSibIter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Up to sequoia version 2.0, <code>MaxSibIter</code> was used to switch between these options, with numeric values</p>
 <ul>
 <li><span class="math inline">\(-9\)</span> only input check<br />
@@ -346,19 +350,19 @@ Cluster half- and full-siblings and assign each cluster a dummy-parent; assign g
 <p>The maximum number of iterations was always only intended as a safety net in case the total likelihood did not stabilise, but this has not been an issue since sequoia version 1.0 (as far as I am aware). Even for large, complex datasets (several thousand individuals with considerable close inbreeding) the total likelihood plateaus in 10–15 iterations. From version 2.1 onward, <code>MaxSibIter</code><span class="math inline">\(=42\)</span>; if this number of iterations is reached it is a strong sign of problems with the data, e.g. that the SNPs are not informative enough to reconstruct the pedigree.</p>
 </div>
 </div>
-<div id="input-check" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Input check</h2>
+<div id="input-check" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Input check<a href="running-sequoia.html#input-check" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>SNP datasets are typically too large to easily spot any problems by simply looking at the data in a spreadsheet. There are many tools available to deal with genotype data and do proper quality control; the function <code>CheckGeno()</code> merely checks that the data are in the <a href="sec:GenoFormat">correct format</a> for <code>sequoia</code>, and that there are no SNPs or individuals with excessively many missing values.</p>
 <p>The function <code>SnpStats()</code> can be used to count the number of Mendelian errors per SNP. It is not automatically called by <code>sequoia()</code>, but excluding SNPs with exceptionally high genotyping error rates is recommended to improve accuracy of the inferred pedigree.</p>
 </div>
-<div id="check-for-duplicates" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Check for duplicates</h2>
+<div id="check-for-duplicates" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Check for duplicates<a href="running-sequoia.html#check-for-duplicates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The data may contain positive controls, as well as other intentional and unintentional duplicated samples, with or without life-history information. <code>sequoia()</code> searches the data for (near) identical genotypes, allowing for <code>MaxMismatchDUP</code> mismatches between the genotypes, which may or may not have the same individual ID. The threshold value depends on the presumed genotyping error rate, allele frequencies and number of SNPs, and is calculated by <code>CalcMaxMismatch()</code>.</p>
 <p>Not all pairs flagged as potential duplicate genotypes are necessarily actual duplicates: inbred individuals may be nearly indistinguishable from their parent(s), especially when the number of SNPs is limited.</p>
 <p>This check will also return a vector of individuals included in the genotype data, but not in the life history data (<code>NoLH</code>). This is merely a service to the user; individuals without life history information can often be successfully included in the pedigree.</p>
 </div>
-<div id="parentage-assignment" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> Parentage assignment</h2>
+<div id="parentage-assignment" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Parentage assignment<a href="running-sequoia.html#parentage-assignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The number of pairs to be checked if they are parent and offspring is very large for even moderate numbers of individuals, e.g. 5,000 pairs for 100 individuals, and 2 million for 2,000 individuals. To speed up computation, three ‘sieves’ are applied sequentially to find candidate parent-offspring pairs, with decreasing ‘mesh size’</p>
 <ul>
 <li>The number of SNPs at which the pair are opposing homozygotes must be less than <code>MaxMismatchOH</code>;</li>
@@ -368,18 +372,18 @@ Cluster half- and full-siblings and assign each cluster a dummy-parent; assign g
 <p>The older of the pair is assigned as parent of the younger. If it is unclear which is the older, or if it is unclear whether the parent is the mother or the father, no assignment is made, but these pairs can be found with <code>GetMaybeRel()</code> (see section <a href="#sec:maybepar">Likely relatives</a>). If there are multiple candidate parents of one or both (or unknown) sex(es), the parent pair or single parent resulting in the highest likelihood is assigned.</p>
 <p>The heuristic sequential filtering approach makes parentage assignment quick, and usually takes only a few minutes, especially when setting <code>CalcLLR=FALSE</code> (do not re-calculate LLR parent-offspring vs next-most-likely relationship for all assigned parents, based on the final pedigree).</p>
 </div>
-<div id="ageprior-1" class="section level2" number="5.5">
-<h2><span class="header-section-number">5.5</span> AgePrior</h2>
+<div id="ageprior-1" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> AgePrior<a href="running-sequoia.html#ageprior-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The assigned parents are used to update the ageprior, before returning the results to the user of continuing with full pedigree reconstruction. Any arguments to <code>MakeAgePrior()</code> can be passed via <a href="sequoia-input.html#sec:custom-AP"><code>args.AP</code></a>. For example, you can specify the maximum age of dams and sires:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="running-sequoia.html#cb11-1" aria-hidden="true" tabindex="-1"></a>SeqOUT.B <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> SimGeno_example, <span class="at">Err =</span> <span class="fl">0.005</span>,</span>
 <span id="cb11-2"><a href="running-sequoia.html#cb11-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">LifeHistData =</span> LH_HSg5, <span class="at">Module=</span><span class="st">&quot;par&quot;</span>, <span class="at">Plot=</span><span class="cn">FALSE</span>, <span class="at">quiet=</span><span class="cn">TRUE</span>,</span>
 <span id="cb11-3"><a href="running-sequoia.html#cb11-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">args.AP =</span> <span class="fu">list</span>(<span class="at">MaxAgeParent =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>), <span class="at">Smooth=</span><span class="cn">FALSE</span>))</span>
 <span id="cb11-4"><a href="running-sequoia.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotAgePrior</span>(SeqOUT.B<span class="sc">$</span>AgePriors)</span></code></pre></div>
-<p><img src="D:/figsAP-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="D:/figs/AP2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>This way, even if sampled parents are all age 1, siblings sharing an unsampled parent may still have an age difference of 1 or 2 years, and grandparent – grand-offspring pairs may have an age difference of 2-6 years.</p>
 </div>
-<div id="full-reconstruction" class="section level2" number="5.6">
-<h2><span class="header-section-number">5.6</span> Full reconstruction</h2>
+<div id="full-reconstruction" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Full reconstruction<a href="running-sequoia.html#full-reconstruction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>During full pedigree reconstruction, assignment of all first and second degree links between all individuals is attempted, using the following steps within each iteration</p>
 <ul>
 <li>Find pairs of likely full- and half-siblings, using filtering steps with decreasing ‘mesh size’ similar to parentage assignment</li>
@@ -392,18 +396,18 @@ Cluster half- and full-siblings and assign each cluster a dummy-parent; assign g
 </ul>
 <p>The order of these steps, and the skipping of some steps in the first iteration(s), has been established by trial &amp; error to minimise false positive assignments while maximising correct assignments across a wide range of datasets. When running <code>sequoia()</code>, you can keep track of the progress through the various steps by setting <code>quiet = 'verbose'</code>.</p>
 <p>Full pedigree reconstruction may take from a few seconds to several hours, depending on the number of individuals without an already assigned parent, the proportion of individuals with unknown sex or birth year, the number of sibships that is being clustered and their degree of interconnection, and the number of SNPs and their error rate. Generally computation is faster if the data is more complete and more accurate.</p>
-<div id="dummy-individuals" class="section level3" number="5.6.1">
-<h3><span class="header-section-number">5.6.1</span> Dummy Individuals</h3>
+<div id="dummy-individuals" class="section level3 hasAnchor" number="5.6.1">
+<h3><span class="header-section-number">5.6.1</span> Dummy Individuals<a href="running-sequoia.html#dummy-individuals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The ‘dummy’ parent assigned to each cluster of half-siblings is denoted by a 4-digit number with prefix <code>F</code> for females (<code>F0001</code>, <code>F0002</code>, …) and <code>M</code> for males (<code>M0001</code>, <code>M0002</code>, …). In the output, dummy individuals are appended at the bottom of the pedigree with their assigned parents, i.e. the sibship’s grandparents. In addition, all information for each dummy individual is given in dataframe <code>DummyIDs</code>, including its parents (again), its offspring, and the estimated birth year, as a point estimate (<code>BY.est</code>) and lower and upper bound of the 95% probability interval. This information is intended to make it easier to match dummy IDs to real IDs of observed but non-genotyped individuals (see also <a href="output-check.html#sec:compPed">Compare pedigrees</a>).</p>
 </div>
-<div id="total-likelihood" class="section level3" number="5.6.2">
-<h3><span class="header-section-number">5.6.2</span> Total likelihood</h3>
+<div id="total-likelihood" class="section level3 hasAnchor" number="5.6.2">
+<h3><span class="header-section-number">5.6.2</span> Total likelihood<a href="running-sequoia.html#total-likelihood" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The total likelihood provides a measure of how well the observed genotype data is explained by the currently inferred pedigree, the allele frequencies of the SNPs, the presumed genotyping error rate, and the assumption that founder genotypes were drawn from a genepool in Hardy-Weinberg equilibrium. It is always a negative number, and closer to zero indicates a better fit. When an asymptote is reached, typically in 5–10 iterations, either the algorithm is concluded (the default) or dependency on the age prior is increased (if <code>UseAge = 'extra'</code>) and the algorithm continues until a new asymptote is reached.</p>
 <p>If you set <code>MaxSibIter</code> and there is a large change in value between the second-last and last likelihood of output element <code>TotLikSib</code>, consider running the algorithm for more iterations (increase <a href="running-sequoia.html#sec:MaxSibIter"><code>MaxSibIter</code></a>).</p>
 </div>
 </div>
-<div id="save-output" class="section level2" number="5.7">
-<h2><span class="header-section-number">5.7</span> Save output</h2>
+<div id="save-output" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Save output<a href="running-sequoia.html#save-output" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are various ways in which the output can be stored. This includes saving the seqoia list object, and optionally various other objects, in an <code>.RData</code> compressed file</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="running-sequoia.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(SeqList, LHdata, Geno, <span class="at">file=</span><span class="st">&quot;Sequoia_output_date.RData&quot;</span>)</span></code></pre></div>
 <p>which can be read back into R at a later point</p>
@@ -432,7 +436,6 @@ Cluster half- and full-siblings and assign each cluster a dummy-parent; assign g
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -472,6 +475,10 @@ gitbook.start({
 "text": null
 },
 "download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 },
@@ -486,7 +493,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

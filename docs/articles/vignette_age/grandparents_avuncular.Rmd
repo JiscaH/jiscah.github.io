@@ -1,8 +1,7 @@
-# Grandparents & Avuncular  {#sec:GP-AU}
+# Grandparents & Avuncular  
  --------------------------
 
-
-## Maths
+## Maths {#sec:GP-AU}
 The age difference between say a grand-offspring and its maternal full uncle, depends on the age difference between the individual and its mother, and between its mother and her full brother. It is assumed that these age differences are independent, so that the ageprior for maternal full-avuncular pairs can be calculated directly from the agepriors for mother-offspring and full sibling pairs. 
 
 If individual $i$ is born in year $0$, then the probability that its maternal full uncle $j$ is born in year $x$

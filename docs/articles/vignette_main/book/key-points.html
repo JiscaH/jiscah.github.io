@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Key Points | Sequoia User Guide</title>
   <meta name="description" content="2 Key Points | Sequoia User Guide" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Key Points | Sequoia User Guide" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/../../sequoia_logo.png" />
   
   <meta name="github-repo" content="JiscaH/sequoia" />
@@ -24,17 +23,17 @@
 <meta name="author" content="Jisca Huisman" />
 
 
-<meta name="date" content="2021-05-02" />
+<meta name="date" content="2023-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../../apple-touch-icon-120x120.png" />
   <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
-<link rel="prev" href="sec-Background.html"/>
+<link rel="prev" href="background.html"/>
 <link rel="next" href="function-overview.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,15 +49,16 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -158,7 +158,10 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="sec-Background.html"><a href="sec-Background.html"><i class="fa fa-check"></i><b>1</b> Background</a></li>
+<li class="chapter" data-level="1" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>1</b> Background</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="background.html"><a href="background.html#sec:Background"><i class="fa fa-check"></i><b>1.1</b> The core of <code>Sequoia</code></a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="key-points.html"><a href="key-points.html"><i class="fa fa-check"></i><b>2</b> Key Points</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="key-points.html"><a href="key-points.html#sec:MendelErrors"><i class="fa fa-check"></i><b>2.1</b> Mendelian Errors</a>
@@ -289,6 +292,7 @@ div.csl-indent {
 <li class="chapter" data-level="8.4.3" data-path="faq.html"><a href="faq.html#data-simulation"><i class="fa fa-check"></i><b>8.4.3</b> Data simulation</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="faq.html"><a href="faq.html#add-new-individuals"><i class="fa fa-check"></i><b>8.5</b> Add new individuals</a></li>
+<li class="chapter" data-level="8.6" data-path="faq.html"><a href="faq.html#results-differ-from-colony"><i class="fa fa-check"></i><b>8.6</b> Results differ from COLONY</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
@@ -312,25 +316,25 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="key-points" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Key Points</h1>
+<div id="key-points" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Key Points<a href="key-points.html#key-points" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <hr />
-<div id="sec:MendelErrors" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Mendelian Errors</h2>
+<div id="sec:MendelErrors" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Mendelian Errors<a href="key-points.html#sec:MendelErrors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Parent and offspring will never be opposing homozygotes (one <span class="math inline">\(aa\)</span>, other <span class="math inline">\(AA\)</span>) at a locus, except due to genotyping errors. This metric is easy and quick to calculate even in very large datasets, and provides a good way to subset candidate parents (done by <code>sequoia</code> internally), or to check if an existing pedigree is consistent with new genetic data (function <code>CalcOHLLR(, CalcLLR=FALSE)</code>).</p>
 <p>The count of opposing homozygous (OH) SNPs is not always a reliable indicator to distinguish parents from not-parents. When the genotyping error rate is high, true parent–offspring pairs may have a high OH count, while some full siblings and other close relatives may have a very low OH count. Therefore, <code>sequoia()</code> uses OH only as a filter to reduce the number of candidate parents for each individual, and uses likelihood ratios for actual assignments.</p>
-<div id="parent-pairs" class="section level3" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Parent-pairs</h3>
+<div id="parent-pairs" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Parent-pairs<a href="key-points.html#parent-pairs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The number of Mendelian errors in an offspring-mother-father trio includes the OH counts between offspring and each parent, as well as cases where the offspring should have been heterozygous, but isn’t (mother <span class="math inline">\(aa\)</span>, father <span class="math inline">\(AA\)</span>, offspring <span class="math inline">\(aa\)</span> or <span class="math inline">\(AA\)</span>), and cases where it is heterozygous, but shouldn’t be (when mother and father are identical homozyotes). This metric is used to subset ‘compatible’ parent-pairs when there are candidate parents from both sexes, or with unknown sex.</p>
 </div>
-<div id="maximum-mismatches" class="section level3" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> Maximum mismatches</h3>
+<div id="maximum-mismatches" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Maximum mismatches<a href="key-points.html#maximum-mismatches" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The maximum number of Mendelian mismatches, and mismatches between potential duplicates, is from version 2.0 onward calculated by <code>CalcMaxMismatch()</code>, based on the (average) genotyping error rate. This parameter can no longer be altered directly,
 but can be changed via parameters <code>Err</code> and <code>ErrFlavour</code>.</p>
 </div>
 </div>
-<div id="likelihoods" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Likelihoods</h2>
+<div id="likelihoods" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Likelihoods<a href="key-points.html#likelihoods" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Assignments are based on the likelihods for all different possible relationships between a pair, calculated conditional on all assignments made up onto that point. If the focal relationship is more likely than all alternatives (by a margin <code>Tassign</code>), the assignment is made.</p>
 <p>The relationships are condensed into seven categories (Table <a href="key-points.html#tab:rel7">2.1</a>). Under the default settings (<code>Complx='full'</code>), these also include their combinations (section <a href="sequoia-input.html#sec:WeirdRels">Unusual relationships</a>), e.g. a pair may be both paternal half-siblings and maternal aunt/niece if they were produced by a mother-daughter pair mating with the same male.</p>
 <table>
@@ -375,31 +379,31 @@ but can be changed via parameters <code>Err</code> and <code>ErrFlavour</code>.<
 <p>To reduce computational time, these likelihoods are only calculated after filtering pairs based on the number of <a href="key-points.html#sec:MendelErrors">Mendelian errors</a>, their <a href="key-points.html#sec:BY-AP">age difference</a>, and a quick calculation of LLR(focal / unrelated) without conditioning on any earlier assigned relatives (must pass <code>Tfilter</code>).</p>
 <p>For any pair of genotyped individuals, these seven likelihoods can be calculated with <code>CalcPairLL()</code>.</p>
 </div>
-<div id="sec:GenoErrors" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Genotyping errors</h2>
-<div id="effect" class="section level3" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Effect</h3>
+<div id="sec:GenoErrors" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Genotyping errors<a href="key-points.html#sec:GenoErrors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="effect" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Effect<a href="key-points.html#effect" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A higher rate of genotyping errors leads to more false negatives and more false positives during pedigree reconstruction, as illustrated in Figure <a href="key-points.html#fig:ErrSimSeq">2.1</a>. The magnitude of the effect varies: One wrong assignment due to a few genotyping errors in a key individual may have numerous knock-on effects, while dozens of genotyping errors in ‘dead end’ individuals may have no consequences at all.</p>
 <p>The simulations (<code>SimGeno()</code>) assume amongst others that genotyping errors are independent from each other and from a sample’s call rate, and likely give a more optimistic picture than real data.</p>
 </div>
-<div id="assumed-genotyping-error-rate-err" class="section level3" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> Assumed genotyping error rate <code>Err</code></h3>
+<div id="assumed-genotyping-error-rate-err" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Assumed genotyping error rate <code>Err</code><a href="key-points.html#assumed-genotyping-error-rate-err" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The reduced performance at high genotyping error rates can be somewhat mitigated by running <code>sequoia()</code> with a roughly correct presumed genotyping error rate <code>Err</code> (Figure <a href="key-points.html#fig:ErrSimSeq">2.1</a>: compare red vs yellow symbols at an error rate of 1-2%).</p>
 <p>Among others, when <code>Err</code> is much lower than the actual genotyping error rate, some true parent-offspring pairs will be assigned as full siblings. On the other hand, when <code>Err</code> is much higher than the actual genotyping error rate some true full siblings may be classified as parent-offspring, potentially leading to various ‘secondary’ errors. This trade-off can be explored using <code>CalcPairLL()</code> if some known parent-offspring and full sibling pairs are available.</p>
 <!-- work-around for issue with underscore in caption -->
 
-<div class="figure"><span id="fig:ErrSimSeq"></span>
+<div class="figure"><span style="display:block;" id="fig:ErrSimSeq"></span>
 <img src="figs/Errs-effect.png" alt="High simulated genotyping error rate (x-axes) increases both false negatives (top) and false positives (bottom). A roughly correct presumed error rate (colours) improves performance. Results from pedigree Ped_HSg5 with 200 SNPs, call rate 0.99, 40% of parents non-genotyped. Diamonds: means across 10 replicates." width="80%" />
 <p class="caption">
 Figure 2.1: High simulated genotyping error rate (x-axes) increases both false negatives (top) and false positives (bottom). A roughly correct presumed error rate (colours) improves performance. Results from pedigree <code>Ped_HSg5</code> with 200 SNPs, call rate 0.99, 40% of parents non-genotyped. Diamonds: means across 10 replicates.
 </p>
 </div>
-<p><strong>NOTE</strong> that the default assumed genotyping error rate of 0.01% is based on data from a SNP array after stringent quality control; in many cases the genotyping error rate will be (much) higher.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> It is typically worthwhile to explore if and how results change when you vary this parameter, possibly in combination with non-default values for the thresholds <code>Tfilter</code> and <code>Tassign</code>. Do keep in mind the relative consequences of potential misassignments (false positives) versus non-assignments (false negatives) during later use of the pedigree.</p>
+<p><strong>NOTE</strong> that the default assumed genotyping error rate of 0.01% is based on data from a SNP array after stringent quality control; in many cases the genotyping error rate will be (much) higher <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. It is typically worthwhile to explore if and how results change when you vary this parameter, possibly in combination with non-default values for the thresholds <code>Tfilter</code> and <code>Tassign</code>. Do keep in mind the relative consequences of potential misassignments (false positives) versus non-assignments (false negatives) during later use of the pedigree.</p>
 </div>
-<div id="performance-with-high-genotyping-error-rates" class="section level3" number="2.3.3">
-<h3><span class="header-section-number">2.3.3</span> Performance with high genotyping error rates</h3>
-<p><code>sequoia</code> does not cope well with high rates of genotyping errors, as the sequential approach (see <a href="sec-Background.html#sec:Background">Background</a>) can lead to a cascading avalanche of assignment errors. If the rate is around 1%, be cautious when interpreting the results and please use <a href="key-points.html#sec:EstConf"><code>EstConf()</code></a> to estimate the assignment error. With genotyping error rates above 5% I would strongly suggest to use MCMC-based approaches, or other approaches more robust to poor genotyping quality.</p>
-<div class="figure"><span id="fig:ARER-cats"></span>
+<div id="performance-with-high-genotyping-error-rates" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Performance with high genotyping error rates<a href="key-points.html#performance-with-high-genotyping-error-rates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>sequoia</code> does not cope well with high rates of genotyping errors, as the sequential approach (see <a href="background.html#sec:Background">Background</a>) can lead to a cascading avalanche of assignment errors. If the rate is around 1%, be cautious when interpreting the results and please use <a href="key-points.html#sec:EstConf"><code>EstConf()</code></a> to estimate the assignment error. With genotyping error rates above 5% I would strongly suggest to use MCMC-based approaches, or other approaches more robust to poor genotyping quality.</p>
+<div class="figure"><span style="display:block;" id="fig:ARER-cats"></span>
 <img src="figs/ARER-cats.png" alt="Non-assignment (top) and assignment errors (bottom) for a range of SNP numbers (x-axes) and simulated genotyping errors (colours). sequoia presumed error rates (‘Err’) set equal to simulated error rates. Results for a deer pedigree with overlapping generations and inbreeding; 40% of parents were presumed non-genotyped, call rate=0.99 for remainder." width="100%" />
 <p class="caption">
 Figure 2.2: Non-assignment (top) and assignment errors (bottom) for a range of SNP numbers (x-axes) and simulated genotyping errors (colours). <code>sequoia</code> presumed error rates (‘Err’) set equal to simulated error rates. Results for a deer pedigree with overlapping generations and inbreeding; 40% of parents were presumed non-genotyped, call rate=0.99 for remainder.
@@ -408,18 +412,18 @@ Figure 2.2: Non-assignment (top) and assignment errors (bottom) for a range of S
 <p>Assignment of genotyped parents to genotyped offspring is fairly robust to low SNP number and high genotyping errors (left-most column in Figure <a href="key-points.html#fig:ARER-cats">2.2</a>), while pedigree links involving a dummy individual are more prone to mis-assignment and non-assignment (columns 2-4 in Figure <a href="key-points.html#fig:ARER-cats">2.2</a>). In these simulations, all SNPs are completely independent, call rate is high, and founders are unrelated; in real data the overall performance is probably lower but the patterns will be similar.</p>
 
 </div>
-<div id="effect-on-runtime" class="section level3" number="2.3.4">
-<h3><span class="header-section-number">2.3.4</span> Effect on runtime</h3>
+<div id="effect-on-runtime" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> Effect on runtime<a href="key-points.html#effect-on-runtime" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Computational time tends to increases with both simulated and assumed genotyping error rate, as the time-saving filtering steps become less effective (Figure <a href="key-points.html#fig:Errs-time">2.3</a>).</p>
-<div class="figure"><span id="fig:Errs-time"></span>
+<div class="figure"><span style="display:block;" id="fig:Errs-time"></span>
 <img src="figs/Errs-time-HSg5.png" alt="Runtimes are shorter with lower genotyping error rates and more SNPs" width="35%" /><img src="figs/Errs-time-deer.png" alt="Runtimes are shorter with lower genotyping error rates and more SNPs" width="35%" />
 <p class="caption">
 Figure 2.3: Runtimes are shorter with lower genotyping error rates and more SNPs
 </p>
 </div>
 </div>
-<div id="error-matrix" class="section level3" number="2.3.5">
-<h3><span class="header-section-number">2.3.5</span> Error matrix</h3>
+<div id="error-matrix" class="section level3 hasAnchor" number="2.3.5">
+<h3><span class="header-section-number">2.3.5</span> Error matrix<a href="key-points.html#error-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Different genotyping methods are likely to have different error structures (Table <a href="key-points.html#tab:ErrM">2.2</a>). Therefore, from version 2.0 sequoia allows fine-scale control over how potential genotyping errors are accounted for. An error matrix with the probability to observe genotype <span class="math inline">\(G\)</span> (columns), conditional on actual genotype <span class="math inline">\(g\)</span> (rows), can now be specified via parameter <code>ErrFlavour</code>. The current default (<code>version2.0</code>) is given in Table <a href="key-points.html#tab:ErrM">2.2</a>, and previous defaults are shown in the help file of <code>ErrToM()</code>. The slight differences between versions only have any consequences when the error rate is high (<span class="math inline">\(&gt;1%\)</span>).</p>
 <p>During pedigree inference, the error rate is presumed equal across all SNPs. It is also assumed that none of the errors (or missingness) are due to heritable mutations.</p>
 <table>
@@ -454,19 +458,19 @@ Figure 2.3: Runtimes are shorter with lower genotyping error rates and more SNPs
 </tbody>
 </table>
 </div>
-<div id="estimate" class="section level3" number="2.3.6">
-<h3><span class="header-section-number">2.3.6</span> Estimate</h3>
+<div id="estimate" class="section level3 hasAnchor" number="2.3.6">
+<h3><span class="header-section-number">2.3.6</span> Estimate<a href="key-points.html#estimate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Function <code>SnpStats()</code> can estimate the genotyping error rate per SNP, conditional on a provided pedigree and error structure (<code>ErrFlavour</code>). These estimated error rates will not be as accurate as from duplicate samples, since a single error in an individual with many offspring will be counted many times, while errors in individuals without parents or offspring will not be counted at all.</p>
 </div>
 </div>
-<div id="sec:BY-AP" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Birth years &amp; Ageprior</h2>
+<div id="sec:BY-AP" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Birth years &amp; Ageprior<a href="key-points.html#sec:BY-AP" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>For details, including worked examples, mathematical framework, and full range of options, please see the</em> <a href="./../../vignette_age/book/index.html">age vignette</a>.</p>
 <p>Providing individual birth years will typically greatly improve the completeness and speed of pedigree reconstruction. Age data is used to subset the potential relationships between each pair, and is required to orientate parent–offspring pairs the right way around. Birth year information is not strictly required for every individual: parent-parent-offspring trios can be assigned even in absence of any age data, as long as the sex of either parent is known.</p>
 <p>‘Birth year’ should be interpreted loosely, as the time unit (week/month/year/decade/…) of birth/hatching/germination/… .</p>
 <p>For individuals (or ‘mystery samples’) with unknown birth years, the probability that they were born in year <span class="math inline">\(y\)</span> can be estimated using <code>CalcBYprobs()</code>. This relies on the (estimated) birth years of their parents and offspring, and the age distribution of parent-offspring pairs as specified in the <code>age prior</code>.</p>
-<div id="definition-interpretation" class="section level3" number="2.4.1">
-<h3><span class="header-section-number">2.4.1</span> Definition &amp; interpretation</h3>
+<div id="definition-interpretation" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Definition &amp; interpretation<a href="key-points.html#definition-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The ‘agepriors’ as used by <code>sequoia()</code> is not an official term, nor a proper prior, but a set of age-difference based probability ratios which can be interpreted as</p>
 <blockquote>
 <p>If I were to pick two individuals with an age difference <span class="math inline">\(A\)</span>, and two individuals at random, how much more likely are the first pair to have relationship <span class="math inline">\(R\)</span>, compared to the second pair?</p>
@@ -475,10 +479,10 @@ Figure 2.3: Runtimes are shorter with lower genotyping error rates and more SNPs
 <p>For example, in datasets with only one or two ageclasses, it is worth contemplating whether or not avuncular relationships should be considered as alternatives to siblings. The behaviour can be changed by explicitly declaring generations as <code>Discrete</code> (avuncular cannot have age difference of 0), and/or by setting <code>MaxAgeParent</code>.</p>
 <p>You can find extensive details about the ageprior <a href="./../../vignette_age/book/index.html">in this separate vignette</a>, including worked examples, mathematical framework, and full range of options.</p>
 </div>
-<div id="implementation" class="section level3" number="2.4.2">
-<h3><span class="header-section-number">2.4.2</span> Implementation</h3>
+<div id="implementation" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Implementation<a href="key-points.html#implementation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Parentage assignment is run with an ageprior only specifying that parents and offspring cannot be the same age. The resulting ‘scaffold pedigree’ is then used by <code>MakeAgeprior()</code> to estimate the dataset-specific age-difference distributions for each relationship (mother, father, full sibling, maternal and paternal half sibling), which are standardised by the age-difference distribution among all pairs. The resulting ageprior probability ratios are then used during full pedigree reconstruction (Figure <a href="key-points.html#fig:AP-pipeline">2.4</a>).</p>
-<div class="figure"><span id="fig:AP-pipeline"></span>
+<div class="figure"><span style="display:block;" id="fig:AP-pipeline"></span>
 <img src="figs/agepriors-pipeline.png" alt="Ageprior pipeline overview" width="100%" />
 <p class="caption">
 Figure 2.4: Ageprior pipeline overview
@@ -486,12 +490,12 @@ Figure 2.4: Ageprior pipeline overview
 </div>
 <p>When running <code>sequoia()</code>, arguments can be passed to <code>MakeAgePrior()</code> via <a href="sequoia-input.html#sec:custom-AP"><code>args.AP</code></a>.</p>
 </div>
-<div id="smooth-flatten" class="section level3" number="2.4.3">
-<h3><span class="header-section-number">2.4.3</span> Smooth &amp; Flatten</h3>
+<div id="smooth-flatten" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Smooth &amp; Flatten<a href="key-points.html#smooth-flatten" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Often not all biologically possible age-differences are present in the scaffold pedigree. Therefore <code>MakeAgeprior()</code> by default applies a correction to allow for relatives to differ 1-2 years more in age than observed in its input pedigree, and to smooth out any dips or gaps in the age distributions. However, when such abrupt terminations or gaps are biologically meaningful, these corrections can and should be turned off (<code>Smooth=FALSE</code> and/or <code>Flatten=FALSE</code>). This is done automatically in case discrete generations are declared (<code>Discrete=TRUE</code>) or detected in the scaffold pedigree.</p>
 </div>
-<div id="age-based-non-assignment" class="section level3" number="2.4.4">
-<h3><span class="header-section-number">2.4.4</span> Age-based non-assignment</h3>
+<div id="age-based-non-assignment" class="section level3 hasAnchor" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> Age-based non-assignment<a href="key-points.html#age-based-non-assignment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Any genetically identified parent-offspring pairs and other relatives which are deemed impossible based on their age difference and the age prior matrix, and thus not assigned, can be found by <code>GetMaybeRel()</code>. You may then correct or discard their birth years and/or update the ageprior to allow for their age difference (see <a href="sequoia-input.html#sec:custom-AP">Customising the ageprior</a>), and re-run pedigree reconstruction.</p>
 <!-- ### Grandparents \& Avuncular
 Half-siblings, grandparent--grand-offspring and full avuncular pairs are genetically indistinguishable unless both already have at least one parent assigned. The ageprior distributions are therefore an important tool to distinguish between them. 
@@ -504,8 +508,8 @@ This information can be viewed in the `AgePriorExtra` element of the `sequoia()`
 [^x]: Up to sequoia v1.3 it was assumed that the ageprior for maternal and paternal full- and half- aunts and uncles was approximately similar, and approximately symmetrical around zero -- both these assumptions have been dropped from version 2.0.  -->
 </div>
 </div>
-<div id="parent-llr" class="section level2" number="2.5">
-<h2><span class="header-section-number">2.5</span> Parent LLR</h2>
+<div id="parent-llr" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Parent LLR<a href="key-points.html#parent-llr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When parentage assignment or pedigree reconstruction is completed (when the total likelihood has asymptoted), a log10-likelihood ratio (LLR) is calculated for each assigned parent-offspring pair. This is</p>
 <blockquote>
 <p><strong>The ratio between the likelihood of being parent and offspring, versus the next-most-likely relationship between them, conditional on all other relationships in the pedigree.</strong></p>
@@ -514,8 +518,8 @@ This information can be viewed in the `AgePriorExtra` element of the `sequoia()`
 <p>The LLRs for the dam and sire separately are calculated by temporarily dropping the co-parent (if any), and calculating the likelihoods assuming the co-parent is a random draw from the population. The LLR for the parent-pair is the minimum of the dam and sire LLR, each conditional on the co-parent. To retrieve the likelihoods underlying each ratio, use <code>CalcPairLL()</code>; specify column <code>dropPar1</code> for single-parent likelihoods.</p>
 <p>Since this step can be quite time-consuming, <code>sequoia()</code> can be run with <code>CalcLLR=FALSE</code>, and <code>CalcOHLLR()</code> can be run separately later. That function can also calculate parental LLR’s for any existing pedigree, including for any non-genotyped individuals with at least one genotyped offspring.</p>
 </div>
-<div id="sec:EstConf" class="section level2" number="2.6">
-<h2><span class="header-section-number">2.6</span> Confidence</h2>
+<div id="sec:EstConf" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Confidence<a href="key-points.html#sec:EstConf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The parental likelihood ratio does not necessarily indicate how likely it is that the assignment is correct. Pedigree-wide confidence probabilities can, among others, be estimated as follows</p>
 <ul>
 <li>Simulate genotype data according to the reconstructed (or an existing) pedigree, imposing realistic levels of missingness and genotyping errors (<code>SimGeno()</code>);</li>
@@ -525,18 +529,18 @@ This information can be viewed in the `AgePriorExtra` element of the `sequoia()`
 <p>When repeated at least 10–20 times, the proportion of assignments that is correct then provides an estimate of the confidence probability. This will be an optimistic estimate, as <code>SimGeno()</code> assumes all SNPs are independent, that parental genotypes are missing at random, and makes various other simplifying assumptions.</p>
 <p>This process is conveniently wrapped in the function <code>EstConf()</code>, which calculates separate confidence levels for dams and sires (which may have very different sampling proportions), for genotyped and dummy parents, and for single parents and members of parent-pairs. The process can be rather time consuming, but from version 2.1 onwards it is possible to run on multiple computer cores in parallel.</p>
 </div>
-<div id="sec:lowAR" class="section level2" number="2.7">
-<h2><span class="header-section-number">2.7</span> Low assignment rate</h2>
+<div id="sec:lowAR" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Low assignment rate<a href="key-points.html#sec:lowAR" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Pedigree reconstruction with <code>sequoia()</code> regularly suffers from a low assignment rate, especially when only a small proportion of parents have been genotyped. This is fundamental to the method: when in doubt, MCMC approaches will return an assignment with a low posterior probability, but <code>sequoia()</code> will return no assignment at all.</p>
 <p>In <code>sequoia()</code>, an incorrect assignment early on may cause a cascade of other incorrect assignments later in the run, and great care is taken to prevent this. On the flip side, when there is limited genetic or birth year information and/or very few parents have been genotyped, the cascade of <em>correct</em> assignments, where maternal assignments fascilitate paternal assignments and v.v. (Figure <a href="key-points.html#fig:ClusterMatPat">2.5</a>), may never take off. For such situations, different programs with MCMC based approaches are more suitable.</p>
-<div class="figure"><span id="fig:ClusterMatPat"></span>
+<div class="figure"><span style="display:block;" id="fig:ClusterMatPat"></span>
 <img src="figs/clustering_mat_helps_pat.png" alt="Sibship clustering of individuals A-D" width="100%" />
 <p class="caption">
 Figure 2.5: Sibship clustering of individuals A-D
 </p>
 </div>
-<div id="causes" class="section level3" number="2.7.1">
-<h3><span class="header-section-number">2.7.1</span> Causes</h3>
+<div id="causes" class="section level3 hasAnchor" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Causes<a href="key-points.html#causes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are four main causes a pair of true relatives are not assigned, which are not mutually exclusive:</p>
 <ol style="list-style-type: decimal">
 <li>There is more than one type of relationship possible between the pair, which cannot be distinguished with certainty (details below);</li>
@@ -549,8 +553,8 @@ Figure 2.5: Sibship clustering of individuals A-D
 <p>1a. Half-siblings, grandparent–grand-offspring and full avuncular pairs are genetically indistinguishable, even with perfect genetic data. Assignment of half-sibling pairs is only possible when grand-parental and avuncular relationships can be excluded based on the age-difference of the pair, or when both individuals already have a parent assigned (in which case the likelihoods do differ).
 1b. The SNP data is not informative enough to clearly distinguishing between parents and full siblings, between full and half siblings, between half siblings and cousins, etc.. The problem may be specific to a few pairs and due to the randomness of Mendelian segregation, or be widespread due to a low number of SNPs, low MAF, and/or high error rate.</p>
 </div>
-<div id="remedies" class="section level3" number="2.7.2">
-<h3><span class="header-section-number">2.7.2</span> Remedies</h3>
+<div id="remedies" class="section level3 hasAnchor" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> Remedies<a href="key-points.html#remedies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sometimes it is possible to reduce the number of non-assigned parents in the pedigree by providing more life history data, removing SNPs with the highest error rates, or lowering the thresholds <code>Tfilter</code> and/or <code>Tassign</code>. The latter will reduce the probability of false negatives, but at the same time increase the probability for false positives. If inbreeding and double relationships are rare, using <code>Complx='simp'</code> may also improve assignment (see <a href="sec:Complx">here</a>).</p>
 <p>Small adjustments may ‘get the snowball rolling’ (Figure <a href="key-points.html#fig:ClusterMatPat">2.5</a>) and greatly increase assignments. Once a sibling pair is assigned, adding additional siblings to the cluster becomes progressively easier as it becomes more and more obvious whether an individual is related to all individuals in the sibship, or to none.</p>
 <p>There are functions in the package that may help identify whether there are un-assigned likely relatives in the dataset, and/or the probable cause of non-assignment of presumed relatives:</p>
@@ -579,12 +583,11 @@ Marshall, T C, J B K E Slate, L E B Kruuk, and J M Pemberton. 1998. <span>“Sta
           </div>
         </div>
       </div>
-<a href="sec-Background.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="background.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="function-overview.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -624,6 +627,10 @@ gitbook.start({
 "text": null
 },
 "download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 },
@@ -638,7 +645,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Sequoia - Age ‘Prior’</title>
   <meta name="description" content="Sequoia - Age ‘Prior’" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Sequoia - Age ‘Prior’" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/../../sequoia_logo.png" />
   
   <meta name="github-repo" content="JiscaH/sequoia" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Jisca Huisman" />
 
 
-<meta name="date" content="2021-02-16" />
+<meta name="date" content="2023-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
 
 <link rel="next" href="maths.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,15 +49,16 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -170,7 +170,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2" data-path="maths.html"><a href="maths.html"><i class="fa fa-check"></i><b>2</b> Maths</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="maths.html"><a href="maths.html#ageprior"><i class="fa fa-check"></i><b>2.1</b> AgePrior</a></li>
+<li class="chapter" data-level="2.1" data-path="maths.html"><a href="maths.html#sec:Maths"><i class="fa fa-check"></i><b>2.1</b> AgePrior</a></li>
 <li class="chapter" data-level="2.2" data-path="maths.html"><a href="maths.html#sec:unsampled"><i class="fa fa-check"></i><b>2.2</b> Unsampled individuals</a></li>
 <li class="chapter" data-level="2.3" data-path="maths.html"><a href="maths.html#genetics-times-age"><i class="fa fa-check"></i><b>2.3</b> Genetics <span class="math inline">\(\times\)</span> Age</a></li>
 </ul></li>
@@ -178,7 +178,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="3.1" data-path="ageprior-matrix-explained.html"><a href="ageprior-matrix-explained.html#agepriorextra"><i class="fa fa-check"></i><b>3.1</b> <code>AgePriorExtra</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="sec-Default.html"><a href="sec-Default.html"><i class="fa fa-check"></i><b>4</b> Default ageprior</a></li>
+<li class="chapter" data-level="4" data-path="default-ageprior.html"><a href="default-ageprior.html"><i class="fa fa-check"></i><b>4</b> Default ageprior</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="default-ageprior.html"><a href="default-ageprior.html#sec:Default"><i class="fa fa-check"></i><b>4.1</b> Default</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="pedigree-based-ageprior.html"><a href="pedigree-based-ageprior.html"><i class="fa fa-check"></i><b>5</b> Pedigree-based ageprior</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="pedigree-based-ageprior.html"><a href="pedigree-based-ageprior.html#sec:Discrete"><i class="fa fa-check"></i><b>5.1</b> Discrete generations</a>
@@ -195,36 +198,36 @@ div.csl-indent {
 <li class="chapter" data-level="5.2.6" data-path="pedigree-based-ageprior.html"><a href="pedigree-based-ageprior.html#sec:standardise"><i class="fa fa-check"></i><b>5.2.6</b> Ageprior P(A|R)/P(A): <code>LR.RU.A.raw</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="sec-smallCorr.html"><a href="sec-smallCorr.html"><i class="fa fa-check"></i><b>6</b> Small sample correction</a>
+<li class="chapter" data-level="6" data-path="small-sample-correction.html"><a href="small-sample-correction.html"><i class="fa fa-check"></i><b>6</b> Small sample correction</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="sec-smallCorr.html"><a href="sec-smallCorr.html#the-problem"><i class="fa fa-check"></i><b>6.1</b> The problem</a></li>
-<li class="chapter" data-level="6.2" data-path="sec-smallCorr.html"><a href="sec-smallCorr.html#sec:Smooth"><i class="fa fa-check"></i><b>6.2</b> Smooth</a></li>
-<li class="chapter" data-level="6.3" data-path="sec-smallCorr.html"><a href="sec-smallCorr.html#sec:Flatten"><i class="fa fa-check"></i><b>6.3</b> Flatten</a>
+<li class="chapter" data-level="6.1" data-path="small-sample-correction.html"><a href="small-sample-correction.html#sec:smallCorr"><i class="fa fa-check"></i><b>6.1</b> </a></li>
+<li class="chapter" data-level="6.2" data-path="small-sample-correction.html"><a href="small-sample-correction.html#the-problem"><i class="fa fa-check"></i><b>6.2</b> The problem</a></li>
+<li class="chapter" data-level="6.3" data-path="small-sample-correction.html"><a href="small-sample-correction.html#sec:Smooth"><i class="fa fa-check"></i><b>6.3</b> Smooth</a></li>
+<li class="chapter" data-level="6.4" data-path="small-sample-correction.html"><a href="small-sample-correction.html#sec:Flatten"><i class="fa fa-check"></i><b>6.4</b> Flatten</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="sec-smallCorr.html"><a href="sec-smallCorr.html#weighing-factor-lambdanw"><i class="fa fa-check"></i><b>6.3.1</b> Weighing factor &amp; <code>lambdaNW</code></a></li>
-<li class="chapter" data-level="6.3.2" data-path="sec-smallCorr.html"><a href="sec-smallCorr.html#sample-size-vs.-sampling-probability"><i class="fa fa-check"></i><b>6.3.2</b> Sample size vs. sampling probability</a></li>
+<li class="chapter" data-level="6.4.1" data-path="small-sample-correction.html"><a href="small-sample-correction.html#weighing-factor-lambdanw"><i class="fa fa-check"></i><b>6.4.1</b> Weighing factor &amp; <code>lambdaNW</code></a></li>
+<li class="chapter" data-level="6.4.2" data-path="small-sample-correction.html"><a href="small-sample-correction.html#sample-size-vs.-sampling-probability"><i class="fa fa-check"></i><b>6.4.2</b> Sample size vs. sampling probability</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="sec-GP-AU.html"><a href="sec-GP-AU.html"><i class="fa fa-check"></i><b>7</b> Grandparents &amp; Avuncular</a>
+<li class="chapter" data-level="7" data-path="grandparents-avuncular.html"><a href="grandparents-avuncular.html"><i class="fa fa-check"></i><b>7</b> Grandparents &amp; Avuncular</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="sec-GP-AU.html"><a href="sec-GP-AU.html#maths-1"><i class="fa fa-check"></i><b>7.1</b> Maths</a>
+<li class="chapter" data-level="7.1" data-path="grandparents-avuncular.html"><a href="grandparents-avuncular.html#sec:GP-AU"><i class="fa fa-check"></i><b>7.1</b> Maths</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="sec-GP-AU.html"><a href="sec-GP-AU.html#ageprior-to-probability-to-ageprior"><i class="fa fa-check"></i><b>7.1.1</b> Ageprior to Probability to Ageprior</a></li>
-<li class="chapter" data-level="7.1.2" data-path="sec-GP-AU.html"><a href="sec-GP-AU.html#change-from-v1.3-to-v2.0"><i class="fa fa-check"></i><b>7.1.2</b> change from v1.3 to v2.0</a></li>
+<li class="chapter" data-level="7.1.1" data-path="grandparents-avuncular.html"><a href="grandparents-avuncular.html#ageprior-to-probability-to-ageprior"><i class="fa fa-check"></i><b>7.1.1</b> Ageprior to Probability to Ageprior</a></li>
+<li class="chapter" data-level="7.1.2" data-path="grandparents-avuncular.html"><a href="grandparents-avuncular.html#change-from-v1.3-to-v2.0"><i class="fa fa-check"></i><b>7.1.2</b> change from v1.3 to v2.0</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sec-customAP.html"><a href="sec-customAP.html"><i class="fa fa-check"></i><b>8</b> Customise</a>
+<li class="chapter" data-level="8" data-path="customise.html"><a href="customise.html"><i class="fa fa-check"></i><b>8</b> Customise</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="sec-customAP.html"><a href="sec-customAP.html#via-args.ap"><i class="fa fa-check"></i><b>8.1</b> Via <code>args.AP</code></a></li>
-<li class="chapter" data-level="8.2" data-path="sec-customAP.html"><a href="sec-customAP.html#different-input-pedigree"><i class="fa fa-check"></i><b>8.2</b> Different input pedigree</a></li>
-<li class="chapter" data-level="8.3" data-path="sec-customAP.html"><a href="sec-customAP.html#other-tweaks"><i class="fa fa-check"></i><b>8.3</b> Other tweaks</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="sec-customAP.html"><a href="sec-customAP.html#age-at-first-reproduction"><i class="fa fa-check"></i><b>8.3.1</b> Age at first reproduction</a></li>
+<li class="chapter" data-level="8.1" data-path="customise.html"><a href="customise.html#sec:customAP"><i class="fa fa-check"></i><b>8.1</b> </a></li>
+<li class="chapter" data-level="8.2" data-path="customise.html"><a href="customise.html#via-args.ap"><i class="fa fa-check"></i><b>8.2</b> Via <code>args.AP</code></a></li>
+<li class="chapter" data-level="8.3" data-path="customise.html"><a href="customise.html#different-input-pedigree"><i class="fa fa-check"></i><b>8.3</b> Different input pedigree</a></li>
+<li class="chapter" data-level="8.4" data-path="customise.html"><a href="customise.html#other-tweaks"><i class="fa fa-check"></i><b>8.4</b> Other tweaks</a></li>
+<li class="chapter" data-level="8.5" data-path="customise.html"><a href="customise.html#from-age-difference-distribution"><i class="fa fa-check"></i><b>8.5</b> From age-difference distribution</a></li>
+<li class="chapter" data-level="8.6" data-path="customise.html"><a href="customise.html#specifications"><i class="fa fa-check"></i><b>8.6</b> Specifications</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="sec-customAP.html"><a href="sec-customAP.html#from-age-difference-distribution"><i class="fa fa-check"></i><b>8.4</b> From age-difference distribution</a></li>
-<li class="chapter" data-level="8.5" data-path="sec-customAP.html"><a href="sec-customAP.html#specifications"><i class="fa fa-check"></i><b>8.5</b> Specifications</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
+<li class="chapter" data-level="9" data-path="estimate-birth-years.html"><a href="estimate-birth-years.html"><i class="fa fa-check"></i><b>9</b> Estimate birth years</a></li>
+<li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
 <li class="divider"></li>
 <li><a href="./../../vignette_main/book/sec-Background.html">Main Vignette</a></li>
 <li><a href="./../../index.html">Other Manuals</a></li>
@@ -249,49 +252,49 @@ div.csl-indent {
 <div id="header">
 <h1 class="title">Sequoia - Age ‘Prior’</h1>
 <p class="author"><em>Jisca Huisman</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>16 Feb 2021</em></p>
+<p class="date"><em>04 April 2023</em></p>
 </div>
-<div id="in-short" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> In short</h1>
+<div id="in-short" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> In short<a href="index.html#in-short" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <hr />
-<div id="age-info-is-useful" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Age Info is Useful</h2>
+<div id="age-info-is-useful" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Age Info is Useful<a href="index.html#age-info-is-useful" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The age difference between a pair of individuals can be useful information during pedigree reconstruction. It can exclude some relationship alternatives from consideration, as for example parent and offspring can never be born in the same time unit. It can also help to distinguish between the different types of second degree relatives, as the age difference between siblings is typically much smaller than between grandparent and grand-offspring.</p>
-<div class="figure"><span id="fig:DeerAP"></span>
+<div class="figure"><span style="display:block;" id="fig:DeerAP"></span>
 <img src="figs/Deer-AgePriorExtra.png" alt="Example of 'ageprior' distribution in a red deer population" width="90%" />
 <p class="caption">
 Figure 1.1: Example of ‘ageprior’ distribution in a red deer population
 </p>
 </div>
 </div>
-<div id="implementation" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Implementation</h2>
+<div id="implementation" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Implementation<a href="index.html#implementation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>While the rule that parent and offspring cannot have an age difference of <span class="math inline">\(0\)</span> is universal, the pattern of age difference distributions for various relationships is highly species-specific, or even population-specific (example in Figure <a href="index.html#fig:DeerAP">1.1</a>). Here <code>sequoia</code>’s separation between 1) assignment of genotyped parents to genotyped offspring and 2) full pedigree reconstruction including sibship clustering comes in handy. The age difference distribution for each relationship type is estimated based on the former, and then used as input for the latter (Figure <a href="index.html#fig:pipeline">1.2</a>).</p>
-<div class="figure"><span id="fig:pipeline"></span>
+<div class="figure"><span style="display:block;" id="fig:pipeline"></span>
 <img src="figs/agepriors-pipeline.png" alt="Pipeline overview" width="90%" />
 <p class="caption">
 Figure 1.2: Pipeline overview
 </p>
 </div>
 <p>More specifically, age information is implemented via the ratio between the proportion of pairs with age difference <span class="math inline">\(A\)</span> among those with relationship <span class="math inline">\(R\)</span>, and the proportion in the entire sample (i.e. <span class="math inline">\(P(A|R)/P(A)\)</span>). Scaling by the latter accounts for the fact that any sampling period is finite, so that smaller age differences are always more common than very large age differences.</p>
-<p>Some reshuffling of terms (see <a href="sec-GP-AU.html#maths-1">Maths</a>) shows that this probability ratio can be interpreted as</p>
+<p>Some reshuffling of terms (see <a href="maths.html#sec:Maths">Maths</a>) shows that this probability ratio can be interpreted as</p>
 <blockquote>
 <p><em>If I were to pick two individuals with an age difference <span class="math inline">\(A\)</span>, and two individuals at random, how much more likely are the first pair to have relationship <span class="math inline">\(R\)</span>, compared to the second pair? </em></p>
 </blockquote>
 <p>i.e. the probability of having relationship <span class="math inline">\(R\)</span> conditional on the age difference <span class="math inline">\(A\)</span> (<span class="math inline">\(P(R|A)/P(R)\)</span>).</p>
-<p>As a shorthand, these probability ratios are dubbed ‘agepriors,’ but please note that this is not an official term, nor a proper prior.</p>
+<p>As a shorthand, these probability ratios are dubbed ‘agepriors’, but please note that this is not an official term, nor a proper prior.</p>
 <p>During full pedigree reconstruction, the genetic based likelihood that two individuals are related via relationship <span class="math inline">\(R\)</span> is multiplied by this age based probability ratio. The latter may be <span class="math inline">\(0\)</span> for some relationships, and then excludes these relationships from consideration. In other cases, it will ‘nudge’ the likelihoods up or down.</p>
-<div id="passing-the-threshold" class="section level3" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Passing the threshold</h3>
+<div id="passing-the-threshold" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Passing the threshold<a href="index.html#passing-the-threshold" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>By default, age information is used in a restrictive way: a proposed assignment is only accepted if <em>both</em> the genetics-only and the genetics + age likelihood ratio (LLR) pass the assignment threshold. The genetics-only likelihoods do exclude those relationships that are impossible based on the age difference. You can change this behaviour to only the genetics LLR or only the genetics + age LLR having to pass the threshold via the <code>sequoia()</code> argument <code>UseAge</code>. See the section with that name in the main vignette for further details.</p>
 </div>
 </div>
-<div id="time-units" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Time units</h2>
-<p>Throughout this documentation, ‘birth year’ is used to refer to the year/month/week/day/(other time unit) of birth/hatching/germination/… . The time units should be chosen such that parent and offspring can never be born in the same time unit, i.e. be smaller than or equal to the minimum age of maturity. <code>sequoia()</code> only accepts whole numbers as ‘birth years.’</p>
+<div id="time-units" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Time units<a href="index.html#time-units" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Throughout this documentation, ‘birth year’ is used to refer to the year/month/week/day/(other time unit) of birth/hatching/germination/… . The time units should be chosen such that parent and offspring can never be born in the same time unit, i.e. be smaller than or equal to the minimum age of maturity. <code>sequoia()</code> only accepts whole numbers as ‘birth years’.</p>
 </div>
-<div id="runtime-messages" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Runtime Messages</h2>
+<div id="runtime-messages" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Runtime Messages<a href="index.html#runtime-messages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>From <code>sequoia</code> version 2.0 onwards, you will see heatmaps and messages to inform you about the ageprior that is being used. These are for example</p>
 <blockquote>
 <p><code>Ageprior: Default 0/1, overlapping generations, MaxAgeParent = 5,5</code></p>
@@ -303,14 +306,14 @@ Figure 1.2: Pipeline overview
 <li><code>Default 0/1</code>, <code>Flat 0/1</code>, or <code>Pedigree-based</code> indicates whether the ageprior at that point is respectively the default based on lifehistory data only/no data; based on user-specified maximum parental age; or or based on the age-differences per relationship in a (scaffold or old) pedigree;</li>
 <li><code>discrete</code> or <code>overlapping</code> generations<br />
 </li>
-<li><code>smoothed</code> and/or <code>flattened</code> indicate <a href="sec-smallCorr.html#sec:smallCorr">small-sample corrections</a> for the pedigree-based age prior (no mention means it was not applied)<br />
+<li><code>smoothed</code> and/or <code>flattened</code> indicate <a href="small-sample-correction.html#sec:smallCorr">small-sample corrections</a> for the pedigree-based age prior (no mention means it was not applied)<br />
 </li>
 <li>Maximum age of mothers, fathers.</li>
 </ul>
 </div>
-<div id="changing-the-ageprior" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> Changing the ageprior</h2>
-<p>During pedigree reconstruction, arguments can be passed to <code>MakeAgePrior()</code> via <code>sequoia()</code>‘s <code>args.AP</code>. It is also possible to call <code>MakeAgePrior()</code> separately and use the resulting ageprior (via <code>sequoia()</code>’s <code>Seqlist</code> argument), or use a ’hand-tailored’ ageprior (see <a href="sec-customAP.html#sec:customAP">Customisation</a>).</p>
+<div id="changing-the-ageprior" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Changing the ageprior<a href="index.html#changing-the-ageprior" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>During pedigree reconstruction, arguments can be passed to <code>MakeAgePrior()</code> via <code>sequoia()</code>‘s <code>args.AP</code>. It is also possible to call <code>MakeAgePrior()</code> separately and use the resulting ageprior (via <code>sequoia()</code>’s <code>Seqlist</code> argument), or use a ’hand-tailored’ ageprior (see <a href="customise.html#sec:customAP">Customisation</a>).</p>
 
 </div>
 </div>
@@ -324,7 +327,6 @@ Figure 1.2: Pipeline overview
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -364,6 +366,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 },
@@ -378,7 +384,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

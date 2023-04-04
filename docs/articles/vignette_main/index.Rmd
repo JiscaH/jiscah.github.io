@@ -2,7 +2,7 @@
 title: "Sequoia User Guide"
 subtitle: "Reconstruction of multi-generational pedigrees from SNP data"
 author: "Jisca Huisman"
-date: "2 May 2021"
+date: "4 April 2023"
 site: bookdown::bookdown_site
 github-repo: "JiscaH/sequoia"
 cover-image: "../../sequoia_logo.png"
@@ -54,7 +54,7 @@ library(knitr)
 library(sequoia)
 knitr::opts_chunk$set(echo = TRUE, eval=FALSE, 
                       auto_pdf = TRUE,
-                      fig.path='/figs', 
+                      fig.path='/figs/', 
                       fig.height=4, fig.width=6, fig.pos="htb!")
 ```
 

@@ -1,7 +1,7 @@
 ---
 title: "Sequoia - Age 'Prior'"
 author: "Jisca Huisman"
-date: "16 Feb 2021"
+date: "04 April 2023"
 site: bookdown::bookdown_site
 github-repo: "JiscaH/sequoia"
 cover-image: "../../sequoia_logo.png"
@@ -67,7 +67,7 @@ knitr::include_graphics("figs/agepriors-pipeline.png")
 
 More specifically, age information is implemented via the ratio between the proportion of pairs with age difference $A$ among those with relationship $R$, and the proportion in the entire sample (i.e. $P(A|R)/P(A)$). Scaling by the latter accounts for the fact that any sampling period is finite, so that smaller age differences are always more common than very large age differences. 
 
-Some reshuffling of terms (see [Maths]) shows that this probability ratio can be interpreted as
+Some reshuffling of terms (see [Maths](#sec:Maths)) shows that this probability ratio can be interpreted as
 
 > *If I were to pick two individuals with an age difference $A$, and two individuals at random, how much more likely are the first pair to have relationship $R$, compared to the second pair? *
 

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 sequoia() input | Sequoia User Guide</title>
   <meta name="description" content="4 sequoia() input | Sequoia User Guide" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 sequoia() input | Sequoia User Guide" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/../../sequoia_logo.png" />
   
   <meta name="github-repo" content="JiscaH/sequoia" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Jisca Huisman" />
 
 
-<meta name="date" content="2021-05-02" />
+<meta name="date" content="2023-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
 <link rel="prev" href="function-overview.html"/>
 <link rel="next" href="running-sequoia.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,15 +49,16 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -158,7 +158,10 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="sec-Background.html"><a href="sec-Background.html"><i class="fa fa-check"></i><b>1</b> Background</a></li>
+<li class="chapter" data-level="1" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>1</b> Background</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="background.html"><a href="background.html#sec:Background"><i class="fa fa-check"></i><b>1.1</b> The core of <code>Sequoia</code></a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="key-points.html"><a href="key-points.html"><i class="fa fa-check"></i><b>2</b> Key Points</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="key-points.html"><a href="key-points.html#sec:MendelErrors"><i class="fa fa-check"></i><b>2.1</b> Mendelian Errors</a>
@@ -289,6 +292,7 @@ div.csl-indent {
 <li class="chapter" data-level="8.4.3" data-path="faq.html"><a href="faq.html#data-simulation"><i class="fa fa-check"></i><b>8.4.3</b> Data simulation</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="faq.html"><a href="faq.html#add-new-individuals"><i class="fa fa-check"></i><b>8.5</b> Add new individuals</a></li>
+<li class="chapter" data-level="8.6" data-path="faq.html"><a href="faq.html#results-differ-from-colony"><i class="fa fa-check"></i><b>8.6</b> Results differ from COLONY</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
@@ -312,56 +316,56 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sequoia-input" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> <code>sequoia()</code> input</h1>
-<div id="sec:GenoFormat" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Genotypes</h2>
+<div id="sequoia-input" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> <code>sequoia()</code> input<a href="sequoia-input.html#sequoia-input" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="sec:GenoFormat" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Genotypes<a href="sequoia-input.html#sec:GenoFormat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The SNP data should be provided as a numeric matrix <code>GenoM</code> with one line per individual, and one column per SNP, with each SNP is coded as 0, 1, 2 copies of the reference allele, or missing (-9). The rownames should be the individual IDs, and column names are ignored.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="sequoia-input.html#cb1-1" aria-hidden="true" tabindex="-1"></a>GenoM <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">read.table</span>(<span class="st">&quot;MyGenoData.txt&quot;</span>, <span class="at">row.names=</span><span class="dv">1</span>, <span class="at">header=</span><span class="cn">FALSE</span>))</span></code></pre></div>
 <p>When the genotype data is in another format, such as Colony input files or PLINK’s .ped or .raw files, <code>GenoConvert()</code> can be used.</p>
-<div id="subset-snps" class="section level3" number="4.1.1">
-<h3><span class="header-section-number">4.1.1</span> Subset SNPs</h3>
+<div id="subset-snps" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Subset SNPs<a href="sequoia-input.html#subset-snps" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Using tens of thousands of SNP markers for pedigree reconstruction is unnecessary, will slow down computation, and may even hamper inferences by their non-independence. Rather, a subset of SNPs with a decent genotyping call rate (e.g. <span class="math inline">\(&gt;0.9\)</span>), in low linkage disequilibrium (LD) with each other, and with high minor allele frequencies (e.g. MAF <span class="math inline">\(&gt; 0.3\)</span>) ought to be selected first if more than a few hundred SNPs are available. The calculations assume independence of markers, and while low (background) levels of LD are unlikely to interfere with pedigree reconstruction, high levels may give spurious results. The recommended maximum number of SNPs therefore depends on genome size and chromosome number. Markers with a high MAF provide the most information, as although rare allele provide strong evidence when they are inherited, this does not balance out the rarity of such events.</p>
 <p>It is advised to ‘tweak’ the filtering thresholds until a set with a few hundred SNPs (300–700) is created. To assist with this, the function <code>SnpStats()</code> gives for each SNP both the allele frequency and the missingness. In addition, when a pedigree is provided (e.g. an existing one, or from a preliminary parentage-only run), the number of Mendelian errors per SNP is calculated and used to estimate the genotyping error rate.</p>
 </div>
-<div id="plink" class="section level3" number="4.1.2">
-<h3><span class="header-section-number">4.1.2</span> PLINK</h3>
+<div id="plink" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> PLINK<a href="sequoia-input.html#plink" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Since the full dataset may be too large to easily load into R, creating a subset of SNPs can for example be done using <a href="https://www.cog-genomics.org/plink/">PLINK</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="sequoia-input.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">plink</span> --file mydata --geno 0.1 --maf 0.3 --indep 50 5 2</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="sequoia-input.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">plink</span> <span class="at">--file</span> mydata <span class="at">--geno</span> 0.1 <span class="at">--maf</span> 0.3 <span class="at">--indep</span> 50 5 2</span></code></pre></div>
 <p>which on a windows machine is equivalent to running inside R</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="sequoia-input.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;cmd&quot;</span>, <span class="at">input =</span> <span class="st">&quot;plink --file mydata --maf 0.3 --indep 50 5 2&quot;</span>)</span></code></pre></div>
 <p>This will create a list of SNPs with a missingness below 0.1, a minor allele frequency of at least 0.3, and which in a window of 50 SNPs, sliding by 5 SNPs per step, have a VIF of maximum 2. VIF, or variance inflation factor, is <span class="math inline">\(1/(1-r^2)\)</span>. For further details, see the <a href="https://www.cog-genomics.org/plink2/ld#indep">plink website</a>.</p>
 <p>The resulting list (<code>plink.prune.in</code>) can be used to create the genotype file used as input for Sequoia, with SNPs codes as 0, 1, 2, or NA, with the command</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="sequoia-input.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">plink</span> --file mydata --extract plink.prune.in --recodeA --out inputfile_for_sequoia</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="sequoia-input.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">plink</span> <span class="at">--file</span> mydata <span class="at">--extract</span> plink.prune.in <span class="at">--recodeA</span> <span class="at">--out</span> inputfile_for_sequoia</span></code></pre></div>
 <p>This will create a file with the extension .RAW, which can be converted to the required input format using</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="sequoia-input.html#cb5-1" aria-hidden="true" tabindex="-1"></a>GenoM <span class="ot">&lt;-</span> <span class="fu">GenoConvert</span>(<span class="at">InFile =</span> <span class="st">&quot;inputfile_for_sequoia.raw&quot;</span>, <span class="at">InFormat=</span><span class="st">&quot;raw&quot;</span>)</span></code></pre></div>
 <p>This function can also convert from two-columns-per-SNP format, as e.g. used by Colony.</p>
-<div id="family-ids" class="section level4" number="4.1.2.1">
-<h4><span class="header-section-number">4.1.2.1</span> Family IDs</h4>
+<div id="family-ids" class="section level4 hasAnchor" number="4.1.2.1">
+<h4><span class="header-section-number">4.1.2.1</span> Family IDs<a href="sequoia-input.html#family-ids" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>By default, the ‘Family ID’ (1st) column in the PLINK file is ignored, and IDs are extracted from the second column only. If the family IDs are essential to distinguish between individuals, use <code>GenoConvert()</code> with the flag <code>UseFID = TRUE</code> which will combine individual IDs and family IDs as FID__IID. Ensure the IDs in the life history file are in the same format, for example by using <code>LHConvert()</code>. The FID and IID can be split again in the resulting pedigree using <code>PedStripFID()</code>.</p>
 </div>
 </div>
-<div id="low-call-rate" class="section level3" number="4.1.3">
-<h3><span class="header-section-number">4.1.3</span> Low call rate</h3>
+<div id="low-call-rate" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Low call rate<a href="sequoia-input.html#low-call-rate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Samples with a very low genotyping success rate (call rate) can sometimes wrongly be assigned as parents to unrelated individuals, as <code>sequoia()</code> does not (yet) deal perfectly with these cases. In addition, at least in my experience with SNP arrays, a low sample call rate is often indicative of poor sample quality or a poor genotyping run, and associated with a high sample error rate.
 Samples with a call rate below 5% are automatically excluded, but it is strongly advised to create a subset where all individuals are genotyped for at least 50% of SNPs, and preferably for at least 80%.</p>
 <p>In addition, SNPs with a call rate below 10% are excluded, as these contribute almost no information. Again, a stricter threshold is advised of at least 50% to minimise the risk of spurious results.</p>
 <p>Checks for individuals and SNPs with low call rate, and monomorphic SNPs, are done automatically when calling <code>sequoia()</code> and various other functions, and can be done separately by calling <code>CheckGeno()</code>.</p>
 </div>
-<div id="very-large-datasets" class="section level3" number="4.1.4">
-<h3><span class="header-section-number">4.1.4</span> Very large datasets</h3>
-<p>When the number of individuals is very large, it may be impossible to load the genotype data into R as it will exceed R’s memory limit. A stand-alone version of the algorithm underlying this R package does not suffer from this limitation, and is available as Fortran source code from <a href="https://github.com/JiscaH/sequoia/tree/master/Standalone">github</a>, where you can also find its manual. The standalone is not faster than the R package, as the bulk of the computations are done in Fortran regardless.</p>
+<div id="very-large-datasets" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Very large datasets<a href="sequoia-input.html#very-large-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When the number of individuals is very large, it may be impossible to load the genotype data into R as it will exceed R’s memory limit. A stand-alone version of the algorithm underlying this R package does not suffer from this limitation, and is available as Fortran source code from <a href="https://github.com/JiscaH/sequoia_notR">github</a>, where you can also find its manual. The standalone is not faster than the R package, as the bulk of the computations are done in Fortran regardless.</p>
 </div>
 </div>
-<div id="birth-years-sex" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Birth years &amp; sex</h2>
+<div id="birth-years-sex" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Birth years &amp; sex<a href="sequoia-input.html#birth-years-sex" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The relative age of individuals can greatly improve pedigree reconstruction (see <a href="key-points.html#sec:BY-AP">Birth years &amp; Ageprior</a>), and sex information is necessary to determine whether a candidate parent is the mother or father.</p>
-<div id="lifehistdata" class="section level3" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> LifeHistData</h3>
+<div id="lifehistdata" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> LifeHistData<a href="sequoia-input.html#lifehistdata" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The life history data (<code>LifeHistData</code>) should be a dataframe with three or five columns (column names are ignored, order is important!):</p>
 <ul>
 <li><strong>ID</strong><br />
-It is probably safest to stick to R’s ‘syntactically valid names,’ defined as “consists of letters, numbers and the dot or underline characters and starts with a letter, or the dot not followed by a number.”</li>
+It is probably safest to stick to R’s ‘syntactically valid names’, defined as “consists of letters, numbers and the dot or underline characters and starts with a letter, or the dot not followed by a number”.</li>
 <li><strong>Sex</strong><br />
 1 = female, 2 = male, 3=unknown, 4=hermaphrodites. All other numbers, letters, or NA = unknown</li>
 <li><strong>BirthYear</strong><br />
@@ -373,8 +377,8 @@ Latest year in which individual may have been born</li>
 </ul>
 <p>Ideally this basic life history information is provided for all genotyped individuals, but this is not strictly necessary. This dataframe may be in a different order than the genotype data, and may include many more individuals (which are ignored).</p>
 </div>
-<div id="unknown-birth-years" class="section level3" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Unknown birth years</h3>
+<div id="unknown-birth-years" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Unknown birth years<a href="sequoia-input.html#unknown-birth-years" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The year of birth may be unknown for some individuals, and for those <code>sequoia()</code> cannot determine whether they are the parent or the offspring if a genetic parent-offspring pair is found (unless a ‘complementary’ co-parent is identified). Especially in wild populations this information can be unknown for a substantial part of the sample, but often a minimum and/or maximum possible birth year (<code>BY.min</code> and <code>BY.max</code>) can be determined. For example, <code>BY.max</code> is at the latest the first year in which an individual was observed.</p>
 <table>
 <caption><span id="tab:BY-example">Table 4.1: </span>Example LifeHistData with the optional columns for minimum + maximum birth year</caption>
@@ -414,8 +418,8 @@ Latest year in which individual may have been born</li>
 <p>Even very wide ranges may help in pedigree reconstruction: for example, Alpha and Beta are genetically identified to be parent and offspring, Alpha was first seen in 2011 as an adult, and Beta was known to be born 2012 (Table <a href="sequoia-input.html#tab:BY-example">4.1</a>). Then Alpha is certainly the parent of Beta. Before version 2.0 there was no method to inform <code>sequoia</code> that Alpha could not have been born after 2012, and thus could not be an offspring of Beta. It was (and still is) possible to ‘guestimate’ birth years, but this can be time consuming and is potentially prone to errors. For example, if Alpha also forms a genetic parent-offspring pair with Gamma, then setting Alpha’s birth year to 2010 will result in it being assigned as Gamma’s offspring, while it may just as well be Gamma’s parent.</p>
 <p>To minimise such pedigree errors where parent and offspring are flipped the wrong way around, and the ‘secondary’ errors derived from these cases, it is recommended to set the possible birth year range as wide as possible, at least during an initial (preliminary) round of parentage assignment. To see the pairs that are genetically parent and offspring, but for which it cannot be determined which of the two is the parent, use function <code>GetMaybeRel()</code>.</p>
 </div>
-<div id="sec:custom-AP" class="section level3" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> <code>args.AP</code> (Customising the ageprior)</h3>
+<div id="sec:custom-AP" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> <code>args.AP</code> (Customising the ageprior)<a href="sequoia-input.html#sec:custom-AP" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When running <code>sequoia()</code>, you can pass arguments to <code>MakeAgePrior()</code> via <code>args.AP</code>. For example, when you are sure generations do not overlap, you can specify this via <code>MakeAgePrior()</code>’s argument <code>Discrete</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="sequoia-input.html#cb6-1" aria-hidden="true" tabindex="-1"></a>SeqOUT <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> Geno, <span class="at">LifeHistData =</span> LH,</span>
 <span id="cb6-2"><a href="sequoia-input.html#cb6-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">args.AP =</span> <span class="fu">list</span>(<span class="at">Discrete =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
@@ -434,15 +438,15 @@ Latest year in which individual may have been born</li>
 <p>For further information on the ageprior, please see the separate vignette on this topic. If you wish to manually edit the <code>AgePriors</code> matrix before using it as input in <code>sequoia()</code>, or have done so in the past, it is advised to look at the latest version of this document, as the implementation has changed in package version 2.0, and the documentation was clarified in version 2.1.</p>
 </div>
 </div>
-<div id="tfilter-tassign" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> <code>Tfilter</code> &amp; <code>Tassign</code></h2>
+<div id="tfilter-tassign" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> <code>Tfilter</code> &amp; <code>Tassign</code><a href="sequoia-input.html#tfilter-tassign" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>These are threshold values for log10-likelihood ratios (LLRs).</p>
 <p><code>Tfilter</code> is the threshold LLR between a proposed relationship versus unrelated, to select candidate relatives. It is typically negative, and a more negative value may prevent filtering out of true relatives, but will increase computational time.</p>
 <p><code>Tassign</code> is the threshold used for acceptance of a proposed relationship, and is relative to next most likely relationship. It must be positive, with higher values resulting in more conservative assignments. Counter-intuitively a high <code>Tassign</code> can sometimes <em>increase</em> the number of wrong assignments, as a correct low-threshold assignment may prevent wrong assignments among close relatives (a.o. by revealing genotyping errors and changing the most-likely true genotype of an individual).</p>
 <p>The default values of <code>Tfilter</code> and <code>Tassign</code> seem to work well in a wide range of datasets, but their interaction with genotyping error rate and other dataset characteristics has not been thoroughly explored.</p>
 </div>
-<div id="sec:Complx" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> <code>Complex</code></h2>
+<div id="sec:Complx" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> <code>Complex</code><a href="sequoia-input.html#sec:Complx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The complexity of the mating system considered. One of:</p>
 <ul>
 <li><strong><code>mono</code></strong>
@@ -452,8 +456,8 @@ Consider polygamous matings, but ignore all inbred and double relationships (see
 <li><strong><code>full</code></strong>
 The default, do consider all kinds of relationship combinations.</li>
 </ul>
-<div id="sec:WeirdRels" class="section level3" number="4.4.1">
-<h3><span class="header-section-number">4.4.1</span> Unusual relationships</h3>
+<div id="sec:WeirdRels" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Unusual relationships<a href="sequoia-input.html#sec:WeirdRels" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pedigree inference is often applied in small, (semi-)closed populations, and is regularly done to check for inbreeding. In such cases, pairs of individuals may be related via more than one route. For example, maternal half-siblings may also be niece and aunt via the paternal side, and be mistaken for full-siblings. Or a pair may be both paternal half-siblings, and maternal full cousins. A range of such double relationships is considered explicitly (Table <a href="sequoia-input.html#tab:DoubleRels">4.2</a>) to minimise such mistakes. If such a type is common in your population but not yet considered by <code>sequoia</code>, and seems to be causing problems, please send me an email as adding additional relationships is relatively straightforward.</p>
 <table>
 <caption><span id="tab:DoubleRels">Table 4.2: </span>Double relationships between pairs of individuals. Abbreviations as before, and GGG=great-grandparent, F1C=full first cousins, H1C=half first cousins (parents are HS).</caption>
@@ -588,19 +592,19 @@ empty: not (yet) explicitly considered (but may be inferred as ‘side effect’
 <!-- &nbsp;    extra empty line-->
 </div>
 </div>
-<div id="herm" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> <code>Herm</code></h2>
+<div id="herm" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> <code>Herm</code><a href="sequoia-input.html#herm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Hermaphrodites, one of:
 * <strong><code>no</code></strong>
 Dioecious (separate sexes) species
 * <strong><code>A</code></strong>
 Heed dam versus sire role of individuals, and assign a parent only if it is clear that it was the female or male parent of an individual. Requires a pedigree prior (e.g. the plant from which the seed was collected), or age difference between maternal versus paternal role (see <a href="#sec:Herm">Hermaphrodites</a>.
 * <strong><code>B</code></strong>
-No distinction is made between dam versus sire role; any parent is assigned in the first available ‘slot,’ and no conclusions can be drawn from whether individuals are assigned as maternal, paternal or ‘cross’ half-siblings.</p>
+No distinction is made between dam versus sire role; any parent is assigned in the first available ‘slot’, and no conclusions can be drawn from whether individuals are assigned as maternal, paternal or ‘cross’ half-siblings.</p>
 <p>If any individuals in the life history data have sex=4, <code>Herm='no'</code> will automatically be changed into <code>Herm='A'</code>. Hermaphrodites may be mixed with known-sex (or known sex role) individuals. <code>Herm='A'</code> or ‘B’ can also be selected if none of the genotyped individuals are hermaphrodites, but non-genotyped (dummy) parents could be.</p>
 </div>
-<div id="useage" class="section level2" number="4.6">
-<h2><span class="header-section-number">4.6</span> <code>UseAge</code></h2>
+<div id="useage" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> <code>UseAge</code><a href="sequoia-input.html#useage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The strength of reliance on birth year information during full pedigree reconstruction.</p>
 <p>In addition to providing no birth year information at all, there are three possible levels of reliance on <a href="key-points.html#sec:BY-AP">birth years and ageprior</a> during full pedigree reconstruction:</p>
 <ul>
@@ -672,39 +676,39 @@ Use age information in a permissive way: accept a proposed assignment if <span c
 <tbody>
 <tr class="odd">
 <td align="left">SNP</td>
-<td align="right">-412.6</td>
-<td align="right">-342.3</td>
-<td align="right">-330.3</td>
-<td align="right">-330.3</td>
-<td align="right">777.0</td>
-<td align="right">-329.6</td>
-<td align="right">-332</td>
+<td align="right">-411.1</td>
+<td align="right">-346.8</td>
+<td align="right">-335.5</td>
+<td align="right">-335.5</td>
+<td align="right">-335.5</td>
+<td align="right">-335.2</td>
+<td align="right">-338.1</td>
 </tr>
 <tr class="even">
 <td align="left">Age</td>
-<td align="right">-Inf</td>
-<td align="right">-Inf</td>
-<td align="right">-Inf</td>
+<td align="right">-0.4</td>
+<td align="right">-3.0</td>
+<td align="right">-3.0</td>
 <td align="right">0.3</td>
-<td align="right">-0.5</td>
-<td align="right">-0.5</td>
-<td align="right">0</td>
+<td align="right">-0.3</td>
+<td align="right">-0.3</td>
+<td align="right">0.0</td>
 </tr>
 <tr class="odd">
 <td align="left">SNP + Age</td>
-<td align="right">-Inf</td>
-<td align="right">-Inf</td>
-<td align="right">-Inf</td>
-<td align="right">-330.0</td>
-<td align="right">776.5</td>
-<td align="right">-330.1</td>
-<td align="right">-332</td>
+<td align="right">-411.5</td>
+<td align="right">-349.8</td>
+<td align="right">-338.5</td>
+<td align="right">-335.2</td>
+<td align="right">-335.8</td>
+<td align="right">-335.5</td>
+<td align="right">-338.1</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="sec:reuse" class="section level2" number="4.7">
-<h2><span class="header-section-number">4.7</span> <code>SeqList</code></h2>
+<div id="sec:reuse" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> <code>SeqList</code><a href="sequoia-input.html#sec:reuse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Parameter settings and input data from one <code>sequoia()</code> run can be re-used in a subsequent <code>sequoia()</code> run, and as input by various other functions (Table <a href="function-overview.html#tab:CoreFun">3.1</a>). This makes it easier to have consistent parameter values and input data across different pedigree inference runs and different functions.</p>
 <p>The parameter values used as arguments when calling <code>sequoia()</code> are returned in the list element <code>Specs</code>. This 1-row dataframe may be edited (with caution!) before re-use. Other elements of the <code>sequoia()</code> output list (<code>SeqList</code>) that are used as input by one or more functions are <code>LifeHist</code>, <code>AgePriors</code>, and <code>PedigreePar</code>/<code>Pedigree</code>. Details on which elements are used is provided in the help file of each function.
 <code>SeqList[["Specs"]]</code> nearly always take precedent over similarly-named input parameters, with exception of e.g. <code>sequoia()</code>‘s <code>Module</code> (<code>MaxSibIter</code>) argument. The other <code>SeqList</code> elements generally also take precedent, but not always with a warning. If you wish to use a mixture of <code>SeqList</code> elements and ’new’ data, it is safest to provide only the minimal subset of <code>SeqList</code>, and specify the other data as separate input (or as ‘fake’ <code>SeqList</code> elements).</p>
@@ -728,7 +732,6 @@ Use age information in a permissive way: accept a proposed assignment if <span c
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -768,6 +771,10 @@ gitbook.start({
 "text": null
 },
 "download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 },
@@ -782,7 +789,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

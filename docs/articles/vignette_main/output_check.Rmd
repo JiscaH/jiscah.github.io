@@ -101,7 +101,7 @@ PCG$Counts
 # dim3: dam/sire
 ```
 
-See [here]() for a detailed walk-through of this example, and suggestions on how to trace the underlying cause of discrepancies between the newly-inferred genetic pedigree and an existing field pedigree. 
+See [here](./../../pedcompare_example.html) for a detailed walk-through of this example, and suggestions on how to trace the underlying cause of discrepancies between the newly-inferred genetic pedigree and an existing field pedigree. 
 
 In short, the main aim of checking the discrepancies is to figure out the underlying cause of each case:   
 
