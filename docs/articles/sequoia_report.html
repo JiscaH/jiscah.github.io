@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,20 +63,23 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/vignette_main/book/sec-Background.html">Main vignette: User guide</a>
+    <a class="dropdown-item" href="../articles/vignette_main/book/background.html">Main vignette: User guide</a>
     <a class="dropdown-item" href="../articles/vignette_age/book/index.html">Age prior vignette</a>
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
+    <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
   </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Change log</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/help.html">Help</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/performance_stats.html">Stats</a>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-help">Help</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-help">
+    <a class="dropdown-item" href="../articles/help.html">Need help?</a>
+    <a class="dropdown-item" href="../articles/pedigree_consultancy.html">Consultancy</a>
+    <a class="dropdown-item" href="../articles/want_to_help.html">Want to help?</a>
+  </div>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -241,7 +244,7 @@ Tassign
 nAgeClasses
 </td>
 <td style="text-align:left;">
-7
+5
 </td>
 </tr>
 <tr>
@@ -258,6 +261,14 @@ Module
 </td>
 <td style="text-align:left;">
 ped
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MaxSibIter
+</td>
+<td style="text-align:left;">
+42
 </td>
 </tr>
 <tr>
@@ -286,18 +297,18 @@ full
 </tr>
 <tr>
 <td style="text-align:left;">
-Herm
-</td>
-<td style="text-align:left;">
-no
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 UseAge
 </td>
 <td style="text-align:left;">
 yes
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FindMaybeRel
+</td>
+<td style="text-align:left;">
+FALSE
 </td>
 </tr>
 <tr>
@@ -321,7 +332,7 @@ version2.0
 SequoiaVersion
 </td>
 <td style="text-align:left;">
-2.3.18
+2.1.0
 </td>
 </tr>
 <tr>
@@ -329,7 +340,7 @@ SequoiaVersion
 TimeStart
 </td>
 <td style="text-align:left;">
-2022-12-17 12:33:09
+2020-10-03 14:10:53
 </td>
 </tr>
 <tr>
@@ -337,7 +348,7 @@ TimeStart
 TimeEnd
 </td>
 <td style="text-align:left;">
-2022-12-17 12:33:33
+2020-10-03 14:11:10
 </td>
 </tr>
 </tbody>
@@ -352,24 +363,8 @@ observed as genotype ‘obs’ (columns).</p>
 <caption>
 Presumed genotyping error rate
 </caption>
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-obs-0|act
-</th>
-<th style="text-align:right;">
-obs-1|act
-</th>
-<th style="text-align:right;">
-obs-2|act
-</th>
-</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-act-0
-</td>
 <td style="text-align:right;">
 0.99990
 </td>
@@ -381,9 +376,6 @@ act-0
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-act-1
-</td>
 <td style="text-align:right;">
 0.00005
 </td>
@@ -395,9 +387,6 @@ act-1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-act-2
-</td>
 <td style="text-align:right;">
 0.00000
 </td>
@@ -488,11 +477,7 @@ assignment and before full pedigree reconstruction (see further).</p>
 <span><span class="co">#       vignette("Sequoia - Age 'Prior'")</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SeqOUT</span><span class="op">$</span><span class="va">args.AP</span></span></code></pre></div>
-<pre><code><span><span class="co">## $Flatten</span></span>
-<span><span class="co">## NULL</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $Smooth</span></span>
-<span><span class="co">## [1] TRUE</span></span></code></pre>
+<pre><code><span><span class="co">## NULL</span></span></code></pre>
 <hr>
 </div>
 </div>
@@ -545,7 +530,7 @@ SNPd
 records
 </td>
 <td style="text-align:right;">
-167
+170
 </td>
 <td style="text-align:right;">
 142
@@ -556,7 +541,7 @@ records
 maternities
 </td>
 <td style="text-align:right;">
-122
+125
 </td>
 <td style="text-align:right;">
 65
@@ -567,7 +552,7 @@ maternities
 paternities
 </td>
 <td style="text-align:right;">
-116
+122
 </td>
 <td style="text-align:right;">
 79
@@ -589,10 +574,10 @@ full sibs
 maternal half sib
 </td>
 <td style="text-align:right;">
-129
+131
 </td>
 <td style="text-align:right;">
-89
+87
 </td>
 </tr>
 <tr>
@@ -600,7 +585,7 @@ maternal half sib
 paternal half sibs
 </td>
 <td style="text-align:right;">
-103
+114
 </td>
 <td style="text-align:right;">
 77
@@ -611,7 +596,7 @@ paternal half sibs
 maternal grandmothers
 </td>
 <td style="text-align:right;">
-89
+91
 </td>
 <td style="text-align:right;">
 77
@@ -622,10 +607,10 @@ maternal grandmothers
 maternal grandfathers
 </td>
 <td style="text-align:right;">
-84
+90
 </td>
 <td style="text-align:right;">
-75
+80
 </td>
 </tr>
 <tr>
@@ -633,10 +618,10 @@ maternal grandfathers
 paternal grandmothers
 </td>
 <td style="text-align:right;">
-69
+73
 </td>
 <td style="text-align:right;">
-58
+60
 </td>
 </tr>
 <tr>
@@ -644,10 +629,10 @@ paternal grandmothers
 paternal grandfathers
 </td>
 <td style="text-align:right;">
-66
+73
 </td>
 <td style="text-align:right;">
-55
+61
 </td>
 </tr>
 <tr>

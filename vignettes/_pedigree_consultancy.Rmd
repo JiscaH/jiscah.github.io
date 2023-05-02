@@ -1,0 +1,61 @@
+---
+title: "Sequoia Pedigree Consultancy"
+vignette: >
+  %\VignetteIndexEntry{Sequoia Pedigree Consultancy}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+
+Besides being available to [help](./help.html) with any questions about sequoia or pedigree reconstruction in general, I am also open to jobs that may take a few days or weeks. You can contact me at jisca.huisman @ gmail.com to discuss possibilities and fees.
+
+
+### Pedigree reconstruction
+For example, if you do not have the time or manpower to perform pedigree reconstruction (and to get familiar with yet another piece of software), I may be able to assist you. I will:
+
+- transform your genetic data to the format sequoia uses, do basic quality control, and subset SNPs if needed;
+- run the pedigree reconstruction + find any non-assigned likely relatives, testing a few different parameter combinations;
+- compare the reconstructed pedigree with any existing pedigree you may have;
+- create a report with summary statistics (tables + plots) of the pedigree.
+
+I will send you the annotated R code, so that you can reproduce the findings, and when needed re-run the pedigree reconstruction with additional individuals or different parameter values.
+
+The time required depends on the data: When nearly all individuals are genotyped with high accuracy at many SNPs, have a known birth year, there is little inbreeding, and there is no existing pedigree to compare with, this can be done within 1-2 days. The number of individuals has only a minor effect on this, whether it is a few dozen or tens of thousands of individuals. However, real world datasets each come with their own challenges, requiring more time to get the most information out of the available data.
+
+
+
+### General genetics work
+
+I am also open to do jobs more broadly related to pedigree reconstruction and analysis of genetic data, such as for example:
+
+- Setting up a data cleaning / data analysis pipeline in bash and/or R
+- Estimate the minimum proportion of individuals to be genotyped to test a specific hypothesis
+- Determine the minimum number of SNPs required to reconstruct a pedigree with 99% accuracy, exploring different plausible pedigrees / mating systems, sampling rates and genotyping errors
+- Write R functions to extract data or summary statistics from the sequoia output in the format you require
+
+
+
+### Other work
+
+Besides the work with pedigrees and genetic data, I can also help you with among others:
+
+- Developping R functions and packages (in base R)
+- Translation of R code to Fortran, or v.v.
+- Translation of SPSS syntax to R
+- ...
+
+Please have a look at my [CV](./../reference/figures/Huisman_J_CV.pdf) for an overview of my skills, and feel free to contact me if you are unsure whether I would be a good fit for the job. 
+
+
+### About me
+
+I have an MSc in Animal Science, specialisation Animal Breeding & Genetics, from Wageningen University in The Netherlands, and a PhD in Biology from NTNU in Norway. I am thus familiar with both the breeding systems for the most common lifestock species, and the challenges of collecting data from wild populations. 
+
+I did a postdoc with the Rum Red deer project (https://rumdeer.bio.ed.ac.uk/ ) at Edinburgh Universtiy, during which I became fascinated with the intricasies of parentage assignment and further pedigree reconstruction based on genetic data. I continue to assist with or perform the yearly update of its pedigree with the new cohort of calves, as well as for its sister project on Soay sheep ( https://soaysheep.bio.ed.ac.uk/ ). 
+
+Over the last few years I have done freelance work for various companies and research institutes, in addition to 'pro bono' assistance to many dozens of sequoia users. Especially the latter spans a wide variety of species, including mammals, reptiles, moluscs, and plants. 
+
+Since May 1st 2023 I am registered at the Dutch Chamber of Commerce:
+
+KVK: 90010132  
+BTW (VAT): tbd.

@@ -12,7 +12,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,16 +39,19 @@
     <a class="dropdown-item" href="../articles/vignette_age/book/index.html">Age prior vignette</a>
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
+    <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
   </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Change log</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/help.html">Help</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/performance_stats.html">Stats</a>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-help">Help</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-help">
+    <a class="dropdown-item" href="../articles/help.html">Need help?</a>
+    <a class="dropdown-item" href="../articles/pedigree_consultancy.html">Consultancy</a>
+    <a class="dropdown-item" href="../articles/want_to_help.html">Want to help?</a>
+  </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
@@ -197,12 +200,12 @@ returned.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">GenoM</span> <span class="op">&lt;-</span> <span class="fu"><a href="SimGeno.html">SimGeno</a></span><span class="op">(</span><span class="va">Ped_HSg5</span>, nSnp<span class="op">=</span><span class="fl">400</span>, CallRate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">400</span>, <span class="fl">0.2</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># the quick way:</span></span></span>
 <span class="r-in"><span><span class="va">GenoM.checked</span> <span class="op">&lt;-</span> <span class="fu">CheckGeno</span><span class="op">(</span><span class="va">GenoM</span>, Return<span class="op">=</span><span class="st">"GenoM"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span> There are 205 SNPs scored for &lt;50% of individuals </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span> There are 194 SNPs scored for &lt;50% of individuals </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> There are  920  individuals and  400  SNPs.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># the user supervised way:</span></span></span>
 <span class="r-in"><span><span class="va">Excl</span> <span class="op">&lt;-</span> <span class="fu">CheckGeno</span><span class="op">(</span><span class="va">GenoM</span>, Return <span class="op">=</span> <span class="st">"excl"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span> There are 205 SNPs scored for &lt;50% of individuals </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span> There are 194 SNPs scored for &lt;50% of individuals </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> There are  920  individuals and  400  SNPs.</span>
 <span class="r-in"><span><span class="va">GenoM.orig</span> <span class="op">&lt;-</span> <span class="va">GenoM</span>   <span class="co"># make a 'backup' copy</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="st">"ExcludedSnps"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">Excl</span><span class="op">)</span><span class="op">)</span></span></span>

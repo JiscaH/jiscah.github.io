@@ -1,4 +1,6 @@
-## Need help?
+---
+title: "Need help?"
+---
 
 
 ### Questions
@@ -19,34 +21,11 @@ For example:
 
 
 ### Consultancy work
-If you do not have the time or manpower to perform pedigree reconstruction (and to get familiar with yet another piece of software / R package), I may be able to assist you. Please email me to discuss possibilities and fees. 
-
-For example:
-
-- Determine the minimum number of SNPs required to reconstruct a pedigree with 99% accuracy, exploring different plausible pedigrees / mating systems, sampling rates and genotyping errors
-- Perform data quality control, and determine a subset of SNPs that will maximise completeness and accuracy of the reconstructed pedigree
-- Run pedigree reconstruction using a variety of input parameters, and summarise the findings in a report
-- Write R functions to extract data or summary statistics from the sequoia output in the format you require
+If you do not have the time or manpower to perform pedigree reconstruction (and to get familiar with yet another piece of software / R package), I may be able to assist you as [freelance consultant](./pedigree_consultancy.html).
 
 
 
 
-## Want to help?
-
-Everyone who reports a bug is contributing to improve `sequoia`, and these contributions are much appreciated!
-
-If you have ideas or suggestions for new or improved functions, and/or wish to contribute to `sequoia`, or collaborate in some other way, please do contact me :-).  
-
-
-
-
-<!---
-### Donate
-`sequoia` was initially developped while I was employed by the [Rum red deer project](http://rumdeer.biology.ed.ac.uk/) at the University of Edinburgh, but a
- substantial part was written in my own time. And although I thoroughly enjoy helping people to reconstruct pedigrees for an amazing range of species, user support can be quite time consuming. 
-
-I very much wish `sequoia` to remain free to use for everyone, as some users are likely to have very limited budgets, e.g. those working in conservation. But if you do have the financial means, a donation via [] would be greatly appreciated. 
---->
 
 
 

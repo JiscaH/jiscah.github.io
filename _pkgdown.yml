@@ -44,12 +44,18 @@ navbar:
           href: articles/sequoia_report.html
         - text: "Examples & More info on ..."
           href: articles/index.html
+        - text: "Performance Stats"
+          href: articles/performance_stats.html
     - text: "Change log"
       href: news/index.html
     - text: "Help"
-      href: articles/help.html
-    - text: "Stats"
-      href: articles/performance_stats.html
+      menu:
+        - text: "Need help?"
+          href: articles/help.html
+        - text: "Consultancy"
+          href: articles/pedigree_consultancy.html
+        - text: "Want to help?"
+          href: articles/want_to_help.html
   right:
     - icon: fas fa-envelope
       href: mailto:jisca.huisman@gmail.com

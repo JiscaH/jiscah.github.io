@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,20 +63,23 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/vignette_main/book/sec-Background.html">Main vignette: User guide</a>
+    <a class="dropdown-item" href="../articles/vignette_main/book/background.html">Main vignette: User guide</a>
     <a class="dropdown-item" href="../articles/vignette_age/book/index.html">Age prior vignette</a>
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
+    <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
   </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Change log</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/help.html">Help</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/performance_stats.html">Stats</a>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-help">Help</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-help">
+    <a class="dropdown-item" href="../articles/help.html">Need help?</a>
+    <a class="dropdown-item" href="../articles/pedigree_consultancy.html">Consultancy</a>
+    <a class="dropdown-item" href="../articles/want_to_help.html">Want to help?</a>
+  </div>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -136,11 +139,8 @@
     
     
 <div class="section level2">
-<h2 id="get-started">Get started<a class="anchor" aria-label="anchor" href="#get-started"></a>
+<h2 id="what-you-need">What you need<a class="anchor" aria-label="anchor" href="#what-you-need"></a>
 </h2>
-<div class="section level3">
-<h3 id="what-you-need">What you need<a class="anchor" aria-label="anchor" href="#what-you-need"></a>
-</h3>
 <ul>
 <li>
 <strong>Genotype data</strong> for a couple hundred SNPs (&lt;1000);
@@ -172,50 +172,42 @@ few for reliable pedigree reconstruction. As ballpark figures, at least
 pedigree reconstruction. Simple pedigrees with discrete generations
 require fewer SNPs than complex pedigrees with inbreeding.</p>
 </div>
+<div class="section level2">
+<h2 id="download-installation">Download &amp; installation<a class="anchor" aria-label="anchor" href="#download-installation"></a>
+</h2>
 <div class="section level3">
-<h3 id="download-installation">Download &amp; installation<a class="anchor" aria-label="anchor" href="#download-installation"></a>
+<h3 id="current-version">Current version<a class="anchor" aria-label="anchor" href="#current-version"></a>
 </h3>
-<div class="section level4">
-<h4 id="current-version">Current version<a class="anchor" aria-label="anchor" href="#current-version"></a>
-</h4>
 <p>To install the most recent thoroughly checked version of
 <code>sequoia</code>, simply open R and run the command</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sequoia"</span><span class="op">)</span> </span></code></pre></div>
 <p>or install from github:</p>
 </div>
-<div class="section level4">
-<h4 id="other-versions">Other versions<a class="anchor" aria-label="anchor" href="#other-versions"></a>
-</h4>
-<p>The bulk of <code>sequoia</code> is written in Fortran, and requires
-compilation (turn human-readable text files into an executable). A
-Fortran compiler is not by default installed on all computers, and
-therefore <a href="https://CRAN.R-project.org/package=sequoia" class="external-link">CRAN</a>
-provides pre-compiled versions for windows (.zip binary) and macOS (.tgz
-binary), in addition to hosting the source package (.tar.gz).</p>
-<p>The source files from previous versions are archived on <a href="https://cran.r-project.org/src/contrib/Archive/sequoia/" class="external-link">CRAN</a>,
-but the binary files are not; from version 1.3.3 onwards these can be
-found in <a href="https://github.com/JiscaH/sequoia_archives" class="external-link">my github
-archive</a>. There you can also find the in-between versions that never
-made it to CRAN as source + windows binary (the latter compiled under
-64-bit windows 8 and a then-recent version of R).</p>
-<p>You can install these by downloading them to your hard disk and then
-in R (for windows, no compiler needed):</p>
+<div class="section level3">
+<h3 id="other-versions">Other versions<a class="anchor" aria-label="anchor" href="#other-versions"></a>
+</h3>
+<p>The source files from previous versions are archived on <a href="https://cran.r-project.org/src/contrib/Archive/sequoia/" class="external-link">CRAN</a>.
+To install these you need a Fortran compiler, which is not by default
+installed on all computers. You can find binary (already compiled) files
+for Windows and MacOS of most versions in <a href="https://github.com/JiscaH/sequoia_archives" class="external-link">my github archive</a>.
+You can install these by downloading them to your hard disk and then in
+R run:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"C:/path/to/file/sequoia_2.3.3.zip"</span>, repos<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"C:/path/to/file/sequoia_2.5.6.zip"</span>, repos<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
 <p>On github you can also find a <a href="https://github.com/JiscaH/sequoia" class="external-link">browsable directory</a> of the
 latest development version. It can be installed with</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JiscaH/sequoia"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"JiscaH/sequoia"</span><span class="op">)</span></span>
 <span><span class="co"># or</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JiscaH/sequoia"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"JiscaH/sequoia"</span><span class="op">)</span></span></code></pre></div>
 <p>This requires a Fortran compiler (which for windows I think is
 included in the devtools package).</p>
 </div>
 </div>
-<div class="section level3">
-<h3 id="reconstruct">Reconstruct<a class="anchor" aria-label="anchor" href="#reconstruct"></a>
-</h3>
+<div class="section level2">
+<h2 id="reconstruct">Reconstruct<a class="anchor" aria-label="anchor" href="#reconstruct"></a>
+</h2>
 <p>The function to perform pedigree reconstruction is also called
 <code><a href="../reference/sequoia.html">sequoia()</a></code>:</p>
 <pre><code><span><span class="co"># load the package</span></span>
@@ -234,12 +226,12 @@ included in the devtools package).</p>
 <span><span class="co"># graphical summary of results</span></span>
 <span><span class="fu"><a href="../reference/SummarySeq.html">SummarySeq</a></span><span class="op">(</span><span class="va">SeqOUT</span><span class="op">)</span></span></code></pre>
 <p>For an overview of the output of various functions included in the
-package, you can create a mock report with
-<code><a href="../reference/sequoia_report.html">sequoia_report()</a></code>.</p>
+package, see the <a href="./../reference/figures/flowchart_no_bg.pdf">flow chart</a>
+(function names in rectangles) and this <a href="sequoia_report.html">mock report</a>.</p>
 </div>
-<div class="section level3">
-<h3 id="access-help-files">Access help files<a class="anchor" aria-label="anchor" href="#access-help-files"></a>
-</h3>
+<div class="section level2">
+<h2 id="access-help-files">Access help files<a class="anchor" aria-label="anchor" href="#access-help-files"></a>
+</h2>
 <p>In R, help for each function is available via
 <code>?functionname</code>, e.g. <code><a href="../reference/sequoia.html">?sequoia</a></code>. An overview of
 all help files and other documentation in a package is available via
@@ -247,7 +239,6 @@ all help files and other documentation in a package is available via
 <p>The ‘See Also’ section near the end of the <code><a href="../reference/sequoia.html">sequoia()</a></code>
 help file has a list with the main functions in the package, for those
 who tend to forget function names (like me).</p>
-</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
