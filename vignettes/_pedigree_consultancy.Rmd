@@ -49,13 +49,13 @@ Please have a look at my [CV](./../reference/figures/Huisman_J_CV.pdf) for an ov
 
 ### About me
 
-I have an MSc in Animal Science, specialisation Animal Breeding & Genetics, from Wageningen University in The Netherlands, and a PhD in Biology from NTNU in Norway. I am thus familiar with both the breeding systems for the most common lifestock species, and the challenges of collecting data from wild populations. 
+I have an MSc in Animal Science, specialisation Animal Breeding & Genetics, from Wageningen University in The Netherlands, and a PhD in Biology from NTNU in Norway. I am thus familiar with both the breeding systems for the most common livestock species, and the challenges of collecting data from wild populations. 
 
-I did a postdoc with the Rum Red deer project (https://rumdeer.bio.ed.ac.uk/ ) at Edinburgh Universtiy, during which I became fascinated with the intricasies of parentage assignment and further pedigree reconstruction based on genetic data. I continue to assist with or perform the yearly update of its pedigree with the new cohort of calves, as well as for its sister project on Soay sheep ( https://soaysheep.bio.ed.ac.uk/ ). 
+I did a postdoc with the Rum Red deer project (https://rumdeer.bio.ed.ac.uk/ ) at Edinburgh University, during which I became fascinated with the intricacies of parentage assignment and further pedigree reconstruction based on genetic data. I continue to assist with or perform the yearly update of its pedigree with the new cohort of calves, as well as for its sister project on Soay sheep ( https://soaysheep.bio.ed.ac.uk/ ). 
 
-Over the last few years I have done freelance work for various companies and research institutes, in addition to 'pro bono' assistance to many dozens of sequoia users. Especially the latter spans a wide variety of species, including mammals, reptiles, moluscs, and plants. 
+Over the last few years I have done freelance work for various companies and research institutes, in addition to 'pro bono' assistance to many dozens of sequoia users. Especially the latter spans a wide variety of species, including mammals, reptiles, molluscs, and plants. 
 
-Since May 1st 2023 I am registered at the Dutch Chamber of Commerce:
+Since May 1st 2023 *Sequoia Pedigree Consultancy* is registered at the Dutch Chamber of Commerce:
 
 KVK: 90010132  
-BTW (VAT): tbd.
+BTW (VAT): NL004783538B32
