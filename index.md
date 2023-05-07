@@ -62,7 +62,7 @@ Beside the main function for pedigree reconstruction (`sequoia()`) the R package
 
 For detailed information, please see the vignettes (rendered using [bookdown](https://bookdown.org/yihui/bookdown/)):
 
-<a href="./articles/vignette_main/book/sec-Background.html">
+<a href="./articles/vignette_main/book/background.html">
  <img src="man/figures/sequoia_hexlogo_vignette_main.svg" height="150" alt="main vignette" style="vertical-align:middle;margin:0px 20px; height:150px" />
 </a>
 <a href="./articles/vignette_age/book/index.html">

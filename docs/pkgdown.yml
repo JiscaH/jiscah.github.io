@@ -3,18 +3,12 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   genotyping_errors: genotyping_errors.html
-  help: help.html
   mendelian_inheritance: mendelian_inheritance.html
   pairLL_classification: pairLL_classification.html
   pedcompare_example: pedcompare_example.html
-  pedigree_consultancy: pedigree_consultancy.html
-  performance_stats: performance_stats.html
   quick_start_example1: quick_start_example1.html
   quick_start_example2: quick_start_example2.html
-  sequoia: sequoia.html
-  sequoia_report: sequoia_report.html
-  want_to_help: want_to_help.html
-last_built: 2023-05-02T09:46Z
+last_built: 2023-05-07T06:56Z
 urls:
   reference: https://jiscah.github.io/reference
   article: https://jiscah.github.io/articles
