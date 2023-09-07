@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 sequoia() input | Sequoia User Guide</title>
   <meta name="description" content="4 sequoia() input | Sequoia User Guide" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 sequoia() input | Sequoia User Guide" />
   <meta property="og:type" content="book" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
@@ -321,7 +325,7 @@ div.csl-indent {
 <div id="sec:GenoFormat" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Genotypes<a href="sequoia-input.html#sec:GenoFormat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The SNP data should be provided as a numeric matrix <code>GenoM</code> with one line per individual, and one column per SNP, with each SNP is coded as 0, 1, 2 copies of the reference allele, or missing (-9). The rownames should be the individual IDs, and column names are ignored.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="sequoia-input.html#cb1-1" aria-hidden="true" tabindex="-1"></a>GenoM <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">read.table</span>(<span class="st">&quot;MyGenoData.txt&quot;</span>, <span class="at">row.names=</span><span class="dv">1</span>, <span class="at">header=</span><span class="cn">FALSE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="sequoia-input.html#cb1-1" tabindex="-1"></a>GenoM <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">read.table</span>(<span class="st">&quot;MyGenoData.txt&quot;</span>, <span class="at">row.names=</span><span class="dv">1</span>, <span class="at">header=</span><span class="cn">FALSE</span>))</span></code></pre></div>
 <p>When the genotype data is in another format, such as Colony input files or PLINK’s .ped or .raw files, <code>GenoConvert()</code> can be used.</p>
 <div id="subset-snps" class="section level3 hasAnchor" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Subset SNPs<a href="sequoia-input.html#subset-snps" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -331,14 +335,14 @@ div.csl-indent {
 <div id="plink" class="section level3 hasAnchor" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> PLINK<a href="sequoia-input.html#plink" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Since the full dataset may be too large to easily load into R, creating a subset of SNPs can for example be done using <a href="https://www.cog-genomics.org/plink/">PLINK</a>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="sequoia-input.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">plink</span> <span class="at">--file</span> mydata <span class="at">--geno</span> 0.1 <span class="at">--maf</span> 0.3 <span class="at">--indep</span> 50 5 2</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="sequoia-input.html#cb2-1" tabindex="-1"></a><span class="ex">plink</span> <span class="at">--file</span> mydata <span class="at">--geno</span> 0.1 <span class="at">--maf</span> 0.3 <span class="at">--indep</span> 50 5 2</span></code></pre></div>
 <p>which on a windows machine is equivalent to running inside R</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="sequoia-input.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;cmd&quot;</span>, <span class="at">input =</span> <span class="st">&quot;plink --file mydata --maf 0.3 --indep 50 5 2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="sequoia-input.html#cb3-1" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;cmd&quot;</span>, <span class="at">input =</span> <span class="st">&quot;plink --file mydata --maf 0.3 --indep 50 5 2&quot;</span>)</span></code></pre></div>
 <p>This will create a list of SNPs with a missingness below 0.1, a minor allele frequency of at least 0.3, and which in a window of 50 SNPs, sliding by 5 SNPs per step, have a VIF of maximum 2. VIF, or variance inflation factor, is <span class="math inline">\(1/(1-r^2)\)</span>. For further details, see the <a href="https://www.cog-genomics.org/plink2/ld#indep">plink website</a>.</p>
 <p>The resulting list (<code>plink.prune.in</code>) can be used to create the genotype file used as input for Sequoia, with SNPs codes as 0, 1, 2, or NA, with the command</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="sequoia-input.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">plink</span> <span class="at">--file</span> mydata <span class="at">--extract</span> plink.prune.in <span class="at">--recodeA</span> <span class="at">--out</span> inputfile_for_sequoia</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="sequoia-input.html#cb4-1" tabindex="-1"></a><span class="ex">plink</span> <span class="at">--file</span> mydata <span class="at">--extract</span> plink.prune.in <span class="at">--recodeA</span> <span class="at">--out</span> inputfile_for_sequoia</span></code></pre></div>
 <p>This will create a file with the extension .RAW, which can be converted to the required input format using</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="sequoia-input.html#cb5-1" aria-hidden="true" tabindex="-1"></a>GenoM <span class="ot">&lt;-</span> <span class="fu">GenoConvert</span>(<span class="at">InFile =</span> <span class="st">&quot;inputfile_for_sequoia.raw&quot;</span>, <span class="at">InFormat=</span><span class="st">&quot;raw&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="sequoia-input.html#cb5-1" tabindex="-1"></a>GenoM <span class="ot">&lt;-</span> <span class="fu">GenoConvert</span>(<span class="at">InFile =</span> <span class="st">&quot;inputfile_for_sequoia.raw&quot;</span>, <span class="at">InFormat=</span><span class="st">&quot;raw&quot;</span>)</span></code></pre></div>
 <p>This function can also convert from two-columns-per-SNP format, as e.g. used by Colony.</p>
 <div id="family-ids" class="section level4 hasAnchor" number="4.1.2.1">
 <h4><span class="header-section-number">4.1.2.1</span> Family IDs<a href="sequoia-input.html#family-ids" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -421,19 +425,19 @@ Latest year in which individual may have been born</li>
 <div id="sec:custom-AP" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> <code>args.AP</code> (Customising the ageprior)<a href="sequoia-input.html#sec:custom-AP" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When running <code>sequoia()</code>, you can pass arguments to <code>MakeAgePrior()</code> via <code>args.AP</code>. For example, when you are sure generations do not overlap, you can specify this via <code>MakeAgePrior()</code>’s argument <code>Discrete</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="sequoia-input.html#cb6-1" aria-hidden="true" tabindex="-1"></a>SeqOUT <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> Geno, <span class="at">LifeHistData =</span> LH,</span>
-<span id="cb6-2"><a href="sequoia-input.html#cb6-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">args.AP =</span> <span class="fu">list</span>(<span class="at">Discrete =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="sequoia-input.html#cb6-1" tabindex="-1"></a>SeqOUT <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> Geno, <span class="at">LifeHistData =</span> LH,</span>
+<span id="cb6-2"><a href="sequoia-input.html#cb6-2" tabindex="-1"></a>                  <span class="at">args.AP =</span> <span class="fu">list</span>(<span class="at">Discrete =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <p>Or you can specify that the maximum age of (non-genotyped) parents exceeds the observed age range among SNP-genotyped parent-offspring pairs in <code>PedigreePar</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="sequoia-input.html#cb7-1" aria-hidden="true" tabindex="-1"></a>SeqOUT <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> Geno, <span class="at">LifeHistData =</span> LH,</span>
-<span id="cb7-2"><a href="sequoia-input.html#cb7-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">args.AP =</span> <span class="fu">list</span>(<span class="at">MaxAgeParent =</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">9</span>)),  <span class="co"># dams, sires</span></span>
-<span id="cb7-3"><a href="sequoia-input.html#cb7-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">SeqList =</span> ParOUT[<span class="fu">c</span>(<span class="st">&quot;Specs&quot;</span>, <span class="st">&quot;PedigreePar&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="sequoia-input.html#cb7-1" tabindex="-1"></a>SeqOUT <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> Geno, <span class="at">LifeHistData =</span> LH,</span>
+<span id="cb7-2"><a href="sequoia-input.html#cb7-2" tabindex="-1"></a>                  <span class="at">args.AP =</span> <span class="fu">list</span>(<span class="at">MaxAgeParent =</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">9</span>)),  <span class="co"># dams, sires</span></span>
+<span id="cb7-3"><a href="sequoia-input.html#cb7-3" tabindex="-1"></a>                  <span class="at">SeqList =</span> ParOUT[<span class="fu">c</span>(<span class="st">&quot;Specs&quot;</span>, <span class="st">&quot;PedigreePar&quot;</span>)])</span></code></pre></div>
 <p>Alternatively, if you have a field-pedigree or microsatellite-based pedigree that contains many more individuals than have been SNP-genotyped, an ageprior estimated from that old pedigree will be more informative than the one estimated from a limited number of SNP-genotyped parent-offspring pairs. This can be done as follows:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="sequoia-input.html#cb8-1" aria-hidden="true" tabindex="-1"></a>APfromOld <span class="ot">&lt;-</span> <span class="fu">MakeAgePrior</span>(<span class="at">Pedigree =</span> MyOldPedigree,</span>
-<span id="cb8-2"><a href="sequoia-input.html#cb8-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">LifeHistData =</span> LH,</span>
-<span id="cb8-3"><a href="sequoia-input.html#cb8-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">Smooth =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-4"><a href="sequoia-input.html#cb8-4" aria-hidden="true" tabindex="-1"></a>SeqOUT <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> Geno,</span>
-<span id="cb8-5"><a href="sequoia-input.html#cb8-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">LifeHistData =</span> LH,</span>
-<span id="cb8-6"><a href="sequoia-input.html#cb8-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">SeqList =</span> <span class="fu">list</span>(<span class="at">AgePriors =</span> APfromOld))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="sequoia-input.html#cb8-1" tabindex="-1"></a>APfromOld <span class="ot">&lt;-</span> <span class="fu">MakeAgePrior</span>(<span class="at">Pedigree =</span> MyOldPedigree,</span>
+<span id="cb8-2"><a href="sequoia-input.html#cb8-2" tabindex="-1"></a>                          <span class="at">LifeHistData =</span> LH,</span>
+<span id="cb8-3"><a href="sequoia-input.html#cb8-3" tabindex="-1"></a>                          <span class="at">Smooth =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-4"><a href="sequoia-input.html#cb8-4" tabindex="-1"></a>SeqOUT <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> Geno,</span>
+<span id="cb8-5"><a href="sequoia-input.html#cb8-5" tabindex="-1"></a>                  <span class="at">LifeHistData =</span> LH,</span>
+<span id="cb8-6"><a href="sequoia-input.html#cb8-6" tabindex="-1"></a>                  <span class="at">SeqList =</span> <span class="fu">list</span>(<span class="at">AgePriors =</span> APfromOld))</span></code></pre></div>
 <p>When argument <code>SeqList</code> contains an element <code>AgePriors</code>, it is used during both parentage assignment and sibship clustering. Thus, if you wish to use different agepriors during those different phases, you need to run them separately (see <a href="sequoia-input.html#sec:reuse">reuse</a>).</p>
 <p>For further information on the ageprior, please see the separate vignette on this topic. If you wish to manually edit the <code>AgePriors</code> matrix before using it as input in <code>sequoia()</code>, or have done so in the past, it is advised to look at the latest version of this document, as the implementation has changed in package version 2.0, and the documentation was clarified in version 2.1.</p>
 </div>
@@ -648,17 +652,17 @@ Use age information in a permissive way: accept a proposed assignment if <span c
 </table>
 <p>Below an example of how to calculate <span class="math inline">\(LLR_{SNP}\)</span> and <span class="math inline">\(LLR_{age}\)</span>, for a grandparent – grand-offspring pair from the griffin example pedigree, with an age difference of 4 years. This pair would not be assigned with <code>UseAge = 'yes'</code>, as purely genetically the likelihoods for the pair being HS, GP or FA are identical (unless both individuals already have at least 1 parent assigned), but would get assigned with <code>UseAge = 'extra'</code>, as in this fictional population 4-year-older paternal grandmothers are about 10x as common as 4-year-older paternal aunts (difference of 1 unit on log10-scale).</p>
 <p>Such assignments which rely strongly on the age difference of a pair, in combination with the estimated age distribution of relative pairs, are often not desirable, and are therefore not made by default (<code>UseAge = 'yes'</code>).</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="sequoia-input.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Ped_griffin, SeqOUT_griffin, <span class="at">package=</span><span class="st">&quot;sequoia&quot;</span>)</span>
-<span id="cb9-2"><a href="sequoia-input.html#cb9-2" aria-hidden="true" tabindex="-1"></a>GenoX <span class="ot">&lt;-</span> <span class="fu">SimGeno</span>(Ped_griffin, <span class="at">nSnp =</span> <span class="dv">400</span>, <span class="at">ParMis=</span><span class="dv">0</span>)</span>
-<span id="cb9-3"><a href="sequoia-input.html#cb9-3" aria-hidden="true" tabindex="-1"></a>LLR_SNP <span class="ot">&lt;-</span> <span class="fu">CalcPairLL</span>(<span class="at">Pairs =</span> <span class="fu">data.frame</span>(<span class="at">ID1=</span><span class="st">&quot;i122_2007_M&quot;</span>, <span class="at">ID2=</span><span class="st">&quot;i042_2003_F&quot;</span>), </span>
-<span id="cb9-4"><a href="sequoia-input.html#cb9-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">GenoM =</span> GenoX, <span class="at">Plot=</span><span class="cn">FALSE</span>)</span>
-<span id="cb9-5"><a href="sequoia-input.html#cb9-5" aria-hidden="true" tabindex="-1"></a>LLR_Age <span class="ot">&lt;-</span> <span class="fu">GetLLRAge</span>(SeqOUT_griffin<span class="sc">$</span>AgePriorExtra, <span class="at">agedif=</span><span class="dv">4</span>, <span class="at">patmat=</span><span class="dv">2</span>)</span>
-<span id="cb9-6"><a href="sequoia-input.html#cb9-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">rbind</span>(<span class="at">SNP =</span> LLR_SNP[,<span class="fu">colnames</span>(LLR_Age)],</span>
-<span id="cb9-7"><a href="sequoia-input.html#cb9-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Age =</span> LLR_Age,</span>
-<span id="cb9-8"><a href="sequoia-input.html#cb9-8" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;SNP + Age&quot;</span> <span class="ot">=</span> LLR_SNP[,<span class="fu">colnames</span>(LLR_Age)] <span class="sc">+</span></span>
-<span id="cb9-9"><a href="sequoia-input.html#cb9-9" aria-hidden="true" tabindex="-1"></a>                     LLR_Age),</span>
-<span id="cb9-10"><a href="sequoia-input.html#cb9-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">digits=</span><span class="dv">1</span>, <span class="at">booktabs=</span><span class="cn">TRUE</span>, </span>
-<span id="cb9-11"><a href="sequoia-input.html#cb9-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">&quot;LLR example for a grandparent - grand-offspring pair&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="sequoia-input.html#cb9-1" tabindex="-1"></a><span class="fu">data</span>(Ped_griffin, SeqOUT_griffin, <span class="at">package=</span><span class="st">&quot;sequoia&quot;</span>)</span>
+<span id="cb9-2"><a href="sequoia-input.html#cb9-2" tabindex="-1"></a>GenoX <span class="ot">&lt;-</span> <span class="fu">SimGeno</span>(Ped_griffin, <span class="at">nSnp =</span> <span class="dv">400</span>, <span class="at">ParMis=</span><span class="dv">0</span>)</span>
+<span id="cb9-3"><a href="sequoia-input.html#cb9-3" tabindex="-1"></a>LLR_SNP <span class="ot">&lt;-</span> <span class="fu">CalcPairLL</span>(<span class="at">Pairs =</span> <span class="fu">data.frame</span>(<span class="at">ID1=</span><span class="st">&quot;i122_2007_M&quot;</span>, <span class="at">ID2=</span><span class="st">&quot;i042_2003_F&quot;</span>), </span>
+<span id="cb9-4"><a href="sequoia-input.html#cb9-4" tabindex="-1"></a>                      <span class="at">GenoM =</span> GenoX, <span class="at">Plot=</span><span class="cn">FALSE</span>)</span>
+<span id="cb9-5"><a href="sequoia-input.html#cb9-5" tabindex="-1"></a>LLR_Age <span class="ot">&lt;-</span> <span class="fu">GetLLRAge</span>(SeqOUT_griffin<span class="sc">$</span>AgePriorExtra, <span class="at">agedif=</span><span class="dv">4</span>, <span class="at">patmat=</span><span class="dv">2</span>)</span>
+<span id="cb9-6"><a href="sequoia-input.html#cb9-6" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">rbind</span>(<span class="at">SNP =</span> LLR_SNP[,<span class="fu">colnames</span>(LLR_Age)],</span>
+<span id="cb9-7"><a href="sequoia-input.html#cb9-7" tabindex="-1"></a>                   <span class="at">Age =</span> LLR_Age,</span>
+<span id="cb9-8"><a href="sequoia-input.html#cb9-8" tabindex="-1"></a>                   <span class="st">&quot;SNP + Age&quot;</span> <span class="ot">=</span> LLR_SNP[,<span class="fu">colnames</span>(LLR_Age)] <span class="sc">+</span></span>
+<span id="cb9-9"><a href="sequoia-input.html#cb9-9" tabindex="-1"></a>                     LLR_Age),</span>
+<span id="cb9-10"><a href="sequoia-input.html#cb9-10" tabindex="-1"></a>             <span class="at">digits=</span><span class="dv">1</span>, <span class="at">booktabs=</span><span class="cn">TRUE</span>, </span>
+<span id="cb9-11"><a href="sequoia-input.html#cb9-11" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">&quot;LLR example for a grandparent - grand-offspring pair&quot;</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:griffin-useAge-1">Table 4.4: </span>LLR example for a grandparent - grand-offspring pair</caption>
 <thead>
@@ -676,13 +680,13 @@ Use age information in a permissive way: accept a proposed assignment if <span c
 <tbody>
 <tr class="odd">
 <td align="left">SNP</td>
-<td align="right">-387.0</td>
-<td align="right">-336.2</td>
-<td align="right">-330.5</td>
-<td align="right">-330.5</td>
-<td align="right">-330.5</td>
-<td align="right">-330.5</td>
-<td align="right">-337.2</td>
+<td align="right">-401.9</td>
+<td align="right">-334.6</td>
+<td align="right">-326.4</td>
+<td align="right">-326.4</td>
+<td align="right">-326.4</td>
+<td align="right">-326.0</td>
+<td align="right">-328.9</td>
 </tr>
 <tr class="even">
 <td align="left">Age</td>
@@ -696,13 +700,13 @@ Use age information in a permissive way: accept a proposed assignment if <span c
 </tr>
 <tr class="odd">
 <td align="left">SNP + Age</td>
-<td align="right">-387.4</td>
-<td align="right">-339.2</td>
-<td align="right">-333.5</td>
-<td align="right">-330.2</td>
-<td align="right">-330.8</td>
-<td align="right">-330.8</td>
-<td align="right">-337.2</td>
+<td align="right">-402.3</td>
+<td align="right">-337.6</td>
+<td align="right">-329.4</td>
+<td align="right">-326.1</td>
+<td align="right">-326.8</td>
+<td align="right">-326.3</td>
+<td align="right">-328.9</td>
 </tr>
 </tbody>
 </table>
@@ -713,12 +717,12 @@ Use age information in a permissive way: accept a proposed assignment if <span c
 <p>The parameter values used as arguments when calling <code>sequoia()</code> are returned in the list element <code>Specs</code>. This 1-row dataframe may be edited (with caution!) before re-use. Other elements of the <code>sequoia()</code> output list (<code>SeqList</code>) that are used as input by one or more functions are <code>LifeHist</code>, <code>AgePriors</code>, and <code>PedigreePar</code>/<code>Pedigree</code>. Details on which elements are used is provided in the help file of each function.
 <code>SeqList[["Specs"]]</code> nearly always take precedent over similarly-named input parameters, with exception of e.g. <code>sequoia()</code>‘s <code>Module</code> (<code>MaxSibIter</code>) argument. The other <code>SeqList</code> elements generally also take precedent, but not always with a warning. If you wish to use a mixture of <code>SeqList</code> elements and ’new’ data, it is safest to provide only the minimal subset of <code>SeqList</code>, and specify the other data as separate input (or as ‘fake’ <code>SeqList</code> elements).</p>
 <p>For example, if you wish to change the dummy prefix, but do not want to re-run parentage assignment:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="sequoia-input.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;Sequoia_output_date.RData&quot;</span>)  <span class="co"># output from an old sequoia run that was saved to disk</span></span>
-<span id="cb10-2"><a href="sequoia-input.html#cb10-2" aria-hidden="true" tabindex="-1"></a>ParOUT<span class="sc">$</span>Specs<span class="sc">$</span>DummyPrefixFemale <span class="ot">&lt;-</span> <span class="st">&quot;D-FEM&quot;</span></span>
-<span id="cb10-3"><a href="sequoia-input.html#cb10-3" aria-hidden="true" tabindex="-1"></a>ParOUT<span class="sc">$</span>Specs<span class="sc">$</span>DummyPrefixMale <span class="ot">&lt;-</span> <span class="st">&quot;D-MALE&quot;</span></span>
-<span id="cb10-4"><a href="sequoia-input.html#cb10-4" aria-hidden="true" tabindex="-1"></a>SeqOUTX <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> Geno,</span>
-<span id="cb10-5"><a href="sequoia-input.html#cb10-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">SeqList =</span> ParOUT[<span class="fu">c</span>(<span class="st">&quot;Specs&quot;</span>, <span class="st">&quot;PedigreePar&quot;</span>, <span class="st">&quot;LifeHist&quot;</span>)],</span>
-<span id="cb10-6"><a href="sequoia-input.html#cb10-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">Module =</span> <span class="st">&quot;ped&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="sequoia-input.html#cb10-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;Sequoia_output_date.RData&quot;</span>)  <span class="co"># output from an old sequoia run that was saved to disk</span></span>
+<span id="cb10-2"><a href="sequoia-input.html#cb10-2" tabindex="-1"></a>ParOUT<span class="sc">$</span>Specs<span class="sc">$</span>DummyPrefixFemale <span class="ot">&lt;-</span> <span class="st">&quot;D-FEM&quot;</span></span>
+<span id="cb10-3"><a href="sequoia-input.html#cb10-3" tabindex="-1"></a>ParOUT<span class="sc">$</span>Specs<span class="sc">$</span>DummyPrefixMale <span class="ot">&lt;-</span> <span class="st">&quot;D-MALE&quot;</span></span>
+<span id="cb10-4"><a href="sequoia-input.html#cb10-4" tabindex="-1"></a>SeqOUTX <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> Geno,</span>
+<span id="cb10-5"><a href="sequoia-input.html#cb10-5" tabindex="-1"></a>                  <span class="at">SeqList =</span> ParOUT[<span class="fu">c</span>(<span class="st">&quot;Specs&quot;</span>, <span class="st">&quot;PedigreePar&quot;</span>, <span class="st">&quot;LifeHist&quot;</span>)],</span>
+<span id="cb10-6"><a href="sequoia-input.html#cb10-6" tabindex="-1"></a>                  <span class="at">Module =</span> <span class="st">&quot;ped&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

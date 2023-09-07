@@ -12,7 +12,7 @@ errors per SNP."><meta property="og:image" content="https://jiscah.github.io/ref
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.7.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,7 +105,7 @@ errors per SNP.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">SnpStats</span><span class="op">(</span><span class="va">GenoM</span>, Pedigree <span class="op">=</span> <span class="cn">NULL</span>, ErrFlavour <span class="op">=</span> <span class="st">"version2.0"</span>, Plot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">SnpStats</span><span class="op">(</span><span class="va">GenoM</span>, Pedigree <span class="op">=</span> <span class="cn">NULL</span>, Duplicates <span class="op">=</span> <span class="cn">NULL</span>, Plot <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">ErrFlavour</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -118,19 +118,21 @@ IDs.</p></dd>
 
 <dt>Pedigree</dt>
 <dd><p>dataframe with 3 columns: ID - parent1 - parent2.
-Additional columns and non-genotyped individuals are ignored. Used to
-estimate the error rate.</p></dd>
+Additional columns and non-genotyped individuals are ignored. Used to count
+Mendelian errors per SNP and (poorly) estimate the error rate.</p></dd>
 
 
-<dt>ErrFlavour</dt>
-<dd><p>function that takes the genotyping error rate <code>Err</code> as
-input, and returns a 3x3 matrix of observed (columns) conditional on actual
-(rows) genotypes, or choose from inbuilt ones as used in sequoia
-'version2.0', 'version1.3', or 'version1.1'. See <code><a href="ErrToM.html">ErrToM</a></code>.</p></dd>
+<dt>Duplicates</dt>
+<dd><p>dataframe with pairs of duplicated samples</p></dd>
 
 
 <dt>Plot</dt>
 <dd><p>show histograms of the results?</p></dd>
+
+
+<dt>ErrFlavour</dt>
+<dd><p>DEPRECATED AND IGNORED. Was used to estimate
+<code>Err.hat</code>; see <code><a href="EstEr.html">EstEr</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -149,7 +151,8 @@ input, and returns a 3x3 matrix of observed (columns) conditional on actual
 <dt>HWE.p</dt>
 <dd><p>p-value from chi-square test for Hardy-Weinberg equilibrium</p></dd>
 
-</dl><p>When a Pedigree is provided, there are 7 additional columns:</p>
+
+</dl><p>When a Pedigree is provided, there are 8 additional columns:</p>
 <dl><dt>n.dam, n.sire, n.pair</dt>
 <dd><p>Number of dams, sires, parent-pairs successfully
   genotyped for the SNP</p></dd>
@@ -158,11 +161,13 @@ input, and returns a 3x3 matrix of observed (columns) conditional on actual
 <dd><p>Count of number of opposing homozygous cases</p></dd>
 
 <dt>MEpair</dt>
-<dd><p>Count of Mendelian errors, includes opposing homozygous cases</p></dd>
+<dd><p>Count of Mendelian errors, includes opposing homozygous cases
+  when only one parent is genotyped</p></dd>
 
-<dt>Err.hat</dt>
-<dd><p>Error rate, as estimated from the joined offspring-parent
-  (-parent) genotypes and the presumed error structure (<code>ErrFlavour</code>)</p></dd>
+<dt>n.dups, n.diff</dt>
+<dd><p>Number of duplicate pairs successfully genotyped for
+  the SNP; number of differences. The latter does not count cases where one
+  duplicate is not successfully genotyped at the SNP</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -177,39 +182,22 @@ input, and returns a 3x3 matrix of observed (columns) conditional on actual
   excluded.</p>
     </div>
     <div class="section level2">
-    <h2 id="estimated-genotyping-error">Estimated genotyping error<a class="anchor" aria-label="anchor" href="#estimated-genotyping-error"></a></h2>
-    
-
-<p>The error rate is estimated from the number of opposing homozygous cases (OH,
-parent is AA and offspring is aa) Mendelian errors (ME, e.g. parents AA and
-aa, but offspring not Aa) in parent-parent-offspring trios, and OH cases for
-offspring with a single genotyped parent.</p>
-<p>The estimated error rates will not be as accurate as from duplicate samples.
-A single error in an individual with many offspring will be counted as many
-times, potentially resulting in non-sensical values of 'Err.hat' close to 1.
-On the other hand, errors in individuals without parents or offspring will
-not be counted at all. Moreover, a high error rate may interfere with
-pedigree reconstruction, and successful assignment will be biased towards
-parents with lower error count. Nonetheless, it may provide a ballpark
-estimate for the average error rate, which can be useful for subsequent
-(rerun of) pedigree reconstruction.</p>
-    </div>
-    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="GenoConvert.html">GenoConvert</a></code> to convert from various data formats;
   <code><a href="CheckGeno.html">CheckGeno</a></code> to check the data is in valid format for sequoia
   and exclude monomorphic SNPs etc., <code><a href="CalcOHLLR.html">CalcOHLLR</a></code> to calculate OH
-  &amp; ME per individual.</p></div>
+  &amp; ME per individual; <code><a href="EstEr.html">EstEr</a></code> to estimate genotyping error rate.</p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">Genotypes</span> <span class="op">&lt;-</span> <span class="fu"><a href="SimGeno.html">SimGeno</a></span><span class="op">(</span><span class="va">Ped_HSg5</span>, nSnp<span class="op">=</span><span class="fl">100</span>, CallRate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                     SnpError <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .Fortran(mkerrors, nind = as.integer(nrow(SGeno)), nsnp = as.integer(ncol(SGeno)),     genofr = as.integer(SGeno), eprobfr = as.double(RealToObs)):</span> Incorrect number of arguments (4), expecting 5 for 'mkerrors'</span>
 <span class="r-in"><span><span class="fu">SnpStats</span><span class="op">(</span><span class="va">Genotypes</span><span class="op">)</span>   <span class="co"># only plots; data is returned invisibly</span></span></span>
-<span class="r-plt img"><img src="SnpStats-1.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in apply(GenoM, 2, function(x) sum(x &lt; 0)):</span> object 'Genotypes' not found</span>
 <span class="r-in"><span><span class="va">SNPstats</span> <span class="op">&lt;-</span> <span class="fu">SnpStats</span><span class="op">(</span><span class="va">Genotypes</span>, Pedigree<span class="op">=</span><span class="va">Ped_HSg5</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="SnpStats-2.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in apply(GenoM, 2, function(x) sum(x &lt; 0)):</span> object 'Genotypes' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

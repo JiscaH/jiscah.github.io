@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1 Background | Sequoia User Guide</title>
   <meta name="description" content="1 Background | Sequoia User Guide" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Background | Sequoia User Guide" />
   <meta property="og:type" content="book" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
@@ -325,7 +329,7 @@ div.csl-indent {
 <li>Cluster genotyped half- and full-siblings for which the parent is not genotyped into sibships, assigning a ‘dummy parent’ to each sibship</li>
 <li>Find grandparents to each sibship, both among genotyped individuals and among dummy parents to other sibships.</li>
 </ul>
-<p><code>Sequoia</code> provides a conservative hill-climbing algorithm to construct a high-likelihood pedigree from data on hundreds of single nucleotide polymorphisms (SNPs), described in <span class="citation">Huisman (<a href="#ref-huisman17" role="doc-biblioref">2017</a>)</span>. Explicit consideration of the likelihoods of alternative relationships (parent-offspring, full siblings, grandparent–grand-offspring, …) before making an assignment reduces the number of false positives, compared to parentage assignment methods that rely on the likelihood ratio between parent-offspring versus unrelated only <span class="citation">(<a href="#ref-thompson87" role="doc-biblioref">Thompson and Meagher 1987</a>)</span>. The heuristic, sequential approach used is considerably quicker than most alternative approaches such as MCMC, and when genetic information is abundant there is little to no loss in accuracy. Typical computation times are a few minutes for parentage assignment, and a few hours for full pedigree reconstruction when not all individuals are genotyped.</p>
+<p><code>Sequoia</code> provides a conservative hill-climbing algorithm to construct a high-likelihood pedigree from data on hundreds of single nucleotide polymorphisms (SNPs), described in <span class="citation">Huisman (<a href="#ref-huisman17">2017</a>)</span>. Explicit consideration of the likelihoods of alternative relationships (parent-offspring, full siblings, grandparent–grand-offspring, …) before making an assignment reduces the number of false positives, compared to parentage assignment methods that rely on the likelihood ratio between parent-offspring versus unrelated only <span class="citation">(<a href="#ref-thompson87">Thompson and Meagher 1987</a>)</span>. The heuristic, sequential approach used is considerably quicker than most alternative approaches such as MCMC, and when genetic information is abundant there is little to no loss in accuracy. Typical computation times are a few minutes for parentage assignment, and a few hours for full pedigree reconstruction when not all individuals are genotyped.</p>
 <p>A word of caution: the <em>most likely</em> relationship is not necessarily the <em>true</em> relationship between a pair, due to the random nature of Mendelian segregation, and possible genotyping errors. In addition, the most likely relationship for a <em>pair</em> will not necessarily result in the highest <em>global</em> likelihood, and may therefore not have been assigned.</p>
 
 </div>

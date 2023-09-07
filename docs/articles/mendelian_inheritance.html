@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.7.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -226,9 +226,8 @@ hundreds/thousands), counting Mendelian errors is usually sufficient to
 reduce the number of candidate parents to a single pair or individual.
 It is widely used as a reliable method of parentage assignment, since
 with an abundance of high-quality SNP data the distinction between
-parent and not-parent is typically very clear (<span class="citation">Hayes (<a href="#ref-hayes11" role="doc-biblioref">2011</a>)</span>, <span class="citation">Calus,
-Mulder, and Bastiaansen (<a href="#ref-calus11" role="doc-biblioref">2011</a>)</span>, <span class="citation">Strucken
-et al. (<a href="#ref-strucken15" role="doc-biblioref">2016</a>)</span>).</p>
+parent and not-parent is typically very clear (<span class="citation">Hayes (<a href="#ref-hayes11">2011</a>)</span>, <span class="citation">Calus, Mulder, and Bastiaansen (<a href="#ref-calus11">2011</a>)</span>, <span class="citation">Strucken et
+al. (<a href="#ref-strucken15">2016</a>)</span>).</p>
 </div>
 <div class="section level3">
 <h3 id="limitations">Limitations<a class="anchor" aria-label="anchor" href="#limitations"></a>
@@ -420,9 +419,7 @@ individuals, of which 167 have a known dam and 163 a known sire. Here
 two sets of genotype data are simulated for this pedigree: one of high
 quality, and one of low quality.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Ped_griffin</span>, package<span class="op">=</span><span class="st">"sequoia"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># simulate genotype data</span></span>
+<code class="sourceCode R"><span><span class="co"># simulate genotype data</span></span>
 <span><span class="va">Geno.highQ</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SimGeno.html">SimGeno</a></span><span class="op">(</span><span class="va">Ped_griffin</span>, nSnp<span class="op">=</span><span class="fl">500</span>, ParMis<span class="op">=</span><span class="fl">0</span>, SnpError<span class="op">=</span><span class="fl">1e-4</span><span class="op">)</span></span>
 <span><span class="va">Geno.lowQ</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SimGeno.html">SimGeno</a></span><span class="op">(</span><span class="va">Ped_griffin</span>, nSnp<span class="op">=</span><span class="fl">100</span>, ParMis<span class="op">=</span><span class="fl">0</span>, SnpError<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span></span>
 <span><span class="co"># default parameter values: 1% of SNPs missing, MAF uniform between 0.3 and 0.5.</span></span>
@@ -507,7 +504,7 @@ while if the allele they share is common it could have been inherited
 from anyone. <a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;SNPs with low allele frequencies are not very useful in
 general for pedigree reconstruction though, because almost all
 individuals will be homozygous for the common allele.&lt;/p&gt;"><sup>4</sup></a></p>
-<p>For further details, please see <span class="citation">Huisman (<a href="#ref-huisman17" role="doc-biblioref">2017</a>)</span>.</p>
+<p>For further details, please see <span class="citation">Huisman (<a href="#ref-huisman17">2017</a>)</span>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># parentage assignment using sequoia</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">LH_griffin</span>, package<span class="op">=</span><span class="st">"sequoia"</span><span class="op">)</span>  <span class="co"># sex + birth year information</span></span>

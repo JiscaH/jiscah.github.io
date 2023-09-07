@@ -84,6 +84,7 @@ articles:
     - genotyping_errors
     - mendelian_inheritance
     - pairLL_classification
+    - mtDNA
 
 
 reference:
@@ -130,7 +131,7 @@ reference:
     - "GetRelM"
     - "PlotRelPairs"
     - "SummarySeq"
-    - 'PlotSeqSum'
+    - "PlotSeqSum"
     - "getAssignCat"
     - "getGenerations"
     - "GetAncestors"
@@ -150,6 +151,7 @@ reference:
 - contents:
     - "PedPolish"
     - "ErrToM"
+    - "EstEr"
     - "writeSeq"
     - "writeColumns"
     - "FindFamilies"

@@ -16,6 +16,9 @@
     <loc>https://jiscah.github.io/articles/mendelian_inheritance.html</loc>
   </url>
   <url>
+    <loc>https://jiscah.github.io/articles/mtDNA.html</loc>
+  </url>
+  <url>
     <loc>https://jiscah.github.io/articles/pairLL_classification.html</loc>
   </url>
   <url>
@@ -130,6 +133,9 @@
     <loc>https://jiscah.github.io/reference/CalcCorners.html</loc>
   </url>
   <url>
+    <loc>https://jiscah.github.io/reference/CalcLL.html</loc>
+  </url>
+  <url>
     <loc>https://jiscah.github.io/reference/CalcMaxMismatch.html</loc>
   </url>
   <url>
@@ -175,10 +181,16 @@
     <loc>https://jiscah.github.io/reference/DyadCompare.html</loc>
   </url>
   <url>
+    <loc>https://jiscah.github.io/reference/ErrPerSNP.html</loc>
+  </url>
+  <url>
     <loc>https://jiscah.github.io/reference/ErrToM.html</loc>
   </url>
   <url>
     <loc>https://jiscah.github.io/reference/EstConf.html</loc>
+  </url>
+  <url>
+    <loc>https://jiscah.github.io/reference/EstEr.html</loc>
   </url>
   <url>
     <loc>https://jiscah.github.io/reference/EstErr.html</loc>
@@ -262,13 +274,22 @@
     <loc>https://jiscah.github.io/reference/MergeFill.html</loc>
   </url>
   <url>
+    <loc>https://jiscah.github.io/reference/MkAPdefault.html</loc>
+  </url>
+  <url>
     <loc>https://jiscah.github.io/reference/MkFortParams.html</loc>
   </url>
   <url>
     <loc>https://jiscah.github.io/reference/MkGenoErrors.html</loc>
   </url>
   <url>
+    <loc>https://jiscah.github.io/reference/mtSame2Dif.html</loc>
+  </url>
+  <url>
     <loc>https://jiscah.github.io/reference/NumToID.html</loc>
+  </url>
+  <url>
+    <loc>https://jiscah.github.io/reference/OHperSNP.html</loc>
   </url>
   <url>
     <loc>https://jiscah.github.io/reference/orderLH.html</loc>
@@ -338,6 +359,9 @@
   </url>
   <url>
     <loc>https://jiscah.github.io/reference/SimGeno_example.html</loc>
+  </url>
+  <url>
+    <loc>https://jiscah.github.io/reference/SmoothAP.html</loc>
   </url>
   <url>
     <loc>https://jiscah.github.io/reference/SnpStats.html</loc>

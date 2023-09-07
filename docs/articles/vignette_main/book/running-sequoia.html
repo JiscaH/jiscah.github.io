@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Running sequoia() | Sequoia User Guide</title>
   <meta name="description" content="5 Running sequoia() | Sequoia User Guide" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Running sequoia() | Sequoia User Guide" />
   <meta property="og:type" content="book" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
@@ -375,10 +379,10 @@ Cluster half- and full-siblings and assign each cluster a dummy-parent; assign g
 <div id="ageprior-1" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> AgePrior<a href="running-sequoia.html#ageprior-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The assigned parents are used to update the ageprior, before returning the results to the user of continuing with full pedigree reconstruction. Any arguments to <code>MakeAgePrior()</code> can be passed via <a href="sequoia-input.html#sec:custom-AP"><code>args.AP</code></a>. For example, you can specify the maximum age of dams and sires:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="running-sequoia.html#cb11-1" aria-hidden="true" tabindex="-1"></a>SeqOUT.B <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> SimGeno_example, <span class="at">Err =</span> <span class="fl">0.005</span>,</span>
-<span id="cb11-2"><a href="running-sequoia.html#cb11-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">LifeHistData =</span> LH_HSg5, <span class="at">Module=</span><span class="st">&quot;par&quot;</span>, <span class="at">Plot=</span><span class="cn">FALSE</span>, <span class="at">quiet=</span><span class="cn">TRUE</span>,</span>
-<span id="cb11-3"><a href="running-sequoia.html#cb11-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">args.AP =</span> <span class="fu">list</span>(<span class="at">MaxAgeParent =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>), <span class="at">Smooth=</span><span class="cn">FALSE</span>))</span>
-<span id="cb11-4"><a href="running-sequoia.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotAgePrior</span>(SeqOUT.B<span class="sc">$</span>AgePriors)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="running-sequoia.html#cb11-1" tabindex="-1"></a>SeqOUT.B <span class="ot">&lt;-</span> <span class="fu">sequoia</span>(<span class="at">GenoM =</span> SimGeno_example, <span class="at">Err =</span> <span class="fl">0.005</span>,</span>
+<span id="cb11-2"><a href="running-sequoia.html#cb11-2" tabindex="-1"></a>                    <span class="at">LifeHistData =</span> LH_HSg5, <span class="at">Module=</span><span class="st">&quot;par&quot;</span>, <span class="at">Plot=</span><span class="cn">FALSE</span>, <span class="at">quiet=</span><span class="cn">TRUE</span>,</span>
+<span id="cb11-3"><a href="running-sequoia.html#cb11-3" tabindex="-1"></a>                    <span class="at">args.AP =</span> <span class="fu">list</span>(<span class="at">MaxAgeParent =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>), <span class="at">Smooth=</span><span class="cn">FALSE</span>))</span>
+<span id="cb11-4"><a href="running-sequoia.html#cb11-4" tabindex="-1"></a><span class="fu">PlotAgePrior</span>(SeqOUT.B<span class="sc">$</span>AgePriors)</span></code></pre></div>
 <p><img src="D:/figs/AP2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>This way, even if sampled parents are all age 1, siblings sharing an unsampled parent may still have an age difference of 1 or 2 years, and grandparent – grand-offspring pairs may have an age difference of 2-6 years.</p>
 </div>
@@ -409,19 +413,19 @@ Cluster half- and full-siblings and assign each cluster a dummy-parent; assign g
 <div id="save-output" class="section level2 hasAnchor" number="5.7">
 <h2><span class="header-section-number">5.7</span> Save output<a href="running-sequoia.html#save-output" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are various ways in which the output can be stored. This includes saving the seqoia list object, and optionally various other objects, in an <code>.RData</code> compressed file</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="running-sequoia.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(SeqList, LHdata, Geno, <span class="at">file=</span><span class="st">&quot;Sequoia_output_date.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="running-sequoia.html#cb12-1" tabindex="-1"></a><span class="fu">save</span>(SeqList, LHdata, Geno, <span class="at">file=</span><span class="st">&quot;Sequoia_output_date.RData&quot;</span>)</span></code></pre></div>
 <p>which can be read back into R at a later point</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="running-sequoia.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;Sequoia_output_date.RData&quot;</span>)</span>
-<span id="cb13-2"><a href="running-sequoia.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;SeqList&#39; and &#39;LHdata&#39; will appear in R environment</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="running-sequoia.html#cb13-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;Sequoia_output_date.RData&quot;</span>)</span>
+<span id="cb13-2"><a href="running-sequoia.html#cb13-2" tabindex="-1"></a><span class="co"># &#39;SeqList&#39; and &#39;LHdata&#39; will appear in R environment</span></span></code></pre></div>
 <p>The advantage is that all data is stored and can easily be manipulated when recalled. The disadvantage is that the file is not human-readable, and (to my knowledge) can only be opened by R.</p>
 <p>Alternatively, the various dataframes and list elements can each be written to a text file in a designated folder. This can be done using <code>write.table</code> or <code>write.csv</code>, or using the wrapper <code>writeSeq()</code>:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="running-sequoia.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeSeq</span>(SeqList, <span class="at">GenoM =</span> Geno, <span class="at">folder=</span><span class="fu">paste</span>(<span class="st">&quot;Sequoia_OUT&quot;</span>, <span class="fu">Sys.Date</span>()))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="running-sequoia.html#cb14-1" tabindex="-1"></a><span class="fu">writeSeq</span>(SeqList, <span class="at">GenoM =</span> Geno, <span class="at">folder=</span><span class="fu">paste</span>(<span class="st">&quot;Sequoia_OUT&quot;</span>, <span class="fu">Sys.Date</span>()))</span></code></pre></div>
 <p>The same function can also write the dataframes and list elements to an excel file (.xls or .xlsx), each to a separate sheet, using package <code>xlsx</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="running-sequoia.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeSeq</span>(SeqList, <span class="at">OutFormat=</span><span class="st">&quot;xls&quot;</span>, <span class="at">file=</span><span class="st">&quot;Sequoia_OUT.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="running-sequoia.html#cb15-1" tabindex="-1"></a><span class="fu">writeSeq</span>(SeqList, <span class="at">OutFormat=</span><span class="st">&quot;xls&quot;</span>, <span class="at">file=</span><span class="st">&quot;Sequoia_OUT.xlsx&quot;</span>)</span></code></pre></div>
 <p>Note that ‘GenoM’ is ignored, as a very large genotype matrix may result in a file that is too large for excel to open. If you have a genotype matrix of modest size, you can add it to the same excel file:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="running-sequoia.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xlsx)</span>
-<span id="cb16-2"><a href="running-sequoia.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.xlsx</span>(Geno, <span class="at">file =</span> <span class="st">&quot;Sequoia_OUT.xlsx&quot;</span>, <span class="at">sheetName=</span><span class="st">&quot;Genotypes&quot;</span>,</span>
-<span id="cb16-3"><a href="running-sequoia.html#cb16-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names=</span><span class="cn">FALSE</span>, <span class="at">row.names=</span><span class="cn">TRUE</span>, <span class="at">append=</span><span class="cn">TRUE</span>, <span class="at">showNA=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="running-sequoia.html#cb16-1" tabindex="-1"></a><span class="fu">library</span>(xlsx)</span>
+<span id="cb16-2"><a href="running-sequoia.html#cb16-2" tabindex="-1"></a><span class="fu">write.xlsx</span>(Geno, <span class="at">file =</span> <span class="st">&quot;Sequoia_OUT.xlsx&quot;</span>, <span class="at">sheetName=</span><span class="st">&quot;Genotypes&quot;</span>,</span>
+<span id="cb16-3"><a href="running-sequoia.html#cb16-3" tabindex="-1"></a>      <span class="at">col.names=</span><span class="cn">FALSE</span>, <span class="at">row.names=</span><span class="cn">TRUE</span>, <span class="at">append=</span><span class="cn">TRUE</span>, <span class="at">showNA=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p>The option <code>append=TRUE</code> ensures that the sheet is appended to the file, rather than the file entirely overwritten.</p>
 
 </div>

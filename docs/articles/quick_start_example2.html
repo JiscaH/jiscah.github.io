@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.7.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -147,8 +147,8 @@ necessary with high levels of polygamy or inbreeding.</p>
 <p>One possible tool to perform such subsetting of SNPs is <a href="https://www.cog-genomics.org/plink2" class="external-link">PLINK</a> using something
 like this (on the command line), with thresholds adapted to your
 particular dataset.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">plink</span> <span class="at">--file</span> mydata <span class="at">--geno</span> 0.1 <span class="at">--maf</span> 0.3 <span class="at">--indep</span> 50 5 2</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">plink</span> <span class="at">--file</span> mydata <span class="at">--extract</span> plink.prune.in <span class="at">--recodeA</span> <span class="at">--out</span> inputfile_for_sequoia</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">plink</span> <span class="at">--file</span> mydata <span class="at">--geno</span> 0.1 <span class="at">--maf</span> 0.3 <span class="at">--indep</span> 50 5 2</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">plink</span> <span class="at">--file</span> mydata <span class="at">--extract</span> plink.prune.in <span class="at">--recodeA</span> <span class="at">--out</span> inputfile_for_sequoia</span></code></pre></div>
 <p>In addition you need a dataframe with the sex and birth/hatching year
 of as many individuals as possible, in arbitrary order.</p>
 <p>Then, in R start with something similar to this, adapting the code to

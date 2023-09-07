@@ -12,7 +12,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.7.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -220,15 +220,16 @@ selfing.</p></dd>
 
 
 <dt>Err</dt>
-<dd><p>estimated genotyping error rate, as a single number or 3x3 matrix.
-Details below. The error rate is presumed constant across SNPs, and
-missingness is presumed random with respect to actual genotype. Using
-<code>Err</code> &gt;5% is not recommended.</p></dd>
+<dd><p>estimated genotyping error rate, as a single number, length 3
+vector or 3x3 matrix; see details below. The error rate is presumed
+constant across SNPs, and missingness is presumed random with respect to
+actual genotype. Using <code>Err</code> &gt;5% is not recommended.</p></dd>
 
 
 <dt>ErrFlavour</dt>
-<dd><p>function that takes <code>Err</code> (single number) as input,
-and returns a 3x3 matrix of observed (columns) conditional on actual (rows)
+<dd><p><strong>DEPRECATED, (use length 3 vector for <code>Err</code>
+instead)</strong> function that takes <code>Err</code> (single number) as input, and
+returns a 3x3 matrix of observed (columns) conditional on actual (rows)
 genotypes, or choose from inbuilt options 'version2.0', 'version1.3', or
 'version1.1', referring to the sequoia version in which they were the
 default. Ignored if <code>Err</code> is a matrix. See <code><a href="ErrToM.html">ErrToM</a></code>.</p></dd>
@@ -392,7 +393,7 @@ likely relationship category:</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Pedigree-based, overlapping generations, smoothed, MaxAgeParent = 5,5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Counting opposing homozygous loci between all individuals ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Checking for non-assigned relatives ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Found 0 likely parent-offspring pairs, and 130 other non-assigned pairs of possible relatives</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Found 0 likely parent-offspring pairs, and 131 other non-assigned pairs of possible relatives</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Maybe</span><span class="op">$</span><span class="va">MaybeRel</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           ID1         ID2 TopRel   LLR OH BirthYear1 BirthYear2 AgeDif Sex1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 i081_2005_F i083_2005_M     FS  5.42  3       2005       2005      0    1</span>

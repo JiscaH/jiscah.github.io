@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.7.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,39 +117,46 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>Err</dt>
-<dd><p>estimated genotyping error rate, as a single number or 3x3 or 4x4
-matrix. If a single number, an error model is used that aims to deal with
-scoring errors typical for SNP arrays. If a matrix, this should be the
-probability of observed genotype (columns) conditional on actual genotype
-(rows). Each row must therefore sum to 1. If <code>Return='function'</code>, this
-may be <code>NA</code>.</p></dd>
+<dd><p>estimated genotyping error rate, as a single number, or 3x3 or 4x4
+matrix, or length 3 vector. If a single number, an error model is used that
+aims to deal with scoring errors typical for SNP arrays. If a matrix, this
+should be the probability of observed genotype (columns) conditional on
+actual genotype (rows). Each row must therefore sum to 1. If
+<code>Return='function'</code>, this may be <code>NA</code>. If a vector, these are the
+probabilities (observed given actual) hom|other hom, het|hom, and hom|het.</p></dd>
 
 
 <dt>flavour</dt>
 <dd><p>matrix-generating function, or one of 'version2.0',
 'version1.3' (='SNPchip'), 'version1.1' (='version111'), referring to the
-sequoia version in which it was used as default. Ignored if <code>Err</code> is a
-matrix and <code>Return='matrix'</code> (in which case the matrix will only be
-checked for validity).</p></dd>
+sequoia version in which it was used as default. Only used if <code>Err</code> is
+a single number.</p></dd>
 
 
 <dt>Return</dt>
-<dd><p>output, 'matrix' (always 3x3) or 'function'.</p></dd>
+<dd><p>output, 'matrix' (default), 'function', or 'vector'</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>Either a 3x3 matrix, or a function generating a 3x3 matrix.</p>
-    </div>
+<p>Depending on <code>Return</code>, either:</p>
+<p></p>
+<ul><li><p><code>'matrix'</code>: a 3x3 matrix, with probabilities of observed genotypes
+   (columns) conditional on actual (rows)</p></li>
+<li><p><code>'function'</code>: a function taking a single value <code>Err</code> as input, and
+   generating a 3x3 matrix</p></li>
+<li><p><code>'vector'</code>: a length 3 vector, with the probabilities (observed given
+     actual) hom|other hom, het|hom, and hom|het.</p></li>
+</ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>By default (<code>flavour</code> = "SNPchip"), <code>Err</code> is interpreted
-  as a locus-level error rate (rather than allele-level), and equals the
-  probability that an actual heterozygote is observed as either homozygote
-  (i.e., the probability that it is observed as AA = probability that
-  observed as aa = <code>Err</code>/2). The probability that one homozygote is
+    <p>By default (<code>flavour</code> = "version2.0"), <code>Err</code> is
+  interpreted as a locus-level error rate (rather than allele-level), and
+  equals the probability that an actual heterozygote is observed as either
+  homozygote (i.e., the probability that it is observed as AA = probability
+  that observed as aa = <code>Err</code>/2). The probability that one homozygote is
   observed as the other is (<code>Err</code>/2\()^2\).</p>
 <p>The inbuilt 'flavours' correspond to the presumed and simulated error
 structures, which have changed with sequoia versions. The most appropriate
@@ -157,8 +164,56 @@ error structure will depend on the genotyping platform; 'version0.9' and
 'version1.1' were inspired by SNP array genotyping while 'version1.3' and
 'version2.0' are intended to be more general.</p>
 <p>Pr(observed genotype (columns) | actual genotype (rows)):</p>
-<p><em>version2.0:</em></p><table class="table table"><tr><td></td><td><strong>0</strong></td><td><strong>1</strong></td><td><strong>2</strong></td></tr><tr><td><strong>0</strong></td><td>\((1-E/2)^2\)</td><td>\(E(1-E/2)\)</td><td>\((E/2)^2\)</td></tr><tr><td><strong>1</strong></td><td>\(E/2\)</td><td>\(1-E\)</td><td>\(E/2\)</td></tr><tr><td><strong>2</strong></td><td>\((E/2)^2\)</td><td>\(E(1-E/2)\)</td><td>\((1-E/2)^2\)</td></tr></table><p><em>version1.3</em></p><table class="table table"><tr><td></td><td><strong>0</strong></td><td><strong>1</strong></td><td><strong>2</strong></td></tr><tr><td><strong>0</strong></td><td>\(1-E-(E/2)^2\)</td><td>\(E\)</td><td>\((E/2)^2\)</td></tr><tr><td><strong>1</strong></td><td>\(E/2\)</td><td>\(1-E\)</td><td>\(E/2\)</td></tr><tr><td><strong>2</strong></td><td>\((E/2)^2\)</td><td>\(E\)</td><td>\(1-E-(E/2)^2\)</td></tr></table><p><em>version1.1</em></p><table class="table table"><tr><td></td><td><strong>0</strong></td><td><strong>1</strong></td><td><strong>2</strong></td></tr><tr><td><strong>0</strong></td><td>\(1-E\)</td><td>\(E/2\)</td><td>\(E/2\)</td></tr><tr><td><strong>1</strong></td><td>\(E/2\)</td><td>\(1-E\)</td><td>\(E/2\)</td></tr><tr><td><strong>2</strong></td><td>\(E/2\)</td><td>\(E/2\)</td><td>\(1-E\)</td></tr></table><p><em>version0.9</em> (not recommended)</p><table class="table table"><tr><td></td><td><strong>0</strong></td><td><strong>1</strong></td><td><strong>2</strong></td></tr><tr><td><strong>0</strong></td><td>\(1-E\)</td><td>\(E\)</td><td>\(0\)</td></tr><tr><td><strong>1</strong></td><td>\(E/2\)</td><td>\(1-E\)</td><td>\(E/2\)</td></tr><tr><td><strong>2</strong></td><td>\(0\)</td><td>\(E\)</td><td>\(1-E\)</td></tr></table></div>
+<p><em>version2.0:</em></p><table class="table table"><tr><td></td><td><strong>0</strong></td><td><strong>1</strong></td><td><strong>2</strong></td></tr><tr><td><strong>0</strong></td><td>\((1-E/2)^2\)</td><td>\(E(1-E/2)\)</td><td>\((E/2)^2\)</td></tr><tr><td><strong>1</strong></td><td>\(E/2\)</td><td>\(1-E\)</td><td>\(E/2\)</td></tr><tr><td><strong>2</strong></td><td>\((E/2)^2\)</td><td>\(E(1-E/2)\)</td><td>\((1-E/2)^2\)</td></tr></table><p><em>version1.3</em></p><table class="table table"><tr><td></td><td><strong>0</strong></td><td><strong>1</strong></td><td><strong>2</strong></td></tr><tr><td><strong>0</strong></td><td>\(1-E-(E/2)^2\)</td><td>\(E\)</td><td>\((E/2)^2\)</td></tr><tr><td><strong>1</strong></td><td>\(E/2\)</td><td>\(1-E\)</td><td>\(E/2\)</td></tr><tr><td><strong>2</strong></td><td>\((E/2)^2\)</td><td>\(E\)</td><td>\(1-E-(E/2)^2\)</td></tr></table><p><em>version1.1</em></p><table class="table table"><tr><td></td><td><strong>0</strong></td><td><strong>1</strong></td><td><strong>2</strong></td></tr><tr><td><strong>0</strong></td><td>\(1-E\)</td><td>\(E/2\)</td><td>\(E/2\)</td></tr><tr><td><strong>1</strong></td><td>\(E/2\)</td><td>\(1-E\)</td><td>\(E/2\)</td></tr><tr><td><strong>2</strong></td><td>\(E/2\)</td><td>\(E/2\)</td><td>\(1-E\)</td></tr></table><p><em>version0.9</em> (not recommended)</p><table class="table table"><tr><td></td><td><strong>0</strong></td><td><strong>1</strong></td><td><strong>2</strong></td></tr><tr><td><strong>0</strong></td><td>\(1-E\)</td><td>\(E\)</td><td>\(0\)</td></tr><tr><td><strong>1</strong></td><td>\(E/2\)</td><td>\(1-E\)</td><td>\(E/2\)</td></tr><tr><td><strong>2</strong></td><td>\(0\)</td><td>\(E\)</td><td>\(1-E\)</td></tr></table><p>When <code>Err</code> is a length 3 vector, or if <code>Return = 'vector'</code> these
+ are the following probabilities:</p><ul><li><p>hom|hom: an actual homozygote is observed as the other homozygote</p></li>
+<li><p>het|hom: an actual homozygote is observed as heterozygote</p></li>
+<li><p>hom|het: an actual heterozygote is observed as homozygote</p></li>
+</ul><p>and Pr(observed genotype (columns) | actual genotype (rows)) is then:</p><table class="table table"><tr><td></td><td><strong>0</strong></td><td><strong>1</strong></td><td><strong>2</strong></td></tr><tr><td><strong>0</strong></td><td>\(1-E_1-E_2\)</td><td>\(E_2\)</td><td>\(E_1\)</td></tr><tr><td><strong>1</strong></td><td>\(E_3\)</td><td>\(1-2E_3\)</td><td>\(E_3\)</td></tr><tr><td><strong>2</strong></td><td>\(E_1\)</td><td>\(E_2\)</td><td>\(1-E_1-E_2\)</td></tr></table><p>The only assumption made is that the two alleles can be treated equally,
+ i.e. observing actual allele $A$ as $a$ is as likely as observing actual $a$
+ as $A$, and so e.g. P(obs=1|act=0) = P(obs=1|act=2).</p>
+<p>When the SNPs are scored via sequencing (e.g. RADseq or DArTseq), the 3rd
+ error rate (hom|het) is typically considerably higher than the other two,
+ while for SNP arrays it tends to be similar to P(het|hom).</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="EstEr.html">EstEr</a></code> to estimate genotyping error rate as a length 3
+ vector.</p></div>
+    </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">ErM</span> <span class="op">&lt;-</span> <span class="fu">ErrToM</span><span class="op">(</span>Err <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ErM</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       obs-0|act obs-1|act obs-2|act</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> act-0  0.950625   0.04875  0.000625</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> act-1  0.025000   0.95000  0.025000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> act-2  0.000625   0.04875  0.950625</span>
+<span class="r-in"><span><span class="fu">ErrToM</span><span class="op">(</span><span class="va">ErM</span>, Return <span class="op">=</span> <span class="st">'vector'</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  hom|hom  het|hom  hom|het </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.000625 0.048750 0.025000 </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># use error matrix from Whalen, Gorjanc &amp; Hickey 2018</span></span></span>
+<span class="r-in"><span><span class="va">funE</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">E</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">E</span><span class="op">*</span><span class="fl">3</span><span class="op">/</span><span class="fl">4</span>, <span class="va">E</span><span class="op">/</span><span class="fl">2</span>, <span class="va">E</span><span class="op">/</span><span class="fl">4</span>,</span></span>
+<span class="r-in"><span>          <span class="va">E</span><span class="op">/</span><span class="fl">4</span>, <span class="fl">1</span><span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="va">E</span><span class="op">/</span><span class="fl">4</span>, <span class="va">E</span><span class="op">/</span><span class="fl">4</span>,</span></span>
+<span class="r-in"><span>          <span class="va">E</span><span class="op">/</span><span class="fl">4</span>, <span class="va">E</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">-</span><span class="va">E</span><span class="op">*</span><span class="fl">3</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>          <span class="fl">3</span>,<span class="fl">3</span>, byrow<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>  <span class="op">}</span></span></span>
+<span class="r-in"><span><span class="fu">ErrToM</span><span class="op">(</span>Err <span class="op">=</span> <span class="fl">0.05</span>, flavour <span class="op">=</span> <span class="va">funE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       obs-0|act obs-1|act obs-2|act</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> act-0    0.9625     0.025    0.0125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> act-1    0.0125     0.975    0.0125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> act-2    0.0125     0.025    0.9625</span>
+<span class="r-in"><span><span class="co"># equivalent to:</span></span></span>
+<span class="r-in"><span><span class="fu">ErrToM</span><span class="op">(</span>Err <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span><span class="op">/</span><span class="fl">4</span>, <span class="fl">0.05</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">0.05</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       obs-0|act obs-1|act obs-2|act</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> act-0    0.9625     0.025    0.0125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> act-1    0.0125     0.975    0.0125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> act-2    0.0125     0.025    0.9625</span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

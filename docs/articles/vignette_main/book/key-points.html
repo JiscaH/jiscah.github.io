@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Key Points | Sequoia User Guide</title>
   <meta name="description" content="2 Key Points | Sequoia User Guide" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Key Points | Sequoia User Guide" />
   <meta property="og:type" content="book" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
@@ -425,7 +429,6 @@ Figure 2.3: Runtimes are shorter with lower genotyping error rates and more SNPs
 <div id="error-matrix" class="section level3 hasAnchor" number="2.3.5">
 <h3><span class="header-section-number">2.3.5</span> Error matrix<a href="key-points.html#error-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Different genotyping methods are likely to have different error structures (Table <a href="key-points.html#tab:ErrM">2.2</a>). Therefore, from version 2.0 sequoia allows fine-scale control over how potential genotyping errors are accounted for. An error matrix with the probability to observe genotype <span class="math inline">\(G\)</span> (columns), conditional on actual genotype <span class="math inline">\(g\)</span> (rows), can now be specified via parameter <code>ErrFlavour</code>. The current default (<code>version2.0</code>) is given in Table <a href="key-points.html#tab:ErrM">2.2</a>, and previous defaults are shown in the help file of <code>ErrToM()</code>. The slight differences between versions only have any consequences when the error rate is high (<span class="math inline">\(&gt;1%\)</span>).</p>
-<p>During pedigree inference, the error rate is presumed equal across all SNPs. It is also assumed that none of the errors (or missingness) are due to heritable mutations.</p>
 <table>
 <caption><span id="tab:ErrM">Table 2.2: </span>Probability of observed genotype (columns) conditional on actual genotype (rows) and per-locus error rate E</caption>
 <thead>
@@ -457,6 +460,13 @@ Figure 2.3: Runtimes are shorter with lower genotyping error rates and more SNPs
 </tr>
 </tbody>
 </table>
+<p>From version 2.7 onwards, it is also possible to specify the genotyping error structure as a length 3 vector, with probabilities (between brackets = current defaults):</p>
+<ul>
+<li>hom|hom: an actual homozygote is observed as the other homozygote (<span class="math inline">\((E/2)^2\)</span>)</li>
+<li>het|hom: an actual homozygote is observed as heterozygote (<span class="math inline">\(E\\times(1-E/2)\)</span>)</li>
+<li>hom|het: an actual heterozygote is observed as homozygote (<span class="math inline">\(E/2\)</span>)</li>
+</ul>
+<p>During pedigree inference, the error rate is presumed equal across all SNPs. It is also assumed that none of the errors (or missingness) are due to heritable mutations.</p>
 </div>
 <div id="estimate" class="section level3 hasAnchor" number="2.3.6">
 <h3><span class="header-section-number">2.3.6</span> Estimate<a href="key-points.html#estimate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -514,7 +524,7 @@ This information can be viewed in the `AgePriorExtra` element of the `sequoia()`
 <blockquote>
 <p><strong>The ratio between the likelihood of being parent and offspring, versus the next-most-likely relationship between them, conditional on all other relationships in the pedigree.</strong></p>
 </blockquote>
-<p>This differs from for example Cervus <span class="citation">(<a href="#ref-marshall98" role="doc-biblioref">Marshall et al. 1998</a>)</span>, which returns the ratio between the likelihood that the assigned parent is the parent, versus that the next most likely candidate is the parent.</p>
+<p>This differs from for example Cervus <span class="citation">(<a href="#ref-marshall98">Marshall et al. 1998</a>)</span>, which returns the ratio between the likelihood that the assigned parent is the parent, versus that the next most likely candidate is the parent.</p>
 <p>The LLRs for the dam and sire separately are calculated by temporarily dropping the co-parent (if any), and calculating the likelihoods assuming the co-parent is a random draw from the population. The LLR for the parent-pair is the minimum of the dam and sire LLR, each conditional on the co-parent. To retrieve the likelihoods underlying each ratio, use <code>CalcPairLL()</code>; specify column <code>dropPar1</code> for single-parent likelihoods.</p>
 <p>Since this step can be quite time-consuming, <code>sequoia()</code> can be run with <code>CalcLLR=FALSE</code>, and <code>CalcOHLLR()</code> can be run separately later. That function can also calculate parental LLR’s for any existing pedigree, including for any non-genotyped individuals with at least one genotyped offspring.</p>
 </div>
@@ -561,6 +571,7 @@ Figure 2.5: Sibship clustering of individuals A-D
 <ul>
 <li><code>GetMaybeRel()</code> will identify any pairs that are likely to be 1st or 2nd degree relatives. It can do so as-is, or conditional on a (reconstructed) pedigree. It may also provide clues whether this is e.g. due to unknown birth years or an impossibility to tell the different 2nd degree relationships apart (TopRel = ‘2nd’).</li>
 <li><code>CalcPairLL()</code> will return for a specified set of pairs the likelihoods to be parent-offspring, sibling, … (Table <a href="key-points.html#tab:rel7">2.1</a>). The pairs may be the output from <code>GetMaybeRel()</code>, or e.g. pairs of litter mates. This may e.g. show that it is unclear whether the pair are full or half siblings, but they are probably either one or those. Or it may show the pair are probably either half-siblings or 3rd degree relatives (half-avuncular, cousins, great-grandparent). The latter may be ‘declared’ half-siblings if the breeding scheme or field data (e.g. being litter mates) makes 3rd degree relatives highly unlikely. You can specify a pedigree and/or ageprior to condition on, and can include a pair multiple times with different age difference or focal relationship to explore their effects on the likelihoods and thereby the LLR.</li>
+<li>use of mitochondrial haplotype sharing data to distinguish between maternal and paternal relatives. See the mtDNA vignette for details.</li>
 </ul>
 
 </div>

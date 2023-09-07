@@ -1,7 +1,7 @@
 # Sequoia  <img src="man/figures/sequoia_hexlogo.svg" align="right" height=225 style="float:right; height:200px; vertical-align:middle; margin:0px 20px" /> 
 
 
-#### Multi-generational pedigree reconstruction from SNP data. Accounting for genotyping errors. Overlapping or discrete generations, with or without inbreeding, any proportion of genotyped parents. No lists of candidate parents needed, just birth years.
+#### Multi-generational pedigree reconstruction from Single Nucleotide Polymorphism (SNP) data. Accounting for genotyping errors. Overlapping or discrete generations, with or without inbreeding, any proportion of genotyped parents. No lists of candidate parents needed, just birth years.
 
 
 <br> 

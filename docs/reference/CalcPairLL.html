@@ -18,7 +18,7 @@ NOTE values \(&amp;gt;0\) are various NA types, see 'Likelihood
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.7.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -252,15 +252,16 @@ selfing.</p></dd>
 
 
 <dt>Err</dt>
-<dd><p>estimated genotyping error rate, as a single number or 3x3 matrix.
-Details below. The error rate is presumed constant across SNPs, and
-missingness is presumed random with respect to actual genotype. Using
-<code>Err</code> &gt;5% is not recommended.</p></dd>
+<dd><p>estimated genotyping error rate, as a single number, length 3
+vector or 3x3 matrix; see details below. The error rate is presumed
+constant across SNPs, and missingness is presumed random with respect to
+actual genotype. Using <code>Err</code> &gt;5% is not recommended.</p></dd>
 
 
 <dt>ErrFlavour</dt>
-<dd><p>function that takes <code>Err</code> (single number) as input,
-and returns a 3x3 matrix of observed (columns) conditional on actual (rows)
+<dd><p><strong>DEPRECATED, (use length 3 vector for <code>Err</code>
+instead)</strong> function that takes <code>Err</code> (single number) as input, and
+returns a 3x3 matrix of observed (columns) conditional on actual (rows)
 genotypes, or choose from inbuilt options 'version2.0', 'version1.3', or
 'version1.1', referring to the sequoia version in which they were the
 default. Ignored if <code>Err</code> is a matrix. See <code><a href="ErrToM.html">ErrToM</a></code>.</p></dd>
@@ -294,16 +295,17 @@ non-assignment, but will increase computational time.</p></dd>
 
 <p>The <code>Pairs</code> dataframe including all optional columns listed
   above, plus the additional columns:</p>
-<dl><dt>LL_xx</dt>
+<dl><dt>xx</dt>
 <dd><p>Log10-Likelihood of this pair having relationship xx, with xx
-   being one of PO, FS, etc. as detailed below.</p></dd>
+   being the relationship abbreviations listed below.</p></dd>
 
  <dt>TopRel</dt>
 <dd><p>Abbreviation of most likely relationship</p></dd>
 
  <dt>LLR</dt>
-<dd><p>Likelihood ratio between most-likely and second most likely
-   relationships</p></dd>
+<dd><p>Log10-Likelihood ratio between most-likely and second most likely
+   relationships. Other LLRs, e.g. between most-likely and unrelated, can
+   easily be computed.</p></dd>
 
 
 </dl><p><strong>Relationship abbreviations:</strong></p>
@@ -375,6 +377,32 @@ non-assignment, but will increase computational time.</p></dd>
   compatible with the SNP data can be done with <code><a href="CalcOHLLR.html">CalcOHLLR</a></code>.</p>
 <p><strong>Warning 2</strong>: Conditioning on a <code>Pedigree</code> can make computation
   orders of magnitude slower.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="why-does-it-say-impossible-">Why does it say 777 (impossible)?<a class="anchor" aria-label="anchor" href="#why-does-it-say-impossible-"></a></h2>
+    
+
+<p>This function uses the same machinery as <code>sequoia</code>, which will to save
+  time not calculate the likelihood when it is quickly obvious that the pair
+  cannot be related in the specified manner.</p>
+<p>For PO (putative parent-offspring pairs) this is the case when:</p><ul><li><p>the sex of the candidate parent, via <code>Pairs$Sex2</code> or
+    <code>LifeHistData</code>, does not match <code>Pairs$patmat</code>, which defaults
+    to 1 (maternal relatives, i.e. dam)</p></li>
+<li><p>a dam is already assigned via <code>Pedigree</code> and <code>Pairs$dropPar1
+    ='none'</code>, and <code>Pairs$patmat = 1</code></p></li>
+<li><p><code>Pairs$focal</code> is not 'U' (the default), and the OH count between the
+    two individuals exceeds MaxMismatchOH. This value can be found in
+    <code>SeqList$Specs</code>), and is calculated by <code><a href="CalcMaxMismatch.html">CalcMaxMismatch</a></code></p></li>
+<li><p>the age difference, either calculated from <code>LifeHistData</code> or
+    specified via <code>Pairs$AgeDif</code>, is impossible for a parent-offspring
+    pair according to the age prior. The latter can be specified via
+    <code>AgePrior</code>, or is taken from <code>SeqList</code>, or is calculated when
+    both <code>Pedigree</code> and <code>LifeHistData</code> are provided.</p></li>
+</ul><p>For FS (putative full siblings) this happens when e.g. ID1 has a dam
+ assigned which is not dropped (<code>Pairs$dropPar1='none'</code> or
+ <code>'sire'</code>), and the OH count between ID1's dam and ID2 exceeds
+ MaxMismatchOH. The easiest way to 'fix' this is by increasing the presumed
+ genotyping error rate.</p>
     </div>
     <div class="section level2">
     <h2 id="double-relationships-amp-focal-relationship">Double relationships &amp; focal relationship<a class="anchor" aria-label="anchor" href="#double-relationships-amp-focal-relationship"></a></h2>
@@ -508,7 +536,7 @@ non-assignment, but will increase computational time.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8  i121_2007_M i175_2009_M    3    3     NA    HS      1     none     none</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13 i121_2007_M i175_2009_M    3    3     NA    GP      1     none     none</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         PO      FS      HS      GP      FA     HA       U TopRel  LLR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  -313.21 -324.46 -321.90 -321.51 -322.83 -321.9 -337.98     PO 8.30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  -313.21 -324.46 -321.90 -321.51 -323.01 -321.9 -337.98     PO 8.30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8  -313.21  222.00 -321.09 -321.09 -323.01 -321.9 -337.98     PO 7.88</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13 -313.21 -324.46 -321.09 -321.09 -322.83 -321.9 -337.98     PO 7.88</span>
 <span class="r-in"><span><span class="co"># LL(FS)==222 : HSHA, HSGP, FAHA more likely than FS</span></span></span>
