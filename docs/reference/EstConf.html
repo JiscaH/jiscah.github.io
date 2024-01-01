@@ -83,12 +83,6 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://twitter.com/HuismanJisca">
-    <span class="fab fa fab fa-twitter"></span>
-     
-  </a>
-</li>
-<li class="nav-item">
   <a class="external-link nav-link" href="https://www.linkedin.com/in/jisca-huisman-a4751153/">
     <span class="fab fa fab fa-linkedin-in"></span>
      
@@ -332,28 +326,28 @@ one was assigned based on the simulated data (P2only)</p></li>
 <span class="r-in"><span>               nSim <span class="op">=</span> <span class="fl">1</span>,   <span class="co"># try-out, proper run &gt;=20 (10 if huge pedigree)</span></span></span>
 <span class="r-in"><span>               nCores<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating parentage assignment only ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> i= 1 	 15:48:56 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> i= 1 	 15:53:16 </span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span> There are 1 SNPs scored for &lt;50% of individuals </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># parent-pair confidence, per category (Genotyped/Dummy/None)</span></span></span>
 <span class="r-in"><span><span class="va">conf_grif</span><span class="op">$</span><span class="va">ConfProb</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    id.cat dam.cat sire.cat dam.conf sire.conf pair.conf  N</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14      G       G        G        1         1         1 38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15      G       G        X        1        NA        NA 18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17      G       X        G       NA         1        NA 27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14      G       G        G        1         1         1 42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15      G       G        X        1        NA        NA  8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17      G       X        G       NA         1        NA 33</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 18      G       X        X       NA        NA        NA 52</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Proportion of true parents that was correctly assigned</span></span></span>
 <span class="r-in"><span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">conf_grif</span><span class="op">$</span><span class="va">PedErrors</span>, MARGIN<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'cat'</span>,<span class="st">'parent'</span><span class="op">)</span>, FUN<span class="op">=</span><span class="va">sum</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     parent</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cat        dam      sire</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GG 0.9491525 0.8552632</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GG 0.9615385 0.9375000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   GD 0.0000000 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GT 0.5436893 0.6632653</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GT 0.4950495 0.7731959</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   DG 0.0000000 0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   DD 0.0000000 0.0000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   DT 0.0000000 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   TT 0.4590164 0.5603448</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TT 0.4098361 0.6465517</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># add columns with confidence probabilities to pedigree</span></span></span>
 <span class="r-in"><span><span class="co"># first add columns with category (G/D/X)</span></span></span>
@@ -370,12 +364,12 @@ one was assigned based on the simulated data (P2only)</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 34      G       G        G i079_2004_F i041_2003_F i046_2003_M  12.66    7.90</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 35      G       G        G i080_2004_M i041_2003_F i039_2002_M  11.47    5.72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    LLRpair OHdam OHsire MEpair dam.conf sire.conf pair.conf  N</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30   15.51     0      0      0        1         1         1 38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31   16.13     0      0      0        1         1         1 38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32   14.83     0      0      0        1         1         1 38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33   16.29     0      0      0        1         1         1 38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34   17.56     0      0      0        1         1         1 38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35   17.07     0      0      0        1         1         1 38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30   15.51     0      0      0        1         1         1 42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31   16.13     0      0      0        1         1         1 42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32   14.83     0      0      0        1         1         1 42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33   16.29     0      0      0        1         1         1 42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34   17.56     0      0      0        1         1         1 42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35   17.07     0      0      0        1         1         1 42</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># save output summary</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
