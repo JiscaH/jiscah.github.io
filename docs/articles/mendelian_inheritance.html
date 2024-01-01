@@ -15,8 +15,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Mendelian Inheritance">
 <meta property="og:description" content="Mendelian inheritance probability, counting opposing homozygous (OH) loci, and calculating threshold OH value for parentage assignment. 
@@ -39,7 +39,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.7.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.8.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -452,7 +452,7 @@ individuals is counted for both SNP datasets:</p>
 <span>     main<span class="op">=</span><span class="st">"High quality:\n 500 SNPs, error rate 0.01%"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">OH.lowQ</span>, breaks<span class="op">=</span><span class="fl">25</span>, xlab<span class="op">=</span><span class="st">"No. SNPs opposing homozygous"</span>,</span>
 <span>     main<span class="op">=</span><span class="st">"Low quality:\n 100 SNPs, error rate 1%"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-10-1.png" width="100%"></p>
+<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
 <p>For the high quality SNP set there is a clear separation between the
 first peak (parent-offspring pairs, OH=0) and the second peak (all other
 pairs). For the low quality SNP set, there is an area where the two
@@ -470,7 +470,7 @@ peaks overlap. Zooming in shows this more clearly:</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v<span class="op">=</span><span class="fl">2</span>, lwd<span class="op">=</span><span class="fl">3</span>, lty<span class="op">=</span><span class="fl">2</span>, col<span class="op">=</span><span class="st">"forestgreen"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/rect.html" class="external-link">rect</a></span><span class="op">(</span>xleft<span class="op">=</span><span class="fl">0.5</span>, ybottom<span class="op">=</span><span class="op">-</span><span class="fl">50</span>, xright<span class="op">=</span><span class="fl">4.5</span>, ytop<span class="op">=</span><span class="fl">1200</span>,</span>
 <span>     col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="external-link">adjustcolor</a></span><span class="op">(</span><span class="st">"black"</span>, alpha.f<span class="op">=</span><span class="fl">0.4</span><span class="op">)</span>, border<span class="op">=</span><span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
-<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-11-1.png" width="100%"></p>
+<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-10-1.png" width="100%"></p>
 <p>For the high quality SNP set, the shaded area representing 2-7
 opposing homozygous loci includes one or two pairs of individuals at
 most (variable between simulated datasets), so that it does not matter
@@ -523,9 +523,9 @@ individuals will be homozygous for the common allele.&lt;/p&gt;"><sup>4</sup></a
 <pre><code><span><span class="co">##           parent</span></span>
 <span><span class="co">## class      dam sire</span></span>
 <span><span class="co">##   Total    167  163</span></span>
-<span><span class="co">##   Match    163  161</span></span>
-<span><span class="co">##   Mismatch   0    0</span></span>
-<span><span class="co">##   P1only     4    2</span></span>
+<span><span class="co">##   Match    167  157</span></span>
+<span><span class="co">##   Mismatch   0    1</span></span>
+<span><span class="co">##   P1only     0    5</span></span>
 <span><span class="co">##   P2only     0    0</span></span></code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># P1only: false negative (assignment in pedigree 1 (= original) only)</span></span>
@@ -544,7 +544,7 @@ whether the non-assigned parents were particular outliers:</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># distribution of OH &amp; trio Mendelian errors:</span></span>
 <span><span class="fu"><a href="../reference/SummarySeq.html">SummarySeq</a></span><span class="op">(</span><span class="va">Ped.true.OH</span>, Panels<span class="op">=</span><span class="st">"OH"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-13-1.png" width="576"></p>
+<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-12-1.png" width="576"></p>
 <p>The reason some parents remained unassigned was not because they did
 not pass this filtering step, but because of the subsequent likelihood
 calculations. Probably the likelihood to be parent and offspring is very

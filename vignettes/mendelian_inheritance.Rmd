@@ -210,7 +210,7 @@ pbinom(5, size=nSnp, prob=P.Mismatch)^N
 ### Data
 The R package includes a griffin example pedigree with 200 individuals, of which 167 have a known dam and 163 a known sire. Here two sets of genotype data are simulated for this pedigree: one of high quality, and one of low quality.
 
-```{r}
+```{r simG}
 # simulate genotype data
 Geno.highQ <- SimGeno(Ped_griffin, nSnp=500, ParMis=0, SnpError=1e-4)
 Geno.lowQ  <- SimGeno(Ped_griffin, nSnp=100, ParMis=0, SnpError=0.01)

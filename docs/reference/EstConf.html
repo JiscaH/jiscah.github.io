@@ -4,7 +4,7 @@
   simulating genotype data from a reference pedigree using
   SimGeno, reconstruction a pedigree from this using
   sequoia, and counting the number of mismatches using
-  PedCompare."><title>Confidence Probabilities — EstConf • sequoia</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Confidence Probabilities — EstConf"><meta property="og:description" content="Estimate confidence probabilities ('backward') and assignment
+  PedCompare."><title>Confidence Probabilities — EstConf • sequoia</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Confidence Probabilities — EstConf"><meta property="og:description" content="Estimate confidence probabilities ('backward') and assignment
   error rates ('forward') per category (genotyped/dummy) by repeatedly
   simulating genotype data from a reference pedigree using
   SimGeno, reconstruction a pedigree from this using
@@ -20,7 +20,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.7.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.8.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -297,6 +297,15 @@ one was assigned based on the simulated data (P2only)</p></li>
   statistics for each run rather than the full output.</p>
     </div>
     <div class="section level2">
+    <h2 id="errors">Errors<a class="anchor" aria-label="anchor" href="#errors"></a></h2>
+    
+
+<p>If you have a large pedigree and try to run this function on multiple
+  cores, you may run into "Cannot allocate vector of size ..." errors or even
+  unexpected crashes: there is not enough computer memory for each separate
+  run. Try reducing `nCores`.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="SimGeno.html">SimGeno</a>, <a href="sequoia.html">sequoia</a>, <a href="PedCompare.html">PedCompare</a></code>.</p></div>
     </div>
@@ -310,29 +319,41 @@ one was assigned based on the simulated data (P2only)</p></li>
 <span class="r-in"><span><span class="va">props</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sweep.html" class="external-link">sweep</a></span><span class="op">(</span><span class="va">tmp</span>, MARGIN<span class="op">=</span><span class="st">'parentCat'</span>, STATS <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span>, FUN <span class="op">=</span> <span class="st">'/'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fl">1</span> <span class="op">-</span> <span class="va">props</span><span class="op">[</span>,<span class="st">'Genotyped'</span><span class="op">]</span> <span class="op">/</span> <span class="op">(</span><span class="va">props</span><span class="op">[</span>,<span class="st">'Genotyped'</span><span class="op">]</span> <span class="op">+</span> <span class="va">props</span><span class="op">[</span>,<span class="st">'Dummy'</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Dam      Sire </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.3867925 0.2178218 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.3867925 0.2020202 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example for parentage assignment only</span></span></span>
 <span class="r-in"><span><span class="va">conf_grif</span> <span class="op">&lt;-</span> <span class="fu">EstConf</span><span class="op">(</span>Pedigree <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">Pedigree</span>,</span></span>
 <span class="r-in"><span>               LifeHistData <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">LifeHist</span>,</span></span>
-<span class="r-in"><span>               args.sim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nSnp <span class="op">=</span> <span class="fl">200</span>,   <span class="co"># no. in actual data, or what-if</span></span></span>
+<span class="r-in"><span>               args.sim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nSnp <span class="op">=</span> <span class="fl">150</span>,   <span class="co"># no. in actual data, or what-if</span></span></span>
 <span class="r-in"><span>                               SnpError <span class="op">=</span> <span class="fl">5e-3</span>,  <span class="co"># best estimate, or what-if</span></span></span>
-<span class="r-in"><span>                               CallRate<span class="op">=</span><span class="fl">0.8</span>,     <span class="co"># from SnpStats()</span></span></span>
+<span class="r-in"><span>                               CallRate<span class="op">=</span><span class="fl">0.9</span>,     <span class="co"># from SnpStats()</span></span></span>
 <span class="r-in"><span>                               ParMis<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.39</span>, <span class="fl">0.20</span><span class="op">)</span><span class="op">)</span>,  <span class="co"># calc'd above</span></span></span>
 <span class="r-in"><span>               args.seq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Err<span class="op">=</span><span class="fl">5e-3</span>, Module<span class="op">=</span><span class="st">"par"</span><span class="op">)</span>,  <span class="co"># as in real run</span></span></span>
 <span class="r-in"><span>               nSim <span class="op">=</span> <span class="fl">1</span>,   <span class="co"># try-out, proper run &gt;=20 (10 if huge pedigree)</span></span></span>
 <span class="r-in"><span>               nCores<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating parentage assignment only ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> i= 1 	 16:12:48 </span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .Fortran(mkerrors, nind = as.integer(nrow(SGeno)), nsnp = as.integer(ncol(SGeno)),     genofr = as.integer(SGeno), eprobfr = as.double(RealToObs)):</span> Incorrect number of arguments (4), expecting 5 for 'mkerrors'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> i= 1 	 15:48:56 </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span> There are 1 SNPs scored for &lt;50% of individuals </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># parent-pair confidence, per category (Genotyped/Dummy/None)</span></span></span>
 <span class="r-in"><span><span class="va">conf_grif</span><span class="op">$</span><span class="va">ConfProb</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'conf_grif' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    id.cat dam.cat sire.cat dam.conf sire.conf pair.conf  N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14      G       G        G        1         1         1 38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15      G       G        X        1        NA        NA 18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17      G       X        G       NA         1        NA 27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18      G       X        X       NA        NA        NA 52</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Proportion of true parents that was correctly assigned</span></span></span>
 <span class="r-in"><span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">conf_grif</span><span class="op">$</span><span class="va">PedErrors</span>, MARGIN<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'cat'</span>,<span class="st">'parent'</span><span class="op">)</span>, FUN<span class="op">=</span><span class="va">sum</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in apply(conf_grif$PedErrors, MARGIN = c("cat", "parent"), FUN = sum,     na.rm = TRUE):</span> object 'conf_grif' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     parent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cat        dam      sire</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GG 0.9491525 0.8552632</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GD 0.0000000 0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GT 0.5436893 0.6632653</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   DG 0.0000000 0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   DD 0.0000000 0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   DT 0.0000000 0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TT 0.4590164 0.5603448</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># add columns with confidence probabilities to pedigree</span></span></span>
 <span class="r-in"><span><span class="co"># first add columns with category (G/D/X)</span></span></span>
@@ -340,22 +361,21 @@ one was assigned based on the simulated data (P2only)</p></li>
 <span class="r-in"><span>                             SNPd <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">PedigreePar</span><span class="op">$</span><span class="va">id</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">Ped.withConf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">Ped.withConf</span>, <span class="va">conf_grif</span><span class="op">$</span><span class="va">ConfProb</span>, all.x<span class="op">=</span><span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>                      sort<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>  <span class="co"># (note: merge() messes up column order)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in as.data.frame(y):</span> object 'conf_grif' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Ped.withConf</span><span class="op">[</span><span class="va">Ped.withConf</span><span class="op">$</span><span class="va">dam.cat</span><span class="op">==</span><span class="st">"G"</span>, <span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             id         dam        sire LLRdam LLRsire LLRpair OHdam OHsire</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 i021_2002_M i001_2001_F i020_2001_M   6.89    7.10   15.68     0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 i022_2002_F i015_2001_F i006_2001_M   5.72    6.80   14.99     0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 i023_2002_F i007_2001_F        &lt;NA&gt;   7.59      NA      NA     0     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 i025_2002_M i014_2001_F i018_2001_M   8.34    7.65   17.42     0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 i030_2002_F i001_2001_F i016_2001_M   9.52    6.87   15.25     0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 i035_2002_F i015_2001_F        &lt;NA&gt;   4.37      NA      NA     1     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    MEpair id.cat dam.cat sire.cat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12      0      G       G        G</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13      0      G       G        G</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14     NA      G       G        X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15      0      G       G        G</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19      0      G       G        G</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22     NA      G       G        X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    id.cat dam.cat sire.cat          id         dam        sire LLRdam LLRsire</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30      G       G        G i110_2006_M i061_2004_F i073_2004_M   5.67    6.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31      G       G        G i025_2002_M i014_2001_F i018_2001_M   8.78    8.22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32      G       G        G i136_2007_M i095_2005_F i089_2005_M   5.89    4.77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33      G       G        G i145_2008_F i132_2007_F i127_2007_M   9.23    8.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34      G       G        G i079_2004_F i041_2003_F i046_2003_M  12.66    7.90</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35      G       G        G i080_2004_M i041_2003_F i039_2002_M  11.47    5.72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    LLRpair OHdam OHsire MEpair dam.conf sire.conf pair.conf  N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30   15.51     0      0      0        1         1         1 38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31   16.13     0      0      0        1         1         1 38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32   14.83     0      0      0        1         1         1 38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33   16.29     0      0      0        1         1         1 38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34   17.56     0      0      0        1         1         1 38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35   17.07     0      0      0        1         1         1 38</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># save output summary</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -365,6 +385,7 @@ one was assigned based on the simulated data (P2only)</p></li>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## P(actual FS | inferred as FS) etc.</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="va">PairL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">conf_grif</span><span class="op">$</span><span class="va">Pedigree.inferred</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>  <span class="co"># nSim</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">i</span>, <span class="st">"\t"</span><span class="op">)</span></span></span>
@@ -373,17 +394,23 @@ one was assigned based on the simulated data (P2only)</p></li>
 <span class="r-in"><span>                             GenBack<span class="op">=</span><span class="fl">1</span>, patmat<span class="op">=</span><span class="cn">TRUE</span>, ExcludeDummies <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>                             Return<span class="op">=</span><span class="st">"Counts"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'conf_grif' not found</span>
 <span class="r-in"><span><span class="co"># P(actual relationship (Ped1) | inferred relationship (Ped2))</span></span></span>
-<span class="r-in"><span><span class="va">PairRel.prop</span> <span class="op">&lt;-</span> <span class="fu">plyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plyr/man/laply.html" class="external-link">laply</a></span><span class="op">(</span><span class="va">PairL</span>, <span class="kw">function</span><span class="op">(</span><span class="va">M</span><span class="op">)</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/sweep.html" class="external-link">sweep</a></span><span class="op">(</span><span class="va">M</span>, MARGIN<span class="op">=</span><span class="st">'Ped2'</span>, STATS<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span>, FUN<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># if nSim&gt;1: mean across simulations</span></span></span>
-<span class="r-in"><span><span class="co"># PairRel.prop &lt;- apply(PairRel.prop, 2:3, mean, na.rm=TRUE)</span></span></span>
+<span class="r-in"><span><span class="va">PairRel.prop.A</span> <span class="op">&lt;-</span> <span class="fu">plyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plyr/man/laply.html" class="external-link">laply</a></span><span class="op">(</span><span class="va">PairL</span>, <span class="kw">function</span><span class="op">(</span><span class="va">M</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                     <span class="fu"><a href="https://rdrr.io/r/base/sweep.html" class="external-link">sweep</a></span><span class="op">(</span><span class="va">M</span>, MARGIN<span class="op">=</span><span class="st">'Ped2'</span>, STATS<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span>, FUN<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">PairRel.prop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">PairRel.prop.A</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">3</span>, <span class="va">mean</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="co">#avg across sims</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">PairRel.prop</span>, <span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> numeric(0)</span>
 <span class="r-in"><span><span class="co"># or: P(inferred relationship | actual relationship)</span></span></span>
 <span class="r-in"><span><span class="va">PairRel.prop2</span> <span class="op">&lt;-</span> <span class="fu">plyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plyr/man/laply.html" class="external-link">laply</a></span><span class="op">(</span><span class="va">PairL</span>, <span class="kw">function</span><span class="op">(</span><span class="va">M</span><span class="op">)</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/sweep.html" class="external-link">sweep</a></span><span class="op">(</span><span class="va">M</span>, MARGIN<span class="op">=</span><span class="st">'Ped1'</span>, STATS<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span>, FUN<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># confidence probability vs. sibship size</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">'https://raw.githubusercontent.com/JiscaH/sequoiaExtra/main/conf_vs_sibsize.R'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">conf_grif_nOff</span> <span class="op">&lt;-</span> <span class="fu">Conf_by_nOff</span><span class="op">(</span><span class="va">conf_grif</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">conf_grif_nOff</span><span class="op">[</span><span class="st">'conf'</span>,,<span class="st">'GD'</span>,<span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">conf_grif_nOff</span><span class="op">[</span><span class="st">'N'</span>,,<span class="st">'GD'</span>,<span class="op">]</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
