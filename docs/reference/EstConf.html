@@ -48,6 +48,8 @@
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
     <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
+    <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
+    <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
   </div>
 </li>
 <li class="nav-item">
@@ -313,7 +315,7 @@ one was assigned based on the simulated data (P2only)</p></li>
 <span class="r-in"><span><span class="va">props</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sweep.html" class="external-link">sweep</a></span><span class="op">(</span><span class="va">tmp</span>, MARGIN<span class="op">=</span><span class="st">'parentCat'</span>, STATS <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span>, FUN <span class="op">=</span> <span class="st">'/'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fl">1</span> <span class="op">-</span> <span class="va">props</span><span class="op">[</span>,<span class="st">'Genotyped'</span><span class="op">]</span> <span class="op">/</span> <span class="op">(</span><span class="va">props</span><span class="op">[</span>,<span class="st">'Genotyped'</span><span class="op">]</span> <span class="op">+</span> <span class="va">props</span><span class="op">[</span>,<span class="st">'Dummy'</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Dam      Sire </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.3867925 0.2020202 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.3867925 0.2178218 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example for parentage assignment only</span></span></span>
 <span class="r-in"><span><span class="va">conf_grif</span> <span class="op">&lt;-</span> <span class="fu">EstConf</span><span class="op">(</span>Pedigree <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">Pedigree</span>,</span></span>
@@ -326,28 +328,16 @@ one was assigned based on the simulated data (P2only)</p></li>
 <span class="r-in"><span>               nSim <span class="op">=</span> <span class="fl">1</span>,   <span class="co"># try-out, proper run &gt;=20 (10 if huge pedigree)</span></span></span>
 <span class="r-in"><span>               nCores<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Simulating parentage assignment only ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> i= 1 	 15:53:16 </span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span> There are 1 SNPs scored for &lt;50% of individuals </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> i= 1 	 14:56:52 </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in .Fortran(mkerrors, nind = as.integer(nrow(SGeno)), nsnp = as.integer(ncol(SGeno)),     genofr = as.integer(SGeno), eprobfr = as.double(RealToObs)):</span> Incorrect number of arguments (4), expecting 5 for 'mkerrors'</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># parent-pair confidence, per category (Genotyped/Dummy/None)</span></span></span>
 <span class="r-in"><span><span class="va">conf_grif</span><span class="op">$</span><span class="va">ConfProb</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    id.cat dam.cat sire.cat dam.conf sire.conf pair.conf  N</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14      G       G        G        1         1         1 42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15      G       G        X        1        NA        NA  8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17      G       X        G       NA         1        NA 33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18      G       X        X       NA        NA        NA 52</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'conf_grif' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Proportion of true parents that was correctly assigned</span></span></span>
 <span class="r-in"><span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">conf_grif</span><span class="op">$</span><span class="va">PedErrors</span>, MARGIN<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'cat'</span>,<span class="st">'parent'</span><span class="op">)</span>, FUN<span class="op">=</span><span class="va">sum</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     parent</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cat        dam      sire</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GG 0.9615385 0.9375000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GD 0.0000000 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GT 0.4950495 0.7731959</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   DG 0.0000000 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   DD 0.0000000 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   DT 0.0000000 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   TT 0.4098361 0.6465517</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'conf_grif' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># add columns with confidence probabilities to pedigree</span></span></span>
 <span class="r-in"><span><span class="co"># first add columns with category (G/D/X)</span></span></span>
@@ -355,21 +345,22 @@ one was assigned based on the simulated data (P2only)</p></li>
 <span class="r-in"><span>                             SNPd <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">PedigreePar</span><span class="op">$</span><span class="va">id</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">Ped.withConf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">Ped.withConf</span>, <span class="va">conf_grif</span><span class="op">$</span><span class="va">ConfProb</span>, all.x<span class="op">=</span><span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>                      sort<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>  <span class="co"># (note: merge() messes up column order)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'conf_grif' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Ped.withConf</span><span class="op">[</span><span class="va">Ped.withConf</span><span class="op">$</span><span class="va">dam.cat</span><span class="op">==</span><span class="st">"G"</span>, <span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    id.cat dam.cat sire.cat          id         dam        sire LLRdam LLRsire</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30      G       G        G i110_2006_M i061_2004_F i073_2004_M   5.67    6.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31      G       G        G i025_2002_M i014_2001_F i018_2001_M   8.78    8.22</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32      G       G        G i136_2007_M i095_2005_F i089_2005_M   5.89    4.77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33      G       G        G i145_2008_F i132_2007_F i127_2007_M   9.23    8.02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34      G       G        G i079_2004_F i041_2003_F i046_2003_M  12.66    7.90</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35      G       G        G i080_2004_M i041_2003_F i039_2002_M  11.47    5.72</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    LLRpair OHdam OHsire MEpair dam.conf sire.conf pair.conf  N</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30   15.51     0      0      0        1         1         1 42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31   16.13     0      0      0        1         1         1 42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32   14.83     0      0      0        1         1         1 42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33   16.29     0      0      0        1         1         1 42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34   17.56     0      0      0        1         1         1 42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35   17.07     0      0      0        1         1         1 42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             id         dam        sire LLRdam LLRsire LLRpair OHdam OHsire</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 i021_2002_M i001_2001_F i020_2001_M   6.89    7.10   15.68     0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 i022_2002_F i015_2001_F i006_2001_M   5.72    6.80   14.99     0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 i023_2002_F i007_2001_F        &lt;NA&gt;   7.59      NA      NA     0     NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 i025_2002_M i014_2001_F i018_2001_M   8.34    7.65   17.42     0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 i030_2002_F i001_2001_F i016_2001_M   9.52    6.87   15.25     0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 i035_2002_F i015_2001_F        &lt;NA&gt;   4.37      NA      NA     1     NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    MEpair id.cat dam.cat sire.cat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12      0      G       G        G</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13      0      G       G        G</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14     NA      G       G        X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15      0      G       G        G</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19      0      G       G        G</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22     NA      G       G        X</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># save output summary</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>

@@ -40,6 +40,8 @@
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
     <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
+    <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
+    <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
   </div>
 </li>
 <li class="nav-item">
@@ -159,20 +161,11 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">PedA</span> <span class="op">&lt;-</span> <span class="fu">getAssignCat</span><span class="op">(</span><span class="va">Ped_HSg5</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">SimGeno_example</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Ped_HSg5' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">PedA</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          id    dam   sire id.cat dam.cat sire.cat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 995  b05187 a04045 b04098      X       X        X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 996  a05188 a04045 b04098      X       X        X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 997  a05189 a04006 b04177      X       X        X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 998  b05190 a04006 b04177      X       X        X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 999  b05191 a04006 b04177      X       X        X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1000 b05192 a04006 b04177      X       X        X</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'PedA' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">PedA</span><span class="op">$</span><span class="va">dam.cat</span>, <span class="va">PedA</span><span class="op">$</span><span class="va">sire.cat</span>, useNA<span class="op">=</span><span class="st">"ifany"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       D   G   X</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   D   4  52   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   G   8 232  24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   X   0  64 616</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'PedA' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># calculate call rate</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>

@@ -46,6 +46,10 @@ navbar:
           href: articles/index.html
         - text: "Performance Stats"
           href: articles/performance_stats.html
+        - text: "poster"
+          href: reference/figures/Poster_sequoia_ESEB2017.pdf
+        - text: "slideshow with background info"
+          href: reference/figures/Slideshow_sequoia_background.pdf
     - text: "Change log"
       href: news/index.html
     - text: "Help"
@@ -75,7 +79,6 @@ articles:
     - quick_start_example1
     - quick_start_example2
     - pedcompare_example
-
 
 - title: More info on
   contents:

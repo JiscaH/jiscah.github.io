@@ -42,6 +42,8 @@
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
     <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
+    <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
+    <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
   </div>
 </li>
 <li class="nav-item">
@@ -396,57 +398,19 @@ statistics (<code>"all"</code>) ?</p></dd>
 <span class="r-in"><span><span class="fu">MakeAgePrior</span><span class="op">(</span>Pedigree<span class="op">=</span><span class="va">Ped_griffin</span>,</span></span>
 <span class="r-in"><span>             LifeHistData<span class="op">=</span><span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">LifeHist</span>,</span></span>
 <span class="r-in"><span>             Smooth<span class="op">=</span><span class="cn">FALSE</span>, Flatten<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Pedigree-based, overlapping generations, MaxAgeParent = 3,3</span>
-<span class="r-plt img"><img src="MakeAgePrior-4.png" alt="" width="700" height="433"></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       M     P    FS    MS    PS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0 0.000 0.000 5.043 4.316 3.862</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 3.476 1.967 2.798 2.636 2.971</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2.011 3.167 0.077 0.691 0.583</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.340 0.959 0.000 0.000 0.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.000 0.000 0.000 0.000 0.000</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Ped_griffin' not found</span>
 <span class="r-in"><span><span class="co"># with small-sample correction:</span></span></span>
 <span class="r-in"><span><span class="fu">MakeAgePrior</span><span class="op">(</span>Pedigree<span class="op">=</span><span class="va">Ped_griffin</span>,</span></span>
 <span class="r-in"><span>             LifeHistData<span class="op">=</span><span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">LifeHist</span>,</span></span>
 <span class="r-in"><span>             Smooth<span class="op">=</span><span class="cn">TRUE</span>, Flatten<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Pedigree-based, overlapping generations, flattened, smoothed, MaxAgeParent = 5,5</span>
-<span class="r-plt img"><img src="MakeAgePrior-5.png" alt="" width="700" height="433"></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       M     P    FS    MS    PS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0 0.000 0.000 2.761 3.574 2.918</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2.698 1.655 1.783 2.270 2.321</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.693 2.467 0.598 0.760 0.721</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.548 0.972 0.299 0.380 0.360</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.274 0.486 0.001 0.001 0.001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.001 0.001 0.000 0.000 0.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.000 0.000 0.000 0.000 0.000</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Ped_griffin' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Call from sequoia() via args.AP:</span></span></span>
 <span class="r-in"><span><span class="va">Seq_HSg5</span> <span class="op">&lt;-</span> <span class="fu"><a href="sequoia.html">sequoia</a></span><span class="op">(</span><span class="va">SimGeno_example</span>, <span class="va">LH_HSg5</span>, Module<span class="op">=</span><span class="st">"par"</span>,</span></span>
 <span class="r-in"><span>                args.AP<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,  <span class="co"># non-overlapping generations</span></span></span>
 <span class="r-in"><span>                CalcLLR <span class="op">=</span> <span class="cn">FALSE</span>,   <span class="co"># skip time-consuming calculation of LLR's</span></span></span>
 <span class="r-in"><span>                Plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>      <span class="co"># no summary plots when finished</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Genotype matrix looks OK! There are  214  individuals and  200  SNPs.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> There are 106 females, 108 males, 0 individuals of unkwown sex, and 0 hermaphrodites.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Exact birth years are from 2000 to 2001</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Birth year min/max are from Inf to -Inf</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Flat 0/1, discrete generations, MaxAgeParent = 1,1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ~~~ Duplicate check ~~~</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ~~~ Parentage assignment ~~~</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Assign parents ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Initial total LL :</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -18301.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Post-parentage total LL :</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13690.07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Estimating birth years ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> assigned 126 dams and 165 sires to 214 individuals</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Possibly not all parents were assigned, consider running GetMaybeRel() conditional on this pedigree to check</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'LH_HSg5' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

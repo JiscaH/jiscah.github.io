@@ -42,6 +42,8 @@
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
     <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
+    <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
+    <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
   </div>
 </li>
 <li class="nav-item">
@@ -169,10 +171,9 @@ genotyping errors.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">GenoX</span> <span class="op">&lt;-</span> <span class="fu"><a href="SimGeno.html">SimGeno</a></span><span class="op">(</span><span class="va">Ped_griffin</span>, nSnp<span class="op">=</span><span class="fl">400</span>, SnpError<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>,<span class="fl">0.07</span>, <span class="fl">0.1</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                ParMis<span class="op">=</span><span class="fl">0.1</span>, CallRate<span class="op">=</span><span class="fl">0.9</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Ped_griffin' not found</span>
 <span class="r-in"><span><span class="fu">EstEr</span><span class="op">(</span>GenoM<span class="op">=</span><span class="va">GenoX</span>, Pedigree<span class="op">=</span><span class="va">Ped_griffin</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span> There are 1 SNPs scored for &lt;50% of individuals </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    hom|hom    het|hom    hom|het </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.01725903 0.04933690 0.08518430 </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in EstEr(GenoM = GenoX, Pedigree = Ped_griffin):</span> could not find function "EstEr"</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

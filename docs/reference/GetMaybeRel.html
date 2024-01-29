@@ -40,6 +40,8 @@
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
     <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
+    <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
+    <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
   </div>
 </li>
 <li class="nav-item">
@@ -384,34 +386,20 @@ likely relationship category:</p>
 <span class="r-in"><span>                     Module <span class="op">=</span> <span class="st">"ped"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Searching for non-assigned relative pairs ... (Module = ped)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Genotype matrix looks OK! There are  142  individuals and  400  SNPs.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Pedigree-based, overlapping generations, smoothed, MaxAgeParent = 5,5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Counting opposing homozygous loci between all individuals ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Checking for non-assigned relatives ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Found 0 likely parent-offspring pairs, and 131 other non-assigned pairs of possible relatives</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'LH_griffin' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Maybe</span><span class="op">$</span><span class="va">MaybeRel</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           ID1         ID2 TopRel   LLR OH BirthYear1 BirthYear2 AgeDif Sex1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 i081_2005_F i083_2005_M     FS  5.42  3       2005       2005      0    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 i165_2009_F i175_2009_M     FS  5.34  3       2009       2009      0    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 i131_2007_F i133_2007_F     FS  5.09  3       2007       2007      0    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 i160_2008_F i130_2007_F     FS  2.25  3       2008       2007      1    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 i158_2008_M i133_2007_F     HS 17.36  3       2008       2007      1    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 i158_2008_M i130_2007_F     HS 16.15  3       2008       2007      1    2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Sex2 SNPdBoth</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    2      392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    2      392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    1      392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    1      392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    1      392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    1      392</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Maybe' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># visualise results, turn dataframe into matrix first:</span></span></span>
 <span class="r-in"><span><span class="va">MaybeM</span> <span class="op">&lt;-</span> <span class="fu"><a href="GetRelM.html">GetRelM</a></span><span class="op">(</span>Pairs <span class="op">=</span> <span class="va">Maybe</span><span class="op">$</span><span class="va">MaybeRel</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Maybe' not found</span>
 <span class="r-in"><span><span class="fu"><a href="PlotRelPairs.html">PlotRelPairs</a></span><span class="op">(</span><span class="va">MaybeM</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="GetMaybeRel-1.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'MaybeM' not found</span>
 <span class="r-in"><span><span class="co"># or combine with pedigree (note suffix '?')</span></span></span>
 <span class="r-in"><span><span class="va">RelM</span> <span class="op">&lt;-</span> <span class="fu"><a href="GetRelM.html">GetRelM</a></span><span class="op">(</span>Pedigree <span class="op">=</span><span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">PedigreePar</span>, Pairs <span class="op">=</span> <span class="va">Maybe</span><span class="op">$</span><span class="va">MaybeRel</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Maybe' not found</span>
 <span class="r-in"><span><span class="fu"><a href="PlotRelPairs.html">PlotRelPairs</a></span><span class="op">(</span><span class="va">RelM</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="GetMaybeRel-2.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'RelM' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

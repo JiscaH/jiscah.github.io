@@ -40,6 +40,8 @@ errors per SNP."><meta property="og:image" content="https://jiscah.github.io/ref
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
     <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
+    <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
+    <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
   </div>
 </li>
 <li class="nav-item">
@@ -187,9 +189,11 @@ Mendelian errors per SNP and (poorly) estimate the error rate.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">Genotypes</span> <span class="op">&lt;-</span> <span class="fu"><a href="SimGeno.html">SimGeno</a></span><span class="op">(</span><span class="va">Ped_HSg5</span>, nSnp<span class="op">=</span><span class="fl">100</span>, CallRate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                     SnpError <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Ped_HSg5' not found</span>
 <span class="r-in"><span><span class="fu">SnpStats</span><span class="op">(</span><span class="va">Genotypes</span><span class="op">)</span>   <span class="co"># only plots; data is returned invisibly</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Genotypes' not found</span>
 <span class="r-in"><span><span class="va">SNPstats</span> <span class="op">&lt;-</span> <span class="fu">SnpStats</span><span class="op">(</span><span class="va">Genotypes</span>, Pedigree<span class="op">=</span><span class="va">Ped_HSg5</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="SnpStats-1.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Genotypes' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

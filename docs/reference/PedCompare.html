@@ -42,6 +42,8 @@
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
     <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
+    <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
+    <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
   </div>
 </li>
 <li class="nav-item">
@@ -382,138 +384,40 @@ maternal and paternal sibships (i.e., to dummies of both sexes).</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">compare</span> <span class="op">&lt;-</span> <span class="fu">PedCompare</span><span class="op">(</span><span class="va">Ped_griffin</span>, <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">Pedigree</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="PedCompare-1.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Ped_griffin' not found</span>
 <span class="r-in"><span><span class="va">compare</span><span class="op">$</span><span class="va">Counts</span><span class="op">[</span><span class="st">"TT"</span>,,<span class="op">]</span>  <span class="co"># totals only; 45 dams &amp; 47 sires non-assigned</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           parent</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> class      dam sire</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total    167  163</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Match    122  116</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Mismatch   0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   P1only    45   47</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   P2only     0    0</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'compare' not found</span>
 <span class="r-in"><span><span class="va">compare</span><span class="op">$</span><span class="va">Counts</span><span class="op">[</span>,,<span class="st">"dam"</span><span class="op">]</span>  <span class="co"># dams only</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     class</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cat  Total Match Mismatch P1only P2only</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GG    65    65        0      0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GD    56    41        0     15      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GT   125   106        0     19      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   DG    23    12        0     11      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   DD    12     4        0      8      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   DT    39    16        0     23      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   TT   167   122        0     45      0</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'compare' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># inspect non-assigned in Ped2, id genotyped, dam might-be-dummy</span></span></span>
 <span class="r-in"><span><span class="va">PedM</span> <span class="op">&lt;-</span> <span class="va">compare</span><span class="op">$</span><span class="va">MergedPed</span>  <span class="co"># for brevity</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'compare' not found</span>
 <span class="r-in"><span><span class="va">PedM</span><span class="op">[</span><span class="va">PedM</span><span class="op">$</span><span class="va">id.dam.cat</span><span class="op">==</span><span class="st">'GD'</span> <span class="op">&amp;</span> <span class="va">PedM</span><span class="op">$</span><span class="va">dam.class</span><span class="op">==</span><span class="st">'P1only'</span>,<span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              id       dam.1      sire.1 dam.2      sire.2        id.r dam.r</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42  i028_2002_M i005_2001_F        &lt;NA&gt;  &lt;NA&gt;        &lt;NA&gt; i028_2002_M  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45  i033_2002_F i013_2001_F        &lt;NA&gt;  &lt;NA&gt;        &lt;NA&gt; i033_2002_F  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46  i034_2002_F i011_2001_F        &lt;NA&gt;  &lt;NA&gt;        &lt;NA&gt; i034_2002_F  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53  i044_2003_F i011_2001_F i019_2001_M  &lt;NA&gt;        &lt;NA&gt; i044_2003_F  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61  i055_2003_M i012_2001_F i040_2002_M  &lt;NA&gt; i040_2002_M i055_2003_M  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63  i059_2003_M i013_2001_F i036_2002_M  &lt;NA&gt; i036_2002_M i059_2003_M  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65  i062_2004_M i012_2001_F i058_2003_M  &lt;NA&gt;        &lt;NA&gt; i062_2004_M  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68  i067_2004_F i005_2001_F i029_2002_M  &lt;NA&gt; i029_2002_M i067_2004_F  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72  i072_2004_M i048_2003_F i010_2001_M  &lt;NA&gt;        &lt;NA&gt; i072_2004_M  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73  i073_2004_M i060_2003_F i003_2001_M  &lt;NA&gt;        &lt;NA&gt; i073_2004_M  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102 i113_2006_M i087_2005_F i053_2003_M  &lt;NA&gt;        &lt;NA&gt; i113_2006_M  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 103 i114_2006_M i060_2003_F i090_2005_M  &lt;NA&gt;        &lt;NA&gt; i114_2006_M  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 111 i126_2007_F i100_2005_F i120_2006_M  &lt;NA&gt;       M0007 i126_2007_F  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 112 i127_2007_M i087_2005_F i085_2005_M  &lt;NA&gt;        &lt;NA&gt; i127_2007_M  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 132 i157_2008_F i125_2007_F i082_2005_M  &lt;NA&gt;        &lt;NA&gt; i157_2008_F  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          sire.r id.dam.cat id.sire.cat dam.class sire.class</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42         &lt;NA&gt;         GD          GX    P1only          _</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45         &lt;NA&gt;         GD          GX    P1only          _</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46         &lt;NA&gt;         GD          GX    P1only          _</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53         &lt;NA&gt;         GD          GD    P1only     P1only</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61         &lt;NA&gt;         GD          GG    P1only      Match</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63         &lt;NA&gt;         GD          GG    P1only      Match</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65         &lt;NA&gt;         GD          GD    P1only     P1only</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68         &lt;NA&gt;         GD          GG    P1only      Match</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72         &lt;NA&gt;         GD          GD    P1only     P1only</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73         &lt;NA&gt;         GD          GX    P1only     P1only</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102        &lt;NA&gt;         GD          GD    P1only     P1only</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 103        &lt;NA&gt;         GD          GD    P1only     P1only</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 111 i120_2006_M         GD          GD    P1only      Match</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 112        &lt;NA&gt;         GD          GD    P1only     P1only</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 132        &lt;NA&gt;         GD          GD    P1only     P1only</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'PedM' not found</span>
 <span class="r-in"><span><span class="co"># zoom in on specific dam</span></span></span>
 <span class="r-in"><span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.1</span><span class="op">==</span><span class="st">"i011_2001_F"</span><span class="op">)</span>, <span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             id       dam.1      sire.1 dam.2 sire.2        id.r dam.r sire.r</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46 i034_2002_F i011_2001_F        &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; i034_2002_F  &lt;NA&gt;   &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53 i044_2003_F i011_2001_F i019_2001_M  &lt;NA&gt;   &lt;NA&gt; i044_2003_F  &lt;NA&gt;   &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    id.dam.cat id.sire.cat dam.class sire.class</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46         GD          GX    P1only          _</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53         GD          GD    P1only     P1only</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'PedM' not found</span>
 <span class="r-in"><span><span class="co"># no sire for 'i034_2002_F' -&gt; impossible to tell if half-sibs or avuncular</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># overview of all non-genotyped -- dummy matches</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">compare</span><span class="op">$</span><span class="va">DummyMatch</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    id.2        id.1 Sex dam.class sire.class off.Match off.Mismatch off.P1only</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 F0001 i101_2006_F   1     Match      Match        11            0          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 F0002 i155_2008_F   1     Match      Match         3            0          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 F0003 i115_2006_F   1    P1only     P1only         4            0          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 F0004 i167_2009_F   1     Match      Match         2            0          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 F0005 i140_2007_F   1     Match     P1only         2            0          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 F0006 i032_2002_F   1         _     P1only         3            0          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   off.P2only</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          0</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'compare' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># success of paternity assignment, if genotyped mother correctly assigned</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">compare</span><span class="op">$</span><span class="va">Counts.detail</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $id.cat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "G" "D" "X"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dam.cat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "G" "D" "X"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sire.cat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "G" "D" "X"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dam.class</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Match"    "Mismatch" "P1only"   "P2only"   "_"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sire.class</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Match"    "Mismatch" "P1only"   "P2only"   "_"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'compare' not found</span>
 <span class="r-in"><span><span class="va">compare</span><span class="op">$</span><span class="va">Counts.detail</span><span class="op">[</span><span class="st">"G"</span>,<span class="st">"G"</span>,,<span class="st">"Match"</span>,<span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         sire.class</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sire.cat Match Mismatch P1only P2only  _</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        G    41        0      0      0  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        D    12        0      9      0  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        X     0        0      1      0  2</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'compare' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># default before version 3.5: minSibSize = '2sib'</span></span></span>
 <span class="r-in"><span><span class="va">compare_2s</span> <span class="op">&lt;-</span> <span class="fu">PedCompare</span><span class="op">(</span><span class="va">Ped_griffin</span>, <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">Pedigree</span>,</span></span>
 <span class="r-in"><span>                         minSibSize <span class="op">=</span> <span class="st">'2sib'</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="PedCompare-2.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Ped_griffin' not found</span>
 <span class="r-in"><span><span class="va">compare_2s</span><span class="op">$</span><span class="va">Counts</span><span class="op">[</span>,,<span class="st">"dam"</span><span class="op">]</span>  <span class="co"># note decrease in Total 'dummies</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     class</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cat  Total Match Mismatch P1only P2only</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GG    65    65        0      0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GD    51    39        0     12      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GT   125   106        0     19      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   DG     9     8        0      1      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   DD     7     4        0      3      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   DT    17    12        0      5      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   TT   167   122        0     45      0</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'compare_2s' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">compare_2s</span><span class="op">$</span><span class="va">MergedPed</span>, <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">id.dam.cat</span>, <span class="va">dam.class</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           dam.class</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> id.dam.cat Match P1only  _</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         DD     4      3  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         DG     8      1  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         DX     0      1 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         GD    39     12  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         GG    65      0  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         GX     2      7 17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         XD     0      4  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         XG     4     11  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         XX     0      6  6</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'compare_2s' not found</span>
 <span class="r-in"><span><span class="co"># some with id.cat = 'X' or dam.cat='X' are nonetheless dam.class='Match'</span></span></span>
 </code></pre></div>
     </div>
