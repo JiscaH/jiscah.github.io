@@ -8,11 +8,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.8.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,7 @@
     <a class="dropdown-item" href="../articles/vignette_age/book/index.html">Age prior vignette</a>
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
+    <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
     <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
     <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
@@ -198,10 +199,12 @@ from the default (<code>42</code>), and `Module` equals the default
 
 
 <dt>Err</dt>
-<dd><p>estimated genotyping error rate, as a single number, length 3
-vector or 3x3 matrix; see details below. The error rate is presumed
-constant across SNPs, and missingness is presumed random with respect to
-actual genotype. Using <code>Err</code> &gt;5% is not recommended.</p></dd>
+<dd><p>estimated genotyping error rate, as a single number, or a length 3
+vector with P(hom|hom), P(het|hom), P(hom|het), or a 3x3 matrix. See
+details below. The error rate is presumed constant across SNPs, and
+missingness is presumed random with respect to actual genotype. Using
+<code>Err</code> &gt;5% is not recommended, and <code>Err</code> &gt;10% strongly
+discouraged.</p></dd>
 
 
 <dt>Tfilter</dt>
@@ -291,12 +294,11 @@ and individuals scored for fewer than 2 SNPs.</p></dd>
 
 
 <dt>ErrFlavour</dt>
-<dd><p><strong>DEPRECATED, (use length 3 vector for <code>Err</code>
-instead)</strong> function that takes <code>Err</code> (single number) as input, and
-returns a 3x3 matrix of observed (columns) conditional on actual (rows)
-genotypes, or choose from inbuilt options 'version2.0', 'version1.3', or
-'version1.1', referring to the sequoia version in which they were the
-default. Ignored if <code>Err</code> is a matrix. See <code><a href="ErrToM.html">ErrToM</a></code>.</p></dd>
+<dd><p>function that takes <code>Err</code> (single number) as input,
+and returns a length 3 vector or 3x3 matrix, or choose from inbuilt options
+'version2.9', 'version2.0', 'version1.3', or 'version1.1', referring to the
+sequoia version in which they were the default. Ignored if <code>Err</code> is a
+vector or matrix. See <code><a href="ErrToM.html">ErrToM</a></code> for details.</p></dd>
 
 
 <dt>MaxSibIter</dt>
@@ -474,22 +476,19 @@ reconstruction</p></dd>
     <h2 id="genotyping-error-rate">Genotyping error rate<a class="anchor" aria-label="anchor" href="#genotyping-error-rate"></a></h2>
     
 
-<p>The genotyping error rate <code>Err</code> can be specified three different ways:</p><ul><li><p>A single number, which is combined with <code>ErrFlavour</code> to create
-  a 3x3 matrix with the probabilities of observed genotype (columns)
-  conditional on actual genotype (rows). By default (<code>ErrFlavour</code> =
-  'version2.0'), <code>Err</code> is interpreted as the locus level error rate (as
-  opposed to allele level), e.g. the probability to observe a true
-  heterozygote <em>Aa</em> as <em>aa</em> (het -&gt; hom) = the probability to
-  observe it as <em>AA</em> \(=E/2\). See <code><a href="ErrToM.html">ErrToM</a></code> for details
-  and examples.</p></li>
+<p>The genotyping error rate <code>Err</code> can be specified three different ways:</p><ul><li><p>A single number, which is combined with <code>ErrFlavour</code> by
+     <code><a href="ErrToM.html">ErrToM</a></code> to create a length 3 vector (next item). By
+     default (<code>ErrFlavour</code> = 'version2.9'), P(hom|hom)=$(E/2)^2$,
+     P(het|hom)=$E-(E/2)^2$, P(hom|het)=$E/2$.</p></li>
+<li><p>a length 3 vector (NEW from version 2.6), with the probabilities to
+    observe a actual homozygote as the other homozygote (hom|hom), to observe
+    a homozygote as heterozygote (het|hom), and to observe an actual
+    heterozygote as homozygote (hom|het). This assumes that the two alleles
+    are equivalent with respect to genotyping errors, i.e. $P(AA|aa) =
+    P(aa|AA)$, $P(aa|Aa)=P(AA|Aa)$, and $P(aA|aa)=P(aA|AA)$.</p></li>
 <li><p>a 3x3 matrix, with the probabilities of observed genotype (columns)
-  conditional on actual genotype (rows)</p></li>
-<li><p>a length 3 vector, with the probabilities to observe a actual
-  homozygote as the other homozygote, to observe a homozygote as
-  heterozygote, and to observe an actual heterozygote as homozygote (NEW from
-  version 2.6). This only assumes that the two alleles are equivalent with
-  respect to genotyping errors, i.e. $P(AA|aa) = P(aa|AA)$ and
-  $P(aa|Aa)=P(AA|Aa)$.</p></li>
+    conditional on actual genotype (rows). Only needed when the assumption
+    in the previous item does not hold. See <code><a href="ErrToM.html">ErrToM</a></code> for details.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="-too-few-assignments-">(Too) Few Assignments?<a class="anchor" aria-label="anchor" href="#-too-few-assignments-"></a></h2>
@@ -506,7 +505,9 @@ reconstruction</p></dd>
 <li><p>unclear what type of relatives they are due to insufficient genetic
    data</p></li>
 </ul><p>All pairs of non-assigned but likely/definitely relatives can be found with
- <code><a href="GetMaybeRel.html">GetMaybeRel</a></code>. For further information see the vignette.</p>
+ <code><a href="GetMaybeRel.html">GetMaybeRel</a></code>. For a method to do pairwise 'assignments', see
+ https://jiscah.github.io/articles/pairLL_classification.html ; for further
+ information, see the vignette.</p>
     </div>
     <div class="section level2">
     <h2 id="disclaimer">Disclaimer<a class="anchor" aria-label="anchor" href="#disclaimer"></a></h2>
@@ -535,7 +536,6 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <li><p><code><a href="CheckGeno.html">CheckGeno</a></code>, <code><a href="SnpStats.html">SnpStats</a></code> to calculate
     missingness and allele frequencies,</p></li>
 <li><p><code><a href="SimGeno.html">SimGeno</a></code>  to simulate SNP data from a pedigree,</p></li>
-<li><p><code><a href="EstEr.html">EstEr</a></code> to estimate genotyping error rate,</p></li>
 <li><p><code><a href="MakeAgePrior.html">MakeAgePrior</a></code> to estimate effect of age on relationships,</p></li>
 <li><p><code><a href="GetMaybeRel.html">GetMaybeRel</a></code> to find pairs of potential relatives,</p></li>
 <li><p><code><a href="SummarySeq.html">SummarySeq</a></code> and <code><a href="PlotAgePrior.html">PlotAgePrior</a></code> to visualise
@@ -570,54 +570,293 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> a00006  1  1  1  0  0  0  0  0   1   1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> a00004  0  1  1  1  2  1  1  0   0   1</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">LH_HSg5</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'LH_HSg5' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       ID Sex BirthYear</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 a00001   1      2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 a00002   1      2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 a00003   1      2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 a00004   1      2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 a00005   1      2000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 a00006   1      2000</span>
 <span class="r-in"><span><span class="co"># parentage assignment:</span></span></span>
 <span class="r-in"><span><span class="va">SeqOUT</span> <span class="op">&lt;-</span> <span class="fu">sequoia</span><span class="op">(</span>GenoM <span class="op">=</span> <span class="va">SimGeno_example</span>, Err <span class="op">=</span> <span class="fl">0.005</span>,</span></span>
 <span class="r-in"><span>                  LifeHistData <span class="op">=</span> <span class="va">LH_HSg5</span>, Module<span class="op">=</span><span class="st">"par"</span>, Plot<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'LH_HSg5' not found</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Genotype matrix looks OK! There are  214  individuals and  200  SNPs.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> There are 106 females, 108 males, 0 individuals of unknown sex, and 0 hermaphrodites.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Exact birth years are from 2000 to 2001</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Flat 0/1, overlapping generations, MaxAgeParent = 2,2</span>
+<span class="r-plt img"><img src="sequoia-1.png" alt="" width="700" height="433"></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ~~~ Duplicate check ~~~</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ~~~ Parentage assignment ~~~</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assign parents ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Initial total LL :</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -18301.94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Post-parentage total LL :</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13484.17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimating birth years ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Calculating parental LLR ...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> assigned 130 dams and 167 sires to 214 individuals</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Possibly not all parents were assigned, consider running GetMaybeRel() conditional on this pedigree to check</span>
+<span class="r-plt img"><img src="sequoia-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">SeqOUT</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'SeqOUT' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Specs"         "ErrM"          "args.AP"       "AgePriors"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "LifeHist"      "DupLifeHistID" "NoLH"          "PedigreePar"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "TotLikPar"     "AgePriorExtra" "LifeHistPar"  </span>
 <span class="r-in"><span><span class="va">SeqOUT</span><span class="op">$</span><span class="va">PedigreePar</span><span class="op">[</span><span class="fl">34</span><span class="op">:</span><span class="fl">42</span>, <span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'SeqOUT' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        id    dam   sire LLRdam LLRsire LLRpair OHdam OHsire MEpair</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34 a01002   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35 b01003   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36 b01004   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37 a01005 a00013 b00001   2.03    3.80    6.31     1      0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38 b01006 a00013 b00001   1.66    3.11    5.79     1      0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39 b01007 a00013 b00001   1.31    2.93    4.53     1      0      2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40 a01008 a00013 b00001  -0.13    3.63    5.59     2      0      2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41 b01009 a00008 b00016   0.13    4.09    6.54     1      0      2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42 a01010 a00008 b00016   3.44    4.26    7.46     0      0      1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># compare to true (or old) pedigree:</span></span></span>
 <span class="r-in"><span><span class="va">PC</span> <span class="op">&lt;-</span> <span class="fu"><a href="PedCompare.html">PedCompare</a></span><span class="op">(</span><span class="va">Ped_HSg5</span>, <span class="va">SeqOUT</span><span class="op">$</span><span class="va">PedigreePar</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Ped_HSg5' not found</span>
+<span class="r-plt img"><img src="sequoia-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">PC</span><span class="op">$</span><span class="va">Counts</span><span class="op">[</span><span class="st">"GG"</span>,,<span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'PC' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           parent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> class      dam sire</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Total    130  170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Match    130  167</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Mismatch   0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P1only     0    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P2only     0    0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># parentage assignment + full pedigree reconstruction:</span></span></span>
 <span class="r-in"><span><span class="co"># (note: this can be rather time consuming)</span></span></span>
 <span class="r-in"><span><span class="va">SeqOUT2</span> <span class="op">&lt;-</span> <span class="fu">sequoia</span><span class="op">(</span>GenoM <span class="op">=</span> <span class="va">SimGeno_example</span>, Err <span class="op">=</span> <span class="fl">0.005</span>,</span></span>
 <span class="r-in"><span>                  LifeHistData <span class="op">=</span> <span class="va">LH_HSg5</span>, Module<span class="op">=</span><span class="st">"ped"</span>, quiet<span class="op">=</span><span class="st">"verbose"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'LH_HSg5' not found</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Genotype matrix looks OK! There are  214  individuals and  200  SNPs.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> There are 106 females, 108 males, 0 individuals of unknown sex, and 0 hermaphrodites.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Exact birth years are from 2000 to 2001</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Flat 0/1, overlapping generations, MaxAgeParent = 2,2</span>
+<span class="r-plt img"><img src="sequoia-4.png" alt="" width="700" height="433"></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ~~~ Duplicate check ~~~</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ~~~ Parentage assignment ~~~</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Counting opposing homozygous loci between all individuals ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assign parents ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Initial total LL :</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -18301.94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Round 01:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13484.17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Round 02:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13484.17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Post-parentage total LL :</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13484.17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimating birth years ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Calculating parental LLR ...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> assigned 130 dams and 167 sires to 214 individuals</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Flat 0/1, discrete generations, MaxAgeParent = 1,1</span>
+<span class="r-plt img"><img src="sequoia-5.png" alt="" width="700" height="433"></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ~~~ Full pedigree reconstruction ~~~</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Counting opposing homozygous loci between all individuals ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sibships - Initial Total LL :</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13484.17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Parents pre-check ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL :</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13484.17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --- Round 01 start ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Find pairs ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> n pairs:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 151</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Clustering ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merge clusters ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sibship parent replacement...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Parents &amp; grow clusters...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      1.77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Round 01 end, Total LogLik; time (sec):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      2.27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No. dams, sires for real indiv.:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 182 182</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No. dummies:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --- Round 02 start ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Find pairs ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> n pairs:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Clustering ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merge clusters ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sibship parent replacement...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Grandparents of half-sib clusters ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Parents &amp; grow clusters...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Round 02 end, Total LogLik; time (sec):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No. dams, sires for real indiv.:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 182 182</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No. dummies:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --- Round 03 start ---</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Find pairs ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> n pairs:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Clustering ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Grandparent - grandoffspring pairs ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merge clusters ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sibship parent replacement...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Grandparents of half-sib clusters ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Grandparents of full sib clusters ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Parents &amp; grow clusters...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total LL, time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Round 03 end, Total LogLik; time (sec):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12315.80      0.22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No. dams, sires for real indiv.:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 182 182</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No. dummies:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimating birth years ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Calculating parental LLR ...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> assigned 182 dams and 182 sires to 214 + 8 individuals (real + dummy)</span>
+<span class="r-plt img"><img src="sequoia-6.png" alt="" width="700" height="433"></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Possibly not all relatives were assigned, consider running GetMaybeRel() conditional on this pedigree to check</span>
+<span class="r-plt img"><img src="sequoia-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">SeqOUT2</span><span class="op">$</span><span class="va">Pedigree</span><span class="op">[</span><span class="fl">34</span><span class="op">:</span><span class="fl">42</span>, <span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'SeqOUT2' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        id    dam   sire LLRdam LLRsire LLRpair OHdam OHsire MEpair</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34 a01002  F0002  M0001   4.11    3.34    7.74    NA     NA     NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35 b01003  F0002  M0001   5.28    1.96    5.26    NA     NA     NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36 b01004  F0002  M0001   4.25    3.29    5.82    NA     NA     NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37 a01005 a00013 b00001   4.48    6.40    8.53     1      0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38 b01006 a00013 b00001   3.82    6.66    7.83     1      0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39 b01007 a00013 b00001   3.63    5.30    6.58     1      0      2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40 a01008 a00013 b00001   3.65    5.13    8.06     2      0      2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41 b01009 a00008 b00016   3.69    4.10    6.54     1      0      2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42 a01010 a00008 b00016   5.73    4.99    7.66     0      0      1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">PC2</span> <span class="op">&lt;-</span> <span class="fu"><a href="PedCompare.html">PedCompare</a></span><span class="op">(</span><span class="va">Ped_HSg5</span>, <span class="va">SeqOUT2</span><span class="op">$</span><span class="va">Pedigree</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Ped_HSg5' not found</span>
+<span class="r-plt img"><img src="sequoia-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">PC2</span><span class="op">$</span><span class="va">Counts</span><span class="op">[</span><span class="st">"GT"</span>,,<span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'PC2' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           parent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> class      dam sire</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Total    182  182</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Match    182  182</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Mismatch   0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P1only     0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P2only     0    0</span>
 <span class="r-in"><span><span class="va">PC2</span><span class="op">$</span><span class="va">Counts</span><span class="op">[</span>,,<span class="st">"dam"</span><span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'PC2' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     class</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cat  Total Match Mismatch P1only P2only</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GG   130   130        0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GD    52    52        0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GT   182   182        0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   DG     0     0        0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   DD     0     0        0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   DT     0     0        0      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   TT   960   182        0    778      0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># different kind of pedigree comparison:</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="ComparePairs.html">ComparePairs</a></span><span class="op">(</span>Ped1<span class="op">=</span><span class="va">Ped_HSg5</span>, Ped2<span class="op">=</span><span class="va">SeqOUT</span><span class="op">$</span><span class="va">PedigreePar</span>, patmat<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Ped_HSg5' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Ped2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ped1       M      P      O     FS    MHS    PHS      U      X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   M      130      0      0      0      0      0      0    830</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P        0    167      0      0      0      0      3    790</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   FS       0      0      0    206     12     59     13   1310</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   MHS      0      0      0      0    217      0     97   1446</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PHS      0      0      0      0      0    587     71   3022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   U        0      0      0      0      0      0  21229 469311</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   X        0      0      0      0      0      0      0      0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># results overview:</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="SummarySeq.html">SummarySeq</a></span><span class="op">(</span><span class="va">SeqOUT2</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'SeqOUT2' not found</span>
+<span class="r-plt img"><img src="sequoia-9.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="sequoia-10.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="sequoia-11.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="sequoia-12.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="sequoia-13.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># important to run with approx. correct genotyping error rate:</span></span></span>
 <span class="r-in"><span><span class="va">SeqOUT2.b</span> <span class="op">&lt;-</span> <span class="fu">sequoia</span><span class="op">(</span>GenoM <span class="op">=</span> <span class="va">SimGeno_example</span>, <span class="co">#  Err = 1e-4 by default</span></span></span>
 <span class="r-in"><span>                  LifeHistData <span class="op">=</span> <span class="va">LH_HSg5</span>, Module<span class="op">=</span><span class="st">"ped"</span>, Plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'LH_HSg5' not found</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Genotype matrix looks OK! There are  214  individuals and  200  SNPs.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> There are 106 females, 108 males, 0 individuals of unknown sex, and 0 hermaphrodites.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Exact birth years are from 2000 to 2001</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Flat 0/1, overlapping generations, MaxAgeParent = 2,2</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ~~~ Duplicate check ~~~</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ~~~ Parentage assignment ~~~</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assign parents ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Initial total LL :</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -18301.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Post-parentage total LL :</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13732.71</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimating birth years ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Calculating parental LLR ...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> assigned 125 dams and 162 sires to 214 individuals</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Flat 0/1, discrete generations, MaxAgeParent = 1,1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ~~~ Full pedigree reconstruction ~~~</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sibships - Initial Total LL :</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13732.71</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Round 01 end, Total LogLik; time (sec):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12535.17      2.53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No. dams, sires for real indiv.:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 179 180</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Round 02 end, Total LogLik; time (sec):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12535.17      0.19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No. dams, sires for real indiv.:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 179 180</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Round 03 end, Total LogLik; time (sec):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -12535.17      0.25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No. dams, sires for real indiv.:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 179 180</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimating birth years ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Calculating parental LLR ...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> assigned 179 dams and 180 sires to 214 + 9 individuals (real + dummy)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Possibly not all relatives were assigned, consider running GetMaybeRel() conditional on this pedigree to check</span>
 <span class="r-in"><span><span class="va">PC2.b</span> <span class="op">&lt;-</span> <span class="fu"><a href="PedCompare.html">PedCompare</a></span><span class="op">(</span><span class="va">Ped_HSg5</span>, <span class="va">SeqOUT2.b</span><span class="op">$</span><span class="va">Pedigree</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Ped_HSg5' not found</span>
+<span class="r-plt img"><img src="sequoia-14.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">PC2.b</span><span class="op">$</span><span class="va">Counts</span><span class="op">[</span><span class="st">"GT"</span>,,<span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'PC2.b' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           parent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> class      dam sire</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Total    182  182</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Match    177  180</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Mismatch   2    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P1only     3    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P2only     0    0</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -655,7 +894,7 @@ correct. Use of sequoia is entirely at your own risk.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
     </footer></div>

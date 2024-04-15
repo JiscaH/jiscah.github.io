@@ -33,11 +33,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"><div class="container">
     
     <a class="navbar-brand me-2" href="index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.8.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,6 +65,7 @@
     <a class="dropdown-item" href="articles/vignette_age/book/index.html">Age prior vignette</a>
     <a class="dropdown-item" href="articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="articles/index.html">Examples &amp; More info on ...</a>
+    <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="articles/performance_stats.html">Performance Stats</a>
     <a class="dropdown-item" href="reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
     <a class="dropdown-item" href="reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
@@ -149,18 +150,8 @@
 <div>
 <p><img src="reference/figures/Dummies_for_dummies.svg" width="300" height="300" alt="pedigree example"></p>
 </div>
+<p><br><br></p>
 </div>
-</div>
-<div class="section level2">
-<h2 id="rationale">Rationale<a class="anchor" aria-label="anchor" href="#rationale"></a>
-</h2>
-<p>Pedigree reconstruction with <code><a href="reference/sequoia.html">sequoia()</a></code> relies on the likelihood ratios between a focal relationship (e.g. parent-offspring, PO) and a myriad of alternative relationships for that pair (full siblings, aunt-niece, …, or unrelated U). This method is inspired by the work of E.A. Thompson, such as this excerpt from her paper <em>‘A Paradox of Genealogical Inference’</em> (1976):</p>
-<div>
-<p><img src="reference/figures/Thompson_1976_quote1.png" height="150" alt="Thompson 1976 quote" style="height:150px"></p>
-</div>
-<p>In other words, when comparing likelihood ratios LLR(PO/U) <em>between</em> candidate parents, by chance some full siblings may have a higher value than the true parent, even in absence of genotyping errors.</p>
-<p>One possible solution is to consider the likelihood of all assignments jointly in an MCMC(-like) approach, but the number of possible pedigree configurations to explore is enormous.</p>
-<p>Comparing for each pair of putative relatives many different relationships makes each assignment rather computationally intensive, but this is offset by various filtering steps (based on e.g. the age difference and Mendelian inconsistencies) and using a ‘hill-climbing algorithm’ rather than an MCMC. Imagine it as taking slow, careful steps up the mountain, carefully inspecting the direct surroundings before taking a new step, compared to running around the mountainside more or less at random. If there is a fairly clear path to the likelihood top (i.e. moderately high quality SNP data), <code>sequoia</code> will usually do fine. If there is not, an MCMC-based approach may be preferable.</p>
 </div>
 <div class="section level2">
 <h2 id="package-overview">Package overview<a class="anchor" aria-label="anchor" href="#package-overview"></a>
@@ -174,6 +165,18 @@
 <p><br><br></p>
 <p>For detailed information, please see the vignettes (rendered using <a href="https://bookdown.org/yihui/bookdown/" class="external-link">bookdown</a>):</p>
 <p><a href="./articles/vignette_main/book/background.html"> <img src="reference/figures/sequoia_hexlogo_vignette_main.svg" height="150" alt="main vignette" style="vertical-align:middle;margin:0px 20px; height:150px"></a> <a href="./articles/vignette_age/book/index.html"> <img src="reference/figures/sequoia_hexlogo_vignette_age.svg" height="150" alt="age vignette" style="vertical-align:middle;margin:0px 20px; height:150px"></a></p>
+<p><br><br></p>
+</div>
+<div class="section level2">
+<h2 id="rationale">Rationale<a class="anchor" aria-label="anchor" href="#rationale"></a>
+</h2>
+<p>Pedigree reconstruction with <code><a href="reference/sequoia.html">sequoia()</a></code> relies on the likelihood ratios between a focal relationship (e.g. parent-offspring, PO) and a myriad of alternative relationships for that pair (full siblings, aunt-niece, …, or unrelated U). This method is inspired by the work of E.A. Thompson, such as this excerpt from her paper <em>‘A Paradox of Genealogical Inference’</em> (1976):</p>
+<div>
+<p><img src="reference/figures/Thompson_1976_quote1.png" height="150" alt="Thompson 1976 quote" style="height:150px"></p>
+</div>
+<p>In other words, when comparing likelihood ratios LLR(PO/U) <em>between</em> candidate parents, by chance some full siblings may have a higher value than the true parent, even in absence of genotyping errors.</p>
+<p>One possible solution is to consider the likelihood of all assignments jointly in an MCMC(-like) approach, but the number of possible pedigree configurations to explore is enormous.</p>
+<p>Comparing for each pair of putative relatives many different relationships makes each assignment rather computationally intensive, but this is offset by various filtering steps (based on e.g. the age difference and Mendelian inconsistencies) and using a ‘hill-climbing algorithm’ rather than an MCMC. Imagine it as taking slow, careful steps up the mountain, carefully inspecting the direct surroundings before taking a new step, compared to running around the mountainside more or less at random. If there is a fairly clear path to the likelihood top (i.e. moderately high quality SNP data), <code>sequoia</code> will usually do fine. If there is not, an MCMC-based approach may be preferable.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -183,7 +186,14 @@
 <li><a href="https://github.com/JiscaH/sequoia/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/JiscaH/sequoia/issues/" class="external-link">Report a bug</a></li>
 <li><a href="https://github.com/JiscaH/sequoia_archives/" class="external-link">Download old versions</a></li>
-<li><a href="https://github.com/JiscaH/sequoia_notR/" class="external-link">Download non-R version</a></li>
+<li><a href="https://github.com/JiscaH/Fortran/tree/main/sequoia" class="external-link">Download non-R version</a></li>
+</ul>
+</div>
+
+<div class="">
+<h2 data-toc-skip></h2>
+<ul class="list-unstyled">
+<li><p><a href="https://ko-fi.com/sequoia_r" class="external-link"> <img src="reference/figures/kofi_s_tag_white.png" width="185" height="70" alt="ko-fi"></a></p></li>
 </ul>
 </div>
 
@@ -193,7 +203,6 @@
 <li><a href="https://www.r-project.org/Licenses/GPL-2" class="external-link">GPL-2</a></li>
 </ul>
 </div>
-
 
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
@@ -222,7 +231,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
     </footer>

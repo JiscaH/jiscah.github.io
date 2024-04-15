@@ -8,11 +8,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.8.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,7 @@
     <a class="dropdown-item" href="../articles/vignette_age/book/index.html">Age prior vignette</a>
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
+    <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
     <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
     <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
@@ -104,13 +105,12 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">MkGenoErrors</span><span class="op">(</span></span>
 <span>  <span class="va">SGeno</span>,</span>
 <span>  CallRate <span class="op">=</span> <span class="fl">0.99</span>,</span>
-<span>  SnpError <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">(</span><span class="fl">5e-04</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>, <span class="fl">5e-04</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">5e-04</span> <span class="op">*</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fl">5e-04</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  ErrorFM <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">E</span><span class="op">)</span> <span class="op">{</span></span>
-<span>     <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">E</span> <span class="op">-</span> <span class="op">(</span><span class="va">E</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>, <span class="va">E</span>, <span class="op">(</span><span class="va">E</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>, <span class="va">E</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">1</span> <span class="op">-</span> <span class="va">E</span>, <span class="va">E</span><span class="op">/</span><span class="fl">2</span>,</span>
-<span>    <span class="op">(</span><span class="va">E</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>, <span class="va">E</span>, <span class="fl">1</span> <span class="op">-</span> <span class="va">E</span> <span class="op">-</span> <span class="op">(</span><span class="va">E</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>, <span class="fl">3</span>, <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span> <span class="op">}</span>,</span>
+<span>  SnpError <span class="op">=</span> <span class="fl">5e-04</span>,</span>
+<span>  ErrorFV <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">E</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">(</span><span class="va">E</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>, <span class="va">E</span> <span class="op">-</span> <span class="op">(</span><span class="va">E</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>, <span class="va">E</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span>,</span>
+<span>  ErrorFM <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  Error.shape <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span>  CallRate.shape <span class="op">=</span> <span class="fl">1</span></span>
+<span>  CallRate.shape <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  WithLog <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -125,20 +125,27 @@ individual, 1 column per SNP, and genotypes coded as 0/1/2.</p></dd>
 <dd><p>either a single number for the mean call rate (genotyping
 success), OR a vector with the call rate at each SNP, OR a named vector
 with the call rate for each individual. In the third case, ParMis is
-ignored, and individuals in the pedigree (as id or parent) not included in
-this vector are presumed non-genotyped.</p></dd>
+ignored, and individuals in the pedigree (as id or as parent) not included
+in this vector are presumed non-genotyped.</p></dd>
 
 
 <dt>SnpError</dt>
-<dd><p>either a single value which will be combined with <code>ErrorFM</code>,
-or a length 3 vector with  hom-&gt;other hom, hom-&gt;het, het-hom error rates;
- OR a vector or 3XnSnp matrix with the genotyping error rate(s) for each SNP.</p></dd>
+<dd><p>either a single value which will be combined with
+<code>ErrorFV</code>, or a length 3 vector with probabilities (observed given
+actual) hom|other hom, het|hom, and hom|het; OR a vector or 3XnSnp matrix
+with the genotyping error rate(s) for each SNP.</p></dd>
+
+
+<dt>ErrorFV</dt>
+<dd><p>function taking the error rate (scalar) as argument and
+returning a length 3 vector with hom-&gt;other hom, hom-&gt;het, het-&gt;hom.</p></dd>
 
 
 <dt>ErrorFM</dt>
 <dd><p>function taking the error rate (scalar) as argument and
-returning a 4x4 or 3x3 matrix with probabilities that actual genotype i
-(rows) is observed as genotype j (columns).</p></dd>
+returning a 3x3 matrix with probabilities that actual genotype i (rows) is
+observed as genotype j (columns). See below for details. To use, set
+<code>ErrorFV = NULL</code></p></dd>
 
 
 <dt>Error.shape</dt>
@@ -149,13 +156,21 @@ per-SNP error rates. A higher value results in a flatter distribution.</p></dd>
 <dt>CallRate.shape</dt>
 <dd><p>as Error.shape, for per-SNP call rates.</p></dd>
 
+
+<dt>WithLog</dt>
+<dd><p>Include dataframe in output with which datapoints have been
+edited, with columns id - SNP - actual (original, input) - observed
+(edited, output).</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
 <p>The input genotype matrix, with some genotypes replaced, and some
-  set to missing (-9).</p>
+  set to missing (-9). If <code>WithLog=TRUE</code>, a list with 3 elements: GenoM,
+  Log, and Counts_actual (genotype counts in input, to allow double checking
+  of simulated genotyping error rate).</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -167,7 +182,7 @@ per-SNP error rates. A higher value results in a flatter distribution.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
     </footer></div>

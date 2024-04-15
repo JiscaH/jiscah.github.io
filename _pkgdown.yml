@@ -14,6 +14,12 @@ url: https://jiscah.github.io/
 home:
   title: Pedigrees from SNP data
   description: An R package to reconstruct multi-generational pedigrees, with any proportion of genotyped parents
+  sidebar:
+    structure: [links, fundme, license, citation, authors, dev]
+    components:
+      fundme:
+        title:
+        text: <a href="https://ko-fi.com/sequoia_r"> <img src="man/figures/kofi_s_tag_white.png" width="185" height="70" alt="ko-fi"/></a>
   links:
   - text: Browse source code
     href: https://github.com/JiscaH/sequoia/
@@ -22,7 +28,7 @@ home:
   - text: Download old versions
     href: https://github.com/JiscaH/sequoia_archives/
   - text: Download non-R version
-    href: https://github.com/JiscaH/sequoia_notR/
+    href: https://github.com/JiscaH/Fortran/tree/main/sequoia
 
 navbar:
   title: "sequoia"
@@ -44,6 +50,7 @@ navbar:
           href: articles/sequoia_report.html
         - text: "Examples & More info on ..."
           href: articles/index.html
+        - text: -------
         - text: "Performance Stats"
           href: articles/performance_stats.html
         - text: "poster"
@@ -69,7 +76,6 @@ navbar:
       href: https://ecoevo.social/@HuismanJisca
     - icon: fab fa-linkedin-in
       href: https://www.linkedin.com/in/jisca-huisman-a4751153/
-
 
 
 articles:

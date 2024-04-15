@@ -8,11 +8,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.8.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,7 @@
     <a class="dropdown-item" href="../articles/vignette_age/book/index.html">Age prior vignette</a>
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
+    <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
     <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
     <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
@@ -106,6 +107,7 @@
 <span>  Pairs <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  GenBack <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  patmat <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  directed <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  Return <span class="op">=</span> <span class="st">"Matrix"</span>,</span>
 <span>  Pairs_suffix <span class="op">=</span> <span class="st">"?"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -132,6 +134,16 @@ avuncular and first cousins.</p></dd>
 <dt>patmat</dt>
 <dd><p>logical, distinguish between paternal versus maternal relative
 pairs? For avuncular pairs, the distinction is never made.</p></dd>
+
+
+<dt>directed</dt>
+<dd><p>logical, distinguish between e.g. ID1=offspring, ID2=mother
+('M') and ID1=mother, ID2=offspring ('O')? Defaults to TRUE; if FALSE both
+are are scored as 'PO', as are father-offspring pairs, and all
+grandparent-- grand-offspring pairs are scored as 'GPO', and avuncular
+pairs as 'FNA' and 'HNA'. Not (currently) compatible with <code>patmat</code>.
+When <code>Return</code>='List', each pair is included twice (as ID1-ID2 &amp;
+ID2-ID1)</p></dd>
 
 
 <dt>Return</dt>
@@ -263,13 +275,17 @@ provided. Can be an empty string.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">Rel.griffin</span> <span class="op">&lt;-</span> <span class="fu">GetRelM</span><span class="op">(</span><span class="va">Ped_griffin</span>, patmat<span class="op">=</span><span class="cn">TRUE</span>, GenBack<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Ped_griffin' not found</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">Rel.griffin</span> <span class="op">&lt;-</span> <span class="fu">GetRelM</span><span class="op">(</span><span class="va">Ped_griffin</span>, directed<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>  <span class="co"># few categories</span></span></span>
+<span class="r-in"><span><span class="va">Rel.griffin</span> <span class="op">&lt;-</span> <span class="fu">GetRelM</span><span class="op">(</span><span class="va">Ped_griffin</span>, patmat<span class="op">=</span><span class="cn">TRUE</span>, GenBack<span class="op">=</span><span class="fl">2</span><span class="op">)</span>  <span class="co"># many cat.</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">Rel.griffin</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Rel.griffin' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    FA   FC1    FN    FS    GO    HA    HN     M   MGF   MGM   MHS     O     P </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    45     6    45    10   511   957   953   167   132   138   422   330   163 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PGF   PGM   PHS     S     U </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   120   121   308   200 35372 </span>
 <span class="r-in"><span><span class="co"># turning matrix into vector first makes table() much faster</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="PlotRelPairs.html">PlotRelPairs</a></span><span class="op">(</span><span class="va">Rel.griffin</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Rel.griffin' not found</span>
+<span class="r-plt img"><img src="GetRelM-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -282,7 +298,7 @@ provided. Can be an empty string.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
     </footer></div>

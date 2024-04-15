@@ -8,11 +8,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.8.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,7 @@
     <a class="dropdown-item" href="../articles/vignette_age/book/index.html">Age prior vignette</a>
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
+    <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
     <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
     <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
@@ -294,28 +295,35 @@ into GP, with the rest of the categories analogous to the above.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">PairsG</span> <span class="op">&lt;-</span> <span class="fu">ComparePairs</span><span class="op">(</span><span class="va">Ped_griffin</span>, <span class="va">SeqOUT_griffin</span><span class="op">[[</span><span class="st">"Pedigree"</span><span class="op">]</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>                       patmat <span class="op">=</span> <span class="cn">TRUE</span>, ExcludeDummies <span class="op">=</span> <span class="cn">TRUE</span>, Return <span class="op">=</span> <span class="st">"All"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Ped_griffin' not found</span>
 <span class="r-in"><span><span class="va">PairsG</span><span class="op">$</span><span class="va">Counts</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'PairsG' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Ped2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ped1     M    P    O   FS  MHS  PHS    U    X</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   M     65    0    0    0    0    0    0  102</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P      0   79    0    0    0    0    0   84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   FS     0    0    0    5    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   MHS    0    0    0    0   87    0    8  116</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PHS    0    0    0    0    0   76    6   72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   U      0    0    0    0    0    0 9685 9515</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   X      0    0    0    0    0    0    0    0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># pairwise correct assignment rate:</span></span></span>
 <span class="r-in"><span><span class="va">PairsG</span><span class="op">$</span><span class="va">Summary</span><span class="op">[</span>,<span class="st">"OK"</span><span class="op">]</span> <span class="op">/</span> <span class="va">PairsG</span><span class="op">$</span><span class="va">Summary</span><span class="op">[</span>,<span class="st">"n"</span><span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'PairsG' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         M         P        FS       MHS       PHS         U </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1.0000000 1.0000000 1.0000000 0.9157895 0.9268293 1.0000000 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># check specific pair:</span></span></span>
 <span class="r-in"><span><span class="va">PairsG</span><span class="op">$</span><span class="va">Array</span><span class="op">[</span>, <span class="st">"i190_2010_M"</span>, <span class="st">"i168_2009_F"</span><span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'PairsG' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ped1 Ped2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  "M"  "X" </span>
 <span class="r-in"><span><span class="co"># or</span></span></span>
 <span class="r-in"><span><span class="va">RelDF</span> <span class="op">&lt;-</span> <span class="va">PairsG</span><span class="op">$</span><span class="va">Dataframe</span>   <span class="co"># for brevity</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'PairsG' not found</span>
 <span class="r-in"><span><span class="va">RelDF</span><span class="op">[</span><span class="va">RelDF</span><span class="op">$</span><span class="va">id.A</span><span class="op">==</span><span class="st">"i190_2010_M"</span> <span class="op">&amp;</span> <span class="va">RelDF</span><span class="op">$</span><span class="va">id.B</span><span class="op">==</span><span class="st">"i168_2009_F"</span>, <span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'RelDF' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              id.A        id.B Ped1 Ped2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33590 i190_2010_M i168_2009_F    M    X</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Colony-style lists of full sib dyads &amp; half sib dyads:</span></span></span>
 <span class="r-in"><span><span class="va">FullSibDyads</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">RelDF</span>, <span class="va">RelDF</span><span class="op">[</span><span class="va">Ped1</span> <span class="op">==</span> <span class="st">"FS"</span> <span class="op">&amp;</span> <span class="va">id.A</span> <span class="op">&lt;</span> <span class="va">id.B</span>, <span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'RelDF' not found</span>
 <span class="r-in"><span><span class="va">HalfSibDyads</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">RelDF</span>, <span class="va">RelDF</span><span class="op">[</span><span class="va">Ped1</span> <span class="op">==</span> <span class="st">"HS"</span> <span class="op">&amp;</span> <span class="va">id.A</span> <span class="op">&lt;</span> <span class="va">id.B</span>, <span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'RelDF' not found</span>
 <span class="r-in"><span><span class="co"># Use 'id.A &lt; id.B' because each pair is listed 2x</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -329,7 +337,7 @@ into GP, with the rest of the categories analogous to the above.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
     </footer></div>

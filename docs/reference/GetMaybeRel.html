@@ -8,11 +8,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.8.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,7 @@
     <a class="dropdown-item" href="../articles/vignette_age/book/index.html">Age prior vignette</a>
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
+    <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
     <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
     <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
@@ -210,19 +211,20 @@ selfing.</p></dd>
 
 
 <dt>Err</dt>
-<dd><p>estimated genotyping error rate, as a single number, length 3
-vector or 3x3 matrix; see details below. The error rate is presumed
-constant across SNPs, and missingness is presumed random with respect to
-actual genotype. Using <code>Err</code> &gt;5% is not recommended.</p></dd>
+<dd><p>estimated genotyping error rate, as a single number, or a length 3
+vector with P(hom|hom), P(het|hom), P(hom|het), or a 3x3 matrix. See
+details below. The error rate is presumed constant across SNPs, and
+missingness is presumed random with respect to actual genotype. Using
+<code>Err</code> &gt;5% is not recommended, and <code>Err</code> &gt;10% strongly
+discouraged.</p></dd>
 
 
 <dt>ErrFlavour</dt>
-<dd><p><strong>DEPRECATED, (use length 3 vector for <code>Err</code>
-instead)</strong> function that takes <code>Err</code> (single number) as input, and
-returns a 3x3 matrix of observed (columns) conditional on actual (rows)
-genotypes, or choose from inbuilt options 'version2.0', 'version1.3', or
-'version1.1', referring to the sequoia version in which they were the
-default. Ignored if <code>Err</code> is a matrix. See <code><a href="ErrToM.html">ErrToM</a></code>.</p></dd>
+<dd><p>function that takes <code>Err</code> (single number) as input,
+and returns a length 3 vector or 3x3 matrix, or choose from inbuilt options
+'version2.9', 'version2.0', 'version1.3', or 'version1.1', referring to the
+sequoia version in which they were the default. Ignored if <code>Err</code> is a
+vector or matrix. See <code><a href="ErrToM.html">ErrToM</a></code> for details.</p></dd>
 
 
 <dt>Tassign</dt>
@@ -386,20 +388,34 @@ likely relationship category:</p>
 <span class="r-in"><span>                     Module <span class="op">=</span> <span class="st">"ped"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Searching for non-assigned relative pairs ... (Module = ped)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Genotype matrix looks OK! There are  142  individuals and  400  SNPs.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'LH_griffin' not found</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Pedigree-based, overlapping generations, smoothed, MaxAgeParent = 5,5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Counting opposing homozygous loci between all individuals ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Checking for non-assigned relatives ...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Found 0 likely parent-offspring pairs, and 131 other non-assigned pairs of possible relatives</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Maybe</span><span class="op">$</span><span class="va">MaybeRel</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Maybe' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           ID1         ID2 TopRel   LLR OH BirthYear1 BirthYear2 AgeDif Sex1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 i081_2005_F i083_2005_M     FS  5.42  3       2005       2005      0    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 i165_2009_F i175_2009_M     FS  5.34  3       2009       2009      0    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 i131_2007_F i133_2007_F     FS  5.09  3       2007       2007      0    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 i160_2008_F i130_2007_F     FS  2.25  3       2008       2007      1    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 i158_2008_M i133_2007_F     HS 17.36  3       2008       2007      1    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 i158_2008_M i130_2007_F     HS 16.15  3       2008       2007      1    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Sex2 SNPdBoth</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    2      392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    2      392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    1      392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    1      392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    1      392</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    1      392</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># visualise results, turn dataframe into matrix first:</span></span></span>
 <span class="r-in"><span><span class="va">MaybeM</span> <span class="op">&lt;-</span> <span class="fu"><a href="GetRelM.html">GetRelM</a></span><span class="op">(</span>Pairs <span class="op">=</span> <span class="va">Maybe</span><span class="op">$</span><span class="va">MaybeRel</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Maybe' not found</span>
 <span class="r-in"><span><span class="fu"><a href="PlotRelPairs.html">PlotRelPairs</a></span><span class="op">(</span><span class="va">MaybeM</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'MaybeM' not found</span>
+<span class="r-plt img"><img src="GetMaybeRel-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># or combine with pedigree (note suffix '?')</span></span></span>
 <span class="r-in"><span><span class="va">RelM</span> <span class="op">&lt;-</span> <span class="fu"><a href="GetRelM.html">GetRelM</a></span><span class="op">(</span>Pedigree <span class="op">=</span><span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">PedigreePar</span>, Pairs <span class="op">=</span> <span class="va">Maybe</span><span class="op">$</span><span class="va">MaybeRel</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'Maybe' not found</span>
 <span class="r-in"><span><span class="fu"><a href="PlotRelPairs.html">PlotRelPairs</a></span><span class="op">(</span><span class="va">RelM</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'RelM' not found</span>
+<span class="r-plt img"><img src="GetMaybeRel-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -412,7 +428,7 @@ likely relationship category:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
     </footer></div>
