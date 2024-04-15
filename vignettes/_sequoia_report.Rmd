@@ -309,26 +309,3 @@ axis(1, at=(nIt[1]+1)/2, labels = 'par', lwd.ticks=0, col.axis='forestgreen',
      cex.axis=1.2)
 axis(1, at=(nIt[1]):(nIt[1]+nIt[2]), labels=0:nIt[2], cex.axis=1.2)
 ```
-
-
-## Genotyping error estimate
-
-This estimate is based on Mendelian inconsistencies between assigned
-parent-offspring pairs. It is a ballpark estimate of the genotyping
-error for each SNP, as not all genotyping errors result in such
-inconsistencies, and true parent-offspring pairs with many
-inconsistencies are less likely to be assigned. On the other hand, a
-single genotyping error in an individual with many offspring may lead to
-a high number of Mendelian inconsistencies.
-
-```{r SnpStats-2, fig.width=5, fig.height=4, out.width='70%'}
-if (!all(GenoM %in% c('NA', NA))) {
-  sstats <- suppressWarnings(
-    SnpStats(GenoM, Pedigree = SeqOUT$Pedigree,
-             ErrFlavour = SeqOUT$Specs$ErrFlavour, Plot=FALSE))
-  hist(sstats[,'Err.hat'], breaks = nrow(sstats)/5, 
-       main = 'Estimated genotyping error', xlab='')
-} else {
-  cat('No genotype matrix provided for this report. \n')
-}
-```

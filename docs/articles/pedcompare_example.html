@@ -207,13 +207,13 @@ etc.).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">127</span><span class="op">:</span><span class="fl">133</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span>, <span class="st">"dam.class"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##              id       dam.1       dam.2 dam.class</span></span>
-<span><span class="co">## 127 i161_2009_M        &lt;NA&gt;        &lt;NA&gt;         _</span></span>
-<span><span class="co">## 128 i165_2009_F    PinkBlue       F0006     Match</span></span>
-<span><span class="co">## 129 i166_2009_F    PinkBlue       F0006     Match</span></span>
-<span><span class="co">## 130 i169_2009_M i133_2007_F i133_2007_F     Match</span></span>
-<span><span class="co">## 131 i170_2009_F     BlueRed       F0003     Match</span></span>
-<span><span class="co">## 132 i171_2009_M        &lt;NA&gt;       F0016    P2only</span></span>
-<span><span class="co">## 133 i173_2009_F     BlueRed       F0003     Match</span></span></code></pre>
+<span><span class="co">## 127 i165_2009_F    PinkBlue       F0002     Match</span></span>
+<span><span class="co">## 128 i166_2009_F    PinkBlue       F0002     Match</span></span>
+<span><span class="co">## 129 i169_2009_M i133_2007_F i133_2007_F     Match</span></span>
+<span><span class="co">## 130 i170_2009_F     BlueRed       F0001     Match</span></span>
+<span><span class="co">## 131 i171_2009_M        &lt;NA&gt;       F0013    P2only</span></span>
+<span><span class="co">## 132 i173_2009_F     BlueRed       F0001     Match</span></span>
+<span><span class="co">## 133 i174_2009_F        &lt;NA&gt;       F0012    P2only</span></span></code></pre>
 <p>This part-pedigree for example shows that individuals i165_2009_F and
 i166_2009_F have the non-genotyped female ‘PinkBlue’ as field observed
 mother (<code>dam.1</code> = dam in Pedigree1). The pair are also
@@ -298,20 +298,20 @@ Subsets of Pedigree1 (left) and Pedigree2 (right)
 <tr class="odd">
 <td align="left">112</td>
 <td align="left">i165_2009_F</td>
-<td align="left">F0006</td>
+<td align="left">F0002</td>
 <td align="left">i121_2007_M</td>
 </tr>
 <tr class="even">
 <td align="left">113</td>
 <td align="left">i166_2009_F</td>
-<td align="left">F0006</td>
+<td align="left">F0002</td>
 <td align="left">i144_2008_M</td>
 </tr>
 <tr class="odd">
 <td align="left">121</td>
 <td align="left">i177_2009_M</td>
 <td align="left">F0007</td>
-<td align="left">M0011</td>
+<td align="left">M0008</td>
 </tr>
 <tr class="even">
 <td align="left">122</td>
@@ -322,8 +322,8 @@ Subsets of Pedigree1 (left) and Pedigree2 (right)
 <tr class="odd">
 <td align="left">148</td>
 <td align="left">F0006</td>
-<td align="left">F0007</td>
-<td align="left">i109_2006_M</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">149</td>
@@ -340,12 +340,12 @@ Subsets of Pedigree1 (left) and Pedigree2 (right)
 <code class="sourceCode R"><span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">$</span><span class="va">id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">these</span>, </span>
 <span>              <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"id.r"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span>, <span class="st">"dam.r"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##              id        id.r      dam.1 dam.2      dam.r</span></span>
-<span><span class="co">## 6         F0006    PinkBlue       &lt;NA&gt; F0007 YellowPink</span></span>
+<span><span class="co">## 6         F0006   RedOrange       &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;</span></span>
 <span><span class="co">## 7         F0007  YellowPink       &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;</span></span>
-<span><span class="co">## 128 i165_2009_F i165_2009_F   PinkBlue F0006   PinkBlue</span></span>
-<span><span class="co">## 129 i166_2009_F i166_2009_F   PinkBlue F0006   PinkBlue</span></span>
-<span><span class="co">## 137 i177_2009_M i177_2009_M YellowPink F0007 YellowPink</span></span>
-<span><span class="co">## 138 i179_2009_M i179_2009_M YellowPink F0007 YellowPink</span></span></code></pre>
+<span><span class="co">## 127 i165_2009_F i165_2009_F   PinkBlue F0002   PinkBlue</span></span>
+<span><span class="co">## 128 i166_2009_F i166_2009_F   PinkBlue F0002   PinkBlue</span></span>
+<span><span class="co">## 136 i177_2009_M i177_2009_M YellowPink F0007 YellowPink</span></span>
+<span><span class="co">## 137 i179_2009_M i179_2009_M YellowPink F0007 YellowPink</span></span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -357,12 +357,12 @@ matches:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">PCG</span><span class="op">$</span><span class="va">DummyMatch</span><span class="op">[</span>, <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span><span class="op">]</span>, n<span class="op">=</span><span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##    id.2        id.1 off.Match off.Mismatch off.P1only off.P2only</span></span>
-<span><span class="co">## 1 F0001 GreenYellow         3            2          0          0</span></span>
-<span><span class="co">## 2 F0002     nomatch         0            2          0          0</span></span>
-<span><span class="co">## 3 F0003     BlueRed         4            4          0          3</span></span>
-<span><span class="co">## 4 F0004   RedOrange         3            0          0          0</span></span>
-<span><span class="co">## 5 F0005     nomatch         0            0          0          2</span></span>
-<span><span class="co">## 6 F0006    PinkBlue         3            0          0          0</span></span></code></pre>
+<span><span class="co">## 1 F0001     BlueRed         4            4          0          3</span></span>
+<span><span class="co">## 2 F0002    PinkBlue         3            0          0          0</span></span>
+<span><span class="co">## 3 F0003 GreenYellow         3            2          0          0</span></span>
+<span><span class="co">## 4 F0004     nomatch         0            0          0          2</span></span>
+<span><span class="co">## 5 F0005     nomatch         0            2          0          0</span></span>
+<span><span class="co">## 6 F0006   RedOrange         3            0          0          0</span></span></code></pre>
 <p>For the match between ‘F0006’ in Pedigree2 and ‘PinkBlue’ in
 Pedigree1 (bottom row), there are 3 matching offspring, and no offspring
 by ‘PinkBlue’ that are genetically assigned to a different sibship
@@ -396,10 +396,10 @@ at the <code>dam</code> slice only:</p>
 <span><span class="co">##   GG    65    61        4      0      0</span></span>
 <span><span class="co">##   GD    41    16        7      0     18</span></span>
 <span><span class="co">##   GT   107    77       11      1     18</span></span>
-<span><span class="co">##   DG    14     0        0      0     14</span></span>
-<span><span class="co">##   DD     5     0        0      0      5</span></span>
-<span><span class="co">##   DT    19     0        0      0     19</span></span>
-<span><span class="co">##   TT   127    77       11      2     37</span></span></code></pre>
+<span><span class="co">##   DG    12     0        0      0     12</span></span>
+<span><span class="co">##   DD     4     0        0      0      4</span></span>
+<span><span class="co">##   DT    16     0        0      0     16</span></span>
+<span><span class="co">##   TT   124    77       11      2     34</span></span></code></pre>
 <p>The counts for each classification are subdivided into various
 categories (rows), based on whether the focal individual (first letter)
 and parent (second letter) are <strong>G</strong>enotyped or a
@@ -422,17 +422,17 @@ which we’re currently interested:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">$</span><span class="va">dam.class</span> <span class="op">==</span> <span class="st">"Mismatch"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span>, <span class="st">"id.dam.cat"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##              id       dam.1       dam.2 id.dam.cat</span></span>
-<span><span class="co">## 88  i108_2006_F   GreenBlue i081_2005_F         GG</span></span>
-<span><span class="co">## 99  i122_2007_M   GreenBlue i081_2005_F         GG</span></span>
-<span><span class="co">## 100 i123_2007_F OrangeGreen       F0003         GD</span></span>
-<span><span class="co">## 101 i124_2007_M   GreenBlue i081_2005_F         GG</span></span>
-<span><span class="co">## 105 i130_2007_F OrangeGreen       F0003         GD</span></span>
-<span><span class="co">## 106 i131_2007_F OrangeGreen       F0003         GD</span></span>
-<span><span class="co">## 108 i133_2007_F OrangeGreen       F0003         GD</span></span>
-<span><span class="co">## 113 i142_2008_M   GreenBlue i081_2005_F         GG</span></span>
-<span><span class="co">## 117 i147_2008_F  YellowBlue       F0001         GD</span></span>
-<span><span class="co">## 118 i148_2008_F GreenYellow       F0002         GD</span></span>
-<span><span class="co">## 125 i159_2008_F  YellowBlue       F0002         GD</span></span></code></pre>
+<span><span class="co">## 87  i108_2006_F   GreenBlue i081_2005_F         GG</span></span>
+<span><span class="co">## 98  i122_2007_M   GreenBlue i081_2005_F         GG</span></span>
+<span><span class="co">## 99  i123_2007_F OrangeGreen       F0001         GD</span></span>
+<span><span class="co">## 100 i124_2007_M   GreenBlue i081_2005_F         GG</span></span>
+<span><span class="co">## 104 i130_2007_F OrangeGreen       F0001         GD</span></span>
+<span><span class="co">## 105 i131_2007_F OrangeGreen       F0001         GD</span></span>
+<span><span class="co">## 107 i133_2007_F OrangeGreen       F0001         GD</span></span>
+<span><span class="co">## 112 i142_2008_M   GreenBlue i081_2005_F         GG</span></span>
+<span><span class="co">## 116 i147_2008_F  YellowBlue       F0003         GD</span></span>
+<span><span class="co">## 117 i148_2008_F GreenYellow       F0005         GD</span></span>
+<span><span class="co">## 124 i159_2008_F  YellowBlue       F0005         GD</span></span></code></pre>
 <p>Thus while there are 11 individuals with mismatching mothers, there
 are only 4 unique mothers involved, which we will look at in turn.</p>
 <div class="section level3">
@@ -444,10 +444,10 @@ are only 4 unique mothers involved, which we will look at in turn.</p>
 <span><span class="co"># does the mismatch affect all of GreenBlue's offspring?</span></span>
 <span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.1</span> <span class="op">==</span> <span class="st">"GreenBlue"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##              id     dam.1       dam.2</span></span>
-<span><span class="co">## 88  i108_2006_F GreenBlue i081_2005_F</span></span>
-<span><span class="co">## 99  i122_2007_M GreenBlue i081_2005_F</span></span>
-<span><span class="co">## 101 i124_2007_M GreenBlue i081_2005_F</span></span>
-<span><span class="co">## 113 i142_2008_M GreenBlue i081_2005_F</span></span></code></pre>
+<span><span class="co">## 87  i108_2006_F GreenBlue i081_2005_F</span></span>
+<span><span class="co">## 98  i122_2007_M GreenBlue i081_2005_F</span></span>
+<span><span class="co">## 100 i124_2007_M GreenBlue i081_2005_F</span></span>
+<span><span class="co">## 112 i142_2008_M GreenBlue i081_2005_F</span></span></code></pre>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># &gt; yes, these 4 are all of her known offspring</span></span>
 <span></span>
@@ -461,10 +461,10 @@ are only 4 unique mothers involved, which we will look at in turn.</p>
 <span><span class="co"># does i081_2005_F have any other genetic offspring?</span></span>
 <span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.2</span> <span class="op">==</span> <span class="st">"i081_2005_F"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##              id     dam.1       dam.2</span></span>
-<span><span class="co">## 88  i108_2006_F GreenBlue i081_2005_F</span></span>
-<span><span class="co">## 99  i122_2007_M GreenBlue i081_2005_F</span></span>
-<span><span class="co">## 101 i124_2007_M GreenBlue i081_2005_F</span></span>
-<span><span class="co">## 113 i142_2008_M GreenBlue i081_2005_F</span></span></code></pre>
+<span><span class="co">## 87  i108_2006_F GreenBlue i081_2005_F</span></span>
+<span><span class="co">## 98  i122_2007_M GreenBlue i081_2005_F</span></span>
+<span><span class="co">## 100 i124_2007_M GreenBlue i081_2005_F</span></span>
+<span><span class="co">## 112 i142_2008_M GreenBlue i081_2005_F</span></span></code></pre>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># no.</span></span></code></pre></div>
 <p>It seems ‘GreenBlue’ is a perfect match with ‘i081_2005_F’: all four
@@ -499,26 +499,19 @@ inspection.</p>
 <code class="sourceCode R"><span><span class="co"># why is this flagged as a mismatch?</span></span>
 <span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.1</span> <span class="op">==</span> <span class="st">"OrangeGreen"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##              id       dam.1 dam.2</span></span>
-<span><span class="co">## 100 i123_2007_F OrangeGreen F0003</span></span>
-<span><span class="co">## 105 i130_2007_F OrangeGreen F0003</span></span>
-<span><span class="co">## 106 i131_2007_F OrangeGreen F0003</span></span>
-<span><span class="co">## 108 i133_2007_F OrangeGreen F0003</span></span></code></pre>
+<span><span class="co">## 99  i123_2007_F OrangeGreen F0001</span></span>
+<span><span class="co">## 104 i130_2007_F OrangeGreen F0001</span></span>
+<span><span class="co">## 105 i131_2007_F OrangeGreen F0001</span></span>
+<span><span class="co">## 107 i133_2007_F OrangeGreen F0001</span></span></code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># all of OrangeGreen's offspring are in sibship F0003</span></span>
 <span></span>
 <span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.2</span> <span class="op">==</span> <span class="st">"F0003"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##              id       dam.1 dam.2</span></span>
-<span><span class="co">## 2         F0002        &lt;NA&gt; F0003</span></span>
-<span><span class="co">## 16        F0016        &lt;NA&gt; F0003</span></span>
-<span><span class="co">## 100 i123_2007_F OrangeGreen F0003</span></span>
-<span><span class="co">## 105 i130_2007_F OrangeGreen F0003</span></span>
-<span><span class="co">## 106 i131_2007_F OrangeGreen F0003</span></span>
-<span><span class="co">## 108 i133_2007_F OrangeGreen F0003</span></span>
-<span><span class="co">## 124 i158_2008_M     BlueRed F0003</span></span>
-<span><span class="co">## 126 i160_2008_F     BlueRed F0003</span></span>
-<span><span class="co">## 131 i170_2009_F     BlueRed F0003</span></span>
-<span><span class="co">## 133 i173_2009_F     BlueRed F0003</span></span>
-<span><span class="co">## 169       M0011        &lt;NA&gt; F0003</span></span></code></pre>
+<span><span class="co">## 97  i121_2007_M GreenYellow F0003</span></span>
+<span><span class="co">## 108 i135_2007_F GreenYellow F0003</span></span>
+<span><span class="co">## 114 i144_2008_M GreenYellow F0003</span></span>
+<span><span class="co">## 116 i147_2008_F  YellowBlue F0003</span></span></code></pre>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># but sibship F0003 is split across two field mothers</span></span></code></pre></div>
 <p>So, the genetic sibship with ‘F0003’ as dummy mother includes
@@ -551,19 +544,27 @@ with large powerful SNP sets.</p>
 <code class="sourceCode R"><span><span class="co"># as before</span></span>
 <span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.1</span> <span class="op">==</span> <span class="st">"YellowBlue"</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##              id      dam.1 dam.2</span></span>
-<span><span class="co">## 117 i147_2008_F YellowBlue F0001</span></span>
-<span><span class="co">## 125 i159_2008_F YellowBlue F0002</span></span></code></pre>
+<span><span class="co">## 116 i147_2008_F YellowBlue F0003</span></span>
+<span><span class="co">## 124 i159_2008_F YellowBlue F0005</span></span></code></pre>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># something odd going on involving sibships F0001 &amp; F0002</span></span>
 <span></span>
 <span><span class="va">PedM</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PedM</span><span class="op">$</span><span class="va">dam.2</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"F0001"</span>, <span class="st">"F0002"</span><span class="op">)</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##              id       dam.1 dam.2</span></span>
-<span><span class="co">## 98  i121_2007_M GreenYellow F0001</span></span>
-<span><span class="co">## 109 i135_2007_F GreenYellow F0001</span></span>
-<span><span class="co">## 115 i144_2008_M GreenYellow F0001</span></span>
-<span><span class="co">## 117 i147_2008_F  YellowBlue F0001</span></span>
-<span><span class="co">## 118 i148_2008_F GreenYellow F0002</span></span>
-<span><span class="co">## 125 i159_2008_F  YellowBlue F0002</span></span></code></pre>
+<span><span class="co">## 5         F0005        &lt;NA&gt; F0001</span></span>
+<span><span class="co">## 13        F0013        &lt;NA&gt; F0001</span></span>
+<span><span class="co">## 99  i123_2007_F OrangeGreen F0001</span></span>
+<span><span class="co">## 104 i130_2007_F OrangeGreen F0001</span></span>
+<span><span class="co">## 105 i131_2007_F OrangeGreen F0001</span></span>
+<span><span class="co">## 107 i133_2007_F OrangeGreen F0001</span></span>
+<span><span class="co">## 123 i158_2008_M     BlueRed F0001</span></span>
+<span><span class="co">## 125 i160_2008_F     BlueRed F0001</span></span>
+<span><span class="co">## 127 i165_2009_F    PinkBlue F0002</span></span>
+<span><span class="co">## 128 i166_2009_F    PinkBlue F0002</span></span>
+<span><span class="co">## 130 i170_2009_F     BlueRed F0001</span></span>
+<span><span class="co">## 132 i173_2009_F     BlueRed F0001</span></span>
+<span><span class="co">## 134 i175_2009_M    PinkBlue F0002</span></span>
+<span><span class="co">## 165       M0008        &lt;NA&gt; F0001</span></span></code></pre>
 <p>so:</p>
 <ul>
 <li>i147_2008_F has field mum YellowBlue, but its three genetic sibs
@@ -662,8 +663,8 @@ related.</li>
 <code class="sourceCode R"><span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">PCG</span><span class="op">$</span><span class="va">MergedPed</span><span class="op">$</span><span class="va">dam.class</span> <span class="op">==</span> <span class="st">"P1only"</span><span class="op">)</span>, </span>
 <span>              <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"id.r"</span>, <span class="st">"dam.1"</span>, <span class="st">"dam.2"</span>, <span class="st">"id.dam.cat"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##              id        id.r    dam.1 dam.2 id.dam.cat</span></span>
-<span><span class="co">## 53  i057_2003_M i057_2003_M GreenRed  &lt;NA&gt;         GX</span></span>
-<span><span class="co">## 174        &lt;NA&gt; i053_2003_M GreenRed  &lt;NA&gt;         XX</span></span></code></pre>
+<span><span class="co">## 52  i057_2003_M i057_2003_M GreenRed  &lt;NA&gt;         GX</span></span>
+<span><span class="co">## 171        &lt;NA&gt; i053_2003_M GreenRed  &lt;NA&gt;         XX</span></span></code></pre>
 <p>The <code>id.dam.cat = 'XX'</code> indicates that neither the focal
 individual nor their dam in Pedigree1 is genotyped or ‘dummifiable’ (has
 at the very minimum one genotyped offspring, see
@@ -734,9 +735,9 @@ identity during post-mortem (i.e. incorrect death date).</li>
 mother of ‘PinkBlue’ (aka F0006):</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">DummyIDs</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>,<span class="fl">7</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"dam"</span>, <span class="st">"BY.est"</span>, <span class="st">"NumOff"</span>, <span class="st">"O1"</span>, <span class="st">"O2"</span>, <span class="st">"O3"</span>, <span class="st">"O4"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">##        id   dam BY.est NumOff          O1          O2          O3    O4</span></span>
-<span><span class="co">## 148 F0006 F0007   2008      3 i165_2009_F i166_2009_F i175_2009_M  &lt;NA&gt;</span></span>
-<span><span class="co">## 149 F0007  &lt;NA&gt;   2007      4 i141_2008_M i177_2009_M i179_2009_M F0006</span></span></code></pre>
+<pre><code><span><span class="co">##      id  dam BY.est NumOff          O1          O2          O3    O4</span></span>
+<span><span class="co">## 6 F0006 &lt;NA&gt;   2002      3 i041_2003_F i054_2003_F i076_2004_F  &lt;NA&gt;</span></span>
+<span><span class="co">## 7 F0007 &lt;NA&gt;   2007      4 i141_2008_M i177_2009_M i179_2009_M F0002</span></span></code></pre>
 <!--- other example: 140,146,8  -->
 <p>Dummy - dummy pedigree links as these have a higher error rate than
 genotyped - genotyped pedigree links, especially when the sibships are

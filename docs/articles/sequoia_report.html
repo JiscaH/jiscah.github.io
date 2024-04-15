@@ -15,8 +15,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Sequoia report">
 <meta property="og:description" content="Report generated on griffin example data.  
@@ -35,11 +35,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.5.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.9.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,10 @@
     <a class="dropdown-item" href="../articles/vignette_age/book/index.html">Age prior vignette</a>
     <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
     <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
+    <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
+    <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
+    <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
   </div>
 </li>
 <li class="nav-item">
@@ -77,9 +80,11 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-help">Help</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-help">
     <a class="dropdown-item" href="../articles/help.html">Need help?</a>
-    <a class="dropdown-item" href="../articles/pedigree_consultancy.html">Consultancy</a>
     <a class="dropdown-item" href="../articles/want_to_help.html">Want to help?</a>
   </div>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../articles/pedigree_consultancy.html">Consultancy</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -102,12 +107,6 @@
 <li class="nav-item">
   <a class="external-link nav-link" href="https://ecoevo.social/@HuismanJisca">
     <span class="fab fa fab fa-mastodon"></span>
-     
-  </a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://twitter.com/HuismanJisca">
-    <span class="fab fa fab fa-twitter"></span>
      
   </a>
 </li>
@@ -244,7 +243,7 @@ Tassign
 nAgeClasses
 </td>
 <td style="text-align:left;">
-5
+7
 </td>
 </tr>
 <tr>
@@ -261,14 +260,6 @@ Module
 </td>
 <td style="text-align:left;">
 ped
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-MaxSibIter
-</td>
-<td style="text-align:left;">
-42
 </td>
 </tr>
 <tr>
@@ -297,18 +288,18 @@ full
 </tr>
 <tr>
 <td style="text-align:left;">
-UseAge
+Herm
 </td>
 <td style="text-align:left;">
-yes
+no
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-FindMaybeRel
+UseAge
 </td>
 <td style="text-align:left;">
-FALSE
+yes
 </td>
 </tr>
 <tr>
@@ -332,7 +323,7 @@ version2.0
 SequoiaVersion
 </td>
 <td style="text-align:left;">
-2.1.0
+2.3.18
 </td>
 </tr>
 <tr>
@@ -340,7 +331,7 @@ SequoiaVersion
 TimeStart
 </td>
 <td style="text-align:left;">
-2020-10-03 14:10:53
+2022-12-17 12:33:09
 </td>
 </tr>
 <tr>
@@ -348,7 +339,7 @@ TimeStart
 TimeEnd
 </td>
 <td style="text-align:left;">
-2020-10-03 14:11:10
+2022-12-17 12:33:33
 </td>
 </tr>
 </tbody>
@@ -363,8 +354,24 @@ observed as genotype ‘obs’ (columns).</p>
 <caption>
 Presumed genotyping error rate
 </caption>
+<thead><tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+obs-0&amp;#124;act
+</th>
+<th style="text-align:right;">
+obs-1&amp;#124;act
+</th>
+<th style="text-align:right;">
+obs-2&amp;#124;act
+</th>
+</tr></thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+act-0
+</td>
 <td style="text-align:right;">
 0.99990
 </td>
@@ -376,6 +383,9 @@ Presumed genotyping error rate
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+act-1
+</td>
 <td style="text-align:right;">
 0.00005
 </td>
@@ -387,6 +397,9 @@ Presumed genotyping error rate
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+act-2
+</td>
 <td style="text-align:right;">
 0.00000
 </td>
@@ -477,7 +490,11 @@ assignment and before full pedigree reconstruction (see further).</p>
 <span><span class="co">#       vignette("Sequoia - Age 'Prior'")</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SeqOUT</span><span class="op">$</span><span class="va">args.AP</span></span></code></pre></div>
-<pre><code><span><span class="co">## NULL</span></span></code></pre>
+<pre><code><span><span class="co">## $Flatten</span></span>
+<span><span class="co">## NULL</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $Smooth</span></span>
+<span><span class="co">## [1] TRUE</span></span></code></pre>
 <hr>
 </div>
 </div>
@@ -530,7 +547,7 @@ SNPd
 records
 </td>
 <td style="text-align:right;">
-170
+167
 </td>
 <td style="text-align:right;">
 142
@@ -541,7 +558,7 @@ records
 maternities
 </td>
 <td style="text-align:right;">
-125
+122
 </td>
 <td style="text-align:right;">
 65
@@ -552,7 +569,7 @@ maternities
 paternities
 </td>
 <td style="text-align:right;">
-122
+116
 </td>
 <td style="text-align:right;">
 79
@@ -574,10 +591,10 @@ full sibs
 maternal half sib
 </td>
 <td style="text-align:right;">
-131
+129
 </td>
 <td style="text-align:right;">
-87
+89
 </td>
 </tr>
 <tr>
@@ -585,7 +602,7 @@ maternal half sib
 paternal half sibs
 </td>
 <td style="text-align:right;">
-114
+103
 </td>
 <td style="text-align:right;">
 77
@@ -596,7 +613,7 @@ paternal half sibs
 maternal grandmothers
 </td>
 <td style="text-align:right;">
-91
+89
 </td>
 <td style="text-align:right;">
 77
@@ -607,10 +624,10 @@ maternal grandmothers
 maternal grandfathers
 </td>
 <td style="text-align:right;">
-90
+84
 </td>
 <td style="text-align:right;">
-80
+75
 </td>
 </tr>
 <tr>
@@ -618,10 +635,10 @@ maternal grandfathers
 paternal grandmothers
 </td>
 <td style="text-align:right;">
-73
+69
 </td>
 <td style="text-align:right;">
-60
+58
 </td>
 </tr>
 <tr>
@@ -629,10 +646,10 @@ paternal grandmothers
 paternal grandfathers
 </td>
 <td style="text-align:right;">
-73
+66
 </td>
 <td style="text-align:right;">
-61
+55
 </td>
 </tr>
 <tr>
@@ -748,502 +765,198 @@ individuals.</p>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">'No confidence probabilities provided for this report. \n'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <table class="table">
-<caption>
-parent-pair confidence, per category (Genotyped/Dummy/None)
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:left;">
-id.cat
-</th>
-<th style="text-align:left;">
-dam.cat
-</th>
-<th style="text-align:left;">
-sire.cat
-</th>
-<th style="text-align:right;">
-dam.conf
-</th>
-<th style="text-align:right;">
-sire.conf
-</th>
-<th style="text-align:right;">
-pair.conf
-</th>
-<th style="text-align:right;">
-N
-</th>
+<caption>parent-pair confidence, per category
+(Genotyped/Dummy/None)</caption>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="left">id.cat</th>
+<th align="left">dam.cat</th>
+<th align="left">sire.cat</th>
+<th align="right">dam.conf</th>
+<th align="right">sire.conf</th>
+<th align="right">pair.conf</th>
+<th align="right">N</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-14
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-568
-</td>
+<tr class="odd">
+<td align="left">14</td>
+<td align="left">G</td>
+<td align="left">G</td>
+<td align="left">G</td>
+<td align="right">1.0000000</td>
+<td align="right">1.0000000</td>
+<td align="right">1.0000000</td>
+<td align="right">568</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-13
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-277
-</td>
+<tr class="even">
+<td align="left">13</td>
+<td align="left">G</td>
+<td align="left">G</td>
+<td align="left">D</td>
+<td align="right">1.0000000</td>
+<td align="right">1.0000000</td>
+<td align="right">1.0000000</td>
+<td align="right">277</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-15
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-X
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-227
-</td>
+<tr class="odd">
+<td align="left">15</td>
+<td align="left">G</td>
+<td align="left">G</td>
+<td align="left">X</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">227</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-11
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:right;">
-0.9841270
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-0.9841270
-</td>
-<td style="text-align:right;">
-252
-</td>
+<tr class="even">
+<td align="left">11</td>
+<td align="left">G</td>
+<td align="left">D</td>
+<td align="left">G</td>
+<td align="right">0.9841270</td>
+<td align="right">1.0000000</td>
+<td align="right">0.9841270</td>
+<td align="right">252</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-10
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-88
-</td>
+<tr class="odd">
+<td align="left">10</td>
+<td align="left">G</td>
+<td align="left">D</td>
+<td align="left">D</td>
+<td align="right">1.0000000</td>
+<td align="right">1.0000000</td>
+<td align="right">1.0000000</td>
+<td align="right">88</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-12
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-X
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-49
-</td>
+<tr class="even">
+<td align="left">12</td>
+<td align="left">G</td>
+<td align="left">D</td>
+<td align="left">X</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">49</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-17
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-X
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-197
-</td>
+<tr class="odd">
+<td align="left">17</td>
+<td align="left">G</td>
+<td align="left">X</td>
+<td align="left">G</td>
+<td align="right">NA</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">197</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-16
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-X
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-38
-</td>
+<tr class="even">
+<td align="left">16</td>
+<td align="left">G</td>
+<td align="left">X</td>
+<td align="left">D</td>
+<td align="right">NA</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">38</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-18
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-X
-</td>
-<td style="text-align:left;">
-X
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-804
-</td>
+<tr class="odd">
+<td align="left">18</td>
+<td align="left">G</td>
+<td align="left">X</td>
+<td align="left">X</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">804</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:right;">
-0.9914530
-</td>
-<td style="text-align:right;">
-0.9914530
-</td>
-<td style="text-align:right;">
-0.9914530
-</td>
-<td style="text-align:right;">
-117
-</td>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">D</td>
+<td align="left">G</td>
+<td align="left">G</td>
+<td align="right">0.9914530</td>
+<td align="right">0.9914530</td>
+<td align="right">0.9914530</td>
+<td align="right">117</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-9
-</td>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">D</td>
+<td align="left">G</td>
+<td align="left">D</td>
+<td align="right">1.0000000</td>
+<td align="right">1.0000000</td>
+<td align="right">1.0000000</td>
+<td align="right">9</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:left;">
-X
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-34
-</td>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">D</td>
+<td align="left">G</td>
+<td align="left">X</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">34</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:right;">
-0.8888889
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-0.8888889
-</td>
-<td style="text-align:right;">
-9
-</td>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">D</td>
+<td align="left">D</td>
+<td align="left">G</td>
+<td align="right">0.8888889</td>
+<td align="right">1.0000000</td>
+<td align="right">0.8888889</td>
+<td align="right">9</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:right;">
-NaN
-</td>
-<td style="text-align:right;">
-NaN
-</td>
-<td style="text-align:right;">
-NaN
-</td>
-<td style="text-align:right;">
-0
-</td>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">D</td>
+<td align="left">D</td>
+<td align="left">D</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">0</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-X
-</td>
-<td style="text-align:right;">
-0.7777778
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-9
-</td>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">D</td>
+<td align="left">D</td>
+<td align="left">X</td>
+<td align="right">0.7777778</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">9</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-8
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-X
-</td>
-<td style="text-align:left;">
-G
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-0.9705882
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-34
-</td>
+<tr class="even">
+<td align="left">8</td>
+<td align="left">D</td>
+<td align="left">X</td>
+<td align="left">G</td>
+<td align="right">NA</td>
+<td align="right">0.9705882</td>
+<td align="right">NA</td>
+<td align="right">34</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-X
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-3
-</td>
+<tr class="odd">
+<td align="left">7</td>
+<td align="left">D</td>
+<td align="left">X</td>
+<td align="left">D</td>
+<td align="right">NA</td>
+<td align="right">1.0000000</td>
+<td align="right">NA</td>
+<td align="right">3</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-9
-</td>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:left;">
-X
-</td>
-<td style="text-align:left;">
-X
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-100
-</td>
+<tr class="even">
+<td align="left">9</td>
+<td align="left">D</td>
+<td align="left">X</td>
+<td align="left">X</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">100</td>
 </tr>
 </tbody>
 </table>
@@ -1276,28 +989,6 @@ likelihood asymptotes.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html" class="external-link">axis</a></span><span class="op">(</span><span class="fl">1</span>, at<span class="op">=</span><span class="op">(</span><span class="va">nIt</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">:</span><span class="op">(</span><span class="va">nIt</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">+</span><span class="va">nIt</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>, labels<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="va">nIt</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, cex.axis<span class="op">=</span><span class="fl">1.2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="sequoia_report_files/figure-html/totlik-1.png" width="70%"></p>
 </div>
-<div class="section level3">
-<h3 id="genotyping-error-estimate">Genotyping error estimate<a class="anchor" aria-label="anchor" href="#genotyping-error-estimate"></a>
-</h3>
-<p>This estimate is based on Mendelian inconsistencies between assigned
-parent-offspring pairs. It is a ballpark estimate of the genotyping
-error for each SNP, as not all genotyping errors result in such
-inconsistencies, and true parent-offspring pairs with many
-inconsistencies are less likely to be assigned. On the other hand, a
-single genotyping error in an individual with many offspring may lead to
-a high number of Mendelian inconsistencies.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">GenoM</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'NA'</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">sstats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="../reference/SnpStats.html">SnpStats</a></span><span class="op">(</span><span class="va">GenoM</span>, Pedigree <span class="op">=</span> <span class="va">SeqOUT</span><span class="op">$</span><span class="va">Pedigree</span>,</span>
-<span>             ErrFlavour <span class="op">=</span> <span class="va">SeqOUT</span><span class="op">$</span><span class="va">Specs</span><span class="op">$</span><span class="va">ErrFlavour</span>, Plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">sstats</span><span class="op">[</span>,<span class="st">'Err.hat'</span><span class="op">]</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">sstats</span><span class="op">)</span><span class="op">/</span><span class="fl">5</span>, </span>
-<span>       main <span class="op">=</span> <span class="st">'Estimated genotyping error'</span>, xlab<span class="op">=</span><span class="st">''</span><span class="op">)</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">'No genotype matrix provided for this report. \n'</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<p><img src="sequoia_report_files/figure-html/SnpStats-2-1.png" width="70%"></p>
-</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -1312,7 +1003,7 @@ a high number of Mendelian inconsistencies.</p>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
     </footer>
