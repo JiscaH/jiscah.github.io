@@ -63,10 +63,10 @@ navbar:
       menu:
         - text: "Need help?"
           href: articles/help.html
-        - text: "Consultancy"
-          href: articles/pedigree_consultancy.html
         - text: "Want to help?"
           href: articles/want_to_help.html
+    - text: "Consultancy"
+      href: articles/pedigree_consultancy.html
   right:
     - icon: fas fa-envelope
       href: mailto:jisca.huisman@gmail.com
