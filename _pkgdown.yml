@@ -3,7 +3,7 @@ template:
   bootswatch: sandstone
   opengraph:
     image:
-      src: man/figures/sequoia_hexlogo_s.png
+      src: man/figures/sequoia_hexlogo.png
       alt: "sequoia hexlogo"
     twitter:
       card: summary_large_image
