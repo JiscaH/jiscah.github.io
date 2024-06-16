@@ -1,3 +1,23 @@
+# sequoia 2.11.4
+- `GenoConvert` fake .map output file: change chrom 0 (unmapped) to chrom 1, as SNPs on chromosome 0 get excluded by default by e.g. PLINK & GCTA
+- `CalcRped`: drop dummy parents of 'half founders' from output (1 known + 1 unknown parent not supported by pkg kinship2)
+
+# sequoia 2.11.3
+- make assignment of grandparents to singletons a bit more conservative
+
+# sequoia 2.11.2
+- minor fixes to pass CRAN checks
+
+# sequoia 2.11
+- improved assignment rate when some birth years are unknown
+- improved messages, with {cli} markup
+- a few minor bugfixes in the Fortran code
+
+# sequoia 2.9.1
+- upgrade of `GenoConvert`: new vcf and genlight input, various bugs fixed, 
+behaviour made more consistent and clearer through additional messages.
+- retain SNP names in `GenoConvert` and `SnpStats`
+
 # sequoia 2.9.0
 - fix bug in ` MkGenoErrors` (used by `SimGeno`) causing about 3x too many hom|hom errors when `SnpError` is a single value: first beta-distributed per-SNP genotyping error rates 
   $E_l$ were generated, and then $(E_l/2)^2$ calculated. Now the single value is 

@@ -18,94 +18,99 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+library(kableExtra)
+library(sequoia)
+
+gr <- function(x) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{grey}{**%s**}", x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: grey;'>**%s**</span>", x)
+  } else x
+}
 ```
 
 
- -------------------
+No genotyping method is 100% error free. For some methods, such as SNP arrays, the genotyping error rate $E$ is very low (say 0.01%). In those cases, the assumed error pattern will have no noticeable effect. For other methods, such as RADseq, the error rate is typically much higher (1%, or even 5%), and then the assumed pattern *can* have a noticeable effect.
+
+
+
+## Per-locus vs per-allele error rate
+The error rate $E$ (`Err`) throughout the `sequoia` documentation represents the per-locus error rate; the per-allele error rate is $E/2$. There appears to be no consistency in the literature on whether the per-locus or per-allele error rate is used, so it is worth making sure it is defined consistently throughout your analysis pipeline. 
+
  
 ## Error patterns
 
-The pattern of genotyping errors will depend on the genotyping method and the software used to call SNPs. For SNP arrays, the clustering based on the intensity of the **A** vs **a** probe results in the chance of a true homozygote **AA** being erroneously scored as a heterozygote **Aa** being about as likely as the reverse. In contrast, for sequencing-based methods scoring a true heterozygote erroneously as a homozygote is much more likely than the reverse, especially with low coverage. 
+With 'error pattern' I mean the relative chances of a true homozygote `r gr('AA')` being erroneously scored as a heterozygote **Aa** versus the other homozygote **aa**, versus a true `r gr('Aa')` being observed as **AA** or **aa**. 
 
-Because there is no one-size-fits-all error model for SNP genotypes, `sequoia` offers full flexibility in specifying the error pattern. This is done via a 3x3 matrix (heterozygotes **Aa** and **aA** are interchangeable) with the probabilities of observing genotype $y$ given true genotype $x$. 
+The pattern of genotyping errors will depend on the genotyping method and the software used to call SNPs. For SNP arrays, the clustering based on the intensity of the **A** vs **a** probe results in the chance of a true `r gr('AA')` being scored as **Aa** being about as likely as the reverse. In contrast, for sequencing-based methods scoring a true `r gr('Aa')` erroneously as a homozygote is much more likely than the reverse, especially with low coverage. 
+
+Because there is thus no one-size-fits-all error model, `sequoia` offers full flexibility in specifying the error pattern. This can be done either
+
+- via a length 3 vector, if the two alleles are interchangeable with respect to error rate (so that e.g. $P(**aa**|`r gr('Aa')`) == P(**AA**|`r gr('Aa')`)), or
+- via a 3x3 matrix, which only assumes that the heterozygotes `r gr('Aa')` and `r gr('aA')` are interchangeable.
 
 
 ## Default model
 
-The default error model is based on SNP array genotyping, and from version 2.0 onwards is defined as:
+The default error model is based on SNP array genotyping, and from version 2.9 onwards is defined as:
 
 ```{r ErrM, echo=FALSE, eval=TRUE, results="asis"}
 ErrM <- matrix(c("$(1-E/2)^2$", "$E(1-E/2)$", "$(E/2)^2$",
                  "$E/2$", "$1-E$", "$E/2$",
                  "$(E/2)^2$", "$E(1-E/2)$", "$(1-E/2)^2$"),
                3,3, byrow=TRUE,
-               dimnames=rep(list(c("**aa**","**Aa**","**AA**")), 2))
+               dimnames=rep(list(c("aa","Aa","AA")), 2))
 knitr::kable(ErrM,
-             caption = "Probability of observed genotype (columns) conditional on actual genotype (rows) and per-locus error rate E", escape=FALSE, booktabs=TRUE,
-             position="!hb")
+             caption = "Probability of observed genotype (columns) conditional on actual genotype (rows) and per-locus error rate E", escape=FALSE, position="!hb") %>%
+               kable_styling(full_width=FALSE) %>%
+  column_spec(1, color='grey', bold=TRUE)
 ```
 
 
-Which for an error rate of 1% translates to:
+Which for an error rate of 5% translates to:
 ```{r }
-sequoia::ErrToM(Err=0.01)
+sequoia::ErrToM(Err=0.05) %>% round(4)
 ```
 
 where 0, 1 or 2 refers to the number of copies of the reference allele **A**. 
 
+Under this model, the probability that the genotype is observed correctly is $1-E$, irrespective of the true genotype. The probability that a genotype is correct, *does* differ between observed heterozygotes and observed homozygotes:
 
-When the true genotype is homozygote **aa** (top row), the probabilities are derived as follows:
-
-* **aa**: the probability that neither allele is observed incorrectly, i.e. $(1-E/2) \times (1-E/2)$
-
-* **Aa**: the probability that the first allele is mis-observed ($E/2$) and the second allele is not ($1-E/2$), plus *vice versa*. Thus, $P=2 \times (E/2) \times (1-E/2) = E (1-E/2)$. 
-
-* **AA**: the probability that both alleles are observed incorrectly
+```{r}
+ErM <- sequoia::ErrToM(Err=0.05)
+round( 0.95/colSums(ErM), 3)
+```
+So an observed heterozygote has a 90.6% chance to be correct, while a observed homozygote a 97.4% chance. 
 
 
-### Error model in previous versions 
+### Error model for sequence-based methods
+For RADseq and similar methods, any observed homozygote may be a heterozygote with relatively high probability, especially with low coverage, while any heterozygote is much less likely to be incorrect. 
 
-$(E/2)^2 \approx 0$ and $(1-E/2)^2 \approx 1-E$, as illustrated in the example for `Err=0.01`. This implies that the current default error model does not differ as much from the simpler error model in version 0.9 as may seem at first glance:
+We can specify this for example as follows [^3] (numbers are completely random!!):
 
-```{r ErrM-09, echo=FALSE, eval=TRUE, results="asis"}
-ErrM <- matrix(c("$1-E$", "$E$", "$0$",
-                 "$E/2$", "$1-E$", "$E/2$",
-                 "$0$", "$E$", "$1-E$"),
-               3,3, byrow=TRUE,
-               dimnames=rep(list(c("**aa**","**Aa**","**AA**")), 2))
-knitr::kable(ErrM,
-             caption = "As previous table, for sequoia 0.9", escape=FALSE, booktabs=TRUE,
-             position="!hb")
+```{r}
+ErrV_RAD <- c(0.002^2, # hom|hom: true hom observed as other hom
+              0.002,   # het|hom: true hom observed as het
+              0.05)    # hom|het: true het observed as hom 
 ```
 
-Using a value of $0$ in the error matrix is not advised, as it puts an infinite amount of weight on the locus if it does happen after all (see also [Cromwell's rule](https://en.wikipedia.org/wiki/Cromwell%27s_rule). 
+for an allelic dropout rate of 5%, and an error rate of 0.2% per allele, giving a hom-to-other-hom error rate of $0.001^2 = 1e-6$. This can be turned into a error matrix for double checking:
 
+```{r}
+ErM_RAD <- sequoia::ErrToM(Err = ErrV_RAD, Return='matrix')
+ErM_RAD
 
-## Per-locus vs per-allele error rate
-The error rate $E$ (`Err`) in the previous part represents the per-locus error rate; the per-allele error rate is $E/2$. There appears to be no consistency in the literature on whether the per-locus or per-allele error rate is used, so it is worth making sure it is defined consistently throughout your analysis pipeline. For pedigree reconstruction with `sequoia`, being off by a factor 2 should generally not have large consequences. 
-
-If you prefer, you could easily re-define the error matrix in terms of a per-allele error rate (say $\epsilon$):
-
-```{r ErrM-allele, echo=FALSE, eval=TRUE, results="asis"}
-ErrM <- matrix(c("$(1-\\epsilon)^2$", "$2\\epsilon(1-\\epsilon)$", "$\\epsilon^2$",
-                 "$\\epsilon$", "$1-2\\epsilon$", "$\\epsilon$",
-                 "$\\epsilon^2$", "$2\\epsilon(1-\\epsilon)$", "$(1-\\epsilon)^2$"),
-               3,3, byrow=TRUE,
-               dimnames=rep(list(c("**aa**","**Aa**","**AA**")), 2))
-knitr::kable(ErrM,
-             caption = "Error matrix redefined with per-allele error rate $\\epsilon$", escape=FALSE, booktabs=TRUE,
-             position="!hb")
+round( diag(ErM_RAD) / colSums(ErM_RAD), 3)
 ```
+so now we have an error model where any observed heterozygote has a 0.4% probability to be incorrect, and any observed homozygote a 4.8% probability.  
 
-This can be done via `sequoia()` argument `Err` or `ErrFlavour`, as described next. 
 
+## Specify error matrix
+You can pass a 3x3 matrix to `Err`, with the only requirement that rows must sum to 1 (each actual genotype is observed as either **aa**, **Aa**, or **AA**). You can use this if for example the homozygote for the reference allele may be more likely to be mis-typed than the homozygote for the alternative allele, the heterozygote may be mis-typed with different probabilities for the two homozygotes, or whatever else is appropriate for your dataset.
 
-## Changing the error model
-
-### via `Err`
-You can pass a 3x3 matrix to `Err`, for which the only requirement is that rows must sum to 1. The homozygote for the reference allele may be more likely to be mis-typed than the homozygote for the alternative allele, the heterozygote may be mis-typed with different probabilities for the two homozygotes, or whatever else is appropriate for your dataset.
-
-For example, you have the following counts from genotyping some samples several times:
+For example, you may have the following counts from genotyping some samples several times:
 
 ```{r, eval=TRUE}
 ErrCount <- matrix(c(14, 3, 5,
@@ -114,7 +119,7 @@ ErrCount <- matrix(c(14, 3, 5,
                    nrow=3, byrow=TRUE)
 ErrCount
 ```
-A problem here is the cell with $0$: by leaving this as is, it would imply that true **A** can never be observed as **aa**, even if we would genotype thousands of samples. That seems unlikely, so as a quick fix let's pretend that if we had genotyped twice as many, we would have found 1 error:
+A problem here is the cell with $0$: by leaving this as is, it would imply that true `r gr('AA')` can never be observed as **aa**, even if we would genotype thousands of samples. That seems unlikely, so as a quick fix let's pretend that if we had genotyped twice as many, we would have found 1 error:
 ```{r}
 ErrCount[3,1] <- 0.5
 ```
@@ -122,9 +127,10 @@ ErrCount[3,1] <- 0.5
 Then divide by rowsums, e.g. using `sweep()`:
 ```{r}
 ErrProbs <- sweep(ErrCount, MARGIN=1, STATS=rowSums(ErrCount), FUN="/")
-round(ErrProbs, 3)
+ErrProbs %>% round(3)
 ```
-and use this as input for the `sequoia()` analysis:
+
+and then you can use this as input for the `sequoia()` analysis:
 ```{r, eval=FALSE}
 SeqOUT <- sequoia(GenoData, LifeHistData,
                   Err = ErrProbs)
@@ -133,41 +139,71 @@ SeqOUT <- sequoia(GenoData, LifeHistData,
 In reality you probably want something a bit more sophisticated, e.g. relying on the known error pattern for your genotyping platform. 
 
 
+### Do not use 0
 
-### via `ErrFlavour`
-If you want to run `sequoia()` with several presumed error rates, you would need to re-calculate the 3x3 error matrix several times. You can do this yourself, or you can provide argument `ErrFlavour` with a function that turns a single number into a 3x3 matrix. 
+Using a value of $0$ in the error matrix is not advised, as it puts an infinite amount of weight on the locus if it does happen after all (see also [Cromwell's rule](https://en.wikipedia.org/wiki/Cromwell%27s_rule). 
 
-For example, to re-define the error matrix in terms of a per-allele error rate:
+
+
+
+## Specify a function (`ErrFlavour`)
+If you want to run `sequoia()` with several presumed error rates but with the same pattern, you can create a function that takes the value(s) as input, and returns either a length 3 vector (hom|hom, het|hom, hom|het), or a 3x3 matrix with rows summing to 1. If this function takes a single value as input, you can pass it directly to `sequoia()` or various other functions. Those will internally call `ErrToM()`, which takes care of the conversion to a 3x3 matrix. 
+
+For example,
 
 ```{r}
-ErFunc_allele <- function(Ea) {
-      matrix(c((1-Ea)^2, 2*Ea*(1-Ea), (Ea)^2,
-              Ea, 1-2*Ea, Ea,
-              (Ea)^2, 2*Ea*(1-Ea), (1-Ea)^2),
-             3,3, byrow=TRUE)
+RAD_flavour <- function(E)  c(E^2, E, .05+E)
+test <- sequoia(Geno_griffin, LH_griffin, Module='dup', quiet=TRUE,
+                Err=0.01, ErrFlavour=RAD_flavour)
+```
+
+you can inspect the error matrix with
+```{r}
+test$ErrM
+```
+
+
+### Per-allele error rate
+If you would want to keep the default error pattern, but specify `Err` as the per-allele rather than per-locus error rate, you may do this as follows:
+
+```{r}
+ErFunc_per_allele <- function(Ea) {
+  c(Ea^2, 2*Ea - Ea^2, Ea)
 }
 
-ErFunc_allele(0.01)
-ErFunc_allele(0.005)
+ErFunc_per_allele(0.01)
+
+ErrToM(Err=0.01, flavour = ErFunc_per_allele, Return = 'matrix')
+
+# and for comparison:
+ErrToM(Err=0.02, Return = 'vector')
 ```
-```{r, eval=FALSE}
-SeqOUT <- sequoia(GenoData, LifeHistData,
-                  Err = 0.005,
-                  ErrFlavour = ErFunc_allele)
-```
+
+
+
+### Inbuilt functions
+
+Currently the only inbuilt functions are ones that return the error pattern in earlier versions of `sequoia`. These are described in `?ErrToM`, and can be used by specifying e.g. `ErrFlavour = 'version1.3'`. 
+
+If you have a good reference for error patterns for RADseq etc, please let me know as I'd be more than happy to build those in. 
 
 
 
 ## Variation between SNPs
-Currently a constant error rate across all SNPs is assumed. It is unclear whether setting this presumed rate to the arithmetic mean rate (the regular average) across SNPs gives the best performance for real world data. Anecdotal evidence suggests that using a somewhat higher presumed error rate increases performance (more correct assignments and/or fewer incorrect assignments), but this has not been thoroughly explored. It may partly be due to confusion between the per-locus and per-allele error rate, but also due to the very skewed nature of most distributions (many alleles with low error rate, and some with high error rate), resulting in a arithmetic mean that is lower than the median. For rates, the harmonic mean may be more appropriate. 
+Currently a constant error rate across all SNPs is assumed. It is unclear whether setting this presumed rate to the arithmetic mean rate (the regular average) across SNPs gives the best performance for real world data, or if e.g. the harmonic mean or median may be more appropriate. 
+
+Anecdotal evidence suggests that using a somewhat higher presumed error rate increases performance (more correct assignments and/or fewer incorrect assignments), but this has not been thoroughly explored. It may partly be due to confusion between the per-locus and per-allele error rate, but also due to the very skewed nature of most distributions (many alleles with low error rate, and some with high error rate), resulting in a arithmetic mean that is lower than the median.
 
 
-## Implementation 
-The calculation of likelihoods incorporating genotyping errors is described in @huisman17, and can be explored using `CalcPairLL`. 
+## Effect of `Err` on pedigree reconstruction
+For each individual at each SNP the probability that the actual genotype is 0, 1 or 2 copies of the reference allele is estimated, based on among others its own observed genotype and the genotyping error rate $E$. If $E$ is close to zero, the actual genotype is assumed to be known with high certainty, and the likelihood differences between various relationships are large. The higher $E$, the fuzzier the differences between the relationships become, and the more challenging pedigree reconstruction is. This can be explored by running `CalcPairLL` a few times on the same pedigree with the same genetic data, only varying `Err`. 
 
-Noteworthy is that the probabilistic estimate of an individual's true genotype depends on its own observed genotype and its parents' estimated true genotypes, but *not on the genotypes of its offspring*. Doing so would potentially create an unstable seesaw situation, where assignment of a parent is both affected by and does affect that parent's estimated true genotype. 
+All details of calculation of likelihoods incorporating genotyping errors are described in @huisman17. 
 
-For dummy individuals, which do not have an observed genotype, the offspring genotypes do necessarily affect its estimated true genotype. To prevent the algorithm from seesawing marginal probabilities are calculated, excluding grandparents and/or one, two or all offspring from the calculation, as appropriate for a particular relationship likelihood (most importantly avoiding implicitly conditioning on oneself). 
+
+Noteworthy is that the probabilistic estimate of an individual's true genotype depends on its own observed genotype and its parents' estimated true genotypes, but *not on the genotypes of its offspring*. Doing so would potentially create an unstable seesaw situation, where assignment of a parent is both affected by and does affect that parent's estimated genotype. 
+
+For dummy individuals, which do not have an observed genotype, the offspring genotypes do necessarily affect its estimated genotype. To prevent the algorithm from seesawing, marginal probabilities are calculated, excluding grandparents and/or one, two or all offspring from the calculation, as appropriate for a particular relationship likelihood (most importantly avoiding implicitly conditioning on oneself). 
 
 The main reason those marginal probabilities are not implemented for genotyped individuals, is because of their relatively large computational cost, with negligible effect on the pedigree outcome for moderately high quality SNP data (error rate < 1% and low missingness).[^a] 
 
@@ -179,7 +215,7 @@ The main reason those marginal probabilities are not implemented for genotyped i
 Due to both the variation in error rate between SNPs and how genotyping errors are implemented, it is usually a good idea to run `sequoia()` with a few different presumed genotyping error rates. This allows you to make sure the results are robust against slight mis-specifications of this parameter, and/or to optimise the false negative and false positive assignment rates. 
 
 ### `Err = 0`
-`sequoia()` is not guaranteed to work with an assumed error rate of $0$, especially for more complex pedigrees. The problem is that a new assignment considers only the direct vicinity of the putative parent-offspring pair, not the full pedigree. An assignment will have cascading effects on the probabilities of the true, underlying genotypes of dummy or partially genotyped individuals downstream in the pedigree, which may result in impossibilities when `Err=0` but genotyping errors are present. 
+`sequoia()` is not guaranteed to work with an assumed error rate of $0$, especially not for more complex pedigrees. The problem is that a new assignment considers only the direct vicinity of the putative parent-offspring pair, not the full pedigree. An assignment will have cascading effects on the probabilities of the true, underlying genotypes of dummy or partially genotyped individuals downstream in the pedigree, which may result in impossibilities when `Err=0` but genotyping errors are present. 
 
 
 

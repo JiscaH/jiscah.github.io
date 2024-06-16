@@ -18,7 +18,7 @@ CalcRped <- function(Pedigree, OUT="DF")
     stop("'OUT' must be 'M' (matrix) or 'DF' (data.frame)")
 
   if (!requireNamespace("kinship2", quietly = TRUE)) {
-    if (interactive())  message("Installing pkg 'kinship2'... ")
+    if (interactive())  cli::cli_alert_info("Installing package {.pkg kinship2}... ")
     utils::install.packages("kinship2")
   }
 
@@ -30,6 +30,7 @@ CalcRped <- function(Pedigree, OUT="DF")
                                              sex=Sex))
   Ped.k <- with(Ped.fix, kinship2::pedigree(id, dadid, momid, sex, missid=0))
   kin.M <- kinship2::kinship(Ped.k)
+  kin.M <- kin.M[Pedigree$id, Pedigree$id]   # drop dummies created by FillParents=TRUE
   if (OUT == "M") {
     return( 2*kin.M )
 

@@ -3,7 +3,7 @@
   log10-likelihoods of being PO, FS, HS, GP, FA, HA, U (see Details).
   Individuals must be genotyped or have at least one genotyped offspring.
 NOTE values \(&amp;gt;0\) are various NA types, see 'Likelihood
-  special codes' in 'Value' section below."><title>Calculate Likelihoods for Alternative Relationships — CalcPairLL • sequoia</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Calculate Likelihoods for Alternative Relationships — CalcPairLL"><meta property="og:description" content="For each specified pair of individuals, calculate the
+  special codes' in 'Value' section below."><title>Calculate Likelihoods for Alternative Relationships — CalcPairLL • sequoia</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Calculate Likelihoods for Alternative Relationships — CalcPairLL"><meta property="og:description" content="For each specified pair of individuals, calculate the
   log10-likelihoods of being PO, FS, HS, GP, FA, HA, U (see Details).
   Individuals must be genotyped or have at least one genotyped offspring.
 NOTE values \(&amp;gt;0\) are various NA types, see 'Likelihood
@@ -18,7 +18,7 @@ NOTE values \(&amp;gt;0\) are various NA types, see 'Likelihood
     
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.11.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,7 +123,7 @@ NOTE values \(&amp;gt;0\) are various NA types, see 'Likelihood
 <span>  Complex <span class="op">=</span> <span class="st">"full"</span>,</span>
 <span>  Herm <span class="op">=</span> <span class="st">"no"</span>,</span>
 <span>  Err <span class="op">=</span> <span class="fl">1e-04</span>,</span>
-<span>  ErrFlavour <span class="op">=</span> <span class="st">"version2.0"</span>,</span>
+<span>  ErrFlavour <span class="op">=</span> <span class="st">"version2.9"</span>,</span>
 <span>  Tassign <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  Tfilter <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -175,9 +175,10 @@ of ID1 were unknown.</p></dd>
 
 
 <dt>GenoM</dt>
-<dd><p>numeric matrix with genotype data: One row per individual, and
-one column per SNP, coded as 0, 1, 2 or -9 (missing). See also
-<code><a href="GenoConvert.html">GenoConvert</a></code>.</p></dd>
+<dd><p>numeric matrix with genotype data: One row per individual,
+one column per SNP, coded as 0, 1, 2, missing values as a negative number
+or NA. You can reformat data with <code><a href="GenoConvert.html">GenoConvert</a></code>, or use other
+packages to get it into a genlight object and then use <code>as.matrix</code>.</p></dd>
 
 
 <dt>Pedigree</dt>
@@ -436,6 +437,7 @@ non-assignment, but will increase computational time.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">CalcPairLL</span><span class="op">(</span>Pairs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>ID1<span class="op">=</span><span class="st">'i116_2006_M'</span>, ID2<span class="op">=</span><span class="st">'i119_2006_M'</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>           GenoM <span class="op">=</span> <span class="va">Geno_griffin</span>, Err <span class="op">=</span> <span class="fl">1e-04</span>, Plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Not conditioning on any pedigree</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           ID1         ID2 Sex1 Sex2 AgeDif focal patmat dropPar1 dropPar2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 i116_2006_M i119_2006_M    3    3     NA     U      1     none     none</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        PO     FS      HS      GP      FA      HA       U TopRel LLR</span>
@@ -445,13 +447,13 @@ non-assignment, but will increase computational time.</p></dd>
 <span class="r-in"><span><span class="co"># Example: dams for bottom 3 individuals</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">PedigreePar</span>, n<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              id         dam        sire LLRdam LLRsire LLRpair OHdam OHsire</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 140 i198_2010_M i166_2009_F        &lt;NA&gt;  10.42      NA      NA     0     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 141 i199_2010_F i165_2009_F i141_2008_M   9.55    2.73   17.03     0      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 142 i200_2010_F i166_2009_F i142_2008_M   9.98   10.22   16.97     1      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140 i198_2010_M i166_2009_F        &lt;NA&gt;   8.62      NA      NA     1     NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141 i199_2010_F i165_2009_F i141_2008_M  14.67    4.96   16.17     0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 142 i200_2010_F i166_2009_F i142_2008_M  14.41    5.56   15.63     0      0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     MEpair</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 140     NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 141      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 142      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 142      0</span>
 <span class="r-in"><span><span class="co"># set up dataframe with these pairs. LLRdam &amp; LLRsire ignore any co-parent</span></span></span>
 <span class="r-in"><span><span class="va">Pairs_d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>ID1 <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">PedigreePar</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">140</span><span class="op">:</span><span class="fl">142</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>                      ID2 <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">PedigreePar</span><span class="op">$</span><span class="va">dam</span><span class="op">[</span><span class="fl">140</span><span class="op">:</span><span class="fl">142</span><span class="op">]</span>,</span></span>
@@ -461,8 +463,10 @@ non-assignment, but will increase computational time.</p></dd>
 <span class="r-in"><span><span class="co"># Calculate LL's, conditional on the rest of the pedigree + age differences</span></span></span>
 <span class="r-in"><span><span class="fu">CalcPairLL</span><span class="op">(</span><span class="va">Pairs_d</span>, GenoM <span class="op">=</span> <span class="va">Geno_griffin</span>, Err <span class="op">=</span> <span class="fl">1e-04</span>,</span></span>
 <span class="r-in"><span>           LifeHistData <span class="op">=</span> <span class="va">LH_griffin</span>, Pedigree <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">PedigreePar</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Pedigree-based, overlapping generations, flattened, MaxAgeParent = 99,99</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Conditioning on pedigree with 142 individuals, 65 dams and 79 sires</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Ageprior: Pedigree-based, overlapping generations, flattened, MaxAgeParent = 99,99</span>
 <span class="r-plt img"><img src="CalcPairLL-1.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Transferring input pedigree ...</span>
 <span class="r-plt img"><img src="CalcPairLL-2.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           ID1         ID2 Sex1 Sex2 AgeDif focal patmat dropPar1 dropPar2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 i198_2010_M i166_2009_F    2    1      1    PO      1     both     none</span>
@@ -476,6 +480,7 @@ non-assignment, but will increase computational time.</p></dd>
 <span class="r-in"><span><span class="co"># LLR changes when ignoring age and/or pedigree, as different relationships</span></span></span>
 <span class="r-in"><span><span class="co"># become (im)possible</span></span></span>
 <span class="r-in"><span><span class="fu">CalcPairLL</span><span class="op">(</span><span class="va">Pairs_d</span>, GenoM <span class="op">=</span> <span class="va">Geno_griffin</span>, Err <span class="op">=</span> <span class="fl">1e-04</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Not conditioning on any pedigree</span>
 <span class="r-plt img"><img src="CalcPairLL-3.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           ID1         ID2 Sex1 Sex2 AgeDif focal patmat dropPar1 dropPar2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 i198_2010_M i166_2009_F    3    3     NA    PO      1     both     none</span>
@@ -494,8 +499,10 @@ non-assignment, but will increase computational time.</p></dd>
 <span class="r-in"><span>                      dropPar1 <span class="op">=</span> <span class="st">'sire'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">CalcPairLL</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">Pairs_d</span>, <span class="va">Pairs_s</span><span class="op">)</span>, GenoM <span class="op">=</span> <span class="va">Geno_griffin</span>, Err <span class="op">=</span> <span class="fl">1e-04</span>,</span></span>
 <span class="r-in"><span>           LifeHistData <span class="op">=</span> <span class="va">LH_griffin</span>, Pedigree <span class="op">=</span> <span class="va">SeqOUT_griffin</span><span class="op">$</span><span class="va">PedigreePar</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Ageprior: Pedigree-based, overlapping generations, flattened, MaxAgeParent = 99,99</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Conditioning on pedigree with 142 individuals, 65 dams and 79 sires</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Ageprior: Pedigree-based, overlapping generations, flattened, MaxAgeParent = 99,99</span>
 <span class="r-plt img"><img src="CalcPairLL-4.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Transferring input pedigree ...</span>
 <span class="r-plt img"><img src="CalcPairLL-5.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           ID1         ID2 Sex1 Sex2 AgeDif focal patmat dropPar1 dropPar2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 i198_2010_M i166_2009_F    2    1      1    PO      1      dam     none</span>
@@ -530,6 +537,7 @@ non-assignment, but will increase computational time.</p></dd>
 <span class="r-in"><span>                                    <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">FivePairs</span>, focal <span class="op">=</span> <span class="st">"HS"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                                    <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">FivePairs</span>, focal <span class="op">=</span> <span class="st">"GP"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                     GenoM <span class="op">=</span> <span class="va">Geno_griffin</span>, Plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Not conditioning on any pedigree</span>
 <span class="r-in"><span><span class="va">PairLL</span><span class="op">[</span><span class="va">PairLL</span><span class="op">$</span><span class="va">ID1</span><span class="op">==</span><span class="st">"i121_2007_M"</span>, <span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            ID1         ID2 Sex1 Sex2 AgeDif focal patmat dropPar1 dropPar2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3  i121_2007_M i175_2009_M    3    3     NA    PO      1     none     none</span>
@@ -550,11 +558,11 @@ non-assignment, but will increase computational time.</p></dd>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Jisca Huisman.</p>
+  <p>Developed by Jisca Huisman.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
     </footer></div>

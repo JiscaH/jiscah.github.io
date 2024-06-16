@@ -1,2 +1,4 @@
 sequoia.dll
-sequoia.o
+*.o
+*.mod
+*.so
