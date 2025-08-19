@@ -21,14 +21,5 @@ For example:
 
 
 ### Consultancy work
-If you do not have the time or manpower to perform pedigree reconstruction (and to get familiar with yet another piece of software / R package), I may be able to assist you as [freelance consultant](./pedigree_consultancy.html).
-
-
-
-
-
-
-
-
-
-
+For several years I worked as freelance consultant, but from September 2025 I have started
+as researcher at Wageningen University and stopped with this consultancy work.

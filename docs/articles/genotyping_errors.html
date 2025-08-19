@@ -5,20 +5,19 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Error patterns; per-locus vs per-allele error rate
-">
 <title>Genotyping errors • sequoia</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Genotyping errors">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Genotyping errors">
+<meta name="description" content="Error patterns; per-locus vs per-allele error rate
+">
 <meta property="og:description" content="Error patterns; per-locus vs per-allele error rate
 ">
 <meta property="og:image" content="https://jiscah.github.io/reference/figures/sequoia_hexlogo.png">
@@ -26,100 +25,58 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@HuismanJisca">
 <meta name="twitter:site" content="@HuismanJisca">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-dark" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.11.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.3</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href=".././index.html">
-    <span class="fas fa fas fa-home"></span>
-     
-  </a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/sequoia.html">Get started</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Functions</a>
-</li>
+<li class="nav-item"><a class="nav-link" href=".././index.html" aria-label="home"><span class="fa fas fa-home"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/sequoia.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Functions</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/vignette_main/book/background.html">Main vignette: User guide</a>
-    <a class="dropdown-item" href="../articles/vignette_age/book/index.html">Age prior vignette</a>
-    <a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a>
-    <a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a>
-    <a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a>
-    <a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/vignette_main/book/background.html">Main vignette: User guide</a></li>
+    <li><a class="dropdown-item" href="../articles/vignette_age/book/index.html">Age prior vignette</a></li>
+    <li><a class="dropdown-item" href="../articles/sequoia_report.html">Mock report</a></li>
+    <li><a class="dropdown-item" href="../articles/index.html">Examples &amp; More info on ...</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="../articles/performance_stats.html">Performance Stats</a></li>
+    <li><a class="dropdown-item" href="../reference/figures/Poster_sequoia_ESEB2017.pdf">poster</a></li>
+    <li><a class="dropdown-item" href="../reference/figures/Slideshow_sequoia_background.pdf">slideshow with background info</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Change log</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Change log</a></li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-help">Help</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-help">
-    <a class="dropdown-item" href="../articles/help.html">Need help?</a>
-    <a class="dropdown-item" href="../articles/want_to_help.html">Want to help?</a>
-  </div>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/pedigree_consultancy.html">Consultancy</a>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-help" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Help</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-help">
+<li><a class="dropdown-item" href="../articles/help.html">Need help?</a></li>
+    <li><a class="dropdown-item" href="../articles/want_to_help.html">Want to help?</a></li>
+  </ul>
 </li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="nav-link" href="../mailto:jisca.huisman@gmail.com">
-    <span class="fas fa fas fa-envelope"></span>
-     
-  </a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/JiscaH/sequoia">
-    <span class="fab fa fab fa-github"></span>
-     
-  </a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://ecoevo.social/@HuismanJisca">
-    <span class="fab fa fab fa-mastodon"></span>
-     
-  </a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://www.linkedin.com/in/jisca-huisman-a4751153/">
-    <span class="fab fa fab fa-linkedin-in"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><a class="nav-link" href="../mailto:jisca.huisman@gmail.com" aria-label="email"><span class="fa fas fa-envelope"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/JiscaH/sequoia" aria-label="github"><span class="fa fab fa-github"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://ecoevo.social/@HuismanJisca" aria-label="mastodon"><span class="fa fab fa-mastodon"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://www.linkedin.com/in/jisca-huisman-a4751153/" aria-label="linkedin"><span class="fa fab fa-linkedin-in"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -128,30 +85,34 @@
 <script src="genotyping_errors_files/kePrint-0.0.1/kePrint.js"></script><link href="genotyping_errors_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Genotyping errors</h1>
+
+      <h1>Genotyping errors</h1>
             
       
-      
+
       <div class="d-none name"><code>genotyping_errors.Rmd</code></div>
     </div>
 
     
     
 <p>No genotyping method is 100% error free. For some methods, such as
-SNP arrays, the genotyping error rate <span class="math inline">\(E\)</span> is very low (say 0.01%). In those
-cases, the assumed error pattern will have no noticeable effect. For
-other methods, such as RADseq, the error rate is typically much higher
-(1%, or even 5%), and then the assumed pattern <em>can</em> have a
-noticeable effect.</p>
+SNP arrays, the genotyping error rate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>E</mi><annotation encoding="application/x-tex">E</annotation></semantics></math>
+is very low (say 0.01%). In those cases, the assumed error pattern will
+have no noticeable effect. For other methods, such as RADseq, the error
+rate is typically much higher (1%, or even 5%), and then the assumed
+pattern <em>can</em> have a noticeable effect.</p>
 <div class="section level2">
 <h2 id="per-locus-vs-per-allele-error-rate">Per-locus vs per-allele error rate<a class="anchor" aria-label="anchor" href="#per-locus-vs-per-allele-error-rate"></a>
 </h2>
-<p>The error rate <span class="math inline">\(E\)</span>
+<p>The error rate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>E</mi><annotation encoding="application/x-tex">E</annotation></semantics></math>
 (<code>Err</code>) throughout the <code>sequoia</code> documentation
-represents the per-locus error rate; the per-allele error rate is <span class="math inline">\(E/2\)</span>. There appears to be no consistency
-in the literature on whether the per-locus or per-allele error rate is
-used, so it is worth making sure it is defined consistently throughout
-your analysis pipeline.</p>
+represents the per-locus error rate; the per-allele error rate is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">E/2</annotation></semantics></math>.
+There appears to be no consistency in the literature on whether the
+per-locus or per-allele error rate is used, so it is worth making sure
+it is defined consistently throughout your analysis pipeline.</p>
 </div>
 <div class="section level2">
 <h2 id="error-patterns">Error patterns<a class="anchor" aria-label="anchor" href="#error-patterns"></a>
@@ -209,13 +170,13 @@ AA
 aa
 </td>
 <td style="text-align:left;">
-<span class="math inline">\((1-E/2)^2\)</span>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>E</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><annotation encoding="application/x-tex">(1-E/2)^2</annotation></semantics></math>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(E(1-E/2)\)</span>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>E</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">E(1-E/2)</annotation></semantics></math>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\((E/2)^2\)</span>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>E</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><annotation encoding="application/x-tex">(E/2)^2</annotation></semantics></math>
 </td>
 </tr>
 <tr>
@@ -223,13 +184,13 @@ aa
 Aa
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(E/2\)</span>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">E/2</annotation></semantics></math>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(1-E\)</span>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>−</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">1-E</annotation></semantics></math>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(E/2\)</span>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">E/2</annotation></semantics></math>
 </td>
 </tr>
 <tr>
@@ -237,13 +198,13 @@ Aa
 AA
 </td>
 <td style="text-align:left;">
-<span class="math inline">\((E/2)^2\)</span>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>E</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><annotation encoding="application/x-tex">(E/2)^2</annotation></semantics></math>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\(E(1-E/2)\)</span>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>E</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">E(1-E/2)</annotation></semantics></math>
 </td>
 <td style="text-align:left;">
-<span class="math inline">\((1-E/2)^2\)</span>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>E</mi><mi>/</mi><mn>2</mn><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><annotation encoding="application/x-tex">(1-E/2)^2</annotation></semantics></math>
 </td>
 </tr>
 </tbody>
@@ -251,22 +212,24 @@ AA
 <p>Which for an error rate of 5% translates to:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">sequoia</span><span class="fu">::</span><span class="fu"><a href="../reference/ErrToM.html">ErrToM</a></span><span class="op">(</span>Err<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##       obs-0|act obs-1|act obs-2|act</span></span>
-<span><span class="co">## act-0    0.9500    0.0494    0.0006</span></span>
-<span><span class="co">## act-1    0.0250    0.9500    0.0250</span></span>
-<span><span class="co">## act-2    0.0006    0.0494    0.9500</span></span></code></pre>
+<pre><code><span><span class="co">##    obs</span></span>
+<span><span class="co">## act      0      1      2</span></span>
+<span><span class="co">##   0 0.9500 0.0494 0.0006</span></span>
+<span><span class="co">##   1 0.0250 0.9500 0.0250</span></span>
+<span><span class="co">##   2 0.0006 0.0494 0.9500</span></span></code></pre>
 <p>where 0, 1 or 2 refers to the number of copies of the reference
 allele <strong>A</strong>.</p>
 <p>Under this model, the probability that the genotype is observed
-correctly is <span class="math inline">\(1-E\)</span>, irrespective of
-the true genotype. The probability that a genotype is correct,
-<em>does</em> differ between observed heterozygotes and observed
-homozygotes:</p>
+correctly is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>−</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">1-E</annotation></semantics></math>,
+irrespective of the true genotype. The probability that a genotype is
+correct, <em>does</em> differ between observed heterozygotes and
+observed homozygotes:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ErM</span> <span class="op">&lt;-</span> <span class="fu">sequoia</span><span class="fu">::</span><span class="fu"><a href="../reference/ErrToM.html">ErrToM</a></span><span class="op">(</span>Err<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span> <span class="fl">0.95</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">ErM</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## obs-0|act obs-1|act obs-2|act </span></span>
-<span><span class="co">##     0.974     0.906     0.974</span></span></code></pre>
+<pre><code><span><span class="co">##     0     1     2 </span></span>
+<span><span class="co">## 0.974 0.906 0.974</span></span></code></pre>
 <p>So an observed heterozygote has a 90.6% chance to be correct, while a
 observed homozygote a 97.4% chance.</p>
 <div class="section level3">
@@ -283,19 +246,21 @@ completely random!!):</p>
 <span>              <span class="fl">0.002</span>,   <span class="co"># het|hom: true hom observed as het</span></span>
 <span>              <span class="fl">0.05</span><span class="op">)</span>    <span class="co"># hom|het: true het observed as hom </span></span></code></pre></div>
 <p>for an allelic dropout rate of 5%, and an error rate of 0.2% per
-allele, giving a hom-to-other-hom error rate of <span class="math inline">\(0.001^2 = 1e-6\)</span>. This can be turned into a
-error matrix for double checking:</p>
+allele, giving a hom-to-other-hom error rate of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>0.001</mn><mn>2</mn></msup><mo>=</mo><mn>1</mn><mi>e</mi><mo>−</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">0.001^2 = 1e-6</annotation></semantics></math>.
+This can be turned into a error matrix for double checking:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ErM_RAD</span> <span class="op">&lt;-</span> <span class="fu">sequoia</span><span class="fu">::</span><span class="fu"><a href="../reference/ErrToM.html">ErrToM</a></span><span class="op">(</span>Err <span class="op">=</span> <span class="va">ErrV_RAD</span>, Return<span class="op">=</span><span class="st">'matrix'</span><span class="op">)</span></span>
 <span><span class="va">ErM_RAD</span></span></code></pre></div>
-<pre><code><span><span class="co">##       obs-0|act obs-1|act obs-2|act</span></span>
-<span><span class="co">## act-0  0.997996     0.002  0.000004</span></span>
-<span><span class="co">## act-1  0.050000     0.900  0.050000</span></span>
-<span><span class="co">## act-2  0.000004     0.002  0.997996</span></span></code></pre>
+<pre><code><span><span class="co">##    obs</span></span>
+<span><span class="co">## act        0     1        2</span></span>
+<span><span class="co">##   0 0.997996 0.002 0.000004</span></span>
+<span><span class="co">##   1 0.050000 0.900 0.050000</span></span>
+<span><span class="co">##   2 0.000004 0.002 0.997996</span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">ErM_RAD</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">ErM_RAD</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## obs-0|act obs-1|act obs-2|act </span></span>
-<span><span class="co">##     0.952     0.996     0.952</span></span></code></pre>
+<pre><code><span><span class="co">##     0     1     2 </span></span>
+<span><span class="co">## 0.952 0.996 0.952</span></span></code></pre>
 <p>so now we have an error model where any observed heterozygote has a
 0.4% probability to be incorrect, and any observed homozygote a 4.8%
 probability.</p>
@@ -324,12 +289,12 @@ samples several times:</p>
 <span><span class="co">## [1,]   14    3    5</span></span>
 <span><span class="co">## [2,]    4   28    9</span></span>
 <span><span class="co">## [3,]    0    4   72</span></span></code></pre>
-<p>A problem here is the cell with <span class="math inline">\(0\)</span>: by leaving this as is, it would imply
-that true <span style="color: grey;"><strong>AA</strong></span> can
-never be observed as <strong>aa</strong>, even if we would genotype
-thousands of samples. That seems unlikely, so as a quick fix let’s
-pretend that if we had genotyped twice as many, we would have found 1
-error:</p>
+<p>A problem here is the cell with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>:
+by leaving this as is, it would imply that true <span style="color: grey;"><strong>AA</strong></span> can never be observed as
+<strong>aa</strong>, even if we would genotype thousands of samples.
+That seems unlikely, so as a quick fix let’s pretend that if we had
+genotyped twice as many, we would have found 1 error:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ErrCount</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span></code></pre></div>
 <p>Then divide by rowsums, e.g. using <code><a href="https://rdrr.io/r/base/sweep.html" class="external-link">sweep()</a></code>:</p>
@@ -351,9 +316,10 @@ platform.</p>
 <div class="section level3">
 <h3 id="do-not-use-0">Do not use 0<a class="anchor" aria-label="anchor" href="#do-not-use-0"></a>
 </h3>
-<p>Using a value of <span class="math inline">\(0\)</span> in the error
-matrix is not advised, as it puts an infinite amount of weight on the
-locus if it does happen after all (see also <a href="https://en.wikipedia.org/wiki/Cromwell%27s_rule" class="external-link">Cromwell’s
+<p>Using a value of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>
+in the error matrix is not advised, as it puts an infinite amount of
+weight on the locus if it does happen after all (see also <a href="https://en.wikipedia.org/wiki/Cromwell%27s_rule" class="external-link">Cromwell’s
 rule</a>.</p>
 </div>
 </div>
@@ -376,10 +342,11 @@ matrix.</p>
 <p>you can inspect the error matrix with</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test</span><span class="op">$</span><span class="va">ErrM</span></span></code></pre></div>
-<pre><code><span><span class="co">##       obs-0|act obs-1|act obs-2|act</span></span>
-<span><span class="co">## act-0    0.9899      0.01    0.0001</span></span>
-<span><span class="co">## act-1    0.0600      0.88    0.0600</span></span>
-<span><span class="co">## act-2    0.0001      0.01    0.9899</span></span></code></pre>
+<pre><code><span><span class="co">##    obs</span></span>
+<span><span class="co">## act      0    1      2</span></span>
+<span><span class="co">##   0 0.9899 0.01 0.0001</span></span>
+<span><span class="co">##   1 0.0600 0.88 0.0600</span></span>
+<span><span class="co">##   2 0.0001 0.01 0.9899</span></span></code></pre>
 <div class="section level3">
 <h3 id="per-allele-error-rate">Per-allele error rate<a class="anchor" aria-label="anchor" href="#per-allele-error-rate"></a>
 </h3>
@@ -395,10 +362,11 @@ may do this as follows:</p>
 <pre><code><span><span class="co">## [1] 0.0001 0.0199 0.0100</span></span></code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ErrToM.html">ErrToM</a></span><span class="op">(</span>Err<span class="op">=</span><span class="fl">0.01</span>, flavour <span class="op">=</span> <span class="va">ErFunc_per_allele</span>, Return <span class="op">=</span> <span class="st">'matrix'</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##       obs-0|act obs-1|act obs-2|act</span></span>
-<span><span class="co">## act-0    0.9800    0.0199    0.0001</span></span>
-<span><span class="co">## act-1    0.0100    0.9800    0.0100</span></span>
-<span><span class="co">## act-2    0.0001    0.0199    0.9800</span></span></code></pre>
+<pre><code><span><span class="co">##    obs</span></span>
+<span><span class="co">## act      0      1      2</span></span>
+<span><span class="co">##   0 0.9800 0.0199 0.0001</span></span>
+<span><span class="co">##   1 0.0100 0.9800 0.0100</span></span>
+<span><span class="co">##   2 0.0001 0.0199 0.9800</span></span></code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># and for comparison:</span></span>
 <span><span class="fu"><a href="../reference/ErrToM.html">ErrToM</a></span><span class="op">(</span>Err<span class="op">=</span><span class="fl">0.02</span>, Return <span class="op">=</span> <span class="st">'vector'</span><span class="op">)</span></span></code></pre></div>
@@ -437,13 +405,17 @@ resulting in a arithmetic mean that is lower than the median.</p>
 <p>For each individual at each SNP the probability that the actual
 genotype is 0, 1 or 2 copies of the reference allele is estimated, based
 on among others its own observed genotype and the genotyping error rate
-<span class="math inline">\(E\)</span>. If <span class="math inline">\(E\)</span> is close to zero, the actual genotype
-is assumed to be known with high certainty, and the likelihood
-differences between various relationships are large. The higher <span class="math inline">\(E\)</span>, the fuzzier the differences between
-the relationships become, and the more challenging pedigree
-reconstruction is. This can be explored by running
-<code>CalcPairLL</code> a few times on the same pedigree with the same
-genetic data, only varying <code>Err</code>.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>E</mi><annotation encoding="application/x-tex">E</annotation></semantics></math>.
+If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>E</mi><annotation encoding="application/x-tex">E</annotation></semantics></math>
+is close to zero, the actual genotype is assumed to be known with high
+certainty, and the likelihood differences between various relationships
+are large. The higher
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>E</mi><annotation encoding="application/x-tex">E</annotation></semantics></math>,
+the fuzzier the differences between the relationships become, and the
+more challenging pedigree reconstruction is. This can be explored by
+running <code>CalcPairLL</code> a few times on the same pedigree with
+the same genetic data, only varying <code>Err</code>.</p>
 <p>All details of calculation of likelihoods incorporating genotyping
 errors are described in <span class="citation">Huisman (<a href="#ref-huisman17">2017</a>)</span>.</p>
 <p>Noteworthy is that the probabilistic estimate of an individual’s true
@@ -480,14 +452,15 @@ false negative and false positive assignment rates.</p>
 <code>Err = 0</code><a class="anchor" aria-label="anchor" href="#err-0"></a>
 </h3>
 <p><code><a href="../reference/sequoia.html">sequoia()</a></code> is not guaranteed to work with an assumed
-error rate of <span class="math inline">\(0\)</span>, especially not for
-more complex pedigrees. The problem is that a new assignment considers
-only the direct vicinity of the putative parent-offspring pair, not the
-full pedigree. An assignment will have cascading effects on the
-probabilities of the true, underlying genotypes of dummy or partially
-genotyped individuals downstream in the pedigree, which may result in
-impossibilities when <code>Err=0</code> but genotyping errors are
-present.</p>
+error rate of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math>,
+especially not for more complex pedigrees. The problem is that a new
+assignment considers only the direct vicinity of the putative
+parent-offspring pair, not the full pedigree. An assignment will have
+cascading effects on the probabilities of the true, underlying genotypes
+of dummy or partially genotyped individuals downstream in the pedigree,
+which may result in impossibilities when <code>Err=0</code> but
+genotyping errors are present.</p>
 <hr>
 </div>
 <div class="section level3 unnumbered">
@@ -503,7 +476,7 @@ Beyond.”</span> <em>Molecular Ecology Resources</em> 17 (5): 1009–24.
 </div>
 </div>
 
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
@@ -514,15 +487,15 @@ Beyond.”</span> <em>Molecular Ecology Resources</em> 17 (5): 1009–24.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>

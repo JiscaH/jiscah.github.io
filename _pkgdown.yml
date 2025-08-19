@@ -15,11 +15,7 @@ home:
   title: Pedigrees from SNP data
   description: An R package to reconstruct multi-generational pedigrees, with any proportion of genotyped parents
   sidebar:
-    structure: [links, fundme, license, citation, authors, dev]
-    components:
-      fundme:
-        title:
-        text: <a href="https://ko-fi.com/sequoia_r"> <img src="man/figures/kofi_s_tag_white.png" width="185" height="70" alt="ko-fi"/></a>
+    structure: [links, license, citation, authors, dev]
   links:
   - text: Browse source code
     href: https://github.com/JiscaH/sequoia/
@@ -36,6 +32,7 @@ navbar:
   left:
     - icon: fas fa-home
       href: ./index.html
+      aria-label: home
     - text: "Get started"
       href: articles/sequoia.html
     - text: "Functions"
@@ -65,17 +62,19 @@ navbar:
           href: articles/help.html
         - text: "Want to help?"
           href: articles/want_to_help.html
-    - text: "Consultancy"
-      href: articles/pedigree_consultancy.html
   right:
     - icon: fas fa-envelope
       href: mailto:jisca.huisman@gmail.com
+      aria-label: email
     - icon: fab fa-github
       href: https://github.com/JiscaH/sequoia
+      aria-label: github
     - icon: fab fa-mastodon
       href: https://ecoevo.social/@HuismanJisca
+      aria-label: mastodon
     - icon: fab fa-linkedin-in
       href: https://www.linkedin.com/in/jisca-huisman-a4751153/
+      aria-label: linkedin
 
 
 articles:
@@ -92,6 +91,7 @@ articles:
     - mendelian_inheritance
     - pairLL_classification
     - mtDNA
+    - howto_RADseq
 
 
 reference:
@@ -130,6 +130,8 @@ reference:
   - "CalcPairLL"
   - "PlotPairLL"
   - "GetLLRAge"
+  - "LLtoProb"
+  - "CalcParentProbs"
 
 - title: Pedigree check
   descr: These functions can be applied to any pedigree, no genetic data needed
@@ -150,15 +152,12 @@ reference:
   - "PedCompare"
   - "PlotPedComp"
   - "ComparePairs"
-- subtitle: Deprecated
-- contents:
-    - "DyadCompare"
 
 - title: Miscellaneous
 - contents:
     - "PedPolish"
     - "ErrToM"
-    - "EstEr"
+    - "Err_RADseq"
     - "writeSeq"
     - "writeColumns"
     - "FindFamilies"
@@ -178,3 +177,8 @@ reference:
     - "SeqOUT_griffin"
     - 'Conf_griffin'
     - 'MaybeRel_griffin'
+
+- subtitle: Deprecated
+- contents:
+    - "DyadCompare"
+    - "EstEr"

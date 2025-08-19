@@ -35,6 +35,7 @@ if (!all(params$output_sequoia %in% c('NA', NA))) {
 } else {
   GenoM <- Geno_griffin
   SeqOUT <- SeqOUT_griffin
+  SeqOUT$ErrM <- ErrToM( ErrToM(SeqOUT_griffin$ErrM, Return='vector') )  # fix dimnames
   Conf <- Conf_griffin
 }
 Maybe <- params$output_GetMaybeRel
@@ -49,7 +50,7 @@ package. The markdown file can be found at [https://github.com/JiscaH/sequoiaExt
 
 ------------------------------------------------------------------------
 
-This pedigree was reconstructed using the R package `sequoia`.
+This pedigree was reconstructed using the R package `sequoia`. 
 
 The R package `sequoia` reconstructs the pedigree in two steps: first genotyped parents are
 assigned to genotyped offspring ('parentage assignment'), followed by clustering
@@ -75,10 +76,9 @@ kable(as.data.frame(t(SeqOUT$Specs)), booktabs=TRUE) %>%
 
 Genotyping error: probability that actual genotype 'act' (rows) is observed as 
 genotype 'obs' (columns).
+
 ```{r ErrM}
-kable(SeqOUT$ErrM,
-      caption = 'Presumed genotyping error rate', booktabs=TRUE) %>%
-  kable_styling(full_width = FALSE)
+SeqOUT$ErrM
 # Note: this error matrix can be fully customised, see ?ErrToM
 ```
 
