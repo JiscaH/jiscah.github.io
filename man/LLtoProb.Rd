@@ -15,8 +15,9 @@ a vector with probabilities, with the same length and names.
 \description{
 transform a vector with log10 likelihoods to a vector with
  probabilities summing to one.
-
- @details The returned probabilities are calculated from the likelihoods used
+}
+\details{
+The returned probabilities are calculated from the likelihoods used
   throughout the rest of this package, by scaling them to sum to one across
   all possible relationships. For \code{Complex='simp'} these are
   PO=parent-offspring, FS=full siblings, HS=half siblings, GP=grand-parental,
