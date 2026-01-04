@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,7 +114,7 @@ of personal preference, but I tend to think of them as this kind of
 table:</p>
 <p>Table 1: Possible offspring genotypes conditional on two parental
 genotypes</p>
-<p><img src="figs/Mendelian_inheritance_table.png" width="70%"></p>
+<p><img src="figs/Mendelian_inheritance_table.png" class="r-plt" alt="" width="70%"></p>
 <p>which shows the possible offspring genotypes that may result from
 each possible combination of parental genotypes. For example, if the
 mother is <strong>Aa</strong> and father <strong>AA</strong>, there is a
@@ -149,11 +149,11 @@ for <strong>AA</strong>, <strong>Aa</strong> and <strong>aa</strong>,
 respectively).</p>
 <p>Table 2: Possible offspring genotypes conditional on one parental
 genotype and the allele inherited from the other parent</p>
-<p><img src="figs/Mendelian_table_1parent.png" width="40%"></p>
+<p><img src="figs/Mendelian_table_1parent.png" class="r-plt" alt="" width="40%"></p>
 <p>Table 3: Probability of offspring genotype (columns) conditional on
 one parental genotype and population allele frequency q for the ‘A’
 allele</p>
-<p><img src="figs/Mendelian_prob_1parent.png" width="60%"></p>
+<p><img src="figs/Mendelian_prob_1parent.png" class="r-plt" alt="" width="60%"></p>
 </div>
 </div>
 <div class="section level2">
@@ -328,7 +328,7 @@ error rate (this assumption is not made by
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html" class="external-link">curve</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">dbinom</a></span><span class="op">(</span><span class="va">x</span>, size <span class="op">=</span> <span class="va">nSnp</span>, prob <span class="op">=</span> <span class="va">P.Mismatch</span><span class="op">)</span>,</span>
 <span>      from<span class="op">=</span><span class="fl">0</span>, to<span class="op">=</span><span class="fl">10</span>, n<span class="op">=</span><span class="fl">11</span>, type<span class="op">=</span><span class="st">"b"</span>,</span>
 <span>      xlab<span class="op">=</span><span class="st">"No. opposing homozygous loci"</span>, ylab<span class="op">=</span><span class="st">"Probability"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-4-1.png" width="576"></p>
+<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>OHcount <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">5</span>,</span>
 <span>      prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">dbinom</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">5</span>, size <span class="op">=</span> <span class="va">nSnp</span>, prob <span class="op">=</span> <span class="va">P.Mismatch</span><span class="op">)</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -430,8 +430,8 @@ individuals is counted for both SNP datasets:</p>
 <span><span class="co"># do upper triangle of matrix only, excluding diagonal (self)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">N</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="fl">1</span>, <span class="va">N</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">OH.highQ</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">CountOH</span><span class="op">(</span><span class="va">Geno.highQ</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span>, <span class="va">Geno.highQ</span><span class="op">[</span><span class="va">j</span>,<span class="op">]</span><span class="op">)</span></span>
-<span>    <span class="va">OH.lowQ</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">CountOH</span><span class="op">(</span><span class="va">Geno.lowQ</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span>, <span class="va">Geno.lowQ</span><span class="op">[</span><span class="va">j</span>,<span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="va">OH.highQ</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CountOH.html">CountOH</a></span><span class="op">(</span><span class="va">Geno.highQ</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span>, <span class="va">Geno.highQ</span><span class="op">[</span><span class="va">j</span>,<span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="va">OH.lowQ</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CountOH.html">CountOH</a></span><span class="op">(</span><span class="va">Geno.lowQ</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span>, <span class="va">Geno.lowQ</span><span class="op">[</span><span class="va">j</span>,<span class="op">]</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span><span class="op">}</span></span>
 <span></span>
@@ -441,7 +441,7 @@ individuals is counted for both SNP datasets:</p>
 <span>     main<span class="op">=</span><span class="st">"High quality:\n 500 SNPs, error rate 0.01%"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">OH.lowQ</span>, breaks<span class="op">=</span><span class="fl">25</span>, xlab<span class="op">=</span><span class="st">"No. SNPs opposing homozygous"</span>,</span>
 <span>     main<span class="op">=</span><span class="st">"Low quality:\n 100 SNPs, error rate 1%"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
+<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="100%"></p>
 <p>For the high quality SNP set there is a clear separation between the
 first peak (parent-offspring pairs, OH=0) and the second peak (all other
 pairs). For the low quality SNP set, there is an area where the two
@@ -459,7 +459,7 @@ peaks overlap. Zooming in shows this more clearly:</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v<span class="op">=</span><span class="fl">2</span>, lwd<span class="op">=</span><span class="fl">3</span>, lty<span class="op">=</span><span class="fl">2</span>, col<span class="op">=</span><span class="st">"forestgreen"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/rect.html" class="external-link">rect</a></span><span class="op">(</span>xleft<span class="op">=</span><span class="fl">0.5</span>, ybottom<span class="op">=</span><span class="op">-</span><span class="fl">50</span>, xright<span class="op">=</span><span class="fl">4.5</span>, ytop<span class="op">=</span><span class="fl">1200</span>,</span>
 <span>     col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="external-link">adjustcolor</a></span><span class="op">(</span><span class="st">"black"</span>, alpha.f<span class="op">=</span><span class="fl">0.4</span><span class="op">)</span>, border<span class="op">=</span><span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
-<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-10-1.png" width="100%"></p>
+<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="100%"></p>
 <p>For the high quality SNP set, the shaded area representing 2-7
 opposing homozygous loci includes one or two pairs of individuals at
 most (variable between simulated datasets), so that it does not matter
@@ -512,8 +512,8 @@ individuals will be homozygous for the common allele.&lt;/p&gt;"><sup>4</sup></a
 <pre><code><span><span class="co">##           parent</span></span>
 <span><span class="co">## class      dam sire</span></span>
 <span><span class="co">##   Total    167  163</span></span>
-<span><span class="co">##   Match    164  161</span></span>
-<span><span class="co">##   Mismatch   0    0</span></span>
+<span><span class="co">##   Match    163  161</span></span>
+<span><span class="co">##   Mismatch   1    0</span></span>
 <span><span class="co">##   P1only     3    2</span></span>
 <span><span class="co">##   P2only     0    0</span></span></code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
@@ -533,7 +533,7 @@ whether the non-assigned parents were particular outliers:</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># distribution of OH &amp; trio Mendelian errors:</span></span>
 <span><span class="fu"><a href="../reference/SummarySeq.html">SummarySeq</a></span><span class="op">(</span><span class="va">Ped.true.OH</span>, Panels<span class="op">=</span><span class="st">"OH"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-12-1.png" width="576"></p>
+<p><img src="mendelian_inheritance_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="" width="576"></p>
 <p>The reason some parents remained unassigned was not because they did
 not pass this filtering step, but because of the subsequent likelihood
 calculations. Probably the likelihood to be parent and offspring is very
@@ -580,7 +580,7 @@ Beyond.”</span> <em>Molecular Ecology Resources</em> 17 (5): 1009–24.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

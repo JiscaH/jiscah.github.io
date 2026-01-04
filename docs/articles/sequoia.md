@@ -1,0 +1,107 @@
+# Introduction to sequoia
+
+## What you need
+
+- **Genotype data** for a couple hundred SNPs (\<1000); ideally with
+  - high minor allele frequency,
+  - low missingness,
+  - low genotyping error rate, and
+  - in low LD, but real-world data usually works well too. The data
+    format is 1 row per individual, 1 column per SNP, coded as 0/1/2
+    copies of the reference allele. Conversion from a few other formats
+    is supported.
+- **Sex** and **birth year** information for as many individuals as
+  possible (‘birth year’: discrete time unit of
+  birth/hatching/germination/…). If the exact year is unknown, minimum
+  and/or maximum possible years can be provided.
+- **R**: can be downloaded from [CRAN](https://cran.r-project.org/).
+- (optional) [Rstudio](https://rstudio.com/products/rstudio/): for a
+  more user-friendly R experience
+
+Note that if individuals are on average typed at only 30% of say 200
+SNPs, this means that a random pair share only $`0.3*0.3*200 = 18`$
+SNPs, which is far too few for reliable pedigree reconstruction. As
+ballpark figures, at least 50-100 SNPs are required for parentage
+assignment, and 200-400 for full pedigree reconstruction. Simple
+pedigrees with discrete generations require fewer SNPs than complex
+pedigrees with inbreeding.
+
+## Download & installation
+
+### Current version
+
+To install the most recent thoroughly checked version of `sequoia`,
+simply open R and run the command
+
+``` r
+install.packages("sequoia") 
+```
+
+or install from github:
+
+### Other versions
+
+The source files from previous versions are archived on
+[CRAN](https://cran.r-project.org/src/contrib/Archive/sequoia/). To
+install these you need a Fortran compiler, which is not by default
+installed on all computers. You can find binary (already compiled) files
+for Windows and MacOS of most versions in [my github
+archive](https://github.com/JiscaH/sequoia_archives). You can install
+these by downloading them to your hard disk and then in R run:
+
+``` r
+install.packages("C:/path/to/file/sequoia_2.5.6.zip", repos=NULL)
+```
+
+On github you can also find a [browsable
+directory](https://github.com/JiscaH/sequoia) of the latest development
+version. It can be installed with
+
+``` r
+devtools::install_github("JiscaH/sequoia")
+# or
+remotes::install_github("JiscaH/sequoia")
+```
+
+This requires a Fortran compiler (which for windows I think is included
+in the devtools package).
+
+## Reconstruct
+
+The function to perform pedigree reconstruction is also called
+[`sequoia()`](https://jiscah.github.io/reference/sequoia.md):
+
+    # load the package
+    library(sequoia)  
+
+    # run pedigree reconstruction on example data included in the pkg
+    SeqOUT <- sequoia(GenoM = SimGeno_example, 
+                      LifeHistData = LH_HSg5, 
+                      Err = 0.005,   # genotyping error rate
+                      Module="ped", 
+                      quiet="verbose", 
+                      Plot=TRUE)
+    # the result is a list with the pedigree, run parameters, 
+    # and various other elements.                 
+
+    # graphical summary of results
+    SummarySeq(SeqOUT)
+
+For an overview of the output of various functions included in the
+package, see the [flow
+chart](https://jiscah.github.io/reference/figures/flowchart_no_bg.pdf)
+(function names in rectangles) and this [mock
+report](https://jiscah.github.io/articles/sequoia_report.md).
+
+## Access help files
+
+In R, help for each function is available via `?functionname`,
+e.g. [`?sequoia`](https://jiscah.github.io/reference/sequoia.md). An
+overview of all help files and other documentation in a package is
+available via
+[`help(package="sequoia")`](https://jiscah.github.io/reference).
+
+The ‘See Also’ section near the end of the
+[`sequoia()`](https://jiscah.github.io/reference/sequoia.md) help file
+has a list with the main functions in the package, for those who tend to
+forget function names (like me).

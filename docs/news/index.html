@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +52,35 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="3.0.3" id="sequoia-303">sequoia 3.0.3<a class="anchor" aria-label="anchor" href="#sequoia-303"></a></h2>
+<h2 class="pkg-version" data-toc-text="3.2" id="sequoia-32">sequoia 3.2<a class="anchor" aria-label="anchor" href="#sequoia-32"></a></h2>
+<ul><li>allow .vcf.gz as input for <code>GenoConvert</code>
+</li>
+<li>fix <code>which.min</code> applied to data.frame rows (no longer allowed) by adding <code>as.matrix</code>
+</li>
+<li>fix various issues affecting performance with hermaphrodites</li>
+<li>fix SeqOUT$DummyIDs output for hermaphrodite dummies</li>
+<li>hide documentation of internal functions</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="3.1.3" id="sequoia-313">sequoia 3.1.3<a class="anchor" aria-label="anchor" href="#sequoia-313"></a></h2><p class="text-muted">CRAN release: 2025-11-18</p>
+<ul><li>add function <code>PlotPropAssigned</code>
+</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="3.1.2" id="sequoia-312">sequoia 3.1.2<a class="anchor" aria-label="anchor" href="#sequoia-312"></a></h2>
+<ul><li>fix bug that disallowed sibship clustering among candidate parents in discrete 2 generation offspring + candidate parents datasets.</li>
+<li>add function <code>CountOH</code>
+</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="3.1" id="sequoia-31">sequoia 3.1<a class="anchor" aria-label="anchor" href="#sequoia-31"></a></h2>
+<ul><li>allow for age differences &gt;100</li>
+<li>fix bug in <code>PedToNum</code> when called by <code>CalcPairLL</code> without pedigree</li>
+<li>
+<code>CalcPairLL</code>: when ‘patmat’ not specified, now always defaults to ‘sex2’, not only when focal=PO.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="3.0" id="sequoia-30">sequoia 3.0<a class="anchor" aria-label="anchor" href="#sequoia-30"></a></h2>
 <ul><li>numerous updates to Fortran code to improve assignment accuracy, including several bug fixes related to monogamous mating systems</li>
 <li>fix inconsistency in ageprior matrix and its use for grandparents and avuncular pairs</li>
 <li>
@@ -67,7 +95,7 @@
 <li>
 <code>CalcParentProbs</code>: new function to calculate assignment probabilities for any pedigree</li>
 <li>
-<code>getAssignCat</code> now also considers parents with only dummifiable offspring as dummifiable; option ‘1sib’ is dropped.</li>
+<code>getAssignCat</code> now also considers parents with only dummyfiable offspring as dummyfiable; option ‘1sib’ is dropped.</li>
 <li>
 <code>PedCompare</code>: when an incorrect half-sibling is added to a true singleton-sibship-with-grandparent, this now counts as 1 mismatch; this erroneously was 3 mismatches (entire sibship wrong).</li>
 <li>in <code>sequoia</code>, the default value for <code>CalcParentLLR</code> is changed from TRUE to FALSE.</li>
@@ -239,7 +267,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.3.4" id="sequoia-234">sequoia 2.3.4<a class="anchor" aria-label="anchor" href="#sequoia-234"></a></h2><p class="text-muted">CRAN release: 2021-05-15</p>
 <ul><li>fixes bug in <code><a href="../reference/CalcPairLL.html">CalcPairLL()</a></code> HS likelihood when conditioning on pedigree was incorrect. No/minimal effect on pedigree reconstruction.</li>
-<li>fixes bug in <code><a href="../reference/DuplicateCheck.html">DuplicateCheck()</a></code> (always automatically called by <code><a href="../reference/sequoia.html">sequoia()</a></code>) that on very rare occasions caused R to crash</li>
+<li>fixes bug in <code>DuplicateCheck()</code> (always automatically called by <code><a href="../reference/sequoia.html">sequoia()</a></code>) that on very rare occasions caused R to crash</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.3.3" id="sequoia-233">sequoia 2.3.3<a class="anchor" aria-label="anchor" href="#sequoia-233"></a></h2><p class="text-muted">CRAN release: 2021-05-02</p>
@@ -455,7 +483,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

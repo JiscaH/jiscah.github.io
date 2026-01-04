@@ -345,77 +345,6 @@ ComparePairs <- function(Ped1 = NULL,
 
 #============================================================================
 #============================================================================
-#' @title Compare Dyads (DEPRECATED)
-#'
-#' @description Count the number of half and full sibling pairs correctly and
-#'   incorrectly assigned. DEPRECATED - PLEASE USE \code{\link{ComparePairs}}
-#'
-#' @param  Ped1 original pedigree, dataframe with 3 columns: id-dam-sire.
-#' @param  Ped2 second (inferred) pedigree.
-#' @param  na1  the value for missing parents in Ped1.
-#'
-#' @return A 3x3 table with the number of pairs assigned as full siblings (FS),
-#'   half siblings (HS) or unrelated (U, including otherwise related) in the two
-#'   pedigrees, with the classification in Ped1 on rows and that in Ped2 in
-#'   columns.
-#'
-#' @seealso \code{\link{ComparePairs}} which supersedes this function;
-#'   \code{\link{PedCompare}}
-#'
-#' @examples
-#' \dontrun{
-#' DyadCompare(Ped1=Ped_HSg5, Ped2=SeqOUT_HSg5$Pedigree)
-#' }
-#' @export
-
-DyadCompare <- function(Ped1 = NULL,
-                        Ped2 = NULL,
-                        na1 = c(NA, "0"))
-{
-  warning("This function is deprecated, please use ComparePairs()",
-          immediate.=TRUE)
-  if(is.null(Ped1) || nrow(Ped1)<2) stop("No 'Ped1' provided")
-  if(is.null(Ped2) || nrow(Ped2)<2) stop("No 'Ped2' provided'")
-  names(Ped1)[1:3] <- c("id", "dam.1", "sire.1")
-  names(Ped2)[1:3] <- c("id", "dam.2", "sire.2")
-  for (i in 1:3) {
-    Ped1[, i] <- as.character(Ped1[, i])
-    Ped1[Ped1[, i] %in% na1, i] <- NA
-  }
-  for (i in 1:3) Ped2[, i] <- as.character(Ped2[, i])
-  if (!any(Ped2$id %in% Ped1$id))  stop("no common IDs in Ped1 and Ped2")
-  Ped1 <- PedPolish(Ped1[,1:3], ZeroToNA=TRUE, NullOK = FALSE, StopIfInvalid=FALSE, KeepAllColumns=FALSE)
-  Ped2 <- PedPolish(Ped2[,1:3], ZeroToNA=TRUE, NullOK = FALSE, StopIfInvalid=FALSE, KeepAllColumns=FALSE)
-
-  # note: each pair is counted double
-  RCT <- matrix(NA, 0, 3)
-  for (x in 1:nrow(Ped1)) {
-    RCT <- rbind(RCT, rc(x, Ped1))
-  }
-
-  RCI <- matrix(NA, 0, 3)
-  for (x in 1:nrow(Ped2)) {
-    RCI <- rbind(RCI, rc(x, Ped2))
-  }
-
-  RCTI <- merge(as.data.frame(RCT, stringsAsFactors=FALSE),
-                as.data.frame(RCI, stringsAsFactors=FALSE),
-                by=c("id1", "id2"), all=TRUE, suffixes = c(".1", ".2"))
-  RCTI <- RCTI[RCTI$id1 %in% Ped1$id & RCTI$id2 %in% Ped1$id &
-                 RCTI$id1 %in% Ped2$id & RCTI$id2 %in% Ped2$id, ]
-  RCTI$RC.1[is.na(RCTI$RC.1)] <- "U"
-  RCTI$RC.2[is.na(RCTI$RC.2)] <- "U"
-  RCTI$RC.1 <- factor(RCTI$RC.1, levels=c("FS", "HS", "U"))
-  RCTI$RC.2 <- factor(RCTI$RC.2, levels=c("FS", "HS", "U"))
-
-  tbl <- with(RCTI, table(RC.1, RC.2, useNA="ifany"))/2  # pairs included double
-  tbl["U", "U"] <- nrow(Ped2) * (nrow(Ped2)-1)/2 - sum(tbl)
-  tbl
-  #  sweep(tbl, 1, rowSums(tbl), "/")
-}
-
-#============================================================================
-#============================================================================
 
 #' @title Find siblings
 
@@ -426,7 +355,8 @@ DyadCompare <- function(Ped1 = NULL,
 #'   three-column matrix with column names id1 (x), id2 (the siblings), and
 #'   RC (the relatedness category, 'FS' or 'HS').
 #'
-#' @keywords internal
+#' @keywords internal 
+#' @noRd
 
 rc <- function(x, Ped) {
   names(Ped) <- c("id", "dam", "sire")

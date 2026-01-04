@@ -32,17 +32,15 @@ For each cluster of half-siblings, grandparents are assigned where possible, i.e
 ## Package overview
 Beside the main function for pedigree reconstruction (`sequoia()`) the R package contains various other functions, amongst others to check agreement between an existing pedigree and the genotype data, or with a newly inferred pedigree. 
 
-<a href="./reference/figures/flowchart.svg">
+<a href="./reference/figures/flowchart_sequoia.pdf">
  <img src="man/figures/flowchart.svg" height="400" alt="flowchart" style="vertical-align:middle;margin:0px 20px; height:400px" />
 </a>
 <br>
 <br>
-[print-friendly version](reference/figures/flowchart_no_bg.pdf)
 
-<!--
-![](man/figures/flowchart.svg) 
-<br>
- --->
+<!---
+[pdf](reference/figures/flowchart_sequoia.pdf)
+--->
 
 <br>
 <br>

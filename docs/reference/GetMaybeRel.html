@@ -9,7 +9,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,10 +84,11 @@
 
 
 <dl><dt id="arg-genom">GenoM<a class="anchor" aria-label="anchor" href="#arg-genom"></a></dt>
-<dd><p>numeric matrix with genotype data: One row per individual,
-one column per SNP, coded as 0, 1, 2, missing values as a negative number
-or NA. You can reformat data with <code><a href="GenoConvert.html">GenoConvert</a></code>, or use other
-packages to get it into a genlight object and then use <code>as.matrix</code>.</p></dd>
+<dd><p>numeric matrix with genotype data: One row per individual, one
+column per SNP, coded as 0, 1, 2, missing values as a negative number or
+NA. Row names must be individual IDs, column names are ignored. You can
+reformat data with <code><a href="GenoConvert.html">GenoConvert</a></code>, or use other packages to get
+it into a genlight object and then use <code>as.matrix</code>.</p></dd>
 
 
 <dt id="arg-seqlist">SeqList<a class="anchor" aria-label="anchor" href="#arg-seqlist"></a></dt>
@@ -387,7 +388,7 @@ likely relationship category:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

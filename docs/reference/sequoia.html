@@ -9,7 +9,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,10 +89,11 @@
 
 
 <dl><dt id="arg-genom">GenoM<a class="anchor" aria-label="anchor" href="#arg-genom"></a></dt>
-<dd><p>numeric matrix with genotype data: One row per individual,
-one column per SNP, coded as 0, 1, 2, missing values as a negative number
-or NA. You can reformat data with <code><a href="GenoConvert.html">GenoConvert</a></code>, or use other
-packages to get it into a genlight object and then use <code>as.matrix</code>.</p></dd>
+<dd><p>numeric matrix with genotype data: One row per individual, one
+column per SNP, coded as 0, 1, 2, missing values as a negative number or
+NA. Row names must be individual IDs, column names are ignored. You can
+reformat data with <code><a href="GenoConvert.html">GenoConvert</a></code>, or use other packages to get
+it into a genlight object and then use <code>as.matrix</code>.</p></dd>
 
 
 <dt id="arg-lifehistdata">LifeHistData<a class="anchor" aria-label="anchor" href="#arg-lifehistdata"></a></dt>
@@ -217,11 +218,13 @@ during full reconstruction only.</p></dd>
 
 
 <dt id="arg-mtsame">mtSame<a class="anchor" aria-label="anchor" href="#arg-mtsame"></a></dt>
-<dd><p><strong>NEW</strong> matrix indicating whether individuals (might)
-have the same mitochondrial haplotype (1), and may thus be matrilineal
-relatives, or not (0). Row names and column names should match IDs in
-`GenoM`. Not all individuals need to be included and order is not
-important. Please report any issues. For details see the mtDNA vignette.</p></dd>
+<dd><p>matrix indicating whether individuals (might) have the same
+mitochondrial haplotype (1), and may thus be matrilineal relatives, or not
+(0). This potentially be useful to distinguish between maternal and
+paternal half siblings when few parents are genotyped, or between maternal
+and paternal parents when their sex(role) is unknown. Row names and column
+names should match IDs in `GenoM`. Not all individuals need to be included
+and order is not important. For details see the mtDNA vignette.</p></dd>
 
 
 <dt id="arg-calcllr">CalcLLR<a class="anchor" aria-label="anchor" href="#arg-calcllr"></a></dt>
@@ -333,7 +336,9 @@ reconstruction</p></dd>
 <dd><p>Dataframe with assigned parents from Parentage step.</p></dd>
 
 <dt>Specs</dt>
-<dd><p>Named vector with parameter values.</p></dd>
+<dd><p>Named vector with parameter values. This includes the maximum
+  OH for potential (parent-)parent-offspring pairs (trios), which is
+  calculated by <code><a href="CalcMaxMismatch.html">CalcMaxMismatch</a></code></p></dd>
 
 <dt>TotLikParents</dt>
 <dd><p>Numeric vector, Total likelihood of the genotype data
@@ -476,23 +481,27 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <ul><li><p><code><a href="GenoConvert.html">GenoConvert</a></code> to read in various data formats,</p></li>
 <li><p><code><a href="CheckGeno.html">CheckGeno</a></code>, <code><a href="SnpStats.html">SnpStats</a></code> to calculate
     missingness and allele frequencies,</p></li>
-<li><p><code><a href="SimGeno.html">SimGeno</a></code>  to simulate SNP data from a pedigree,</p></li>
-<li><p><code><a href="MakeAgePrior.html">MakeAgePrior</a></code> to estimate effect of age on relationships,</p></li>
+<li><p><code><a href="SimGeno.html">SimGeno</a></code> to simulate SNP data from a pedigree,</p></li>
+<li><p><code><a href="MakeAgePrior.html">MakeAgePrior</a></code> to estimate effect of age on relationships
+   and <code><a href="PlotAgePrior.html">PlotAgePrior</a></code> to visualise those,</p></li>
+<li><p><code><a href="SummarySeq.html">SummarySeq</a></code> and <code><a href="PlotPropAssigned.html">PlotPropAssigned</a></code> to
+  visualise results,</p></li>
 <li><p><code><a href="GetMaybeRel.html">GetMaybeRel</a></code> to find pairs of potential relatives,</p></li>
-<li><p><code><a href="SummarySeq.html">SummarySeq</a></code> and <code><a href="PlotAgePrior.html">PlotAgePrior</a></code> to visualise
-  results,</p></li>
 <li><p><code><a href="GetRelM.html">GetRelM</a></code> to turn a pedigree into pairwise relationships,</p></li>
-<li><p><code><a href="CalcOHLLR.html">CalcOHLLR</a></code> to calculate Mendelian errors and LLR for any
-   pedigree,</p></li>
+<li><p><code><a href="CountOH.html">CountOH</a></code>, <code><a href="CalcPairLL.html">CalcPairLL</a></code> and
+    <code><a href="LLtoProb.html">LLtoProb</a></code> for specified pairs of individuals respectively
+    count Opposing Homozygous SNPs, calculate likelihoods of various
+  relationships, and transform those likelihoods to probabilities,</p></li>
+<li><p><code><a href="CalcOHLLR.html">CalcOHLLR</a></code> to count Opposing Homozygous SNPs and
+  calculate LLR for all parent-offspring pairs in any pedigree,</p></li>
 <li><p><code><a href="CalcParentProbs.html">CalcParentProbs</a></code> to calculate assignment probabilities
-  instead of LLRs,</p></li>
-<li><p><code><a href="CalcPairLL.html">CalcPairLL</a></code> for likelihoods of various relationships
-   between specific pairs,</p></li>
+  (instead of LLRs) in any pedigree,</p></li>
 <li><p><code><a href="CalcBYprobs.html">CalcBYprobs</a></code> to estimate birth years,</p></li>
-<li><p><code><a href="PedCompare.html">PedCompare</a></code> and <code><a href="ComparePairs.html">ComparePairs</a></code> to compare to
+<li><p><code><a href="PedCompare.html">PedCompare</a></code> and <code><a href="ComparePairs.html">ComparePairs</a></code> to compare
   two pedigrees,</p></li>
 <li><p><code><a href="EstConf.html">EstConf</a></code> to estimate assignment errors,</p></li>
-<li><p><code><a href="writeSeq.html">writeSeq</a></code> to save results,</p></li>
+<li><p><code><a href="writeSeq.html">writeSeq</a></code> to save <code>sequoia</code> output as text or excel
+  files,</p></li>
 <li><p><code>vignette("sequoia")</code> for detailed manual &amp; FAQ.</p></li>
 </ul></div>
     </div>
@@ -542,8 +551,8 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Time    |  R |  Step      |  Progress  | Dams  | Sires |  GPs  |   Total LL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -------- | -- | ---------- | ---------- | ----- | ----- | ----- | ----------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:24 |  0 | initial    |            |     0 |     0 |     0 |   -18301.9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:24 |  0 | parents    |            |   130 |   167 |     0 |   -13484.2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:56:58 |  0 | initial    |            |     0 |     0 |     0 |   -18301.9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:56:58 |  0 | parents    |            |   130 |   167 |     0 |   -13484.2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">assigned 130 dams and 167 sires to 214 individuals </span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
@@ -603,11 +612,11 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Time    |  R |  Step      |  Progress  | Dams  | Sires |  GPs  |   Total LL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -------- | -- | ---------- | ---------- | ----- | ----- | ----- | ----------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:27 |  0 | count OH   |            | </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:27 |  0 | initial    |            |     0 |     0 |     0 |   -18301.9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:27 |  1 | parents    | .......... |   130 |   167 |     0 |   -13484.2 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:28 |  2 | parents    | .......... |   130 |   167 |     0 |   -13484.2 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:28 | 99 | est byears | .......... | </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:01 |  0 | count OH   |            | </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:01 |  0 | initial    |            |     0 |     0 |     0 |   -18301.9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:01 |  1 | parents    | .......... |   130 |   167 |     0 |   -13484.2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:02 |  2 | parents    | .......... |   130 |   167 |     0 |   -13484.2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:02 | 99 | est byears | .......... | </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">assigned 130 dams and 167 sires to 214 individuals </span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
@@ -620,29 +629,29 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Time    |  R |  Step      |  Progress  | Dams  | Sires |  GPs  |   Total LL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -------- | -- | ---------- | ---------- | ----- | ----- | ----- | ----------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:29 |  0 | count OH   |            | </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:29 |  0 | initial    |            |   130 |   167 |     0 |   -13484.2 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:29 |  0 | ped check  | .......... |   130 |   167 |     0 |   -13484.2 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:29 |  1 | find pairs | .......... |   130 |   167 |     0 |   -13484.2 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:29 |  1 | clustering | .......... |   181 |   181 |     0 |   -12354.3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:29 |  1 | merging    | .......... |   181 |   181 |     0 |   -12354.3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:29 |  1 | P of sibs  | .......... |   181 |   181 |     0 |   -12354.3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:29 |  1 | find/check | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  2 | find pairs | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  2 | clustering | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  2 | merging    | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  2 | P of sibs  | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  2 | GP Hsibs   | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  2 | find/check | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  3 | find pairs | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  3 | clustering | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  3 | GP pairs   | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  3 | merging    | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  3 | P of sibs  | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  3 | GP Hsibs   | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  3 | GP Fsibs   |            |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 |  3 | find/check | .......... |   182 |   182 |     0 |   -12315.8 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:30 | 99 | est byears | .......... | </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:03 |  0 | count OH   |            | </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:03 |  0 | initial    |            |   130 |   167 |     0 |   -13484.2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:03 |  0 | ped check  | .......... |   130 |   167 |     0 |   -13484.2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:03 |  1 | find pairs | .......... |   130 |   167 |     0 |   -13484.2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:03 |  1 | clustering | .......... |   181 |   181 |     0 |   -12354.3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:03 |  1 | merging    | .......... |   181 |   181 |     0 |   -12354.3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:03 |  1 | P of sibs  | .......... |   181 |   181 |     0 |   -12354.3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  1 | find/check | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  2 | find pairs | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  2 | clustering | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  2 | merging    | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  2 | P of sibs  | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  2 | GP Hsibs   | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  2 | find/check | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  3 | find pairs | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  3 | clustering | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  3 | GP pairs   | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  3 | merging    | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  3 | P of sibs  | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  3 | GP Hsibs   | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  3 | GP Fsibs   |            |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 |  3 | find/check | .......... |   182 |   182 |     0 |   -12315.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:04 | 99 | est byears | .......... | </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">assigned 182 dams and 182 sires to 214 + 8 individuals (real + dummy) </span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
@@ -725,8 +734,8 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Time    |  R |  Step      |  Progress  | Dams  | Sires |  GPs  |   Total LL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -------- | -- | ---------- | ---------- | ----- | ----- | ----- | ----------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:31 |  0 | initial    |            |     0 |     0 |     0 |   -18301.9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:31 |  0 | parents    |            |   125 |   162 |     0 |   -13732.7 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:05 |  0 | initial    |            |     0 |     0 |     0 |   -18301.9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:05 |  0 | parents    |            |   125 |   162 |     0 |   -13732.7 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">assigned 125 dams and 162 sires to 214 individuals </span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
@@ -737,10 +746,10 @@ correct. Use of sequoia is entirely at your own risk.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Time    |  R |  Step      |  Progress  | Dams  | Sires |  GPs  |   Total LL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -------- | -- | ---------- | ---------- | ----- | ----- | ----- | ----------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:32 |  0 | initial    |            |   125 |   162 |     0 |   -13732.7 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:32 |  1 | (all)      |            |   180 |   180 |     0 |   -12512.9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:33 |  2 | (all)      |            |   180 |   180 |     0 |   -12512.9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 08:55:34 |  3 | (all)      |            |   180 |   180 |     0 |   -12512.9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:06 |  0 | initial    |            |   125 |   162 |     0 |   -13732.7 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:07 |  1 | (all)      |            |   180 |   180 |     0 |   -12512.9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:08 |  2 | (all)      |            |   180 |   180 |     0 |   -12512.9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15:57:08 |  3 | (all)      |            |   180 |   180 |     0 |   -12512.9 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #00BB00;">assigned 180 dams and 180 sires to 214 + 9 individuals (real + dummy) </span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
@@ -794,7 +803,7 @@ correct. Use of sequoia is entirely at your own risk.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

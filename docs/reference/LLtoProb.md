@@ -1,0 +1,60 @@
+# transform log-likelihoods to probabilities
+
+transform a vector with log10 likelihoods to a vector with probabilities
+summing to one.
+
+## Usage
+
+``` r
+LLtoProb(LLv)
+```
+
+## Arguments
+
+- LLv:
+
+  a vector with log10-likelihoods. All values \>0 are set to NA.
+
+## Value
+
+a vector with probabilities, with the same length and names.
+
+## Details
+
+The returned probabilities are calculated from the likelihoods used
+throughout the rest of this package, by scaling them to sum to one
+across all possible relationships. For `Complex='simp'` these are
+PO=parent-offspring, FS=full siblings, HS=half siblings,
+GP=grand-parental, FA=full avuncular, HA=third degree relatives (incl
+half avuncular), and U=unrelated. For `Complex='full'` there are
+numerous double relationship considered (PO & HS, HS & HA, etc), making
+both numerator and denominator in the scaling step less unambiguous, and
+the returned probabilities an approximation.
+
+Computational under/overflow issues are reduced by subtracted the
+maximum value before converting from log to regular scale. Probabilities
+that would still be smaller than the machine precision
+(`(LL - min(LL)/2) < log10(.Machine$double.xmin)`) are set to NA en then
+to 0, instead of `-Inf`, to avoid issues when scaling to sum to 1.
+
+## Examples
+
+``` r
+LL_pairs <- CalcPairLL(data.frame(ID1='i042_2003_F',
+                         ID2=c('i015_2001_F', 'i022_2002_F', 'i035_2002_F')),
+                  GenoM = Geno_griffin, Complex='simp', Err=1e-3, Plot=FALSE)
+#> ℹ Not conditioning on any pedigree
+prob_pairs <- t(apply(LL_pairs[,10:16], MARGIN=1, LLtoProb))
+# - or -
+prob_pairs <- plyr::aaply(as.matrix(LL_pairs[,10:16]), .margin=1, LLtoProb)
+round(prob_pairs, 3)
+#>    
+#> X1  PO    FS    HS    GP    FA    HA     U
+#>   1  1 0.000 0.000 0.000 0.000 0.000 0.000
+#>   2  0 0.999 0.000 0.000 0.000 0.000 0.000
+#>   3  0 0.000 0.185 0.185 0.185 0.444 0.001
+
+# i035_2002_F is MHS of i042_2003_F, but when not conditioning on any other
+# relatives has a higher LL to be 3rd degree relative (HA)
+# (possibly genotyping errors, or just randomness of Mendelian inheritance)
+```

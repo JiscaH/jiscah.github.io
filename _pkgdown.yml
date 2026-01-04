@@ -94,6 +94,7 @@ articles:
     - howto_RADseq
 
 
+
 reference:
 - title: Input
   descr: Read, convert and check input data
@@ -124,7 +125,7 @@ reference:
     - "sequoia"
     - "GetMaybeRel"
 
-- title: Likelihood (ratios)
+- title: Likelihood (ratios) & probabilities
 - contents:
   - "CalcOHLLR"
   - "CalcPairLL"
@@ -140,6 +141,7 @@ reference:
     - "GetRelM"
     - "PlotRelPairs"
     - "SummarySeq"
+    - "PlotPropAssigned"
     - "PlotSeqSum"
     - "getAssignCat"
     - "getGenerations"
@@ -158,6 +160,7 @@ reference:
     - "PedPolish"
     - "ErrToM"
     - "Err_RADseq"
+    - "CountOH"
     - "writeSeq"
     - "writeColumns"
     - "FindFamilies"
@@ -177,8 +180,3 @@ reference:
     - "SeqOUT_griffin"
     - 'Conf_griffin'
     - 'MaybeRel_griffin'
-
-- subtitle: Deprecated
-- contents:
-    - "DyadCompare"
-    - "EstEr"

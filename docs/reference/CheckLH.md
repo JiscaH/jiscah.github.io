@@ -1,0 +1,38 @@
+# Check LifeHistData
+
+Check that the provided LifeHistData is in the correct format.
+
+## Usage
+
+``` r
+CheckLH(LifeHistData, gID = NA, sorted = TRUE, returnDups = FALSE)
+```
+
+## Arguments
+
+- LifeHistData:
+
+  the dataframe with ID - Sex - Birth year, and optionally BY.min -
+  BY.max - YearLast.
+
+- gID:
+
+  character vector with names of genotyped individuals, i.e.
+  rownames(GenoM).
+
+- sorted:
+
+  logical, return lifehistdata for genotyped individuals only, in
+  strictly the same order. Will including padding with 'empty' rows if
+  an individual in gID was not in the input-LH.
+
+- returnDups:
+
+  logical, instead of just the (sorted) LifeHistData, return a list that
+  also includes a dataframe with duplicate entries and/or a character
+  vector with genotyped IDs not occuring in LifeHistData.
+
+## Value
+
+A dataframe with LifeHistData formatted for use by the Fortran part of
+the program, or a list with duplicate and missing entries.

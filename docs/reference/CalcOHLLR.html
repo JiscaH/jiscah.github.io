@@ -11,7 +11,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,6 +77,7 @@
 <span>  Tfilter <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>,</span>
 <span>  Complex <span class="op">=</span> <span class="st">"full"</span>,</span>
 <span>  Herm <span class="op">=</span> <span class="st">"no"</span>,</span>
+<span>  useMaxOH <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -92,10 +93,11 @@ provided, any pedigree in <code>SeqList</code> is ignored.</p></dd>
 
 
 <dt id="arg-genom">GenoM<a class="anchor" aria-label="anchor" href="#arg-genom"></a></dt>
-<dd><p>numeric matrix with genotype data: One row per individual,
-one column per SNP, coded as 0, 1, 2, missing values as a negative number
-or NA. You can reformat data with <code><a href="GenoConvert.html">GenoConvert</a></code>, or use other
-packages to get it into a genlight object and then use <code>as.matrix</code>.</p></dd>
+<dd><p>numeric matrix with genotype data: One row per individual, one
+column per SNP, coded as 0, 1, 2, missing values as a negative number or
+NA. Row names must be individual IDs, column names are ignored. You can
+reformat data with <code><a href="GenoConvert.html">GenoConvert</a></code>, or use other packages to get
+it into a genlight object and then use <code>as.matrix</code>.</p></dd>
 
 
 <dt id="arg-calcllr">CalcLLR<a class="anchor" aria-label="anchor" href="#arg-calcllr"></a></dt>
@@ -204,6 +206,12 @@ non-assignment, but will increase computational time.</p></dd>
 sire role, default if at least 1 individual with sex=4), or "B" (no
 distinction between dam and sire role). Both of the latter deal with
 selfing.</p></dd>
+
+
+<dt id="arg-usemaxoh">useMaxOH<a class="anchor" aria-label="anchor" href="#arg-usemaxoh"></a></dt>
+<dd><p>when calculating likelihoods, skip any parent-offspring pairs
+for which the opposite homozygote count exceeds the maximum, which is
+calculated from the genotyping error rate by <code><a href="CalcMaxMismatch.html">CalcMaxMismatch</a></code>.</p></dd>
 
 
 <dt id="arg-quiet">quiet<a class="anchor" aria-label="anchor" href="#arg-quiet"></a></dt>
@@ -329,35 +337,41 @@ unknown birth year or unknown sex.</p>
 <span class="r-in"><span><span class="va">PedZ</span> <span class="op">&lt;-</span> <span class="va">Ped_HSg5</span><span class="op">[</span><span class="fl">41</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span>   <span class="co"># small example subset</span></span></span>
 <span class="r-in"><span><span class="va">PedZ</span><span class="op">$</span><span class="va">dam</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">PedZ</span><span class="op">$</span><span class="va">dam</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="fu">CalcOHLLR</span><span class="op">(</span><span class="va">PedZ</span>, GenoM <span class="op">=</span> <span class="va">SimGeno_example</span>, CalcLLR <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Transferring input pedigree ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Counting Mendelian errors ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Counting opposing homozygous loci between all individuals ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Calculating parent LLR ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0   10  20  30  40  50  60  70  80  90  100% </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  |   |   |   |   |   |   |   |   |   |   |</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ****************</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        id    dam   sire LLRdam LLRsire LLRpair OHdam OHsire MEpair SNPd.id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  a00008   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA     199</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  a00013   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA     197</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  a00014   &lt;NA&gt;   &lt;NA&gt;      0       0       0    NA     NA     NA       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  a01001 a00008 b00011     NA      NA      NA     0     NA     NA     199</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  a01002 a00014 b00011     NA      NA      NA    NA     NA     NA     200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  a01005 a00013 b00001     NA      NA      NA     0      0      0     200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  a01008 a00013 b00001     NA      NA      NA     0      0      0     200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  a01010 a00008 b00016     NA      NA      NA     0      0      0     200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  a00014   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  a01001 a00008 b00011 -85.69    0.00  -85.95     3     NA     NA     199</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  a01002 a00014 b00011   0.00    0.00    0.37    NA     NA     NA     200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  a01005 a00013 b00001  -0.53    2.34    4.67     1      0      1     200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  a01008 a00013 b00001  -4.08    2.58    1.80     2      0      2     200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  a01010 a00008 b00016   3.29    3.45    3.05     0      0      1     200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9  b00001   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA     200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 b00011   &lt;NA&gt;   &lt;NA&gt;      0       0       0    NA     NA     NA       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 b00011   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA       0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11 b00016   &lt;NA&gt;   &lt;NA&gt;     NA      NA      NA    NA     NA     NA     198</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 b01003 a00014 b00011     NA      NA      NA    NA     NA     NA     200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 b01004 a00014 b00011     NA      NA      NA    NA     NA     NA     200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 b01006 a00013 b00001     NA      NA      NA     0      0      0     200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 b01007 a00013 b00001     NA      NA      NA     0      0      0     198</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16 b01009 a00008 b00016     NA      NA      NA     0      0      0     199</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 b01003 a00014 b00011  -0.19    0.00   -0.18    NA     NA     NA     200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 b01004 a00014 b00011   0.00    0.00    1.64    NA     NA     NA     200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 b01006 a00013 b00001  -0.85    2.33    3.68     1      0      1     200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 b01007 a00013 b00001  -1.09    1.78    1.72     1      0      2     198</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 b01009 a00008 b00016  -1.30    2.67   -0.35     1      0      2     199</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    SNPd.id.dam SNPd.id.sire</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1           NA           NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2           NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3            0            0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3           NA           NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4          198            0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5            0            0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6          197          200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7          197          200</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8          199          198</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9           NA           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10           0            0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10          NA           NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11          NA           NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12           0            0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13           0            0</span>
@@ -379,8 +393,9 @@ unknown birth year or unknown sex.</p>
 <span class="r-in"><span><span class="fu"><a href="SummarySeq.html">SummarySeq</a></span><span class="op">(</span><span class="va">Ped.LLR.B</span>, Panels<span class="op">=</span><span class="st">"LLR"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># run sequoia with CalcLLR=FALSE, and add OH + LLR later:</span></span></span>
-<span class="r-in"><span><span class="va">SeqOUT</span> <span class="op">&lt;-</span> <span class="fu"><a href="sequoia.html">sequoia</a></span><span class="op">(</span><span class="va">Geno_griffin</span>, <span class="va">LH_griffin</span>, CalcLLR<span class="op">=</span><span class="cn">FALSE</span>,quiet<span class="op">=</span><span class="cn">TRUE</span>,Plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">PedA</span> <span class="op">&lt;-</span> <span class="fu">CalcOHLLR</span><span class="op">(</span>Pedigree <span class="op">=</span> <span class="va">SeqOUT</span><span class="op">[[</span><span class="st">"Pedigree"</span><span class="op">]</span><span class="op">]</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, GenoM <span class="op">=</span> <span class="va">Genotypes</span>,</span></span>
+<span class="r-in"><span><span class="va">SeqOUT</span> <span class="op">&lt;-</span> <span class="fu"><a href="sequoia.html">sequoia</a></span><span class="op">(</span><span class="va">Geno_griffin</span>, <span class="va">LH_griffin</span>, CalcLLR<span class="op">=</span><span class="cn">FALSE</span>,quiet<span class="op">=</span><span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>                  Plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">PedA</span> <span class="op">&lt;-</span> <span class="fu">CalcOHLLR</span><span class="op">(</span>Pedigree <span class="op">=</span> <span class="va">SeqOUT</span><span class="op">[[</span><span class="st">"Pedigree"</span><span class="op">]</span><span class="op">]</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, GenoM<span class="op">=</span><span class="va">Geno_griffin</span>,</span></span>
 <span class="r-in"><span>  LifeHistData <span class="op">=</span> <span class="va">LH_griffin</span>, AgePrior <span class="op">=</span> <span class="cn">TRUE</span>, Complex <span class="op">=</span> <span class="st">"full"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="SummarySeq.html">SummarySeq</a></span><span class="op">(</span><span class="va">PedA</span>, Panels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LLR"</span>, <span class="st">"OH"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
@@ -396,7 +411,7 @@ unknown birth year or unknown sex.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

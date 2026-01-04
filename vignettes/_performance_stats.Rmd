@@ -20,6 +20,9 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE)
 
 ## Introduction
 
+**This dataset has not been kept up-to-date. If you are interested, please contact me and I will add the data from my performance checks on the latest versions** 
+
+
 The way `sequoia` is implemented, comparing likelihoods for many different relationships and making assignments in a sequential fashion, means that edits to improve performance for one particular type of dataset may negatively affect performance in other datasets. 
 
 Therefore, each new version of `sequoia` is tested extensively on both simulated and real data before release on CRAN. This includes simulated data from the three pedigrees described in @huisman17 with a wide range of parameter combinations, the results of which are available [here](https://github.com/JiscaH/sequoia_archives/tree/main/performance_tests). 

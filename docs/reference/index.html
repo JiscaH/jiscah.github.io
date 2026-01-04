@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,8 +55,7 @@
 
       <div class="section-desc"><p>Read, convert and check input data</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -67,25 +66,29 @@
 
         </dt>
         <dd>Convert Genotype Data</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="LHConvert.html">LHConvert()</a></code>
 
         </dt>
         <dd>Extract Sex and Birth Year from PLINK File</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="CheckGeno.html">CheckGeno()</a></code>
 
         </dt>
         <dd>Check Genotype Matrix</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="SnpStats.html">SnpStats()</a></code>
 
         </dt>
         <dd>SNP Summary Statistics</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="CalcMaxMismatch.html">CalcMaxMismatch()</a></code>
 
@@ -96,8 +99,7 @@
 
       <div class="section-desc"><p>Simulate genotype data assuming independent SNPs</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -108,13 +110,15 @@
 
         </dt>
         <dd>Simulate Genotypes</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="MkGenoErrors.html">MkGenoErrors()</a></code>
 
         </dt>
         <dd>Simulate Genotyping Errors</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="Inherit_patterns.html">Inherit_patterns</a></code>
 
@@ -125,8 +129,7 @@
 
       <div class="section-desc"><p>See <a href="../articles/vignette_age/book/index.html">ageprior vignette</a> for details</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -137,13 +140,15 @@
 
         </dt>
         <dd>Age Priors</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="PlotAgePrior.html">PlotAgePrior()</a></code>
 
         </dt>
         <dd>Plot Age Priors</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="CalcBYprobs.html">CalcBYprobs()</a></code>
 
@@ -154,8 +159,7 @@
 
       <div class="section-desc"><p>The core of the package, see <a href="../articles/vignette_main/book/key-points.html">main vignette</a> for details</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -166,19 +170,19 @@
 
         </dt>
         <dd>Pedigree Reconstruction</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="GetMaybeRel.html">GetMaybeRel()</a></code>
 
         </dt>
         <dd>Find Putative Relatives</dd>
       </dl></div><div class="section level2">
-      <h2 id="likelihood-ratios-">Likelihood (ratios)<a class="anchor" aria-label="anchor" href="#likelihood-ratios-"></a></h2>
+      <h2 id="likelihood-ratios-probabilities">Likelihood (ratios) &amp; probabilities<a class="anchor" aria-label="anchor" href="#likelihood-ratios-probabilities"></a></h2>
 
 
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -189,31 +193,36 @@
 
         </dt>
         <dd>Calculate OH and LLR for a pedigree</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="CalcPairLL.html">CalcPairLL()</a></code>
 
         </dt>
         <dd>Calculate Likelihoods for Alternative Relationships</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="PlotPairLL.html">PlotPairLL()</a></code>
 
         </dt>
         <dd>Plot Pair Log10-Likelihoods</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="GetLLRAge.html">GetLLRAge()</a></code>
 
         </dt>
         <dd>LLR-age from Ageprior Matrix</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="LLtoProb.html">LLtoProb()</a></code>
 
         </dt>
         <dd>transform log-likelihoods to probabilities</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="CalcParentProbs.html">CalcParentProbs()</a></code>
 
@@ -224,8 +233,7 @@
 
       <div class="section-desc"><p>These functions can be applied to any pedigree, no genetic data needed</p></div>
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -236,55 +244,71 @@
 
         </dt>
         <dd>Confidence Probabilities</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="GetRelM.html">GetRelM()</a></code>
 
         </dt>
         <dd>Matrix with Pairwise Relationships</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="PlotRelPairs.html">PlotRelPairs()</a></code>
 
         </dt>
         <dd>Plot Pairwise Relationships</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="SummarySeq.html">SummarySeq()</a></code>
 
         </dt>
         <dd>Summarise Sequoia Output or Pedigree</dd>
-      </dl><dl><dt>
+
+        <dt>
+
+          <code><a href="PlotPropAssigned.html">PlotPropAssigned()</a></code>
+
+        </dt>
+        <dd>Plot proportion of individuals that has a parent assigned</dd>
+
+        <dt>
 
           <code><a href="PlotSeqSum.html">PlotSeqSum()</a></code>
 
         </dt>
         <dd>Plot Summary Overview of sequoia Output</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="getAssignCat.html">getAssignCat()</a></code>
 
         </dt>
         <dd>Assignability of Reference Pedigree</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="getGenerations.html">getGenerations()</a></code>
 
         </dt>
         <dd>Count Generations</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="GetAncestors.html">GetAncestors()</a></code>
 
         </dt>
         <dd>Get ancestors</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="GetDescendants.html">GetDescendants()</a></code>
 
         </dt>
         <dd>Get descendants</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="CalcRped.html">CalcRped()</a></code>
 
@@ -295,8 +319,7 @@
       <h3 id="compare-pedigrees">Compare 2 pedigrees<a class="anchor" aria-label="anchor" href="#compare-pedigrees"></a></h3>
 
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -307,13 +330,15 @@
 
         </dt>
         <dd>Compare Two Pedigrees</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="PlotPedComp.html">PlotPedComp()</a></code>
 
         </dt>
         <dd>Visualise PedCompare Output</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="ComparePairs.html">ComparePairs()</a></code>
 
@@ -324,8 +349,7 @@
 
 
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -336,37 +360,50 @@
 
         </dt>
         <dd>Fix Pedigree</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="ErrToM.html">ErrToM()</a></code>
 
         </dt>
         <dd>Generate Genotyping Error Matrix</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="Err_RADseq.html">Err_RADseq()</a></code>
 
         </dt>
         <dd>Convert Genotyping Error Rates from per-allele to per-locus</dd>
-      </dl><dl><dt>
+
+        <dt>
+
+          <code><a href="CountOH.html">CountOH()</a></code>
+
+        </dt>
+        <dd>Count opposing homozygous SNPs between pairs of individuals</dd>
+
+        <dt>
 
           <code><a href="writeSeq.html">writeSeq()</a></code>
 
         </dt>
         <dd>Write Sequoia Output to File</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="writeColumns.html">writeColumns()</a></code>
 
         </dt>
         <dd>Write Data to a File Column-wise</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="FindFamilies.html">FindFamilies()</a></code>
 
         </dt>
         <dd>Assign Family IDs</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="PedStripFID.html">PedStripFID()</a></code>
 
@@ -377,8 +414,7 @@
 
 
 
-
-    </div><div class="section level2">
+      <dl></dl></div><div class="section level2">
 
 
 
@@ -389,95 +425,83 @@
 
         </dt>
         <dd>Example pedigree: 'HSg5'</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="LH_HSg5.html">LH_HSg5</a></code>
 
         </dt>
         <dd>Example life history file: 'HSg5'</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="SimGeno_example.html">SimGeno_example</a></code>
 
         </dt>
         <dd>Example genotype file: 'HSg5'</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="Geno_HSg5.html">Geno_HSg5</a></code>
 
         </dt>
         <dd>Example genotype file: 'HSg5'</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="SeqOUT_HSg5.html">SeqOUT_HSg5</a></code>
 
         </dt>
         <dd>Example output from pedigree inference: 'HSg5'</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="Ped_griffin.html">Ped_griffin</a></code>
 
         </dt>
         <dd>Example pedigree: griffins</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="LH_griffin.html">LH_griffin</a></code>
 
         </dt>
         <dd>Example life history data: griffins</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="FieldMums_griffin.html">FieldMums_griffin</a></code>
 
         </dt>
         <dd>Example field-observed mothers: griffins</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="Geno_griffin.html">Geno_griffin</a></code>
 
         </dt>
         <dd>Example genotype file: Griffins</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="SeqOUT_griffin.html">SeqOUT_griffin</a></code>
 
         </dt>
         <dd>Example output from pedigree inference: griffins</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="Conf_griffin.html">Conf_griffin</a></code>
 
         </dt>
         <dd>Example output from estimating confidence probabilities: griffins</dd>
-      </dl><dl><dt>
+
+        <dt>
 
           <code><a href="MaybeRel_griffin.html">MaybeRel_griffin</a></code>
 
         </dt>
         <dd>Example output from check for relatives: griffins</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="deprecated">Deprecated<a class="anchor" aria-label="anchor" href="#deprecated"></a></h3>
-
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="DyadCompare.html">DyadCompare()</a></code>
-
-        </dt>
-        <dd>Compare Dyads (DEPRECATED)</dd>
-      </dl><dl><dt>
-
-          <code><a href="EstEr.html">EstEr()</a></code>
-
-        </dt>
-        <dd>Estimate genotyping error rate (REMOVED; will be re-implemented)</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
@@ -488,7 +512,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

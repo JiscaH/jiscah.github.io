@@ -11,7 +11,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -148,9 +148,16 @@ are calculated.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">CalcMaxMismatch</span><span class="op">(</span>Err <span class="op">=</span> <span class="fl">0.05</span>, MAF <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">100</span>, min<span class="op">=</span><span class="fl">0.3</span>, max<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DUP  OH  ME </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  24   8  14 </span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="fu">CalcMaxMismatch</span><span class="op">(</span>Err <span class="op">=</span> <span class="fl">0.02</span>, MAF <span class="op">=</span> <span class="fu"><a href="SnpStats.html">SnpStats</a></span><span class="op">(</span><span class="va">MyGenoMatrix</span>, Plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">[</span>,<span class="st">"AF"</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># in sequoia() qntl depends on the number of genotyped individuals, to get an</span></span></span>
+<span class="r-in"><span><span class="co"># approximately constant false exclusion rate at dataset-level</span></span></span>
+<span class="r-in"><span><span class="va">sts</span> <span class="op">&lt;-</span> <span class="fu"><a href="SnpStats.html">SnpStats</a></span><span class="op">(</span><span class="va">Geno_griffin</span>, Plot<span class="op">=</span><span class="cn">FALSE</span>, quiet<span class="op">=</span><span class="cn">TRUE</span>, calc_HWE<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">MAF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">sts</span><span class="op">[</span>,<span class="st">'AF'</span><span class="op">]</span> <span class="op">&lt;</span> <span class="fl">0.5</span>, <span class="va">sts</span><span class="op">[</span>,<span class="st">'AF'</span><span class="op">]</span>, <span class="fl">1</span><span class="op">-</span><span class="va">sts</span><span class="op">[</span>,<span class="st">'AF'</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">sequoia</span><span class="fu">::</span><span class="fu">CalcMaxMismatch</span><span class="op">(</span>Err <span class="op">=</span> <span class="fl">0.001</span>,</span></span>
+<span class="r-in"><span>                         MAF <span class="op">=</span> <span class="va">MAF</span>,</span></span>
+<span class="r-in"><span>                         qntl <span class="op">=</span> <span class="fl">0.9999</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Geno_griffin</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DUP  OH  ME </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   8   4   6 </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -163,7 +170,7 @@ are calculated.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

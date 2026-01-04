@@ -11,7 +11,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,6 +70,7 @@
 <span>  ZeroToNA <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  NAToZero <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  DropNonSNPd <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  addParentRows <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  FillParents <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  KeepAllColumns <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  KeepAllRows <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -105,6 +106,11 @@
 <dt id="arg-dropnonsnpd">DropNonSNPd<a class="anchor" aria-label="anchor" href="#arg-dropnonsnpd"></a></dt>
 <dd><p>logical, remove any non-genotyped individuals (but keep
 non-genotyped parents), &amp; sort pedigree in order of <code>gID</code>.</p></dd>
+
+
+<dt id="arg-addparentrows">addParentRows<a class="anchor" aria-label="anchor" href="#arg-addparentrows"></a></dt>
+<dd><p>add rows for any dams, sires, or individuals in
+<code>gID</code> not yet occurring in the id column.</p></dd>
 
 
 <dt id="arg-fillparents">FillParents<a class="anchor" aria-label="anchor" href="#arg-fillparents"></a></dt>
@@ -215,7 +221,7 @@ swapped by this function if necessary.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

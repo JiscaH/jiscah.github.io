@@ -9,7 +9,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">sequoia</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,6 +100,8 @@ U=unrelated. For <code>Complex='full'</code> there are numerous double relations
 <span class="r-in"><span>                         ID2<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'i015_2001_F'</span>, <span class="st">'i022_2002_F'</span>, <span class="st">'i035_2002_F'</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                  GenoM <span class="op">=</span> <span class="va">Geno_griffin</span>, Complex<span class="op">=</span><span class="st">'simp'</span>, Err<span class="op">=</span><span class="fl">1e-3</span>, Plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Not conditioning on any pedigree</span>
+<span class="r-in"><span><span class="va">prob_pairs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">LL_pairs</span><span class="op">[</span>,<span class="fl">10</span><span class="op">:</span><span class="fl">16</span><span class="op">]</span>, MARGIN<span class="op">=</span><span class="fl">1</span>, <span class="va">LLtoProb</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># - or -</span></span></span>
 <span class="r-in"><span><span class="va">prob_pairs</span> <span class="op">&lt;-</span> <span class="fu">plyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plyr/man/aaply.html" class="external-link">aaply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">LL_pairs</span><span class="op">[</span>,<span class="fl">10</span><span class="op">:</span><span class="fl">16</span><span class="op">]</span><span class="op">)</span>, .margin<span class="op">=</span><span class="fl">1</span>, <span class="va">LLtoProb</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">prob_pairs</span>, <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    </span>
@@ -107,6 +109,7 @@ U=unrelated. For <code>Complex='full'</code> there are numerous double relations
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1  1 0.000 0.000 0.000 0.000 0.000 0.000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   2  0 0.999 0.000 0.000 0.000 0.000 0.000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   3  0 0.000 0.185 0.185 0.185 0.444 0.001</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># i035_2002_F is MHS of i042_2003_F, but when not conditioning on any other</span></span></span>
 <span class="r-in"><span><span class="co"># relatives has a higher LL to be 3rd degree relative (HA)</span></span></span>
 <span class="r-in"><span><span class="co"># (possibly genotyping errors, or just randomness of Mendelian inheritance)</span></span></span>
@@ -122,7 +125,7 @@ U=unrelated. For <code>Complex='full'</code> there are numerous double relations
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

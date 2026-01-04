@@ -1,4 +1,29 @@
-# sequoia 3.0.3
+# sequoia 3.2
+- allow .vcf.gz as input for `GenoConvert`
+- fix `which.min` applied to data.frame rows (no longer allowed) by adding `as.matrix`
+- fix various issues affecting performance with hermaphrodites
+- fix SeqOUT$DummyIDs output for hermaphrodite dummies
+- hide documentation of internal functions
+
+
+# sequoia 3.1.3
+- add function `PlotPropAssigned`
+
+
+# sequoia 3.1.2
+- fix bug that disallowed sibship clustering among candidate parents in discrete 
+2 generation offspring + candidate parents datasets.
+- add function `CountOH`
+
+
+# sequoia 3.1
+- allow for age differences >100
+- fix bug in `PedToNum` when called by `CalcPairLL` without pedigree
+- `CalcPairLL`: when 'patmat' not specified, now always defaults to 'sex2', not
+ only when focal=PO. 
+
+
+# sequoia 3.0
 - numerous updates to Fortran code to improve assignment accuracy, including several
   bug fixes related to monogamous mating systems
 - fix inconsistency in ageprior matrix and its use for grandparents and avuncular pairs
@@ -12,7 +37,7 @@
 - `CalcPairLL`: force to (almost) always calculate LL even when highly unlikely,
 by fixing MaxMismatch to the total number of SNPs and T_filter to -999.0. 
 - `CalcParentProbs`: new function to calculate assignment probabilities for any pedigree
-- `getAssignCat` now also considers parents with only dummifiable offspring as dummifiable; 
+- `getAssignCat` now also considers parents with only dummyfiable offspring as dummyfiable; 
  option '1sib' is dropped.
 - `PedCompare`: when an incorrect half-sibling is added to a true singleton-sibship-with-grandparent,
   this now counts as 1 mismatch; this erroneously was 3 mismatches (entire sibship wrong).
